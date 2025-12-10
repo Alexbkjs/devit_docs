@@ -1,0 +1,293 @@
+---
+title: Markets Recommendation Display Settings
+description: Configure when and how markets recommendation banners appear to your visitors
+---
+
+The Display settings in Markets Recommendations control when your recommendation banner appears to visitors. These options help you balance providing helpful suggestions with respecting customer preferences and browsing patterns.
+
+## Accessing Display Settings
+
+<Steps>
+  <Step title="Open Markets Recommendations">
+    In the Selecty app, navigate to **Markets Recommendations** and click **Customize**.
+  </Step>
+
+  <Step title="Go to Settings Tab">
+    Click on the **Settings** tab at the top of the customization panel.
+  </Step>
+
+  <Step title="Find Display Options">
+    The **Display** dropdown contains four behavior options for controlling when banners appear.
+  </Step>
+</Steps>
+
+## Display Options
+
+### Display when necessary
+
+**Recommended for most stores**
+
+Shows recommendations when visitors are browsing with the wrong language, currency, or country, and remembers their choice. Recommendations will only appear again if the customer changes their language, currency, or country afterwards.
+
+**How it works:**
+
+1. Visitor arrives from a country that doesn't match their current market
+2. Banner appears suggesting the appropriate market
+3. Customer makes a choice (accept or dismiss)
+4. Selecty remembers this choice
+5. Banner won't appear again unless the customer manually switches to a different language, currency, or country
+
+**Best for:**
+- Stores that want to be helpful without being pushy
+- Respecting customer choices while staying responsive to changes
+- Balancing user experience with conversion optimization
+
+**Example scenario:**
+> A visitor from France arrives at your UK store (English/GBP). The banner suggests switching to French/EUR. They dismiss it. The banner won't appear again during their session or future visits, unless they manually switch to Spanish or another market first—then the banner will suggest French/EUR again.
+
+<Tip>
+This is the recommended option for most stores as it provides helpful suggestions without repeatedly interrupting visitors who have already made their preference clear.
+</Tip>
+
+### Forced recommendations
+
+Shows recommendations when visitors are browsing with a wrong language, currency, or country with only one recommended option, and always switches to it automatically afterwards.
+
+**How it works:**
+
+1. Visitor arrives at your store from a different market
+2. Banner appears with only the recommended option (no choice to decline)
+3. After a short delay, automatically switches to the recommended market
+4. Applies to every visit where the market doesn't match location/language
+
+**Best for:**
+- Stores with strict regional requirements (legal, licensing)
+- B2B stores where correct market selection is critical
+- Situations where wrong market selection causes significant issues
+
+**Important considerations:**
+
+<Warning>
+Forced recommendations automatically redirect users without giving them a choice. This can negatively impact SEO and user experience. Only use this option if you have a specific business requirement for automatic market switching.
+</Warning>
+
+**Example scenario:**
+> A visitor from Germany arrives at your US store. The banner appears showing only the German market option. After 3 seconds, they're automatically redirected to the German market. This happens on every visit.
+
+### Remember choice
+
+Remember customer choice during the first recommendation and switch automatically if visited a wrong language, currency, or country.
+
+**How it works:**
+
+1. First visit: Banner appears with recommendation
+2. Customer accepts or dismisses
+3. Selecty remembers this choice
+4. On future visits from wrong market: Automatically switches based on remembered preference
+5. No banner appears on subsequent visits
+
+**Best for:**
+- Stores with returning customers
+- Reducing banner fatigue while maintaining personalization
+- Streamlined experience for repeat visitors
+
+**Example scenario:**
+> First visit: German visitor sees banner suggesting German market and accepts. Future visits: If they arrive at the US store again, they're automatically switched to German market without seeing the banner.
+
+<Note>
+This option relies on browser cookies to remember preferences. If customers clear cookies or visit from a different device/browser, they'll see the recommendation banner again.
+</Note>
+
+### Display once
+
+Show recommendations only once if needed and prevent displaying in the future.
+
+**How it works:**
+
+1. Banner appears on first visit (if market doesn't match location/language)
+2. Customer makes their choice
+3. Banner never appears again, regardless of:
+   - Future visits
+   - Market changes
+   - Different countries or languages
+
+**Best for:**
+- Minimal interruption approach
+- Stores where recommendation is informational only
+- Markets where visitors frequently travel or use VPNs
+
+**Example scenario:**
+> A visitor from Canada arrives at your US store and dismisses the Canadian market suggestion. They'll never see the banner again, even if they manually switch to the UK market and visit again next week.
+
+<Warning>
+This option shows the banner only once ever. Even if a customer's needs change over time, they won't see recommendations again. Use this carefully.
+</Warning>
+
+### Display for everyone
+
+Show recommendations to every new visitor, regardless of the visitor's country, currency, or browser language.
+
+**How it works:**
+
+1. Every first-time visitor sees the banner
+2. Recommendation is based on detected location and language
+3. Even visitors from your primary market see suggestions
+4. Appears once per unique visitor
+
+**Best for:**
+- Stores wanting maximum awareness of market options
+- New stores building market awareness
+- Testing recommendation banner effectiveness
+
+**Example scenario:**
+> All visitors see the banner on their first visit, including those already in the correct market. A US visitor to your US store might see "Continue shopping in English (USD)" as a confirmation rather than a suggestion to switch.
+
+<Info>
+This option maximizes banner visibility but may feel unnecessary to visitors who are already in the correct market. Consider whether the added awareness is worth the potential interruption.
+</Info>
+
+## Choosing the Right Display Option
+
+Use this guide to select the best option for your store:
+
+<CardGroup cols={2}>
+  <Card title="Display when necessary" icon="check-circle">
+    **Choose if:**
+    - You want to help without annoying visitors
+    - Customers might change preferences over time
+    - You need a balanced approach
+
+    **Most popular option**
+  </Card>
+
+  <Card title="Forced recommendations" icon="exclamation-triangle">
+    **Choose if:**
+    - You have legal/licensing requirements by region
+    - Wrong market causes significant issues
+    - User choice is less important than correct market
+
+    **Use with caution**
+  </Card>
+
+  <Card title="Remember choice" icon="brain">
+    **Choose if:**
+    - You have many returning customers
+    - You want automatic switching for known preferences
+    - Reducing banner appearances is a priority
+  </Card>
+
+  <Card title="Display once" icon="eye-slash">
+    **Choose if:**
+    - You want minimal interruption
+    - Banner is purely informational
+    - You have many VPN users or travelers
+  </Card>
+
+  <Card title="Display for everyone" icon="users">
+    **Choose if:**
+    - You want maximum market awareness
+    - You're launching new markets
+    - Testing banner effectiveness
+  </Card>
+</CardGroup>
+
+## Testing Display Options
+
+To test how different display options work:
+
+<Steps>
+  <Step title="Select a Display Option">
+    Choose one of the display options in Settings > Display.
+  </Step>
+
+  <Step title="Save and Publish">
+    Save your changes and publish the recommendation banner.
+  </Step>
+
+  <Step title="Test in Incognito Mode">
+    Open an incognito/private browser window and visit your store with a VPN set to a different country.
+  </Step>
+
+  <Step title="Observe Banner Behavior">
+    Note when the banner appears and how it behaves based on your selected option.
+  </Step>
+
+  <Step title="Test Edge Cases">
+    Try scenarios like:
+    - Dismissing the banner and revisiting
+    - Accepting the banner and revisiting
+    - Manually switching markets then revisiting
+    - Clearing cookies and testing again
+  </Step>
+</Steps>
+
+<Info>
+For detailed testing instructions, see our [Testing Geolocation](/advanced/testing-geolocation) guide.
+</Info>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start with 'Display when necessary'">
+    This option provides the best balance between helpfulness and user experience for most stores. You can adjust based on analytics and customer feedback.
+  </Accordion>
+
+  <Accordion title="Avoid forced recommendations unless required">
+    Automatic redirects can frustrate users and harm SEO. Only use "Forced recommendations" if you have a specific business need that outweighs these concerns.
+  </Accordion>
+
+  <Accordion title="Monitor analytics">
+    Track banner interaction rates to see if your display option is working effectively:
+    - How many visitors see the banner
+    - Acceptance vs. dismissal rates
+    - Impact on conversion rates by market
+  </Accordion>
+
+  <Accordion title="Consider cookie lifetime">
+    The display option works in conjunction with cookie settings. Ensure your cookie lifetime matches your display strategy (e.g., longer cookies for "Remember choice", shorter for "Display when necessary").
+  </Accordion>
+
+  <Accordion title="Combine with manual selectors">
+    Always provide manual language/currency selectors so users can change markets even if they've dismissed the recommendation banner.
+  </Accordion>
+</AccordionGroup>
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="What happens if I change the display option?">
+    Changing the display option affects future visitor interactions. Existing cookies and remembered preferences remain until they expire or are cleared.
+  </Accordion>
+
+  <Accordion title="Do display options affect SEO?">
+    "Display when necessary", "Remember choice", "Display once", and "Display for everyone" don't impact SEO because they show recommendations rather than forcing redirects. "Forced recommendations" can impact SEO similar to automatic redirects.
+  </Accordion>
+
+  <Accordion title="Can I exclude certain countries from recommendations?">
+    Yes, you can configure market and country exclusions in other settings sections. The display option controls the behavior pattern, while other settings control which markets and countries trigger recommendations.
+  </Accordion>
+
+  <Accordion title="How long do preferences last?">
+    Preference duration depends on your cookie lifetime settings, which you can configure in the Settings section. Default is typically 30 days.
+  </Accordion>
+</AccordionGroup>
+
+## Related Settings
+
+<CardGroup cols={2}>
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Learn about the full markets recommendation feature
+  </Card>
+
+  <Card title="Theme Customization" icon="palette" href="/features/markets-recommendation#customization-options">
+    Customize banner appearance and messaging
+  </Card>
+
+  <Card title="Testing Geolocation" icon="location-dot" href="/advanced/testing-geolocation">
+    Test your display settings with different locations
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Add manual market selectors for user control
+  </Card>
+</CardGroup>

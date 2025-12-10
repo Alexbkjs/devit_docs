@@ -1,0 +1,385 @@
+---
+title: Resources
+description: Understand and configure resources for selectors and banners
+---
+
+
+Resources are the switchable elements from your Shopify Markets that customers can change using Selecty selectors and banners. Understanding resources is key to creating effective switchers for your international store.
+
+## What are Resources?
+
+Resources represent the different options customers can switch between:
+
+- **Languages** - Different language versions of your store
+- **Currencies** - Various currencies for pricing display
+- **Countries** - Different country markets you serve
+- **Market Domains** - Separate domains or subdomains for markets
+- **Custom Resources** - User-defined switching options
+
+<Info>
+Resources are pulled from your Shopify Markets configuration. Selecty reads this data and makes it available through selectors and banners.
+</Info>
+
+## Standard Resource Types
+
+### Languages
+
+**What it is:** A list of languages added to your Shopify Markets
+
+**Configuration:** Shopify Settings → Languages
+
+**Requirements:**
+- Languages must be added in Shopify first
+- Translations should be published
+- Languages assigned to at least one market
+
+**Use cases:**
+- Language selector in header
+- Recommendation banner for non-English visitors
+- Combined language & currency switcher
+
+<Tip>
+See our [Languages guide](/configuration/languages) for detailed configuration instructions.
+</Tip>
+
+### Currencies
+
+**What it is:** A list of currencies corresponding to countries in your markets
+
+**Configuration:** Shopify Settings → Markets
+
+**Requirements:**
+- Markets configured with countries
+- Currencies assigned to markets
+- Shopify Payments enabled for local currency payments (recommended)
+
+**Use cases:**
+- Currency selector in footer
+- Geolocation-based currency recommendations
+- Combined with language switching
+
+<Tip>
+See our [Currencies guide](/configuration/currencies) for detailed configuration instructions.
+</Tip>
+
+### Countries
+
+**What it is:** A list of countries added to your Shopify Markets
+
+**Configuration:** Shopify Settings → Markets
+
+**Requirements:**
+- At least one market created
+- Countries assigned to markets
+- Shipping zones configured for countries
+
+**Use cases:**
+- Country selector for international stores
+- Shipping destination selection
+- Country-specific content or products
+
+### Market Domains
+
+**What it is:** A list of active markets with separate domains or subdomains
+
+**Configuration:** Shopify Settings → Domains
+
+**Requirements:**
+- Each market must point to a separate domain or subdomain
+- Domains properly configured and connected
+- DNS settings correctly set up
+
+**Examples:**
+- example.com (US market)
+- example.co.uk (UK market)
+- example.fr (France market)
+
+<Warning>
+Market Domains only work correctly when each market is pointed to a distinct domain or subdomain. Markets sharing the same domain won't appear in domain selectors.
+</Warning>
+
+## Custom Resources
+
+Selecty allows you to create custom resources beyond the standard Shopify Markets options. This is available on the **Premium plan only**.
+
+### Types of Custom Resources
+
+<AccordionGroup>
+  <Accordion title="Custom URL Mapping">
+    **What it is:** Point existing resources to custom URLs
+
+    **Example:**
+    - Map "French" language to a specific landing page
+    - Route "Canada" to a custom checkout experience
+    - Direct currencies to regional domains
+
+    **How to set up:**
+    1. Open resource settings
+    2. Select the existing resource (language, currency, etc.)
+    3. Enter custom URL for that resource
+    4. Save changes
+  </Accordion>
+
+  <Accordion title="Third-Party Resources">
+    **What it is:** Create entirely custom switching options
+
+    **Example:**
+    - Link to social media in different regions
+    - Connect to sister brands or stores
+    - Provide region-specific app downloads
+    - Link to localized support pages
+
+    **How to set up:**
+    1. Go to Resources → Add Resource → Add third-party resource
+    2. Fill in fields:
+       - **Title:** Display name
+       - **URL:** Destination link
+       - **Icon:** Optional custom icon
+    3. Click Apply
+  </Accordion>
+
+  <Accordion title="Custom Resource Collections">
+    **What it is:** Group custom resources into switchable sets
+
+    **Example:**
+    - Regional blog links
+    - Country-specific contact pages
+    - Market-specific catalogs
+    - Localized documentation
+
+    **How to set up:**
+    1. Go to Resources → Add custom resource
+    2. Enter resource name
+    3. Click Apply
+    4. Add individual items:
+       - Click Add resource
+       - Enter title and link
+       - Click Apply and Save
+    5. Apply to selector or banner
+  </Accordion>
+</AccordionGroup>
+
+## Managing Resources
+
+### Adding Market Resources
+
+To add new market resources (countries, languages, currencies):
+
+<Steps>
+  <Step title="Go to Shopify Settings">
+    Navigate to **Settings** → **Markets** in Shopify admin.
+  </Step>
+
+  <Step title="Add or Edit Market">
+    - To add new market: Click **Add market**
+    - To edit existing: Select the market
+  </Step>
+
+  <Step title="Configure Market Settings">
+    - Add countries to the market
+    - Assign languages
+    - Set up currencies
+    - Configure domains if needed
+  </Step>
+
+  <Step title="Save and Sync">
+    - Save changes in Shopify
+    - Return to Selecty
+    - New resources appear automatically
+  </Step>
+</Steps>
+
+<Note>
+When you click "Add market resource" in Selecty, you're redirected to Shopify Markets because market configuration happens on the Shopify side.
+</Note>
+
+### Creating Custom Resources
+
+For **Premium plan** users:
+
+<Steps>
+  <Step title="Access Resources Section">
+    In Selecty app, navigate to the **Resources** section.
+  </Step>
+
+  <Step title="Add Custom Resource">
+    Click **Add custom resource** button.
+  </Step>
+
+  <Step title="Name Your Resource">
+    Enter a descriptive name for your resource collection.
+  </Step>
+
+  <Step title="Add Resource Items">
+    For each item in your resource:
+    - Click **Add resource**
+    - Enter **Title** (display name)
+    - Enter **Link** (destination URL)
+    - Upload icon (optional)
+    - Click **Apply**
+  </Step>
+
+  <Step title="Save Resource Collection">
+    Click **Save** to finalize your custom resource.
+  </Step>
+
+  <Step title="Apply to Selector">
+    - Open the selector or banner you want to use it with
+    - Click **Resource list**
+    - Select your custom resource
+    - Save the selector
+  </Step>
+</Steps>
+
+### Customizing Resource Display
+
+Control how resources appear in selectors:
+
+**Name Formats:**
+- **Full name:** United States, Euro, English
+- **Code:** US, EUR, EN
+- **Native name:** États-Unis, English (local language representation)
+
+**Display Options:**
+- **Icons:** Country flags, currency symbols
+- **Search:** Enable search for long lists
+- **Order:** Customize the order resources appear
+- **Visibility:** Show or hide specific resources
+
+## Resource Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Keep Lists Focused" icon="filter">
+    Only include markets you actively serve. Too many options overwhelm customers.
+  </Card>
+
+  <Card title="Use Icons" icon="image">
+    Flags and symbols help customers quickly identify their option.
+  </Card>
+
+  <Card title="Enable Search" icon="magnifying-glass">
+    For lists with more than 10-12 options, enable search functionality.
+  </Card>
+
+  <Card title="Logical Order" icon="arrow-down-1-9">
+    Order resources logically (alphabetical, by popularity, or geographically).
+  </Card>
+
+  <Card title="Clear Naming" icon="tag">
+    Use clear, recognizable names. Avoid abbreviations unless universally known.
+  </Card>
+
+  <Card title="Test Resources" icon="flask">
+    Test all resource links and switchers to ensure they work correctly.
+  </Card>
+</CardGroup>
+
+## Resource Limitations
+
+### What You Can Do
+
+- Create selectors from any configured Shopify resource
+- Combine multiple resources (language + currency)
+- Create custom resources (Premium plan)
+- Customize display and order
+- Map resources to custom URLs (Premium plan)
+
+### What You Cannot Do
+
+- Add resources not configured in Shopify Markets
+- Override Shopify's market configuration
+- Create languages or currencies Shopify doesn't support
+- Bypass Shopify's domain requirements
+- Use market domains without separate domains/subdomains
+
+## Common Use Cases
+
+### Use Case 1: European Multi-Market Store
+
+**Resources:**
+- **Countries:** France, Germany, Spain, Italy
+- **Languages:** French, German, Spanish, Italian
+- **Currencies:** EUR (all markets use Euro)
+
+**Selectors:**
+- Combined Language & Country selector
+- Single currency (no selector needed)
+
+### Use Case 2: Global Store with Many Markets
+
+**Resources:**
+- **Countries:** 30+ countries across 6 continents
+- **Languages:** 10 languages
+- **Currencies:** 15+ currencies
+
+**Selectors:**
+- Searchable country selector
+- Language selector with flags
+- Currency selector with symbols
+- All positioned in header
+
+### Use Case 3: Multi-Brand with Custom Resources
+
+**Resources:**
+- **Standard:** US, UK, EU markets
+- **Custom:** Links to regional brand websites, localized support pages, country-specific catalogs
+
+**Selectors:**
+- Market selector for standard markets
+- Custom resource selector for brand links
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Resource not appearing in Selecty">
+    **Check:**
+    - Resource is configured in Shopify Markets
+    - Market is published and active
+    - Resource is assigned to at least one market
+    - Selecty has synced with Shopify (refresh app)
+  </Accordion>
+
+  <Accordion title="Custom resource not saving">
+    **Verify:**
+    - You have Premium plan subscription
+    - All required fields are filled
+    - URLs are valid and properly formatted
+    - You clicked Save after adding resources
+  </Accordion>
+
+  <Accordion title="Market domain not showing">
+    **Ensure:**
+    - Each market has a separate domain or subdomain
+    - Domains are connected in Shopify Settings → Domains
+    - DNS settings are correctly configured
+    - Markets are published
+  </Accordion>
+
+  <Accordion title="Resource order not saving">
+    **Try:**
+    - Drag and drop to reorder
+    - Save changes explicitly
+    - Refresh the app to verify changes
+    - Clear browser cache if issues persist
+  </Accordion>
+</AccordionGroup>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Learn how to create selectors using resources
+  </Card>
+
+  <Card title="Languages" icon="language" href="/configuration/languages">
+    Configure language resources
+  </Card>
+
+  <Card title="Currencies" icon="dollar-sign" href="/configuration/currencies">
+    Set up currency resources
+  </Card>
+
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Use resources in recommendation banners
+  </Card>
+</CardGroup>

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Selecty Documentation",
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "index",
+              "quickstart",
+              "pricing"
+            ]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/selectors",
+              "features/markets-recommendation",
+              "features/markets-recommendation-display",
+              "features/markets-redirect",
+              "features/multiple-stores"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/languages",
+              "configuration/currencies",
+              "configuration/resources"
+            ]
+          },
+          {
+            "group": "Advanced Topics",
+            "pages": [
+              "advanced/seo",
+              "advanced/testing-geolocation",
+              "advanced/pagefly"
+            ]
+          },
+          {
+            "group": "FAQ & Support",
+            "pages": [
+              "support/faq",
+              "support/accessibility",
+              "support/privacy",
+              "support/help"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Install App",
+          "href": "https://apps.shopify.com/selectors",
+          "icon": "download"
+        },
+        {
+          "anchor": "Support",
+          "href": "mailto:support@devit.software",
+          "icon": "envelope"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@devit.software"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Install App",
+      "href": "https://apps.shopify.com/selectors"
+    }
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/devitsoftware",
+      "github": "https://github.com/devitsoftware"
+    }
+  }
+}

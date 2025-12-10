@@ -1,0 +1,328 @@
+---
+title: Markets Redirect
+description: Automatically redirect visitors to their local market based on location and language
+---
+
+
+Markets Redirect automatically redirects visitors to their appropriate local market based on their IP geolocation and browser language preferences. This feature provides instant localization without requiring user input.
+
+<Warning>
+**Important SEO Consideration**
+
+Google recommends against using automatic redirects for multilingual websites as they can negatively impact SEO indexing. We strongly suggest using [Markets Recommendation](/features/markets-recommendation) banners instead, which give users control while still providing personalized suggestions.
+
+See our [SEO guide](/advanced/seo) for more details.
+</Warning>
+
+## How It Works
+
+When enabled, Markets Redirect automatically detects:
+
+1. **Visitor's Country** - Using IP geolocation
+2. **Visitor's Language** - From browser language preferences
+3. **Appropriate Market** - Matches location and language to your configured markets
+4. **Automatic Redirect** - Seamlessly redirects to the correct market
+
+## When to Use Markets Redirect
+
+Markets Redirect may be appropriate for:
+
+- Stores with completely separate regional websites (different domains)
+- B2B stores where automatic localization is expected
+- Stores in specific industries where geo-targeting is standard practice
+- Markets with distinct product catalogs by region
+
+<Info>
+For most Shopify stores using Markets, we recommend [Markets Recommendation](/features/markets-recommendation) banners instead of automatic redirects. Recommendations provide better SEO, user control, and flexibility.
+</Info>
+
+## Enabling Markets Redirect
+
+<Steps>
+  <Step title="Open Selecty App">
+    Navigate to the Selecty app in your Shopify admin.
+  </Step>
+
+  <Step title="Find Markets Redirect Section">
+    Scroll to the **Markets Redirect** section on the dashboard.
+  </Step>
+
+  <Step title="Enable Redirect Options">
+    Toggle on the redirect features you want:
+
+    - **Auto-redirect by country** - Redirects based on IP geolocation
+    - **Auto-redirect by language** - Redirects based on browser language
+    - **Combined redirect** - Uses both country and language detection
+  </Step>
+
+  <Step title="Configure Rules (Optional)">
+    Set up redirect rules:
+    - Exclude specific countries or languages
+    - Set redirect priority when multiple markets match
+    - Configure redirect timing and behavior
+  </Step>
+
+  <Step title="Save Changes">
+    Click **Save** to activate Markets Redirect.
+  </Step>
+</Steps>
+
+## Redirect Methods
+
+### Country-Based Redirect
+
+Automatically redirect visitors based on their geographical location.
+
+**How it works:**
+- Detects visitor's country via IP address
+- Matches country to your configured markets
+- Redirects to the appropriate market for that country
+
+**Example:**
+- Visitor from France → Redirected to French market
+- Visitor from Germany → Redirected to German market
+- Visitor from Canada → Redirected to Canadian market
+
+### Language-Based Redirect
+
+Redirect visitors based on their browser's preferred language settings.
+
+**How it works:**
+- Reads the visitor's browser language preferences
+- Matches language to your available markets
+- Redirects to market with matching language
+
+**Example:**
+- Browser set to Spanish → Redirected to Spanish language market
+- Browser set to Japanese → Redirected to Japanese language market
+
+### Combined Redirect
+
+Uses both country and language to find the best match.
+
+**How it works:**
+1. Detects both country (IP) and language (browser)
+2. Looks for a market that matches both
+3. Falls back to country-only match if no perfect match exists
+
+**Example:**
+- French visitor with French browser → France market (perfect match)
+- French visitor with English browser → France market (country match)
+- Spanish visitor with French browser → Spain market (country priority)
+
+## Bot Detection
+
+Selecty includes bot detection to prevent search engine crawlers from being redirected, which helps maintain SEO integrity.
+
+**How it works:**
+
+- Identifies common search engine bots (Google, Bing, etc.)
+- Allows bots to access all market versions for proper indexing
+- Only redirects human visitors
+
+<Note>
+**Important Limitation**
+
+While Selecty's bot detection is sophisticated, no detection algorithm can guarantee 100% accuracy. Some bots may be redirected, and some human visitors may not be. This is an inherent limitation of automated bot detection technology.
+</Note>
+
+## Configuration Options
+
+### Redirect Exclusions
+
+Exclude specific scenarios from automatic redirection:
+
+- **Countries** - Don't redirect visitors from certain countries
+- **Languages** - Skip redirect for specific languages
+- **Pages** - Exclude specific URLs (cart, checkout, etc.)
+- **First-time visitors only** - Only redirect on first visit
+
+### Redirect Behavior
+
+Control how redirects function:
+
+- **Redirect timing** - Immediate or delayed redirect
+- **Cookie duration** - How long to remember redirect preference
+- **Manual override** - Allow users to switch back
+- **Redirect frequency** - Once per session or on every visit
+
+## Disabling Shopify's Native Redirect
+
+To avoid conflicts, disable Shopify's built-in market redirect:
+
+<Steps>
+  <Step title="Open Shopify Settings">
+    In Shopify admin, go to **Settings** → **Markets**.
+  </Step>
+
+  <Step title="Access Other Markets">
+    In the **Other markets** section, click **Preferences**.
+  </Step>
+
+  <Step title="Disable Domain Redirection">
+    Turn off the **Domain/subfolder redirection** option.
+  </Step>
+
+  <Step title="Save">
+    Save your changes to prevent Shopify's automatic redirects from interfering with Selecty.
+  </Step>
+</Steps>
+
+## SEO Considerations
+
+### Impact on Search Rankings
+
+Automatic redirects can affect your store's SEO in several ways:
+
+<AccordionGroup>
+  <Accordion title="Search Engine Indexing">
+    - Bots may not properly index all language/market versions
+    - Hreflang tags may not be correctly processed
+    - Different market content may not appear in search results
+  </Accordion>
+
+  <Accordion title="Content Duplication">
+    - Search engines may view markets as duplicate content
+    - Canonical tags must be properly configured
+    - Each market should have unique, valuable content
+  </Accordion>
+
+  <Accordion title="User Experience Signals">
+    - High bounce rates if visitors are redirected incorrectly
+    - Reduced time-on-site if redirect feels forced
+    - Lower engagement if language doesn't match expectations
+  </Accordion>
+</AccordionGroup>
+
+### Google's Recommendation
+
+According to [Google's multilingual site guidelines](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites):
+
+> "Avoid automatic redirection based on the user's perceived language. These redirections could prevent users (and search engines) from viewing all the versions of your site."
+
+<Tip>
+For better SEO and user experience, use [Markets Recommendation](/features/markets-recommendation) banners that suggest rather than force locale changes.
+</Tip>
+
+## Testing Redirects
+
+To test Markets Redirect functionality:
+
+<Steps>
+  <Step title="Enable VPN">
+    Use a VPN to simulate visiting from different countries. Ensure the VPN is set to a country with a different market than your primary one.
+  </Step>
+
+  <Step title="Clear Cookies">
+    Clear browser cookies or use incognito/private mode to simulate a first-time visit.
+  </Step>
+
+  <Step title="Visit Your Store">
+    Navigate to your store's primary URL and verify you're redirected to the appropriate market.
+  </Step>
+
+  <Step title="Test Different Locations">
+    Change VPN locations and test multiple markets to ensure proper redirect behavior.
+  </Step>
+</Steps>
+
+<Info>
+See our detailed [Testing Geolocation](/advanced/testing-geolocation) guide for comprehensive testing instructions.
+</Info>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Not redirecting at all">
+    **Check:**
+    - Markets Redirect is enabled in Selecty
+    - Shopify's native redirect is disabled
+    - You're testing from a different market location (use VPN)
+    - Cookies are cleared (test in incognito mode)
+  </Accordion>
+
+  <Accordion title="Redirecting to wrong market">
+    **Verify:**
+    - Your market configuration in Shopify Markets
+    - Redirect rules in Selecty (country/language mapping)
+    - VPN is set to expected country
+    - Browser language settings match expectations
+  </Accordion>
+
+  <Accordion title="Stuck in redirect loop">
+    **Try:**
+    - Clear all browser cookies
+    - Disable both Shopify and Selecty redirects temporarily
+    - Check for conflicts with other apps
+    - Verify market URLs are correctly configured
+  </Accordion>
+
+  <Accordion title="Can't access specific market">
+    **Enable:**
+    - Manual market selector so users can override redirect
+    - Exclusion rules for specific pages or scenarios
+    - "Remember choice" option to respect user preferences
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Provide Manual Override" icon="toggle-on">
+    Always offer a manual selector so users can switch markets if the automatic redirect is incorrect
+  </Card>
+
+  <Card title="Remember User Choice" icon="brain">
+    If a user manually switches markets, remember their preference and don't redirect them again
+  </Card>
+
+  <Card title="Exclude Critical Pages" icon="shield">
+    Don't redirect on checkout, cart, or payment pages to avoid disrupting transactions
+  </Card>
+
+  <Card title="Monitor Analytics" icon="chart-line">
+    Track redirect behavior in analytics to identify issues or unexpected patterns
+  </Card>
+</CardGroup>
+
+## Alternatives to Automatic Redirect
+
+Consider these alternative approaches:
+
+<CardGroup cols={2}>
+  <Card title="Recommendation Banners" icon="lightbulb" href="/features/markets-recommendation">
+    Suggest market changes without forcing them (recommended)
+  </Card>
+
+  <Card title="Manual Selectors" icon="hand-pointer" href="/features/selectors">
+    Let users choose their preferred market themselves
+  </Card>
+
+  <Card title="First Visit Only" icon="user">
+    Redirect only on first visit, then remember user choice
+  </Card>
+
+  <Card title="Hybrid Approach" icon="shuffle">
+    Use banner recommendations + manual selectors for best UX
+  </Card>
+</CardGroup>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Learn about the recommended alternative to automatic redirects
+  </Card>
+
+  <Card title="SEO Considerations" icon="magnifying-glass" href="/advanced/seo">
+    Understand the full SEO impact of redirects
+  </Card>
+
+  <Card title="Testing Geolocation" icon="location-dot" href="/advanced/testing-geolocation">
+    Complete guide to testing redirect functionality
+  </Card>
+
+  <Card title="Multiple Stores" icon="store" href="/features/multiple-stores">
+    Connect separate stores for different regions
+  </Card>
+</CardGroup>

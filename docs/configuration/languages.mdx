@@ -1,0 +1,326 @@
+---
+title: Languages
+description: Configure and manage multiple languages for your international store
+---
+
+
+Selecty provides language switching capabilities that integrate seamlessly with Shopify Markets. The app allows customers to view your store content in their preferred language, creating a localized shopping experience for international audiences.
+
+<Info>
+**Selecty is built on Shopify's infrastructure**
+
+Selecty relies entirely on Shopify Markets for language management. All languages must first be configured in your Shopify store settings before they can be used in Selecty selectors and banners.
+</Info>
+
+## How Language Support Works
+
+### Shopify Markets Foundation
+
+Selecty does not provide translation services or language management. Instead, it:
+
+1. **Reads languages** from your Shopify Markets configuration
+2. **Creates switchers** that allow customers to change languages
+3. **Detects preferences** using browser language settings
+4. **Recommends languages** based on visitor location
+
+All actual language content, translations, and market assignments are managed through Shopify.
+
+### Supported Languages
+
+Selecty supports **all languages supported by Shopify**. This includes:
+
+- All major world languages
+- Regional language variants (e.g., English US vs English UK)
+- Right-to-left languages (Arabic, Hebrew)
+- Languages with special characters and alphabets
+
+For the complete list of supported languages, see [Shopify's language documentation](https://help.shopify.com/en/manual/markets/languages/translate).
+
+## Configuring Languages in Shopify
+
+Before using language selectors in Selecty, you must configure languages in Shopify Markets.
+
+<Steps>
+  <Step title="Access Shopify Settings">
+    In your Shopify admin, go to **Settings** → **Languages**.
+  </Step>
+
+  <Step title="Add Languages">
+    1. Click **Add language**
+    2. Select the language from the dropdown
+    3. Choose the regional variant if applicable
+    4. Click **Add**
+  </Step>
+
+  <Step title="Translate Content">
+    Shopify provides several translation options:
+    - **Manual translation** - Translate content yourself
+    - **Translation apps** - Use Shopify translation apps
+    - **Professional services** - Hire professional translators
+    - **Auto-translate** - Use Shopify's machine translation
+  </Step>
+
+  <Step title="Assign to Markets">
+    1. Go to **Settings** → **Markets**
+    2. Select a market
+    3. In the **Languages** section, assign languages to that market
+    4. Set a primary language for each market
+  </Step>
+
+  <Step title="Publish Translations">
+    Once translations are complete, publish them to make languages available in your store.
+  </Step>
+</Steps>
+
+<Note>
+After configuring languages in Shopify, they automatically become available in Selecty for use in selectors and banners. No additional configuration in Selecty is required.
+</Note>
+
+## Using Languages in Selecty
+
+### Language Selectors
+
+Create selectors that allow customers to switch between available languages:
+
+1. **Open Selecty** app
+2. **Create a new selector** or edit existing one
+3. **Choose Resource** → Select **Language**
+4. **Customize appearance** (theme, colors, position)
+5. **Save and publish**
+
+The selector will display all languages configured in your Shopify Markets.
+
+### Language Recommendation Banner
+
+Automatically suggest language based on browser preferences:
+
+1. **Access Markets Recommendations** in Selecty
+2. **Select Resource** → Choose **Language**
+3. **Customize banner** appearance and messaging
+4. **Save and enable**
+
+The banner appears to visitors whose browser language differs from your store's default.
+
+### Combined Language & Currency
+
+Create selectors that switch both language and currency together:
+
+1. **Create selector** in Selecty
+2. **Choose Resource** → Select **Language & Currency**
+3. **Configure settings**
+4. **Save and publish**
+
+This provides a complete localization experience in one action.
+
+## Language Detection
+
+### How Selecty Detects Language
+
+Selecty identifies visitor language preferences from browser settings, not location.
+
+**Browser Language Settings:**
+
+Every browser maintains a list of preferred languages that users configure in settings. Selecty reads this list to determine the visitor's language preference.
+
+<Tabs>
+  <Tab title="Chrome">
+    **Settings** → **Languages**
+    - View preferred languages list
+    - Top language is primary preference
+    - Drag to reorder languages
+  </Tab>
+
+  <Tab title="Firefox">
+    **Settings** → **Language**
+    - Check preferred languages order
+    - Add or remove languages
+    - Set language preferences
+  </Tab>
+
+  <Tab title="Safari">
+    **Preferences** → **General**
+    - Check preferred languages
+    - Language order determines priority
+  </Tab>
+
+  <Tab title="Edge">
+    **Settings** → **Languages**
+    - View preferred languages
+    - Top language used for detection
+  </Tab>
+</Tabs>
+
+<Warning>
+**Important Distinction**
+
+Browser **display language** (UI language) and **content language preference** can be different. Selecty uses the content language preference, not the display language.
+
+Example: A user might use Chrome in German (display language) but prefer to read websites in English (content preference).
+</Warning>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Quality Translations">
+    Invest in quality translations rather than relying solely on machine translation. Poor translations harm user experience and trust.
+  </Accordion>
+
+  <Accordion title="Complete Translation Coverage">
+    Translate all customer-facing content including:
+    - Product descriptions
+    - Navigation menus
+    - Checkout process
+    - Email notifications
+    - Policies and legal pages
+  </Accordion>
+
+  <Accordion title="Right-to-Left Languages">
+    If supporting RTL languages (Arabic, Hebrew), ensure your theme properly handles RTL layout and formatting.
+  </Accordion>
+
+  <Accordion title="Language Selection Visibility">
+    Make language selectors easy to find, typically in the header or as a fixed element.
+  </Accordion>
+
+  <Accordion title="Default Language Strategy">
+    Choose your default language based on your primary market, not the widest audience. Use recommendations to suggest alternatives.
+  </Accordion>
+
+  <Accordion title="SEO Considerations">
+    Shopify automatically handles hreflang tags and language-specific SEO. Selecty doesn't interfere with these features.
+  </Accordion>
+</AccordionGroup>
+
+## Common Scenarios
+
+### Scenario 1: European Multi-Language Store
+
+**Configuration:**
+- Primary market: France (French)
+- Additional markets: Germany (German), Spain (Spanish)
+- Languages configured in Shopify: French, German, Spanish
+
+**Selecty Setup:**
+- Language selector in header
+- Recommendation banner for first-time visitors
+- Combined language & currency selector
+
+### Scenario 2: Global English Store with Translations
+
+**Configuration:**
+- Primary market: United States (English)
+- Additional languages: Spanish, French, German
+- All markets use English as primary, with translations
+
+**Selecty Setup:**
+- Language selector in footer
+- No auto-redirect (English is universal)
+- Banner suggests language to non-English browsers
+
+### Scenario 3: Regional Language Variants
+
+**Configuration:**
+- English (United States)
+- English (United Kingdom)
+- English (Australia)
+- Different spelling, terminology, and product descriptions
+
+**Selecty Setup:**
+- Country selector (includes language variant)
+- Geolocation-based recommendations
+- Manual selector for user override
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Languages not appearing in Selecty">
+    **Check:**
+    - Languages are added in Shopify Settings → Languages
+    - Languages are assigned to at least one market
+    - Translations are published (not just saved as drafts)
+    - Selecty app is synced with Shopify (try refreshing)
+  </Accordion>
+
+  <Accordion title="Wrong language suggested">
+    **Verify:**
+    - User's browser language preferences (not display language)
+    - Browser settings show expected language at top of list
+    - Language is actually available in your store
+    - Recommendation banner is targeting correct languages
+  </Accordion>
+
+  <Accordion title="Translations not showing">
+    This is a Shopify issue, not Selecty. Check:
+    - Translations are complete and published in Shopify
+    - Language is properly assigned to the current market
+    - Theme supports multilingual content
+    - Translation app (if used) is functioning correctly
+  </Accordion>
+
+  <Accordion title="Language selector shows code instead of name">
+    **Adjust:**
+    - Selector settings → Name format
+    - Choose "Full name" instead of "Code"
+    - Or select "Native name" for local language representation
+  </Accordion>
+</AccordionGroup>
+
+## Language vs Market vs Country
+
+Understanding the difference is important:
+
+<Tabs>
+  <Tab title="Language">
+    **What it is:** The language content is displayed in
+
+    **Example:** English, Spanish, French
+
+    **Configured in:** Shopify Settings → Languages
+
+    **Selecty role:** Creates switchers for language selection
+  </Tab>
+
+  <Tab title="Market">
+    **What it is:** A geographical region with specific settings
+
+    **Example:** United States market, European Union market
+
+    **Configured in:** Shopify Settings → Markets
+
+    **Selecty role:** Detects market and suggests appropriate language/currency
+  </Tab>
+
+  <Tab title="Country">
+    **What it is:** Visitor's geographical location
+
+    **Example:** France, Germany, Japan
+
+    **Detected by:** IP geolocation
+
+    **Selecty role:** Uses location to suggest language and currency
+  </Tab>
+</Tabs>
+
+<Note>
+A single market can have multiple languages (EU market might offer English, French, German), and a single language can be used across multiple markets (English in US, UK, Australia markets).
+</Note>
+
+## Resources and Links
+
+<CardGroup cols={2}>
+  <Card title="Shopify Languages Guide" icon="book" href="https://help.shopify.com/en/manual/markets/languages/translate">
+    Official Shopify documentation on language configuration
+  </Card>
+
+  <Card title="Supported Languages List" icon="list" href="https://help.shopify.com/en/manual/markets/languages/translate#translations-available-for-themes-and-checkout">
+    Complete list of languages supported by Shopify
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Learn how to create and customize language selectors
+  </Card>
+
+  <Card title="Currencies" icon="dollar-sign" href="/configuration/currencies">
+    Configure multiple currencies for your store
+  </Card>
+</CardGroup>

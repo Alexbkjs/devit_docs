@@ -1,0 +1,314 @@
+---
+title: SEO Considerations
+description: Understand how Selecty affects your store's SEO and search engine indexing
+---
+
+
+Understanding how Selecty impacts your store's SEO is important for maintaining search visibility while providing an excellent international customer experience.
+
+## Selecty's Role in SEO
+
+<Info>
+**Important:** Selecty is not an SEO optimization tool. It's a user experience enhancement tool for international stores.
+</Info>
+
+### What Shopify Handles
+
+Shopify automatically manages all critical SEO elements for multilingual and multi-market stores:
+
+- **Sitemap generation** - XML sitemaps for all markets and languages
+- **Hreflang tags** - Language and region-specific content signals
+- **Canonical URLs** - Prevent duplicate content issues
+- **Structured data** - Rich snippets and schema markup
+- **Meta tags** - Titles, descriptions, and language declarations
+
+### What Selecty Does
+
+Selecty provides user interface elements to help customers navigate between markets:
+
+- Language, currency, and market switchers
+- Recommendation banners for locale suggestions
+- Optional automatic redirects
+- Multiple store connections
+
+**Selecty does not interfere with Shopify's SEO features.** Your theme and Shopify's platform handle all SEO-related technical implementation.
+
+## Impact of Automatic Redirects
+
+The only Selecty feature that can potentially affect SEO is **automatic redirects** (Markets Redirect and cross-store redirects).
+
+### Why Redirects Can Hurt SEO
+
+According to [Google's guidelines on multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites):
+
+> "Avoid automatic redirection based on the user's perceived language. These redirections could prevent users (and search engines) from viewing all the versions of your site."
+
+**Problems with automatic redirects:**
+
+1. **Incomplete Indexing** - Search bots may not discover all language versions
+2. **Hreflang Issues** - Language alternate tags may not be properly processed
+3. **Regional Content** - Different markets' content may not appear in search results
+4. **User Signals** - High bounce rates if redirects are incorrect
+
+### Bot Detection Limitations
+
+Selecty includes bot detection to prevent redirecting search engine crawlers. However:
+
+<Warning>
+**No bot detection is 100% accurate**
+
+Modern programming languages cannot guarantee perfect bot identification. Some search bots may be redirected, and some human visitors may not be. This inherent limitation affects all bot detection systems.
+</Warning>
+
+## Recommended Approach
+
+### Use Recommendation Banners
+
+Instead of automatic redirects, we strongly recommend using [Markets Recommendation](/features/markets-recommendation) banners:
+
+<CardGroup cols={2}>
+  <Card title="SEO Friendly" icon="check">
+    Doesn't prevent search engines from accessing all versions
+  </Card>
+
+  <Card title="User Control" icon="user">
+    Lets visitors choose rather than forcing changes
+  </Card>
+
+  <Card title="Better UX" icon="heart">
+    Suggestions feel helpful, not forceful
+  </Card>
+
+  <Card title="Flexible" icon="shuffle">
+    Users can easily dismiss or select alternatives
+  </Card>
+</CardGroup>
+
+### Best Practices for SEO
+
+<AccordionGroup>
+  <Accordion title="1. Avoid Automatic Redirects">
+    Use recommendation banners instead of automatic redirects for the best SEO and user experience.
+  </Accordion>
+
+  <Accordion title="2. Use Manual Selectors">
+    Provide clear, visible language and currency selectors so users can switch markets themselves.
+  </Accordion>
+
+  <Accordion title="3. Ensure Proper Canonical Tags">
+    When using multi-domain setups, verify your theme implements canonical tags correctly. This is the theme developer's responsibility, not Selecty's.
+  </Accordion>
+
+  <Accordion title="4. Monitor Search Console">
+    Regularly check Google Search Console for:
+    - Indexing issues
+    - Hreflang errors
+    - Coverage problems
+    - International targeting signals
+  </Accordion>
+
+  <Accordion title="5. Keep Content Unique">
+    Each market should have unique, valuable content. Don't just translate—localize content for each region.
+  </Accordion>
+
+  <Accordion title="6. Test Bot Accessibility">
+    Periodically verify that search bots can access all language and market versions of your site.
+  </Accordion>
+</AccordionGroup>
+
+## Multi-Domain Considerations
+
+If using separate domains for different markets (example.com, example.fr, example.de), pay special attention to SEO configuration.
+
+### Canonical Tags
+
+**What they are:** HTML tags that tell search engines which version of a page is the "main" one
+
+**Who manages them:** Your Shopify theme, not Selecty
+
+**Why they matter:** Prevent duplicate content penalties when markets have similar content
+
+<Warning>
+**Theme Responsibility**
+
+Canonical tags are generated by your theme. Selecty does not manage or interfere with canonical URLs. If you have canonical tag issues, contact your theme developer or consult Shopify support.
+</Warning>
+
+### Domain-Specific Best Practices
+
+1. **Each domain should target its region** - Use local domain extensions (.fr, .de, .co.uk)
+2. **Geo-targeting in Search Console** - Set each domain's target country
+3. **Local hosting** - Consider CDN or hosting closer to target region
+4. **Local backlinks** - Build links from sites in target region
+5. **Localized content** - Unique content for each market, not just translations
+
+## Shopify Markets and SEO
+
+Shopify Markets provides built-in SEO features that work independently of Selecty:
+
+### Automatic SEO Features
+
+<Tabs>
+  <Tab title="Hreflang Tags">
+    **What it does:** Tells search engines about language/region alternatives
+
+    **How it works:**
+    - Automatically added to page head
+    - Links all language versions together
+    - Helps serve right version to searchers
+
+    **Example:**
+    ```html
+    <link rel="alternate" hreflang="en-us" href="https://example.com" />
+    <link rel="alternate" hreflang="fr-fr" href="https://example.com/fr" />
+    <link rel="alternate" hreflang="de-de" href="https://example.com/de" />
+    ```
+  </Tab>
+
+  <Tab title="Sitemaps">
+    **What it does:** Provides search engines with a map of all pages
+
+    **How it works:**
+    - Automatically generated at /sitemap.xml
+    - Includes all markets and languages
+    - Updates when content changes
+
+    **Coverage:**
+    - Products
+    - Collections
+    - Pages
+    - Blog posts
+    - All market variations
+  </Tab>
+
+  <Tab title="Structured Data">
+    **What it does:** Provides rich information about products and content
+
+    **How it works:**
+    - JSON-LD structured data
+    - Product information
+    - Pricing and availability
+    - Reviews and ratings
+
+    **Benefits:**
+    - Rich snippets in search results
+    - Better product visibility
+    - Enhanced click-through rates
+  </Tab>
+</Tabs>
+
+## Monitoring SEO Health
+
+### Key Metrics to Track
+
+1. **Organic Traffic by Market** - Monitor traffic from each target region
+2. **Keyword Rankings** - Track rankings in different countries/languages
+3. **Indexing Status** - Ensure all markets are properly indexed
+4. **Hreflang Errors** - Watch for implementation issues
+5. **Page Speed** - Monitor load times in different regions
+
+### Tools for Monitoring
+
+<CardGroup cols={2}>
+  <Card title="Google Search Console" icon="google">
+    Monitor indexing, hreflang, and search performance by market
+  </Card>
+
+  <Card title="Google Analytics" icon="chart-line">
+    Track traffic, conversions, and behavior by region and language
+  </Card>
+
+  <Card title="Hreflang Testing Tools" icon="code">
+    Verify hreflang implementation (Screaming Frog, Ahrefs, etc.)
+  </Card>
+
+  <Card title="Shopify Analytics" icon="shopify">
+    Monitor sales and traffic by market in Shopify admin
+  </Card>
+</CardGroup>
+
+## Common SEO Questions
+
+<AccordionGroup>
+  <Accordion title="Will Selecty hurt my search rankings?">
+    No, Selecty itself doesn't affect rankings. The app enhances user experience without interfering with Shopify's SEO features. However, if you enable automatic redirects, that could impact SEO negatively.
+  </Accordion>
+
+  <Accordion title="Should I use auto-redirect or recommendation banners?">
+    **Recommendation banners** are better for SEO. They don't prevent search engines from accessing all versions, and Google specifically recommends against automatic redirects for multilingual sites.
+  </Accordion>
+
+  <Accordion title="Do I need to do anything for hreflang tags?">
+    No. Shopify automatically handles hreflang tags for Markets. Selecty doesn't interfere with this functionality.
+  </Accordion>
+
+  <Accordion title="How do canonical tags work with Selecty?">
+    Canonical tags are managed by your Shopify theme, not Selecty. The app doesn't add, modify, or interfere with canonical URLs.
+  </Accordion>
+
+  <Accordion title="Can I use Selecty with multi-domain setup?">
+    Yes. Selecty works with multi-domain Markets. Just ensure your theme properly implements canonical tags for each domain.
+  </Accordion>
+</AccordionGroup>
+
+## SEO Checklist for Selecty Users
+
+<Steps>
+  <Step title="Configure Markets Properly">
+    - Set up all markets in Shopify Settings
+    - Assign correct languages and currencies
+    - Configure domains if using multi-domain
+  </Step>
+
+  <Step title="Choose Right Redirect Strategy">
+    - Prefer recommendation banners
+    - Avoid automatic redirects when possible
+    - Test bot detection if using redirects
+  </Step>
+
+  <Step title="Verify Theme SEO">
+    - Check hreflang implementation
+    - Verify canonical tags are correct
+    - Test structured data markup
+  </Step>
+
+  <Step title="Set Up Search Console">
+    - Add all market domains/subfolders
+    - Set geographic targeting
+    - Submit sitemaps
+    - Monitor for errors
+  </Step>
+
+  <Step title="Create Unique Content">
+    - Localize, don't just translate
+    - Add region-specific content
+    - Optimize for local search terms
+  </Step>
+
+  <Step title="Monitor Regularly">
+    - Check indexing status
+    - Monitor hreflang errors
+    - Track rankings by market
+    - Review traffic patterns
+  </Step>
+</Steps>
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card title="Google's Multilingual Guidelines" icon="book" href="https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites">
+    Official Google documentation on international SEO
+  </Card>
+
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    SEO-friendly alternative to automatic redirects
+  </Card>
+
+  <Card title="Markets Redirect" icon="arrows-turn-right" href="/features/markets-redirect">
+    Understand the SEO impact of automatic redirects
+  </Card>
+
+  <Card title="Shopify Markets Help" icon="shopify" href="https://help.shopify.com/en/manual/markets">
+    Shopify's official Markets documentation
+  </Card>
+</CardGroup>

@@ -1,0 +1,408 @@
+---
+title: Currencies
+description: Configure and manage multiple currencies for international transactions
+---
+
+
+Selecty enables currency switching for international customers, allowing them to view prices in their local currency. Like all Selecty features, currency support is built on Shopify's infrastructure and relies on Shopify Markets for proper operation.
+
+<Info>
+**Selecty is built on Shopify's infrastructure**
+
+Selecty relies entirely on Shopify Markets and Shopify Payments for currency management. All currencies must first be configured in your Shopify store settings before they can be used in Selecty selectors and banners.
+</Info>
+
+## How Currency Support Works
+
+### Shopify Markets Foundation
+
+Selecty does not handle currency conversion or pricing. Instead, it:
+
+1. **Reads currencies** from your Shopify Markets configuration
+2. **Creates switchers** that allow customers to change currency display
+3. **Detects location** using IP geolocation to suggest local currency
+4. **Recommends currencies** based on visitor country
+
+All actual currency conversion, pricing, and payment processing are managed through Shopify Markets and Shopify Payments.
+
+### Supported Currencies
+
+Selecty supports **all currencies supported by Shopify**, which includes:
+
+- 130+ international currencies
+- All major world currencies (USD, EUR, GBP, JPY, etc.)
+- Regional and local currencies
+- Cryptocurrency (where Shopify supports it)
+
+For the complete list of supported currencies, see [Shopify's currency documentation](https://help.shopify.com/en/manual/markets/pricing#supported-currencies).
+
+## Currency Types in Shopify
+
+### Store Currency
+
+Your **store currency** is the currency you use for:
+- Receiving payouts
+- Managing finances
+- Setting base prices
+- Internal reporting
+
+This is set when you create your Shopify store and typically cannot be changed.
+
+### Selling Currencies
+
+**Selling currencies** are currencies you display to customers in different markets. These can be different from your store currency.
+
+**Two types of selling currencies:**
+
+<Tabs>
+  <Tab title="Display Currencies">
+    **What it is:** Shows prices in local currency, but customers pay in your store currency
+
+    **Requirements:** Available to all stores
+
+    **How it works:**
+    - Shopify converts prices for display only
+    - Customer's bank processes payment in your store currency
+    - Customer may see conversion fees from their bank
+
+    **Example:** Your store is in USD, customer sees EUR prices, but pays in USD
+  </Tab>
+
+  <Tab title="Local Currencies">
+    **What it is:** Customers see AND pay in their local currency
+
+    **Requirements:**
+    - Shopify Payments must be enabled
+    - Shopify Payments must be available in your country
+
+    **How it works:**
+    - Shopify handles full currency conversion
+    - Customer pays in their local currency
+    - You receive payout in your store currency
+    - No customer-side conversion fees
+
+    **Example:** Your store is in USD, customer sees and pays in EUR, you receive USD payout
+  </Tab>
+</Tabs>
+
+<Warning>
+**Shopify Payments Requirement**
+
+To offer true local currency payments (not just display), Shopify Payments must be available in your country. See the [list of supported countries](https://help.shopify.com/en/manual/payments/shopify-payments/supported-countries).
+</Warning>
+
+## Configuring Currencies in Shopify
+
+<Steps>
+  <Step title="Enable Shopify Payments (Recommended)">
+    If available in your country:
+    1. Go to **Settings** → **Payments**
+    2. Set up **Shopify Payments**
+    3. Complete verification requirements
+    4. Enable local currency payments
+  </Step>
+
+  <Step title="Configure Markets">
+    1. Go to **Settings** → **Markets**
+    2. Select or create a market
+    3. Add countries to the market
+    4. Configure pricing for that market
+  </Step>
+
+  <Step title="Add Currencies">
+    For each market:
+    1. Open market settings
+    2. In the **Currency** section, add currencies
+    3. Set your base prices or custom market prices
+    4. Save changes
+  </Step>
+
+  <Step title="Set Pricing Strategy">
+    Choose how to set prices:
+    - **Automatic conversion** - Shopify converts from base prices
+    - **Manual pricing** - Set specific prices for each market
+    - **Rounding rules** - Configure price rounding (e.g., $19.99 → €19.99)
+  </Step>
+
+  <Step title="Enable Currency Display">
+    Ensure your theme shows currency:
+    1. Theme settings → Currency format
+    2. Enable currency display
+    3. Choose format (symbol, code, or both)
+  </Step>
+</Steps>
+
+<Note>
+After configuring currencies in Shopify, they automatically become available in Selecty for use in selectors and banners.
+</Note>
+
+## Using Currencies in Selecty
+
+### Currency Selectors
+
+Create selectors that allow customers to switch between available currencies:
+
+1. **Open Selecty** app
+2. **Create a new selector** or edit existing one
+3. **Choose Resource** → Select **Currency**
+4. **Customize appearance** (theme, colors, position)
+5. **Save and publish**
+
+The selector will display all currencies configured in your Shopify Markets.
+
+### Currency Recommendation Banner
+
+Automatically suggest currency based on visitor location:
+
+1. **Access Markets Recommendations** in Selecty
+2. **Select Resource** → Choose **Currency**
+3. **Customize banner** appearance and messaging
+4. **Save and enable**
+
+The banner appears to visitors whose location's currency differs from your store's default.
+
+### Combined Language & Currency
+
+Provide complete localization in one action:
+
+1. **Create selector** in Selecty
+2. **Choose Resource** → Select **Language & Currency**
+3. **Configure settings**
+4. **Save and publish**
+
+This switches both language and currency simultaneously for the best user experience.
+
+## Currency Detection
+
+### How Selecty Detects Currency
+
+Selecty determines the appropriate currency based on **IP geolocation**, not browser settings.
+
+**Detection Process:**
+
+1. **Visitor's IP address** is identified
+2. **Country is determined** from IP geolocation database
+3. **Default currency** for that country is selected
+4. **Recommendation or redirect** is triggered based on your settings
+
+<Warning>
+**IP Geolocation Accuracy**
+
+IP-based location detection is generally accurate but not perfect:
+- VPNs and proxies show incorrect locations
+- Some mobile networks route through different countries
+- Corporate networks may show headquarters location
+- Accuracy is typically 95%+ for country-level detection
+</Warning>
+
+## Currency Conversion and Fees
+
+### Conversion Rates
+
+Currency exchange rates in Shopify Markets:
+
+- **Updated regularly** - Shopify uses real-time exchange rates
+- **Auto-conversion** - Automatic price conversion from base currency
+- **Custom rates** - Option to set manual conversion rates or fixed prices
+- **Rounding rules** - Configure how prices round (e.g., end in .99)
+
+### Transaction Fees
+
+<Tabs>
+  <Tab title="With Shopify Payments">
+    **Local Currency Payments:**
+    - No additional conversion fees
+    - Standard Shopify transaction fees apply
+    - Customer pays in their currency
+    - You receive payout in your store currency
+    - Shopify handles all conversion
+  </Tab>
+
+  <Tab title="Without Shopify Payments">
+    **Display-Only Currencies:**
+    - Customer's bank may charge conversion fees
+    - Third-party payment gateway fees apply
+    - Customer pays in your store currency
+    - Additional payment processor fees possible
+    - Less optimal customer experience
+  </Tab>
+
+  <Tab title="Multiple Stores Approach">
+    **Separate Regional Stores:**
+    - Each store has its own currency
+    - No conversion fees for local customers
+    - Requires multiple Shopify subscriptions
+    - More complex management
+    - See [Multiple Stores](/features/multiple-stores)
+  </Tab>
+</Tabs>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Shopify Payments When Possible">
+    If available in your country, Shopify Payments provides the best currency experience with no customer conversion fees.
+  </Accordion>
+
+  <Accordion title="Smart Rounding">
+    Use rounding rules to create psychologically appealing prices (e.g., $19.99 → €19.99 instead of €18.23).
+  </Accordion>
+
+  <Accordion title="Visible Currency Selector">
+    Make the currency selector easy to find and access, typically in the header or footer.
+  </Accordion>
+
+  <Accordion title="Show Currency Symbol">
+    Display the currency symbol ($, €, £) with prices to avoid confusion.
+  </Accordion>
+
+  <Accordion title="Market-Specific Pricing">
+    Consider setting custom prices for some markets instead of auto-conversion to account for local market conditions.
+  </Accordion>
+
+  <Accordion title="Test Currency Display">
+    Regularly test how prices display in different currencies, especially with sales and discounts.
+  </Accordion>
+
+  <Accordion title="Transparent About Conversion">
+    If using display-only currencies, inform customers they'll pay in your store currency.
+  </Accordion>
+</AccordionGroup>
+
+## Common Scenarios
+
+### Scenario 1: US Store with European Customers
+
+**Configuration:**
+- Store currency: USD
+- Shopify Payments: Enabled
+- Markets: US (primary), EU (additional)
+- Currencies: USD, EUR, GBP
+
+**Selecty Setup:**
+- Currency selector in header
+- Auto-recommend EUR for EU visitors
+- Display both symbol and code (€ EUR)
+
+**Customer Experience:**
+- EU visitors see prices in EUR
+- Pay in EUR (no conversion fees)
+- You receive USD payout
+
+### Scenario 2: Display-Only Currencies
+
+**Configuration:**
+- Store currency: CAD
+- Shopify Payments: Not available
+- Markets: Canada, worldwide
+- Currencies: CAD, USD, EUR (display only)
+
+**Selecty Setup:**
+- Currency selector in footer
+- Manual selection only (no auto-recommend)
+- Clear messaging about payment currency
+
+**Customer Experience:**
+- Visitors see prices in selected currency
+- Pay in CAD at checkout
+- Bank may charge conversion fees
+
+### Scenario 3: Multi-Region with Local Stores
+
+**Configuration:**
+- Separate stores: US, EU, Asia-Pacific
+- Each with local currency
+- Connected via Selecty
+
+**Selecty Setup:**
+- Store connection enabled
+- Auto-redirect to local store
+- Each store has single currency
+
+**Customer Experience:**
+- Redirected to local store
+- See and pay in local currency
+- No conversion fees
+- Store-specific inventory
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Currencies not appearing in Selecty">
+    **Check:**
+    - Currencies are added to markets in Shopify Settings
+    - Markets are published and active
+    - Selecty is synced with Shopify (refresh the app)
+    - At least one product has pricing in that currency
+  </Accordion>
+
+  <Accordion title="Wrong currency suggested">
+    **Verify:**
+    - IP geolocation is detecting correct country (test with VPN)
+    - Market configuration matches detected country
+    - Currency is properly assigned to that market
+    - Recommendation settings target correct currencies
+  </Accordion>
+
+  <Accordion title="Prices not converting">
+    This is a Shopify issue, not Selecty. Check:
+    - Exchange rates are configured in Shopify
+    - Markets have pricing set up
+    - Theme supports multi-currency display
+    - Currency format is enabled in theme settings
+  </Accordion>
+
+  <Accordion title="Selector shows wrong symbol">
+    **Adjust:**
+    - Selector settings → Display format
+    - Choose format: Symbol only ($), Code only (USD), or Both ($ USD)
+    - Ensure icons/symbols are enabled
+  </Accordion>
+</AccordionGroup>
+
+## Currency Limitations
+
+Be aware of these limitations:
+
+<Warning>
+**What Selecty Cannot Do:**
+- Process payments (handled by Shopify Payments)
+- Set exchange rates (managed by Shopify)
+- Provide currency conversion (Shopify feature)
+- Override Shopify Markets configuration
+- Enable currencies not supported by Shopify
+</Warning>
+
+**What Selecty Does:**
+- Create user-friendly currency switchers
+- Detect visitor location for recommendations
+- Suggest appropriate local currency
+- Enhance the currency switching experience
+
+## Resources and Links
+
+<CardGroup cols={2}>
+  <Card title="Shopify Markets Pricing" icon="book" href="https://help.shopify.com/en/manual/markets/pricing">
+    Official Shopify guide on market pricing and currencies
+  </Card>
+
+  <Card title="Supported Currencies" icon="list" href="https://help.shopify.com/en/manual/markets/pricing#supported-currencies">
+    Complete list of currencies supported by Shopify
+  </Card>
+
+  <Card title="Shopify Payments Countries" icon="globe" href="https://help.shopify.com/en/manual/payments/shopify-payments/supported-countries">
+    Countries where Shopify Payments is available
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Learn how to create and customize currency selectors
+  </Card>
+
+  <Card title="Languages" icon="language" href="/configuration/languages">
+    Configure multiple languages for your store
+  </Card>
+
+  <Card title="Multiple Stores" icon="store" href="/features/multiple-stores">
+    Alternative approach using separate stores per currency
+  </Card>
+</CardGroup>

@@ -1,0 +1,286 @@
+---
+title: Markets Recommendation
+description: Automatically suggest language and currency based on visitor location and preferences
+---
+
+
+The Markets Recommendation feature displays a banner to first-time visitors, suggesting they switch to their local language and currency based on their location and browser preferences. This creates a personalized shopping experience without forcing automatic changes.
+
+## How It Works
+
+When someone visits your store for the first time, Selecty automatically:
+
+1. **Detects their location** using IP geolocation
+2. **Identifies their language preference** from browser settings
+3. **Displays a recommendation banner** suggesting the most relevant language and currency
+4. **Remembers their choice** so the banner doesn't appear on subsequent visits
+
+<Info>
+Recommendation banners appear only on the first visit. Once a visitor makes a choice or dismisses the banner, Selecty remembers their preference using browser cookies.
+</Info>
+
+## Why Use Recommendations Instead of Auto-Redirect?
+
+Google and other search engines recommend against automatic redirects for multilingual websites because:
+
+- **SEO Impact** - Automatic redirects can interfere with proper indexing of multilingual content
+- **User Control** - Recommendations give users choice rather than forcing changes
+- **Better UX** - Visitors can review the suggestion before accepting
+
+<Tip>
+We strongly recommend using recommendation banners instead of automatic redirects. See our [SEO guide](/advanced/seo) and [Markets Redirect](/features/markets-redirect) documentation for more details.
+</Tip>
+
+## Detection Methods
+
+### Language Detection
+
+Selecty detects language preferences from the visitor's browser settings.
+
+**How Browser Language Works:**
+
+Browsers maintain a list of preferred languages that you can configure in settings. The first language in this list is what Selecty uses for recommendations.
+
+<Tabs>
+  <Tab title="Chrome">
+    1. Go to **Settings** → **Languages**
+    2. View your preferred languages list
+    3. The top language is your primary preference
+  </Tab>
+
+  <Tab title="Firefox">
+    1. Go to **Settings**
+    2. Scroll to **Language** section
+    3. Check your preferred languages order
+  </Tab>
+
+  <Tab title="Safari">
+    1. Go to **Preferences** → **General**
+    2. Check **Preferred languages**
+    3. Language order determines priority
+  </Tab>
+
+  <Tab title="Edge">
+    1. Go to **Settings** → **Languages**
+    2. View preferred languages
+    3. Top language is used for detection
+  </Tab>
+</Tabs>
+
+<Note>
+Browser language and display language can be different. For example, you might use German as your browser display language but have English set as your preferred content language.
+</Note>
+
+### Country and Currency Detection
+
+Country and currency are detected using **IP geolocation**.
+
+**How It Works:**
+
+1. Your Internet Service Provider (ISP) assigns you an IP address
+2. Selecty uses this IP to determine your country of residence
+3. Based on the country, Selecty suggests the local currency
+
+<Warning>
+IP geolocation is generally accurate but not perfect. VPNs, proxies, and some corporate networks may show incorrect locations.
+</Warning>
+
+## Creating a Recommendation Banner
+
+<Steps>
+  <Step title="Access Markets Recommendations">
+    In the Selecty app, scroll to **Markets Recommendations** and click **Customize**.
+  </Step>
+
+  <Step title="Choose Resource">
+    Select what to recommend:
+
+    - **Language** - Suggest visitor's preferred language
+    - **Currency** - Suggest local currency based on location
+    - **Language & Currency** - Recommend both together
+    - **Market** - Suggest appropriate market for their region
+  </Step>
+
+  <Step title="Select Banner Type">
+    Choose your banner layout:
+
+    - **Top Bar** - Horizontal banner across the top
+    - **Bottom Bar** - Banner at the bottom of the page
+    - **Modal** - Center popup overlay
+    - **Corner Notification** - Small banner in page corner
+    - **Slide-in** - Banner that slides from the side
+  </Step>
+
+  <Step title="Pick Animation Style">
+    Select entry animation:
+
+    - Slide in
+    - Fade in
+    - Bounce
+    - Scale
+    - None (instant display)
+  </Step>
+
+  <Step title="Customize Theme & Text">
+    In the **Theme** tab, customize:
+
+    - **Colors** - Background, text, and button colors
+    - **Message Text** - Customize the recommendation message
+    - **Button Labels** - "Yes, switch" and "No, thanks" text
+    - **Fonts** - Typography options
+    - **Icons** - Show flags or currency symbols
+  </Step>
+
+  <Step title="Configure Behavior">
+    Set banner behavior:
+
+    - **Display duration** - How long before auto-dismiss
+    - **Cookie lifetime** - How long to remember user preference
+    - **Show on specific pages** - Target specific URLs or page types
+    - **Exclude pages** - Pages where banner shouldn't appear
+  </Step>
+
+  <Step title="Save and Enable">
+    Click **Save** in the upper right corner to activate your banner.
+  </Step>
+</Steps>
+
+## Customization Options
+
+### Message Templates
+
+Customize banner messages to match your brand voice:
+
+**Default:**
+> "It looks like you're in [Country]. Would you like to switch to [Language] and shop in [Currency]?"
+
+**Friendly:**
+> "Hey! We noticed you're visiting from [Country]. Want to see prices in [Currency]?"
+
+**Professional:**
+> "We've detected you're browsing from [Country]. Switch to [Language] and [Currency] for a localized experience."
+
+**Concise:**
+> "Switch to [Language] / [Currency]?"
+
+### Visual Customization
+
+<AccordionGroup>
+  <Accordion title="Colors & Styling">
+    - Background colors and opacity
+    - Text colors and fonts
+    - Button styles and hover effects
+    - Border radius and shadows
+    - Custom CSS for advanced styling
+  </Accordion>
+
+  <Accordion title="Layout Options">
+    - Banner width (full-width, contained, custom)
+    - Padding and spacing
+    - Icon and flag positioning
+    - Button alignment
+    - Close button style and position
+  </Accordion>
+
+  <Accordion title="Animations">
+    - Entry animations (slide, fade, bounce, scale)
+    - Exit animations
+    - Button hover effects
+    - Transition timing and easing
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Clear Messaging" icon="message">
+    Use simple, direct language that clearly explains what will change if they accept
+  </Card>
+
+  <Card title="Easy Dismissal" icon="xmark">
+    Make it easy for visitors to close or decline the recommendation
+  </Card>
+
+  <Card title="Visible but Not Intrusive" icon="eye">
+    Choose a banner style that's noticeable but doesn't block important content
+  </Card>
+
+  <Card title="Match Brand Colors" icon="palette">
+    Customize colors to align with your store's visual identity
+  </Card>
+</CardGroup>
+
+## Testing Your Banner
+
+To test your recommendation banner:
+
+<Steps>
+  <Step title="Use a VPN">
+    Enable a VPN to simulate visiting from a different country. Make sure:
+    - The VPN country is different from your primary market
+    - The VPN is active in incognito mode if using a browser extension
+  </Step>
+
+  <Step title="Open Incognito/Private Window">
+    Use incognito mode to simulate a first-time visitor:
+    - **Chrome:** Ctrl+Shift+N (Windows) or ⌘+Shift+N (Mac)
+    - **Firefox:** Ctrl+Shift+P or ⌘+Shift+P
+    - **Safari:** ⌘+Shift+N
+  </Step>
+
+  <Step title="Visit Your Store">
+    Navigate to your store in the incognito window. The banner should appear if:
+    - Your location (via VPN) matches a different market
+    - The banner is enabled in Selecty
+    - You haven't dismissed it before in this browser
+  </Step>
+</Steps>
+
+<Info>
+For detailed testing instructions, see our [Testing Geolocation](/advanced/testing-geolocation) guide.
+</Info>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Banner not appearing">
+    **Check these settings:**
+    - Banner is enabled in Selecty app
+    - You're testing in incognito mode
+    - VPN is set to a different market
+    - Shopify's auto-redirect is disabled (Settings → Markets → Preferences)
+    - Markets Redirect is disabled in Selecty app
+  </Accordion>
+
+  <Accordion title="Wrong language suggested">
+    The language is based on browser settings, not location. Check your browser's preferred languages list in settings.
+  </Accordion>
+
+  <Accordion title="Wrong currency/country suggested">
+    This uses IP geolocation. VPNs, proxies, and some networks may show incorrect locations. Try a different VPN server.
+  </Accordion>
+
+  <Accordion title="Banner appears every time">
+    Clear your browser cookies and cache, then test again. The banner should only appear once per unique visitor.
+  </Accordion>
+</AccordionGroup>
+
+## Related Features
+
+<CardGroup cols={2}>
+  <Card title="Markets Redirect" icon="arrows-turn-right" href="/features/markets-redirect">
+    Learn about automatic redirects and when to use them
+  </Card>
+
+  <Card title="Testing Geolocation" icon="location-dot" href="/advanced/testing-geolocation">
+    Complete guide to testing geolocation features
+  </Card>
+
+  <Card title="SEO Considerations" icon="magnifying-glass" href="/advanced/seo">
+    Understand how recommendations affect SEO
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Create manual switchers for language and currency
+  </Card>
+</CardGroup>

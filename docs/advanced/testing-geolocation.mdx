@@ -1,0 +1,452 @@
+---
+title: Testing Geolocation
+description: Learn how to test geolocation features including recommendations, redirects, and location detection
+---
+
+
+Testing geolocation features ensures that your recommendation banners, automatic redirects, and location-based suggestions work correctly for international visitors.
+
+## Why Testing is Important
+
+Geolocation features depend on:
+- IP address location detection
+- Browser language settings
+- Market configuration in Shopify
+- Selecty settings and rules
+
+Testing helps you verify that all these components work together correctly before customers encounter issues.
+
+## Prerequisites for Testing
+
+Before you begin testing:
+
+<Checklist>
+  - [ ] Markets configured in Shopify with multiple regions
+  - [ ] Languages and currencies assigned to markets
+  - [ ] Selecty features enabled (recommendations or redirects)
+  - [ ] VPN service or proxy for location simulation
+  - [ ] Different browsers for comprehensive testing
+</Checklist>
+
+## What is Geolocation?
+
+**Geolocation** is the process of determining a visitor's geographical location based on their IP address. Selecty uses this information to:
+
+- Suggest appropriate market or store
+- Recommend local language and currency
+- Automatically redirect to regional stores (if enabled)
+
+<Info>
+Geolocation uses IP addresses, which are assigned by Internet Service Providers (ISPs). The accuracy is typically 95%+ for country-level detection.
+</Info>
+
+## Testing Requirements
+
+### 1. VPN Service
+
+A VPN (Virtual Private Network) is essential for testing geolocation features.
+
+**Recommended VPN Services:**
+- [NordVPN](https://nordvpn.com)
+- [ExpressVPN](https://expressvpn.com)
+- [ProtonVPN](https://protonvpn.com)
+- [ZenMate](https://zenmate.com) (Browser extension)
+- [TunnelBear](https://tunnelbear.com)
+
+<Warning>
+**Browser Extension VPNs**
+
+Most browser VPN extensions are **not** enabled in incognito/private mode by default. You must manually enable them in your browser's extension settings for incognito mode.
+</Warning>
+
+### 2. Incognito/Private Browsing
+
+Use incognito mode to simulate first-time visitors:
+
+<Tabs>
+  <Tab title="Chrome">
+    - **Windows/Linux:** Ctrl + Shift + N
+    - **Mac:** ⌘ + Shift + N
+    - **Purpose:** Simulates first visit without cookies
+  </Tab>
+
+  <Tab title="Firefox">
+    - **Windows/Linux:** Ctrl + Shift + P
+    - **Mac:** ⌘ + Shift + P
+    - **Purpose:** Private browsing without stored data
+  </Tab>
+
+  <Tab title="Safari">
+    - **Mac:** ⌘ + Shift + N
+    - **Purpose:** Private window without history
+  </Tab>
+
+  <Tab title="Edge">
+    - **Windows:** Ctrl + Shift + N
+    - **Mac:** ⌘ + Shift + N
+    - **Purpose:** InPrivate browsing
+  </Tab>
+</Tabs>
+
+## Testing Recommendation Banners
+
+### Step-by-Step Testing Process
+
+<Steps>
+  <Step title="Enable VPN">
+    1. Activate your VPN service
+    2. Connect to a server in a different country
+    3. Ensure the country has a different market than your primary one
+    4. Verify connection at [My Location](https://mylocation.org/)
+  </Step>
+
+  <Step title="Check VPN Country">
+    Confirm your VPN is working:
+    - Visit [mylocation.org](https://mylocation.org/)
+    - Verify the displayed country matches your VPN selection
+    - Ensure it's NOT your primary market country
+  </Step>
+
+  <Step title="Open Incognito Window">
+    - Open a new incognito/private browsing window
+    - Verify VPN extension is active in incognito mode (if using browser extension)
+    - Clear all cookies if you've tested before
+  </Step>
+
+  <Step title="Visit Your Store">
+    Navigate to your store's homepage in the incognito window.
+  </Step>
+
+  <Step title="Verify Banner Appears">
+    The recommendation banner should appear if:
+    - VPN country differs from primary market
+    - You're in incognito mode (first visit)
+    - Banner is enabled in Selecty
+    - No automatic redirects are interfering
+  </Step>
+</Steps>
+
+### Troubleshooting Banner Issues
+
+<AccordionGroup>
+  <Accordion title="Banner not appearing">
+    **Check these settings:**
+
+    1. **Selecty Configuration:**
+       - Open Selecty app
+       - Verify banner is enabled
+       - Check resource type matches (language, currency, market)
+
+    2. **VPN Settings:**
+       - Ensure VPN is connected
+       - Verify location at mylocation.org
+       - Try a different VPN server
+       - Enable VPN in incognito mode (for extensions)
+
+    3. **Shopify Settings:**
+       - Go to Settings → Markets → Preferences
+       - Disable "Domain/subfolder redirection"
+
+    4. **Selecty Redirects:**
+       - Open Selecty app
+       - Find Markets Redirect section
+       - Disable automatic redirects
+
+    5. **Browser:**
+       - Close all incognito windows
+       - Clear all cookies and cache
+       - Open new incognito window
+       - Test again
+  </Accordion>
+
+  <Accordion title="Wrong market suggested">
+    **Verify:**
+    - VPN is set to correct country
+    - Country is assigned to a market in Shopify
+    - Market has different language/currency than primary
+    - Selecty market mapping is configured correctly
+  </Accordion>
+
+  <Accordion title="Banner appears every time">
+    **Issue:** Cookie not being set
+
+    **Solutions:**
+    - Check browser allows cookies
+    - Verify Selecty cookie settings
+    - Test in normal (non-incognito) mode
+    - Clear cookies between tests
+  </Accordion>
+</AccordionGroup>
+
+## Testing Automatic Redirects
+
+### Markets Redirect Testing
+
+<Steps>
+  <Step title="Enable Redirect Feature">
+    In Selecty app:
+    - Navigate to Markets Redirect
+    - Enable automatic redirect options
+    - Save changes
+  </Step>
+
+  <Step title="Disable Shopify's Redirect">
+    To avoid conflicts:
+    - Settings → Markets → Preferences
+    - Disable Domain/subfolder redirection
+  </Step>
+
+  <Step title="Set Up VPN">
+    - Connect VPN to target country
+    - Verify location at mylocation.org
+    - Ensure country maps to a different market
+  </Step>
+
+  <Step title="Clear Cookies">
+    - Close all browser windows
+    - Clear cookies and cache
+    - Open new incognito window
+  </Step>
+
+  <Step title="Test Redirect">
+    - Visit your primary store URL
+    - Should automatically redirect to appropriate market
+    - Verify URL changes to correct market domain/subfolder
+  </Step>
+</Steps>
+
+### Multiple Stores Redirect Testing
+
+For stores connected via Selecty:
+
+<Steps>
+  <Step title="Verify Store Connection">
+    - All stores connected in Selecty
+    - Stores synchronized
+    - Redirect settings configured
+  </Step>
+
+  <Step title="Test Primary to Secondary">
+    - VPN to secondary store's country
+    - Visit primary store URL
+    - Should redirect to secondary store
+  </Step>
+
+  <Step title="Test All Combinations">
+    For each store connection:
+    - Set VPN to that region
+    - Visit other stores
+    - Verify correct redirection
+  </Step>
+</Steps>
+
+## Testing Language Detection
+
+Language detection uses browser settings, not location.
+
+<Steps>
+  <Step title="Change Browser Language">
+    Set your browser's preferred language:
+
+    **Chrome:**
+    1. Settings → Languages
+    2. Add target language
+    3. Move it to top of list
+
+    **Firefox:**
+    1. Settings → Language
+    2. Add language
+    3. Set as preferred
+
+    **Safari:**
+    1. System Preferences → Language & Region
+    2. Add language
+    3. Drag to top of list
+  </Step>
+
+  <Step title="Restart Browser">
+    Close and reopen browser for changes to take effect.
+  </Step>
+
+  <Step title="Test Detection">
+    - Open incognito window
+    - Visit your store
+    - Banner should suggest language matching browser preference
+  </Step>
+</Steps>
+
+<Note>
+Language detection reads browser's **content language preference**, not the browser's UI/display language. These can be different settings.
+</Note>
+
+## Testing Combined Detection
+
+### Language + Currency + Market
+
+To test comprehensive geolocation:
+
+1. **Set Browser Language** - Set to non-default language
+2. **Enable VPN** - Connect to different country
+3. **Open Incognito** - Simulate first visit
+4. **Visit Store** - Check recommendations
+
+**Expected behavior:**
+- Language suggested based on browser settings
+- Currency suggested based on VPN location (IP)
+- Market suggested based on country (IP)
+
+## Testing on Different Devices
+
+### Mobile Testing
+
+<Tabs>
+  <Tab title="iOS">
+    **VPN:**
+    - Install VPN app from App Store
+    - Connect to target country
+    - Verify at mylocation.org
+
+    **Language:**
+    - Settings → General → Language & Region
+    - Add preferred language
+
+    **Testing:**
+    - Use Safari Private mode
+    - Visit store
+    - Check banner/redirect
+  </Tab>
+
+  <Tab title="Android">
+    **VPN:**
+    - Install VPN app from Play Store
+    - Connect to server
+    - Verify location
+
+    **Language:**
+    - Settings → System → Languages
+    - Add language preference
+
+    **Testing:**
+    - Use Chrome Incognito
+    - Visit store
+    - Verify detection
+  </Tab>
+</Tabs>
+
+### Tablet Testing
+
+Follow same procedures as mobile, using:
+- Tablet-optimized browsers
+- VPN apps for tablets
+- Private/incognito browsing modes
+
+## Automated Testing Tools
+
+For advanced testing, consider these tools:
+
+<CardGroup cols={2}>
+  <Card title="BrowserStack" icon="browser">
+    Test from real devices in different locations worldwide
+  </Card>
+
+  <Card title="LambdaTest" icon="globe">
+    Cross-browser testing with geolocation simulation
+  </Card>
+
+  <Card title="Sauce Labs" icon="flask">
+    Automated testing across devices and locations
+  </Card>
+
+  <Card title="Playwright" icon="code">
+    Automated browser testing with geolocation mocking
+  </Card>
+</CardGroup>
+
+## Testing Checklist
+
+Use this checklist for comprehensive testing:
+
+<Steps>
+  <Step title="Recommendation Banner">
+    - [ ] Banner appears for different countries
+    - [ ] Correct language suggested based on browser
+    - [ ] Correct currency suggested based on IP
+    - [ ] Accept button works correctly
+    - [ ] Decline button works correctly
+    - [ ] Banner doesn't reappear after dismissal
+  </Step>
+
+  <Step title="Automatic Redirects">
+    - [ ] Redirects to correct market
+    - [ ] Bots not redirected (check Search Console)
+    - [ ] Manual selector can override redirect
+    - [ ] No redirect loops
+    - [ ] Works on all devices
+  </Step>
+
+  <Step title="Selectors">
+    - [ ] Display all configured options
+    - [ ] Switching works correctly
+    - [ ] Selection persists across pages
+    - [ ] Icons and flags display
+    - [ ] Search works (if enabled)
+  </Step>
+
+  <Step title="Cross-Store">
+    - [ ] Redirects between connected stores
+    - [ ] All stores reachable
+    - [ ] Recommendations accurate
+    - [ ] Manual switching possible
+  </Step>
+
+  <Step title="Edge Cases">
+    - [ ] VPN users
+    - [ ] Proxy users
+    - [ ] Corporate networks
+    - [ ] Mobile data vs WiFi
+    - [ ] Browser language mismatches
+  </Step>
+</Steps>
+
+## Common Testing Mistakes
+
+<Warning>
+**Avoid These Common Errors:**
+
+1. **Not using incognito mode** - Cookies from previous visits interfere
+2. **VPN extension not enabled in incognito** - Location not actually changed
+3. **Testing from primary market country** - No suggestion needed
+4. **Conflicting redirects** - Both Shopify and Selecty redirects enabled
+5. **Not clearing cookies between tests** - Previous choices remembered
+6. **Browser language not changed** - Language detection won't trigger
+7. **VPN verification skipped** - May not be connected to expected country
+</Warning>
+
+## Getting Help
+
+If you encounter issues during testing:
+
+1. **Check our FAQ** - [Common questions](/support/faq)
+2. **Contact support** - [support@devit.software](mailto:support@devit.software)
+3. **Use app support tab** - In-app support available 24/7
+4. **Provide details** - VPN country, browser, steps taken
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Learn about recommendation banner features
+  </Card>
+
+  <Card title="Markets Redirect" icon="arrows-turn-right" href="/features/markets-redirect">
+    Understand automatic redirect functionality
+  </Card>
+
+  <Card title="Multiple Stores" icon="store" href="/features/multiple-stores">
+    Test cross-store connections
+  </Card>
+
+  <Card title="FAQ" icon="question" href="/support/faq">
+    Common questions and answers
+  </Card>
+</CardGroup>

@@ -1,0 +1,350 @@
+---
+title: Multiple Stores Connection
+description: Connect and manage multiple Shopify stores for different regions with seamless customer redirection
+---
+
+
+Selecty's Multiple Stores feature allows you to connect separate Shopify stores and redirect customers to the appropriate store based on their location and preferences. This is ideal for businesses with distinct regional operations or specific market requirements.
+
+## Why Multiple Stores?
+
+While [Shopify Markets](https://help.shopify.com/en/manual/markets) provides excellent multi-market management, some businesses still need separate stores for different regions.
+
+### Common Reasons for Multiple Stores
+
+<CardGroup cols={2}>
+  <Card title="Separate Legal Entities" icon="building">
+    Different companies operating in different countries with distinct product ranges and management teams
+  </Card>
+
+  <Card title="Shopify Payments Availability" icon="credit-card">
+    Legal entities established in countries where Shopify Payments is available for local currency processing
+  </Card>
+
+  <Card title="Currency Transaction Fees" icon="dollar-sign">
+    Avoid currency conversion fees by processing payments in the local currency of each store
+  </Card>
+
+  <Card title="Regional Product Catalogs" icon="boxes">
+    Completely different product offerings or inventory for different markets
+  </Card>
+</CardGroup>
+
+## How It Works
+
+Selecty connects multiple Shopify stores and enables intelligent cross-store redirection:
+
+1. **Store Connection** - Link your stores using secure tokens
+2. **Geolocation Detection** - Identify visitor location via IP address
+3. **Automatic Redirection** - Guide customers to their regional store
+4. **Recommendation Banner** - Suggest the appropriate store without forcing redirect
+
+**Example Scenario:**
+
+You have three stores:
+- **US Store** (primary) - example-us.com
+- **France Store** - example-fr.com
+- **Spain Store** - example-es.com
+
+When a customer from France visits example-us.com, they're automatically redirected to example-fr.com, or see a banner suggesting they switch to the French store.
+
+## Setting Up Store Connections
+
+<Steps>
+  <Step title="Install Selecty on All Stores">
+    Install the Selecty app on every store you want to connect. Each store must have its own Selecty installation.
+  </Step>
+
+  <Step title="Choose Your Primary Store">
+    Decide which store will be your primary/central hub. This is typically your main market or highest-volume store.
+  </Step>
+
+  <Step title="Generate Connection Token">
+    On each **secondary store**:
+    1. Open Selecty app
+    2. Go to **Stores** in the left menu
+    3. Click **Join Connection**
+    4. Copy the generated token
+  </Step>
+
+  <Step title="Connect to Primary Store">
+    On your **primary store**:
+    1. Open Selecty app
+    2. Go to **Stores**
+    3. Click **Connect Store**
+    4. Paste the token from the secondary store
+    5. Click **Connect**
+  </Step>
+
+  <Step title="Repeat for Additional Stores">
+    Repeat steps 3-4 for each additional store you want to connect.
+  </Step>
+
+  <Step title="Synchronize Stores">
+    Once all stores are connected:
+    1. Click **Sync Stores** button
+    2. Wait for synchronization to complete
+    3. Verify all stores appear in your connected stores list
+  </Step>
+
+  <Step title="Configure Redirect Settings">
+    Choose your redirect method:
+    - **Auto-redirect** - Automatic redirection to appropriate store
+    - **Recommendation banner** - Suggest store switch to visitors
+    - **Both** - Banner first, then auto-redirect if not dismissed
+  </Step>
+</Steps>
+
+## Connection Architecture
+
+### Primary Store Setup
+
+Your primary store acts as the central hub:
+
+- Manages connections to all secondary stores
+- Controls sync settings and redirect rules
+- Typically your main or original market
+
+### Secondary Store Setup
+
+Secondary stores:
+
+- Generate connection tokens
+- Join the connection managed by primary store
+- Receive configuration from primary store
+- Can have unique selectors and banners
+
+<Note>
+All stores in the connection network must have active Selecty subscriptions. The connection uses secure tokens and encrypted communication between stores.
+</Note>
+
+## Redirect Configuration
+
+### Auto-Redirect Mode
+
+Automatically redirect visitors to their regional store.
+
+**Configuration:**
+1. Enable **Auto-redirect** in the Stores section
+2. Map countries to stores (France → French store)
+3. Set fallback store for unmapped countries
+4. Configure redirect timing and behavior
+
+<Warning>
+Similar to Markets Redirect, auto-redirect between stores can impact SEO. Consider using recommendation banners for a better user experience.
+</Warning>
+
+### Recommendation Banner Mode
+
+Display a banner suggesting the appropriate store.
+
+**Configuration:**
+1. Enable **Market Recommendations** in the Stores section
+2. Customize banner appearance and messaging
+3. Set which stores to recommend for which regions
+4. Configure banner timing and display frequency
+
+<Tip>
+Recommendation banners are the recommended approach as they:
+- Give users control over the switch
+- Provide better SEO (no forced redirects)
+- Allow users to stay on current store if preferred
+</Tip>
+
+## Managing Connected Stores
+
+### Viewing Connected Stores
+
+In the Selecty app's **Stores** section, you'll see:
+
+- List of all connected stores
+- Store URLs and names
+- Connection status (active, pending, error)
+- Last sync timestamp
+
+### Disconnecting Stores
+
+To remove a store from the connection:
+
+1. Go to **Stores** section in primary store
+2. Find the store you want to disconnect
+3. Click **Disconnect** or remove icon
+4. Confirm the disconnection
+
+<Note>
+Disconnecting a store doesn't uninstall Selecty from that store. It only removes it from the multi-store connection network.
+</Note>
+
+### Synchronizing Changes
+
+Click **Sync Stores** whenever you:
+
+- Add a new store to the connection
+- Update redirect rules or settings
+- Change market configurations
+- Modify banner settings
+
+## Use Cases and Examples
+
+### Example 1: Global Fashion Retailer
+
+**Scenario:**
+- US store for North America
+- UK store for Europe
+- Australia store for Asia-Pacific
+
+**Setup:**
+- Primary: US store
+- Connected: UK and AU stores
+- Redirect: Recommendation banners only
+- Selectors: Currency and language switchers on all stores
+
+### Example 2: Multi-Brand Company
+
+**Scenario:**
+- Brand A in France (separate legal entity)
+- Brand B in Spain (different distributing company)
+- Brand C in Germany (local management team)
+
+**Setup:**
+- Primary: France store
+- Connected: Spain and Germany stores
+- Redirect: Auto-redirect enabled
+- Selectors: Market selector showing all brands
+
+### Example 3: B2B Wholesale
+
+**Scenario:**
+- Wholesale US (USD payments required)
+- Wholesale EU (EUR payments required)
+- Separate inventory and pricing
+
+**Setup:**
+- Primary: US wholesale store
+- Connected: EU wholesale store
+- Redirect: Auto-redirect for registered customers
+- Selectors: Manual market selector for guest browsing
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Recommendation Banners">
+    Prefer banners over auto-redirect to maintain SEO health and give users control.
+  </Accordion>
+
+  <Accordion title="Keep Stores in Sync">
+    Regularly sync your connected stores, especially after making configuration changes.
+  </Accordion>
+
+  <Accordion title="Provide Manual Selectors">
+    Always offer a selector so users can manually switch stores if needed.
+  </Accordion>
+
+  <Accordion title="Clear Communication">
+    Explain why stores are separate (different currency, shipping, inventory) in your banner messaging.
+  </Accordion>
+
+  <Accordion title="Maintain Consistent Branding">
+    Keep similar design, branding, and user experience across all connected stores.
+  </Accordion>
+
+  <Accordion title="Test Thoroughly">
+    Test connections with VPN from different locations to ensure proper redirect behavior.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection token not working">
+    **Try:**
+    - Generate a new token on the secondary store
+    - Ensure both stores have active Selecty subscriptions
+    - Check that you're pasting the complete token without extra spaces
+    - Verify you're connecting from the primary store
+  </Accordion>
+
+  <Accordion title="Stores not syncing">
+    **Check:**
+    - All stores have active internet connection
+    - Selecty app is up to date on all stores
+    - Click "Sync Stores" button manually
+    - Disconnect and reconnect the problematic store
+  </Accordion>
+
+  <Accordion title="Redirect not working">
+    **Verify:**
+    - Auto-redirect is enabled in settings
+    - Country-to-store mapping is configured correctly
+    - VPN is set to correct test location
+    - Browser cookies are cleared (test in incognito)
+    - Other redirect features aren't conflicting
+  </Accordion>
+
+  <Accordion title="Banner appearing on wrong store">
+    **Review:**
+    - Banner settings on each store
+    - Country-to-store mappings
+    - Exclude current store from recommendations
+    - Cookie settings and visitor tracking
+  </Accordion>
+</AccordionGroup>
+
+## Comparison: Markets vs Multiple Stores
+
+<Tabs>
+  <Tab title="Shopify Markets">
+    **Advantages:**
+    - Single store management
+    - Centralized inventory
+    - Built-in Shopify SEO features
+    - Easier to maintain
+    - Lower operational costs
+
+    **Limitations:**
+    - One Shopify Payments account
+    - Shared product catalog
+    - Currency conversion fees
+    - Single legal entity
+  </Tab>
+
+  <Tab title="Multiple Stores">
+    **Advantages:**
+    - Separate legal entities possible
+    - Local Shopify Payments accounts
+    - No conversion fees
+    - Independent product catalogs
+    - Regional management teams
+
+    **Limitations:**
+    - Higher operational complexity
+    - Multiple subscriptions required
+    - SEO challenges with redirects
+    - More maintenance overhead
+    - Inventory management complexity
+  </Tab>
+</Tabs>
+
+<Tip>
+**Recommendation:** Use Shopify Markets unless you have specific requirements (legal entities, Shopify Payments availability, distinct catalogs) that necessitate separate stores.
+</Tip>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Learn about recommendation banners for cross-store suggestions
+  </Card>
+
+  <Card title="Markets Redirect" icon="arrows-turn-right" href="/features/markets-redirect">
+    Understand automatic redirection between stores
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Create manual store/market switchers
+  </Card>
+
+  <Card title="Testing Geolocation" icon="location-dot" href="/advanced/testing-geolocation">
+    Test your multi-store redirect setup
+  </Card>
+</CardGroup>

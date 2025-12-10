@@ -1,0 +1,397 @@
+---
+title: Accessibility
+description: Learn how Selecty meets accessibility standards and supports all users
+---
+
+
+Selecty is fully compliant with modern web accessibility regulations, ensuring that all users, regardless of ability, can effectively use language and currency selectors on your store.
+
+## Compliance Standards
+
+Selecty meets the requirements of the following accessibility standards:
+
+<CardGroup cols={2}>
+  <Card title="WCAG 2.1" icon="universal-access">
+    Web Content Accessibility Guidelines - international standard for web accessibility
+  </Card>
+
+  <Card title="European Accessibility Act" icon="flag">
+    EAA compliance for stores serving European markets
+  </Card>
+
+  <Card title="ADA" icon="scale-balanced">
+    Americans with Disabilities Act requirements for digital accessibility
+  </Card>
+
+  <Card title="Section 508" icon="building">
+    US federal accessibility standards for electronic content
+  </Card>
+</CardGroup>
+
+## Accessibility Features
+
+### Keyboard Navigation
+
+All Selecty elements are fully accessible via keyboard without requiring a mouse.
+
+**Supported keyboard controls:**
+
+<Tabs>
+  <Tab title="Tab Navigation">
+    - **Tab** - Move to next interactive element
+    - **Shift + Tab** - Move to previous element
+    - Focus indicators clearly show current position
+    - Logical tab order follows visual layout
+  </Tab>
+
+  <Tab title="Selector Interaction">
+    - **Enter** - Open selector dropdown or modal
+    - **Space** - Activate buttons and selections
+    - **Arrow Keys** - Navigate through options
+    - **Escape** - Close modal or dropdown
+  </Tab>
+
+  <Tab title="Option Selection">
+    - **Arrow Up/Down** - Move between options
+    - **Home** - Jump to first option
+    - **End** - Jump to last option
+    - **Enter/Space** - Select highlighted option
+  </Tab>
+</Tabs>
+
+<Note>
+All keyboard interactions follow WAI-ARIA best practices for dropdown menus, modals, and interactive widgets.
+</Note>
+
+### Color Contrast
+
+Selecty ensures all text and interactive elements meet WCAG color contrast requirements.
+
+**Contrast ratios:**
+
+- **Normal text** - Minimum 4.5:1 contrast ratio
+- **Large text** - Minimum 3:1 contrast ratio
+- **Interactive elements** - Clearly distinguishable from background
+- **Focus indicators** - High contrast for keyboard navigation
+
+**Customization:**
+
+When customizing selector colors, Selecty's theme editor:
+- Warns if contrast is insufficient
+- Suggests accessible color combinations
+- Provides contrast ratio calculations
+- Ensures all presets meet standards
+
+<Tip>
+Use the color contrast checker in the theme customizer to ensure your custom colors remain accessible.
+</Tip>
+
+### Clear and Resizable Text
+
+All text in Selecty elements is designed for readability and flexibility.
+
+**Text features:**
+
+- **Resizable** - Text scales up to 200% without loss of functionality
+- **Clear fonts** - Readable typefaces with adequate spacing
+- **Responsive** - Adjusts to browser zoom settings
+- **Line spacing** - Sufficient spacing for easy reading
+- **No text in images** - All text is actual text, not embedded in images
+
+**User controls:**
+
+- Browser zoom respected (Ctrl + / Ctrl -)
+- Font size preferences honored
+- Line height adapts to text size
+- No text overflow or clipping
+
+### Distinguishable Interactive Elements
+
+All interactive elements are visually distinct and clearly indicate their purpose.
+
+**Interactive element design:**
+
+<AccordionGroup>
+  <Accordion title="Buttons">
+    - Clear visual button styling
+    - Hover states with color change
+    - Focus states with visible outline
+    - Active states show click response
+    - Sufficient size for easy clicking (minimum 44x44px)
+  </Accordion>
+
+  <Accordion title="Links">
+    - Underlined or otherwise distinguished from text
+    - Color differentiation from surrounding text
+    - Focus indicators when tabbed to
+    - Clear hover states
+  </Accordion>
+
+  <Accordion title="Selectors">
+    - Clearly indicate they're clickable/interactive
+    - Show open/closed state visually
+    - Selected option is highlighted
+    - Dropdown arrows and icons provide visual cues
+  </Accordion>
+
+  <Accordion title="Banners">
+    - Distinct from page content
+    - Clear action buttons
+    - Easy-to-find close/dismiss button
+    - Non-intrusive but noticeable placement
+  </Accordion>
+</AccordionGroup>
+
+### Alternative Text and Labels
+
+All non-text elements include appropriate alternative text and labels for screen readers.
+
+**ARIA labels and descriptions:**
+
+- **Country flags** - Include country names as alt text
+- **Currency symbols** - Announced with full currency name
+- **Icon buttons** - Descriptive labels for function
+- **Status indicators** - Announce current state
+- **Interactive elements** - Purpose clearly described
+
+**Example screen reader announcements:**
+
+```
+"Language selector, currently English"
+"Select language, dropdown menu"
+"Currency: United States Dollar"
+"Close recommendation banner, button"
+```
+
+### Responsive Design
+
+Selecty elements automatically adapt to different devices, screen sizes, and orientations.
+
+**Responsive features:**
+
+<CardGroup cols={2}>
+  <Card title="Mobile Friendly" icon="mobile">
+    Touch-friendly tap targets, appropriate sizing for mobile screens
+  </Card>
+
+  <Card title="Tablet Optimized" icon="tablet">
+    Adapts layout for medium screen sizes
+  </Card>
+
+  <Card title="Desktop Enhanced" icon="desktop">
+    Takes advantage of larger screens with expanded views
+  </Card>
+
+  <Card title="Zoom Compatible" icon="magnifying-glass-plus">
+    Works perfectly at any zoom level up to 400%
+  </Card>
+</CardGroup>
+
+**Adaptive behavior:**
+
+- Selectors reposition for small screens
+- Text reflows without horizontal scrolling
+- Touch targets expand on mobile (minimum 44x44px)
+- Dropdowns adjust to available screen space
+- Modals center and resize appropriately
+
+## Screen Reader Support
+
+Selecty is tested and compatible with major screen readers.
+
+### Supported Screen Readers
+
+<Tabs>
+  <Tab title="JAWS">
+    **Job Access With Speech** (Windows)
+    - Full support for all selector types
+    - Proper announcement of state changes
+    - Keyboard navigation works seamlessly
+  </Tab>
+
+  <Tab title="NVDA">
+    **NonVisual Desktop Access** (Windows)
+    - Complete compatibility with selectors
+    - Accurate element identification
+    - State and role announcements
+  </Tab>
+
+  <Tab title="VoiceOver">
+    **VoiceOver** (macOS, iOS)
+    - Native integration with Safari
+    - Touch gesture support on iOS
+    - Rotor navigation support
+  </Tab>
+
+  <Tab title="TalkBack">
+    **TalkBack** (Android)
+    - Full Android accessibility support
+    - Gesture navigation
+    - State announcements
+  </Tab>
+</Tabs>
+
+### ARIA Implementation
+
+Selecty uses proper ARIA (Accessible Rich Internet Applications) attributes:
+
+- **Roles** - Define element types (button, listbox, option)
+- **States** - Indicate current state (expanded, selected, hidden)
+- **Properties** - Provide additional context (label, description, required)
+- **Live regions** - Announce dynamic changes
+
+**Example ARIA markup:**
+
+```html
+<button
+  aria-label="Language selector"
+  aria-haspopup="listbox"
+  aria-expanded="false"
+>
+  English
+</button>
+
+<div role="listbox" aria-label="Select language">
+  <div role="option" aria-selected="false">French</div>
+  <div role="option" aria-selected="true">English</div>
+  <div role="option" aria-selected="false">German</div>
+</div>
+```
+
+## Testing for Accessibility
+
+Selecty undergoes rigorous accessibility testing:
+
+### Automated Testing
+
+- **axe DevTools** - Automated accessibility scanning
+- **WAVE** - Web Accessibility Evaluation Tool
+- **Lighthouse** - Google's accessibility audits
+- **Pa11y** - Continuous accessibility monitoring
+
+### Manual Testing
+
+- **Keyboard-only navigation** - All features tested without mouse
+- **Screen reader testing** - Verified with JAWS, NVDA, VoiceOver
+- **Zoom testing** - Tested at 200% and 400% zoom
+- **Color blindness simulation** - Tested with various color blindness types
+- **Mobile accessibility** - Touch target size and screen reader on mobile
+
+### User Testing
+
+Real users with disabilities test Selecty to ensure practical usability:
+- Users who rely on keyboard navigation
+- Screen reader users
+- Users with visual impairments
+- Users with motor disabilities
+- Users with cognitive disabilities
+
+## Accessibility Best Practices
+
+When using Selecty, follow these practices to maintain accessibility:
+
+<AccordionGroup>
+  <Accordion title="Choose Accessible Color Schemes">
+    - Use Selecty's pre-designed color schemes (all tested for contrast)
+    - If customizing, verify contrast ratios meet WCAG standards
+    - Don't rely on color alone to convey information
+    - Test with color blindness simulators
+  </Accordion>
+
+  <Accordion title="Keep Selector Labels Clear">
+    - Use descriptive, understandable labels
+    - Avoid jargon or abbreviations
+    - Include language/currency full names, not just codes
+    - Ensure labels make sense when read aloud
+  </Accordion>
+
+  <Accordion title="Position Selectors Logically">
+    - Place in consistent locations (header/footer)
+    - Follow natural tab order of page
+    - Don't hide behind multiple interactions
+    - Make selectors easy to find and access
+  </Accordion>
+
+  <Accordion title="Test Regularly">
+    - Test keyboard navigation after changes
+    - Verify screen reader announcements
+    - Check on mobile devices
+    - Test with browser zoom enabled
+  </Accordion>
+
+  <Accordion title="Provide Multiple Methods">
+    - Offer both selectors and recommendations
+    - Allow users to dismiss banners easily
+    - Provide manual override for auto-detection
+    - Don't force changes on users
+  </Accordion>
+</AccordionGroup>
+
+## Keyboard Shortcuts Reference
+
+Quick reference for keyboard users:
+
+| Action | Keyboard Shortcut |
+|--------|------------------|
+| Navigate to selector | Tab |
+| Open selector | Enter or Space |
+| Close selector | Escape |
+| Move through options | Arrow Up/Down |
+| Jump to first option | Home |
+| Jump to last option | End |
+| Select option | Enter or Space |
+| Dismiss banner | Escape or Tab to close button |
+
+## Accessibility Statement
+
+Selecty is committed to providing an inclusive experience for all users. We:
+
+- **Follow WCAG 2.1 Level AA** guidelines as a minimum standard
+- **Test continuously** with automated tools and real users
+- **Update regularly** to meet evolving accessibility standards
+- **Welcome feedback** on accessibility improvements
+- **Provide support** for accessibility-related questions
+
+<Info>
+If you encounter any accessibility barriers while using Selecty, please contact our support team at [support@devit.software](mailto:support@devit.software). We're committed to addressing accessibility issues promptly.
+</Info>
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card title="WCAG Guidelines" icon="book" href="https://www.w3.org/WAI/standards-guidelines/wcag/">
+    Official Web Content Accessibility Guidelines
+  </Card>
+
+  <Card title="European Accessibility Act" icon="flag" href="https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/union-equality-strategy-rights-persons-disabilities-2021-2030/european-accessibility-act_en">
+    EAA requirements and information
+  </Card>
+
+  <Card title="WAI-ARIA Practices" icon="code" href="https://www.w3.org/WAI/ARIA/apg/">
+    ARIA authoring practices for accessible widgets
+  </Card>
+
+  <Card title="Get Support" icon="headset" href="/support/help">
+    Contact us for accessibility assistance
+  </Card>
+</CardGroup>
+
+## Related Pages
+
+<CardGroup cols={2}>
+  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+    Learn about creating accessible selectors
+  </Card>
+
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Create accessible recommendation banners
+  </Card>
+
+  <Card title="FAQ" icon="question" href="/support/faq">
+    Frequently asked questions
+  </Card>
+
+  <Card title="Privacy" icon="shield" href="/support/privacy">
+    Privacy and permissions information
+  </Card>
+</CardGroup>

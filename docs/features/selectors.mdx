@@ -1,0 +1,214 @@
+---
+title: Selectors
+description: Create and customize language, currency, and market switchers for your store
+---
+
+
+Selectors are customizable switchers that allow your customers to manually change their language, currency, country, or market while browsing your store. With Selecty, you can create unlimited selectors tailored to match your store's design.
+
+## What are Selectors?
+
+Selectors provide an interactive interface for customers to switch between different store configurations. They can change:
+
+- **Language** - View content in their preferred language
+- **Currency** - See prices in their local currency
+- **Country** - Navigate to country-specific offerings
+- **Market** - Access different international markets
+- **Combined Options** - Switch multiple settings at once (e.g., Language & Currency)
+
+<Info>
+Selectors work seamlessly with Shopify Markets. All languages, currencies, and markets must first be configured in your Shopify settings before they appear in Selecty selectors.
+</Info>
+
+## Creating a Selector
+
+<Steps>
+  <Step title="Open Selectors Section">
+    In the Selecty app, navigate to the Selectors section and click **Create Selector** or **Create New**.
+  </Step>
+
+  <Step title="Choose a Theme">
+    Select a visual theme that matches your brand:
+
+    - **Basic** - Standard view with simple, intuitive interface
+    - **Material** - Modern responsive design with structured colors
+    - **Cute** - Smooth lines and friendly color schemes
+    - **Minimal** - Clean design that keeps focus on products
+  </Step>
+
+  <Step title="Select Resource Type">
+    Choose what customers can switch:
+
+    - Language
+    - Currency
+    - Country
+    - Language & Currency
+    - Market Domains
+    - Custom Resources
+  </Step>
+
+  <Step title="Pick Selector Type">
+    Choose how options are displayed:
+
+    **Available in Free Plan:**
+    - **Dropdown** - Classic dropdown menu
+    - **Wheel** - Spinning wheel selector
+    - **Inline** - Options displayed in a row
+    - **Modal** - Popup overlay with options
+
+    **Available in Pro & Premium Plans:**
+    - **Layered** - Stacked layers design
+    - **Sidebar** - Slide-out sidebar panel
+    - **Cascade** - Cascading dropdown effect
+    - **Scale** - Scaling animation on selection
+    - **Tape-line** - Horizontal tape-style selector
+  </Step>
+
+  <Step title="Customize Appearance">
+    Fine-tune your selector's look and feel:
+
+    - **Color Scheme** - Choose from preset schemes or create custom colors
+    - **Position** - Set placement on your page (corner, header, footer, etc.)
+    - **Icons** - Display country flags, currency symbols, or custom icons
+    - **Name Format** - Show full names, codes (EN, USD), or native names
+    - **Search** - Enable search functionality for long lists
+    - **Custom CSS** - Add your own CSS for advanced styling
+  </Step>
+
+  <Step title="Save and Publish">
+    Click **Save** to publish your selector to your storefront.
+  </Step>
+</Steps>
+
+## Customization Options
+
+### Themes
+
+Each theme provides a distinct visual style:
+
+<CardGroup cols={2}>
+  <Card title="Basic" icon="square">
+    Clean, straightforward design perfect for any store type
+  </Card>
+  <Card title="Material" icon="cube">
+    Google Material Design inspired with bold colors
+  </Card>
+  <Card title="Cute" icon="heart">
+    Rounded corners and soft, approachable styling
+  </Card>
+  <Card title="Minimal" icon="minus">
+    Minimal footprint, maximum functionality
+  </Card>
+</CardGroup>
+
+### Color Schemes
+
+Selecty offers a wide range of pre-configured color schemes for each theme. You can:
+
+- Choose from dozens of preset color combinations
+- Preview schemes across different themes instantly
+- Manually customize individual colors
+- Use custom CSS for advanced styling
+
+<Tip>
+Match your selector colors to your brand by customizing the background, text, and accent colors in the Theme tab.
+</Tip>
+
+### Position & Placement
+
+Control exactly where your selector appears:
+
+- **Fixed Positions** - Corner placements (top-left, top-right, bottom-left, bottom-right)
+- **Inline** - Embed within your theme's header, footer, or custom locations
+- **Floating** - Overlay that stays visible while scrolling
+
+### Display Options
+
+Customize how information is presented:
+
+- **Icons & Flags** - Show country flags for visual recognition
+- **Currency Symbols** - Display currency symbols ($ , € , £)
+- **Name Formats**:
+  - Full names (United States, Euro)
+  - ISO codes (US, EUR)
+  - Native names (local language representation)
+- **Search Bar** - Add search for lists with many options
+
+## Advanced Customization
+
+### Custom CSS
+
+For developers and advanced users, Selecty supports custom CSS:
+
+1. Open your selector settings
+2. Navigate to the **Advanced** or **Styling** tab
+3. Add your custom CSS code
+4. Preview changes in real-time
+5. Save and publish
+
+```css
+/* Example: Custom selector styling */
+.selecty-selector {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.selecty-option:hover {
+  background-color: #f0f0f0;
+  transition: all 0.3s ease;
+}
+```
+
+### Multiple Selectors
+
+You can create multiple selectors for different purposes:
+
+- One for language in the header
+- Another for currency in the footer
+- A combined selector on specific landing pages
+
+Each selector can have different themes, positions, and customizations.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Keep it Visible">
+    Place selectors where customers can easily find them, typically in the header or a fixed corner position.
+  </Accordion>
+
+  <Accordion title="Match Your Brand">
+    Choose themes and colors that complement your existing store design for a cohesive experience.
+  </Accordion>
+
+  <Accordion title="Use Icons Wisely">
+    Flags and symbols help with quick recognition, especially for international audiences.
+  </Accordion>
+
+  <Accordion title="Enable Search for Long Lists">
+    If you support many languages or markets, enable the search function to help users find their option quickly.
+  </Accordion>
+
+  <Accordion title="Test on Mobile">
+    Ensure your selectors are easily accessible and functional on mobile devices where most shopping happens.
+  </Accordion>
+</AccordionGroup>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Resources Configuration" icon="gear" href="/configuration/resources">
+    Learn how to configure and manage selector resources
+  </Card>
+
+  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+    Set up automatic recommendations for first-time visitors
+  </Card>
+
+  <Card title="Languages" icon="language" href="/configuration/languages">
+    Configure multilingual support
+  </Card>
+
+  <Card title="Currencies" icon="dollar-sign" href="/configuration/currencies">
+    Set up multiple currencies
+  </Card>
+</CardGroup>

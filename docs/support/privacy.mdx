@@ -1,0 +1,428 @@
+---
+title: Privacy & Permissions
+description: Understand what permissions Selecty requires and how your data is protected
+---
+
+
+When you install Selecty, the app requests specific permissions to function properly. This page explains what permissions are required, why Selecty needs them, and how your data is protected.
+
+## Permission Overview
+
+During installation, you'll be asked to grant Selecty access to certain functionalities in your Shopify store. These permissions (called "scopes" in Shopify's system) allow the app to read necessary information and provide its features.
+
+<Info>
+**Important:** Selecty only requests the minimum permissions necessary to function. The app does not access customer payment information, personal customer data, or store sensitive business information.
+</Info>
+
+## What are Scopes?
+
+**Scopes** are specific permissions that control what an app can access in your Shopify store. By confirming the Selecty installation, you grant the app access to certain functionalities.
+
+Shopify requires all apps to clearly declare which scopes they use. This transparency helps store owners make informed decisions about app installations.
+
+## Permissions Selecty Requests
+
+### Store Owner Information
+
+**What it accesses:**
+- Your name
+- Email address
+- Phone number
+- Physical business address
+
+**Why we need it:**
+- Communicate important app updates
+- Send notifications about breaking changes
+- Provide customer support
+- Verify account ownership
+
+**What we DON'T do:**
+- Share your information with third parties
+- Send marketing emails (unless you opt in)
+- Sell your contact information
+- Use it for purposes beyond app operation
+
+### View Shopify Admin
+
+**What it accesses:**
+- Media files uploaded to your Shopify admin
+- Images stored in your Shopify file library
+
+**Why we need it:**
+- Allow you to upload custom flag icons
+- Enable custom resource icons
+- Customize recommendation banner images
+- Access theme assets for selector integration
+
+**What we DON'T do:**
+- Modify your existing files
+- Delete or alter your media library
+- Access files outside your media library
+- Share your media with others
+
+### View Online Store
+
+**What it accesses:**
+- Your store themes
+- Current theme settings
+- Theme files and structure
+
+**Why we need it:**
+- Integrate selectors into your active theme
+- Respect your theme's styling and structure
+- Position selectors correctly
+- Ensure compatibility with your theme
+
+**What we DON'T do:**
+- Modify your theme code
+- Change your theme settings
+- Access or modify checkout customizations
+- Interfere with other apps' theme integration
+
+### View Other Data
+
+**What it accesses:**
+- Store locales (languages)
+- Shopify Markets settings
+- Market configuration
+- Available currencies
+
+**Why we need it:**
+- Synchronize with your Markets configuration
+- Display available languages and currencies
+- Provide accurate selector options
+- Detect and recommend appropriate markets
+
+**What we DON'T do:**
+- Modify your Markets settings
+- Change language or currency configuration
+- Access customer location data
+- Store or track individual customer preferences
+
+## Data We Collect
+
+### What Selecty Collects
+
+<AccordionGroup>
+  <Accordion title="Configuration Data">
+    **What we collect:**
+    - Your selector settings (theme, colors, position)
+    - Banner customizations
+    - Resource configurations
+    - App preferences
+
+    **Why:**
+    - Store your settings
+    - Provide consistent experience
+    - Remember your preferences
+    - Enable app functionality
+
+    **Retention:**
+    Kept while app is installed, deleted upon uninstallation
+  </Accordion>
+
+  <Accordion title="Usage Analytics">
+    **What we collect:**
+    - Which features you use
+    - Error logs and debugging information
+    - App performance metrics
+    - Feature usage statistics
+
+    **Why:**
+    - Improve app performance
+    - Fix bugs and errors
+    - Understand which features are valuable
+    - Enhance user experience
+
+    **Retention:**
+    Aggregated and anonymized, retained for service improvement
+  </Accordion>
+
+  <Accordion title="Visitor Detection Data">
+    **What we collect (visitor-side):**
+    - IP address (for country detection)
+    - Browser language preferences
+    - Cookie for banner dismissal
+
+    **Why:**
+    - Provide geolocation recommendations
+    - Suggest appropriate language
+    - Remember user preferences
+    - Avoid showing banner repeatedly
+
+    **Retention:**
+    - IP addresses are not stored long-term
+    - Cookies expire based on your settings (typically 30-90 days)
+    - No personally identifiable information stored
+  </Accordion>
+</AccordionGroup>
+
+### What Selecty Does NOT Collect
+
+<CardGroup cols={2}>
+  <Card title="Customer Data" icon="user-xmark">
+    No customer personal information, emails, or contact details
+  </Card>
+
+  <Card title="Payment Information" icon="credit-card-slash">
+    No credit card numbers, payment methods, or transaction details
+  </Card>
+
+  <Card title="Order Data" icon="box-xmark">
+    No order history, purchase information, or customer orders
+  </Card>
+
+  <Card title="Passwords" icon="lock">
+    No passwords, API keys, or authentication credentials
+  </Card>
+</CardGroup>
+
+## How Your Data is Protected
+
+### Security Measures
+
+<Tabs>
+  <Tab title="Encryption">
+    **Data in transit:**
+    - All data transmitted using HTTPS/TLS encryption
+    - Secure connections between app and Shopify
+    - Protected API communication
+
+    **Data at rest:**
+    - Encrypted database storage
+    - Secure cloud infrastructure
+    - Regular security audits
+  </Tab>
+
+  <Tab title="Access Control">
+    **Who can access:**
+    - Only authorized Selecty team members
+    - Access limited to support and maintenance
+    - Multi-factor authentication required
+    - Logged and monitored access
+
+    **Restrictions:**
+    - No unauthorized third-party access
+    - Strict internal access policies
+    - Regular permission reviews
+  </Tab>
+
+  <Tab title="Compliance">
+    **Standards we follow:**
+    - GDPR (General Data Protection Regulation)
+    - CCPA (California Consumer Privacy Act)
+    - Shopify App Store requirements
+    - Industry security best practices
+
+    **Regular reviews:**
+    - Security audits
+    - Compliance checks
+    - Privacy policy updates
+  </Tab>
+</Tabs>
+
+### Shopify's Security
+
+Selecty operates within Shopify's secure ecosystem:
+
+- **Shopify-managed authentication** - You log in through Shopify
+- **OAuth 2.0 protocol** - Secure authorization standard
+- **Scoped permissions** - Only access what's explicitly granted
+- **Shopify's infrastructure** - Built on Shopify's secure platform
+
+## Managing Permissions
+
+### Viewing Granted Permissions
+
+To see what permissions you've granted Selecty:
+
+1. **In Shopify admin:**
+   - Go to **Apps**
+   - Find Selecty in your installed apps
+   - Click the three dots (⋮) next to Selecty
+   - Select **Manage app**
+
+2. **Permission details:**
+   - View all granted scopes
+   - See what each permission allows
+   - Check last updated date
+
+### Revoking Permissions
+
+If you want to remove Selecty's access:
+
+**Uninstall the app:**
+1. Shopify admin → **Apps**
+2. Find Selecty
+3. Click three dots (⋮) → **Uninstall**
+4. Confirm uninstallation
+
+**What happens:**
+- All permissions immediately revoked
+- Your configuration deleted
+- Selectors removed from storefront
+- No ongoing access to your store
+
+<Warning>
+Uninstalling the app removes all your selectors and settings. If you reinstall later, you'll need to set up everything again.
+</Warning>
+
+## Privacy Rights
+
+### Your Rights Under GDPR
+
+If you're in the EU, you have specific rights:
+
+<AccordionGroup>
+  <Accordion title="Right to Access">
+    Request a copy of all data we hold about you and your store.
+
+    **How to request:**
+    Email [support@devit.software](mailto:support@devit.software) with subject "GDPR Data Access Request"
+  </Accordion>
+
+  <Accordion title="Right to Rectification">
+    Request correction of inaccurate or incomplete data.
+
+    **How to request:**
+    Contact support with specific corrections needed
+  </Accordion>
+
+  <Accordion title="Right to Erasure">
+    Request deletion of your data ("right to be forgotten").
+
+    **How to request:**
+    Uninstall the app, or email support requesting data deletion
+  </Accordion>
+
+  <Accordion title="Right to Data Portability">
+    Request your data in a machine-readable format.
+
+    **How to request:**
+    Email support requesting data export
+  </Accordion>
+</AccordionGroup>
+
+### Your Rights Under CCPA
+
+If you're in California, you have rights including:
+
+- **Know what data is collected** - Transparency in data collection
+- **Know if data is sold** - We do NOT sell data
+- **Opt-out of data selling** - Not applicable (we don't sell data)
+- **Delete your data** - Request deletion at any time
+- **Non-discrimination** - No different service for exercising rights
+
+## Third-Party Services
+
+Selecty may use these third-party services:
+
+<Tabs>
+  <Tab title="Shopify">
+    **What for:**
+    - App hosting and infrastructure
+    - API access
+    - Authentication
+    - Data storage
+
+    **Their privacy policy:**
+    [Shopify Privacy Policy](https://www.shopify.com/legal/privacy)
+  </Tab>
+
+  <Tab title="IP Geolocation Provider">
+    **What for:**
+    - Determining visitor country from IP
+    - Providing location-based recommendations
+
+    **Data shared:**
+    - IP addresses only (not stored long-term)
+    - No personal information
+
+    **Not used for:**
+    - Tracking individuals
+    - Advertising
+    - Data selling
+  </Tab>
+
+  <Tab title="Analytics">
+    **What for:**
+    - App performance monitoring
+    - Error tracking
+    - Usage statistics
+
+    **Data collected:**
+    - Anonymized usage data
+    - Error logs
+    - Performance metrics
+
+    **No PII:**
+    No personally identifiable information shared
+  </Tab>
+</Tabs>
+
+## Cookies and Tracking
+
+### Cookies We Use
+
+**Session Cookies:**
+- Remember user's language/currency selection
+- Prevent banner from showing repeatedly
+- Maintain selector state across pages
+
+**Duration:**
+- Set by you in app settings
+- Typically 30-90 days
+- Clear when user clears browser cookies
+
+**Third-Party Cookies:**
+Selecty does not use third-party tracking cookies or advertising cookies.
+
+## Questions About Privacy?
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope" href="mailto:support@devit.software">
+    Email us with privacy questions or concerns
+  </Card>
+
+  <Card title="GDPR Requests" icon="shield-check" href="mailto:support@devit.software">
+    Submit data access, correction, or deletion requests
+  </Card>
+
+  <Card title="General FAQ" icon="question" href="/support/faq">
+    Common questions about Selecty
+  </Card>
+
+  <Card title="Get Help" icon="headset" href="/support/help">
+    Learn about all support options
+  </Card>
+</CardGroup>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Get started with Selecty
+  </Card>
+
+  <Card title="Accessibility" icon="universal-access" href="/support/accessibility">
+    Learn about accessibility features
+  </Card>
+
+  <Card title="FAQ" icon="question" href="/support/faq">
+    Frequently asked questions
+  </Card>
+
+  <Card title="Shopify Privacy" icon="shopify" href="https://www.shopify.com/legal/privacy">
+    Shopify's privacy policy
+  </Card>
+</CardGroup>
+
+## Updates to This Policy
+
+We may update this privacy documentation as we add features or change practices. Major changes will be communicated through:
+
+- Email to store owners
+- In-app notifications
+- Update notes in the app
+
+Last updated: December 2025

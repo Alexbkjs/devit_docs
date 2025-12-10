@@ -1,0 +1,464 @@
+---
+title: Frequently Asked Questions
+description: Common questions about Selecty and answers to help you get the most from the app
+---
+
+
+Find answers to the most common questions about Selecty, from basic setup to advanced features.
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="What is Selecty?">
+    Selecty is a Shopify app that creates language, currency, and market switchers for international stores. It works with Shopify Markets to provide customers with an easy way to switch between languages, currencies, and regional markets.
+
+    **Key features:**
+    - Customizable selectors (switchers)
+    - Geolocation-based recommendations
+    - Automatic market redirects
+    - Multiple store connection
+  </Accordion>
+
+  <Accordion title="How does Selecty work with Shopify Markets?">
+    Selecty is built entirely on Shopify's infrastructure. It reads your Shopify Markets configuration and creates user-friendly interfaces for switching between:
+    - Languages you've configured in Shopify
+    - Currencies assigned to your markets
+    - Countries and markets you serve
+    - Custom domains for different regions
+
+    All actual market management, currency conversion, and content translation are handled by Shopify. Selecty just provides the switchers and recommendations.
+  </Accordion>
+
+  <Accordion title="How many languages and currencies does Selecty support?">
+    Selecty supports **all languages and currencies supported by Shopify**, which includes:
+
+    **Languages:** All languages available in Shopify Markets ([view list](https://help.shopify.com/en/manual/markets/languages/translate))
+
+    **Currencies:** 130+ international currencies supported by Shopify ([view list](https://help.shopify.com/en/manual/markets/pricing#supported-currencies))
+
+    The exact languages and currencies available in Selecty depend on what you've configured in your Shopify Markets settings.
+  </Accordion>
+
+  <Accordion title="Do I need Shopify Markets to use Selecty?">
+    Yes. Selecty relies on Shopify Markets for all market, language, and currency configuration. You must:
+    - Have Shopify Markets enabled (available on all Shopify plans)
+    - Configure at least one market beyond your primary market
+    - Add languages and/or currencies to your markets
+
+    Without Shopify Markets configured, Selecty won't have any data to create selectors from.
+  </Accordion>
+</AccordionGroup>
+
+## Features and Functionality
+
+<AccordionGroup>
+  <Accordion title="Can I customize selectors?">
+    Yes! Selecty provides extensive customization options:
+
+    **Themes:**
+    - Basic, Material, Cute, Minimal
+
+    **Selector Types:**
+    - Free Plan: Dropdown, Wheel, Inline, Modal
+    - Pro/Premium: Layered, Sidebar, Cascade, Scale, Tape-line
+
+    **Customization:**
+    - Color schemes (dozens of presets)
+    - Custom colors and fonts
+    - Icon and flag display
+    - Position and placement
+    - Search functionality
+    - Custom CSS (advanced)
+
+    Learn more in our [Selectors guide](/features/selectors).
+  </Accordion>
+
+  <Accordion title="What is a recommendation banner?">
+    A recommendation banner is a popup or notification that suggests the appropriate language and currency to visitors based on:
+    - **Location:** Detected via IP address
+    - **Browser language:** Read from browser preferences
+
+    The banner appears on a visitor's first visit and offers to switch them to their local language and currency. Visitors can accept, decline, or dismiss the suggestion.
+
+    **Benefits:**
+    - Personalized experience without forcing changes
+    - Better for SEO than automatic redirects
+    - Gives users control
+
+    Learn more in our [Markets Recommendation guide](/features/markets-recommendation).
+  </Accordion>
+
+  <Accordion title="Should I use automatic redirects or recommendation banners?">
+    **We recommend recommendation banners** for most stores because they:
+    - Provide better SEO outcomes
+    - Give users control over locale changes
+    - Don't interfere with search engine indexing
+    - Feel less forceful to visitors
+
+    Google specifically recommends against automatic redirects for multilingual sites. However, automatic redirects may be appropriate for:
+    - B2B stores with known customer locations
+    - Completely separate regional stores
+    - Specific industries where it's expected
+
+    Learn more: [Markets Recommendation](/features/markets-recommendation) vs [Markets Redirect](/features/markets-redirect)
+  </Accordion>
+
+  <Accordion title="Can I connect multiple Shopify stores?">
+    Yes! Selecty can connect multiple separate Shopify stores and redirect customers between them based on location.
+
+    **Common reasons for multiple stores:**
+    - Different legal entities in different countries
+    - Shopify Payments not available in some regions
+    - Avoiding currency conversion fees
+    - Completely different product catalogs by region
+
+    **How it works:**
+    1. Install Selecty on all stores
+    2. Connect stores using secure tokens
+    3. Configure redirect or recommendation rules
+    4. Customers automatically routed to appropriate store
+
+    Learn more in our [Multiple Stores guide](/features/multiple-stores).
+  </Accordion>
+
+  <Accordion title="How does geolocation detection work?">
+    Selecty uses two types of detection:
+
+    **Country/Currency Detection (IP Geolocation):**
+    - Uses visitor's IP address
+    - Assigned by Internet Service Provider
+    - Determines country of residence
+    - Suggests local currency
+
+    **Language Detection (Browser Settings):**
+    - Reads browser's preferred languages
+    - Not based on location
+    - Can be different from browser display language
+    - Suggests matching language if available
+
+    **Accuracy:** Typically 95%+ for country-level detection. May be less accurate with VPNs, proxies, or corporate networks.
+
+    Learn more: [Testing Geolocation](/advanced/testing-geolocation)
+  </Accordion>
+</AccordionGroup>
+
+## Setup and Configuration
+
+<AccordionGroup>
+  <Accordion title="How do I add languages to Selecty?">
+    Languages are configured in Shopify, not Selecty:
+
+    1. **Add languages in Shopify:**
+       - Settings → Languages
+       - Click "Add language"
+       - Select language(s)
+
+    2. **Translate content:**
+       - Manually translate
+       - Use translation apps
+       - Hire professional translators
+
+    3. **Assign to markets:**
+       - Settings → Markets
+       - Select market
+       - Assign languages
+
+    4. **Use in Selecty:**
+       - Languages automatically appear in Selecty
+       - Create language selector or banner
+       - Customize and publish
+
+    Learn more: [Languages Configuration](/configuration/languages)
+  </Accordion>
+
+  <Accordion title="How do I add currencies?">
+    Currencies are configured through Shopify Markets:
+
+    1. **Enable Shopify Payments** (recommended):
+       - Settings → Payments
+       - Set up Shopify Payments
+       - Enable local currency processing
+
+    2. **Configure markets:**
+       - Settings → Markets
+       - Add countries to markets
+       - Assign currencies
+
+    3. **Set pricing:**
+       - Auto-conversion from base currency, or
+       - Manual market-specific pricing
+
+    4. **Use in Selecty:**
+       - Currencies appear automatically
+       - Create currency selector
+       - Set up recommendations
+
+    Learn more: [Currencies Configuration](/configuration/currencies)
+  </Accordion>
+
+  <Accordion title="How do I test if geolocation is working?">
+    To properly test geolocation features:
+
+    1. **Get a VPN:**
+       - Install VPN service
+       - Connect to target country
+       - Verify at mylocation.org
+
+    2. **Use incognito mode:**
+       - Simulates first-time visit
+       - No cached cookies
+       - Fresh session
+
+    3. **Visit your store:**
+       - Recommendation banner should appear
+       - Suggested market should match VPN country
+       - Language matches browser preference
+
+    **Troubleshooting:**
+    - Disable Shopify's auto-redirect
+    - Disable Selecty's auto-redirect (to test banner)
+    - Clear cookies between tests
+    - Ensure VPN is active in incognito mode
+
+    Learn more: [Testing Geolocation](/advanced/testing-geolocation)
+  </Accordion>
+</AccordionGroup>
+
+## Pricing and Plans
+
+<AccordionGroup>
+  <Accordion title="Are there additional payments inside the app?">
+    Selecty's pricing is completely transparent and displayed on the [Shopify App Store listing](https://apps.shopify.com/selectors).
+
+    **Plan tiers typically include:**
+    - Free Plan: Basic selectors and features
+    - Pro Plan: Advanced selector types and customization
+    - Premium Plan: All features including custom resources and multiple store connection
+
+    There are no hidden fees or surprise charges. All pricing is clearly shown before you subscribe.
+  </Accordion>
+
+  <Accordion title="What features are included in each plan?">
+    **Free Plan:**
+    - Basic selector types (Dropdown, Wheel, Inline, Modal)
+    - Standard themes and color schemes
+    - Recommendation banners
+    - Basic customization
+
+    **Pro Plan:**
+    - All Free features
+    - Advanced selector types (Layered, Sidebar, Cascade, Scale, Tape-line)
+    - Extended customization options
+    - Priority support
+
+    **Premium Plan:**
+    - All Pro features
+    - Custom resources
+    - Multiple store connection
+    - Advanced customization
+    - Custom CSS
+    - Premium support
+
+    Check the [app listing](https://apps.shopify.com/selectors) for current features and pricing.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="Does Selecty affect SEO?">
+    **Selecty itself does not affect SEO.** However, if you use automatic redirects, that can impact SEO.
+
+    **What Selecty doesn't interfere with:**
+    - Shopify's hreflang tags
+    - Sitemap generation
+    - Canonical URLs
+    - Structured data
+
+    **Potential SEO impact:**
+    - **Automatic redirects** can prevent search engines from properly indexing all language versions
+    - **Recommendation banners** are SEO-friendly and recommended by Google
+
+    **Best practices:**
+    - Use recommendation banners instead of auto-redirects
+    - Provide manual selectors for user control
+    - Monitor Search Console for indexing issues
+
+    Learn more: [SEO Considerations](/advanced/seo)
+  </Accordion>
+
+  <Accordion title="Is Selecty compliant with accessibility regulations?">
+    Yes! Selecty is fully compliant with **WCAG (Web Content Accessibility Guidelines)** and the **European Accessibility Act (EAA)**.
+
+    **Accessibility features:**
+    - Keyboard navigation (Tab, Enter, arrows)
+    - Sufficient color contrast
+    - Clear, resizable text
+    - Responsive design
+    - Alternative text for images
+    - Distinguishable interactive elements
+
+    Learn more: [Accessibility](/support/accessibility)
+  </Accordion>
+
+  <Accordion title="What privacy and permissions does Selecty need?">
+    During installation, Selecty requests these permissions:
+
+    **Store owner information:**
+    - Contact info for important updates
+
+    **View Shopify admin:**
+    - Access media files for custom icons and flags
+
+    **View Online Store:**
+    - Access themes to integrate selectors
+
+    **View other data:**
+    - Access locales and Markets settings for synchronization
+
+    Selecty does not:
+    - Access customer payment information
+    - Store personal customer data
+    - Share data with third parties
+
+    Learn more: [Privacy & Permissions](/support/privacy)
+  </Accordion>
+
+  <Accordion title="Can I use Selecty with third-party page builders?">
+    Yes! Selecty integrates with popular Shopify page builders.
+
+    **Confirmed compatibility:**
+    - **PageFly** - Full integration with drag-and-drop support ([guide](/advanced/pagefly))
+    - **Shogun** - Can be added via HTML/CSS blocks
+    - **GemPages** - Compatible with custom code elements
+
+    **How to integrate:**
+    1. Create selector in Selecty app
+    2. Use page builder's third-party app integration feature
+    3. Or add via custom HTML/CSS block
+    4. Position and style as needed
+
+    Learn more: [PageFly Integration](/advanced/pagefly)
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="My selector isn't showing on my store">
+    **Check these items:**
+
+    1. **Selector is published:**
+       - Open Selecty app
+       - Verify selector is saved and active
+
+    2. **Resources are configured:**
+       - At least 2 languages or currencies in Shopify Markets
+       - Resources are assigned to markets
+
+    3. **Theme compatibility:**
+       - Try refreshing theme integration
+       - Check theme is up to date
+
+    4. **Browser cache:**
+       - Clear cache and cookies
+       - Try incognito mode
+       - Test in different browser
+
+    5. **Conflicts:**
+       - Disable other localization apps temporarily
+       - Check for JavaScript errors in console
+  </Accordion>
+
+  <Accordion title="Wrong language or currency is being suggested">
+    **For wrong currency:**
+    - Based on IP geolocation
+    - Try different VPN location to test
+    - Verify market configuration in Shopify
+
+    **For wrong language:**
+    - Based on browser language preference (not display language)
+    - Check browser language settings
+    - Ensure language is configured in Shopify
+    - Verify language is assigned to visitor's market
+  </Accordion>
+
+  <Accordion title="Banner appears every time I visit">
+    The banner should only appear once per visitor. If it appears repeatedly:
+
+    **Possible causes:**
+    - Cookies are being blocked
+    - Browsing in incognito mode (cookies don't persist)
+    - Cookie duration set too short
+    - Browser privacy settings clearing cookies
+
+    **Solutions:**
+    - Check browser allows cookies
+    - Verify Selecty cookie settings
+    - Test in normal (non-incognito) mode
+    - Adjust cookie duration in Selecty settings
+  </Accordion>
+</AccordionGroup>
+
+## Getting Help
+
+<AccordionGroup>
+  <Accordion title="How do I get support?">
+    Our support team is available **24/7** through multiple channels:
+
+    **Email:**
+    [support@devit.software](mailto:support@devit.software)
+
+    **Live Chat:**
+    Available in the Selecty app (Support tab)
+
+    **Phone:**
+    Available through the app Support tab
+
+    **Documentation:**
+    You're reading it! Browse our guides for detailed help.
+
+    Learn more: [Get Help](/support/help)
+  </Accordion>
+
+  <Accordion title="Where can I find more resources?">
+    **Selecty Resources:**
+    - This documentation site
+    - [Shopify App Store listing](https://apps.shopify.com/selectors)
+    - In-app tooltips and guides
+    - Support tab in the app
+
+    **Shopify Resources:**
+    - [Shopify Markets guide](https://help.shopify.com/en/manual/markets)
+    - [Supported languages](https://help.shopify.com/en/manual/markets/languages/translate)
+    - [Supported currencies](https://help.shopify.com/en/manual/markets/pricing#supported-currencies)
+
+    **Our Guides:**
+    - [Quick Start](/quickstart)
+    - [Selectors](/features/selectors)
+    - [Markets Recommendation](/features/markets-recommendation)
+    - [Configuration guides](/configuration/languages)
+  </Accordion>
+</AccordionGroup>
+
+## Still Have Questions?
+
+If you couldn't find the answer to your question:
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope" href="mailto:support@devit.software">
+    Email our 24/7 support team
+  </Card>
+
+  <Card title="Browse Guides" icon="book" href="/">
+    Explore our comprehensive documentation
+  </Card>
+
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Get started with step-by-step guide
+  </Card>
+
+  <Card title="Get Help" icon="headset" href="/support/help">
+    Learn about all support options
+  </Card>
+</CardGroup>
