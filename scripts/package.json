@@ -1,0 +1,17 @@
+{
+  "name": "devit-docs-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Utility scripts for DevIT.Software documentation",
+  "scripts": {
+    "sync": "node sync-docs.js"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.24",
+    "@langchain/textsplitters": "^0.1.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.20.1"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "devit-software-docs",
+  "version": "1.0.0",
+  "description": "Multi-app documentation system for DevIT.Software (Selecty, ReSell, and more)",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-docs.js",
+    "widget:dev": "cd widget && npm run dev",
+    "widget:build": "cd widget && npm run build",
+    "backend:dev": "cd backend && vercel dev",
+    "backend:deploy": "cd backend && vercel --prod",
+    "install:all": "npm install && cd widget && npm install && cd ../backend && npm install && cd ../scripts && npm install"
+  },
+  "keywords": [
+    "documentation",
+    "ai-assistant",
+    "rag",
+    "vector-search",
+    "mintlify"
+  ],
+  "author": "DevIT.Software",
+  "license": "MIT",
+  "workspaces": [
+    "widget",
+    "backend",
+    "scripts"
+  ]
+}

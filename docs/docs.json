@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Selecty Documentation",
+  "name": "DevIT.Software Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,49 +11,83 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Selecty",
+        "url": "selecty",
         "groups": [
           {
             "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "pricing"
+              "selecty/index",
+              "selecty/quickstart",
+              "selecty/pricing"
             ]
           },
           {
             "group": "Core Features",
             "pages": [
-              "features/selectors",
-              "features/markets-recommendation",
-              "features/markets-recommendation-display",
-              "features/markets-redirect",
-              "features/multiple-stores"
+              "selecty/features/selectors",
+              "selecty/features/markets-recommendation",
+              "selecty/features/markets-recommendation-display",
+              "selecty/features/markets-redirect",
+              "selecty/features/multiple-stores"
             ]
           },
           {
             "group": "Configuration",
             "pages": [
-              "configuration/languages",
-              "configuration/currencies",
-              "configuration/resources"
+              "selecty/configuration/languages",
+              "selecty/configuration/currencies",
+              "selecty/configuration/resources"
             ]
           },
           {
             "group": "Advanced Topics",
             "pages": [
-              "advanced/seo",
-              "advanced/testing-geolocation",
-              "advanced/pagefly"
+              "selecty/advanced/seo",
+              "selecty/advanced/testing-geolocation",
+              "selecty/advanced/pagefly"
             ]
           },
           {
             "group": "FAQ & Support",
             "pages": [
-              "support/faq",
-              "support/accessibility",
-              "support/privacy",
-              "support/help"
+              "selecty/support/faq",
+              "selecty/support/accessibility",
+              "selecty/support/privacy",
+              "selecty/support/help"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "ReSell",
+        "url": "resell",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "resell/index",
+              "resell/quickstart",
+              "resell/pricing"
+            ]
+          },
+          {
+            "group": "FAQ & Support",
+            "pages": [
+              "resell/support/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "About DevIT.Software",
+        "url": "general",
+        "groups": [
+          {
+            "group": "Company",
+            "pages": [
+              "general/index",
+              "general/custom-solutions"
             ]
           }
         ]
@@ -62,9 +96,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Install App",
-          "href": "https://apps.shopify.com/selectors",
-          "icon": "download"
+          "anchor": "Shopify Partner",
+          "href": "https://www.shopify.com/partners/directory/partner/devit-software",
+          "icon": "handshake"
+        },
+        {
+          "anchor": "Terms of Use",
+          "href": "https://devit.software/terms-of-use/discord",
+          "icon": "file-contract"
         },
         {
           "anchor": "Support",
@@ -81,15 +120,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@devit.software"
+        "label": "Terms of Use",
+        "href": "https://devit.software/terms-of-use/discord"
+      },
+      {
+        "label": "Shopify Partner",
+        "href": "https://www.shopify.com/partners/directory/partner/devit-software"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Install App",
-      "href": "https://apps.shopify.com/selectors"
-    }
+    ]
   },
   "contextual": {
     "options": [

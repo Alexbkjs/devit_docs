@@ -1,0 +1,349 @@
+---
+title: Frequently Asked Questions
+description: Common questions about ReSell post-purchase upsell and cross-sell app.
+---
+
+Find answers to the most frequently asked questions about ReSell. If you don't find what you're looking for, contact our support team at [support@devit.software](mailto:support@devit.software).
+
+## Getting Started
+
+<AccordionGroup>
+  <Accordion title="What is a post-purchase offer?" icon="circle-question">
+    Post-purchase offers are additional sales pages displayed to customers **after** they complete their purchase, but **before** they reach the Thank You page.
+
+    Customers can accept offers with one click without re-entering payment information. The additional products are automatically charged using the payment method already on file.
+
+    **Example**: A customer buys a phone case. After completing checkout, they see an offer for a screen protector at 15% off. With one click, the screen protector is added to their order and charged automatically.
+  </Accordion>
+
+  <Accordion title="How many funnels can I create with ReSell?" icon="filter">
+    **Unlimited!** There's no limit on the number of funnels you can create with ReSell, regardless of your plan.
+
+    You can create separate funnels for:
+    - Different products or collections
+    - Different customer segments
+    - Different seasons or promotions
+    - Different geographic regions
+    - Testing different offers (A/B testing)
+
+    Best practice: Start with 3-5 well-targeted funnels and expand based on performance data.
+  </Accordion>
+
+  <Accordion title="How many offers can I show to my customer?" icon="list">
+    Customers can see up to **two additional products** through the post-purchase funnel:
+
+    **Offer Sequence**:
+    1. **Upsell Offer #1**: Shown first
+    2. If accepted → **Upsell Offer #2**: Second offer appears
+    3. If declined → **Downsell Offer**: Alternative offer shown instead
+
+    Additionally, you can show offers on:
+    - Thank You page (promotional content)
+    - Order Status page (tracking page)
+    - Checkout page (Shopify Plus only)
+    - POS terminal (in-store)
+
+    <Note>
+    Limit post-purchase offers to 2-3 products maximum to avoid overwhelming customers. Too many offers can reduce conversion rates.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Can I get a demo of the ReSell app?" icon="presentation-screen">
+    Yes! You can:
+
+    1. **Install the free plan**: Test all features risk-free with our free plan
+    2. **View live demo**: Visit our website for interactive demos
+    3. **Request personal demo**: Email [support@devit.software](mailto:support@devit.software) to schedule a personalized walkthrough
+
+    We recommend installing the app and creating a test funnel to see exactly how it works in your store.
+  </Accordion>
+</AccordionGroup>
+
+## Payment & Checkout
+
+<AccordionGroup>
+  <Accordion title="Do customers need to re-enter payment information?" icon="credit-card">
+    **No!** That's the beauty of post-purchase offers.
+
+    When a customer accepts an offer, ReSell automatically charges their payment method using the secure payment information already collected during checkout. This creates a frictionless, one-click experience.
+
+    <Info>
+    Payment information is securely processed through Shopify's payment system. ReSell never stores or accesses sensitive payment data.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Which payment methods are supported by ReSell?" icon="money-check-dollar">
+    ReSell works with most Shopify payment processors that support **payment vaulting** (storing payment information for future charges).
+
+    **Supported Processors**:
+    - Shopify Payments (recommended)
+    - Stripe
+    - Braintree (with vaulting enabled)
+    - Authorize.Net
+    - Many others supporting vaulting
+
+    **Not Supported**:
+    - PayPal Express Checkout (without Shopify Payments)
+    - Third-party processors requiring CVV storage
+    - Wallet services (Apple Pay, Google Pay, Amazon Pay)
+    - Buy Now, Pay Later services (Klarna, Affirm, Afterpay)
+    - Gift card-only payments
+
+    <Card title="Full Compatibility List" icon="list-check" href="/resell/advanced/payment-compatibility">
+      View detailed payment processor compatibility
+    </Card>
+  </Accordion>
+
+  <Accordion title="How does the post-purchase upsell affect my fulfillment?" icon="truck">
+    Post-purchase offers are added to the **original order** as additional line items. This means:
+
+    **Order Processing**:
+    - All items (original + upsell) appear as one order in Shopify admin
+    - Single order number for customer and fulfillment team
+    - Single packing slip includes all items
+    - Shipping is calculated based on total order
+
+    **Benefits**:
+    - Simplified fulfillment process
+    - No separate orders to track
+    - Combined shipping saves costs
+    - Better customer experience
+
+    **Important**: Accepted offers appear within seconds of the original order, so they're typically picked and packed together.
+  </Accordion>
+
+  <Accordion title="What are partially paid orders?" icon="receipt">
+    Partially paid orders occur when:
+    1. Customer completes initial checkout ✓
+    2. Post-purchase offer is accepted ✓
+    3. Payment for upsell **fails** ✗
+
+    This creates an order where the original purchase is paid, but the upsell item remains unpaid.
+
+    **How ReSell Handles This**:
+    - Original purchase is **always** processed and fulfilled
+    - Failed upsell item is marked as unpaid
+    - Customer receives email notification about payment failure
+    - You can send payment request through Shopify admin
+    - Or remove the unpaid item from the order
+
+    **Prevention**: ReSell validates payment methods before showing offers, minimizing failed payments.
+  </Accordion>
+</AccordionGroup>
+
+## Customization & Features
+
+<AccordionGroup>
+  <Accordion title="Can I customize my offers?" icon="palette">
+    **Absolutely!** ReSell provides extensive customization options:
+
+    **Visual Customization**:
+    - Drag-and-drop offer editor
+    - Custom colors, fonts, and button styles
+    - Upload custom images
+    - Adjust layout and spacing
+    - Add custom HTML/CSS
+
+    **Content Customization**:
+    - Custom product titles and descriptions
+    - Personalized messaging
+    - Dynamic discount displays
+    - Add trust badges and icons
+    - Include reviews or ratings
+
+    **Widgets & Elements**:
+    - Add-on services widget
+    - Free shipping progress bar
+    - Countdown timers
+    - Image galleries
+    - Custom text blocks
+
+    <Card title="Learn More" icon="wand-magic-sparkles" href="/resell/features/offer-customization">
+      Explore offer customization options
+    </Card>
+  </Accordion>
+
+  <Accordion title="How does auto recommendation work?" icon="robot">
+    Auto recommendations use **Shopify's built-in product recommendation engine** to automatically suggest relevant products based on:
+
+    **Data Sources**:
+    - Purchase history patterns
+    - Product relationships
+    - Customer browsing behavior
+    - Similar product attributes
+    - Complementary products
+
+    **How It Works**:
+    1. Customer adds product to cart and checks out
+    2. ReSell queries Shopify's recommendation API
+    3. Shopify returns best-matched products
+    4. ReSell displays top recommendation in your offer
+
+    **Pros**:
+    - Zero manual configuration
+    - Improves over time with more data
+    - Considers store-wide patterns
+    - Always relevant suggestions
+
+    **Cons**:
+    - Less control over specific products
+    - Requires sufficient store data to work well
+    - May not align with your promotional strategy
+
+    <Tip>
+    Use auto recommendations for broad "any product" funnels, and manual selection for strategic upsells on key products.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Can I show offers based on customer location?" icon="location-dot">
+    **Yes!** ReSell supports location-based targeting through display conditions:
+
+    **Location Targeting Options**:
+    - Specific countries
+    - Regions or states
+    - Multiple locations (OR logic)
+    - Exclude locations (NOT logic)
+
+    **Example Use Cases**:
+    - Offer region-specific products (e.g., winter gear in cold climates)
+    - Promote local inventory for faster shipping
+    - Show country-specific accessories (flag designs, local brands)
+    - Adjust pricing by region
+
+    **Setup**:
+    1. Create funnel
+    2. In "Display Conditions" step, add "Country" condition
+    3. Select target countries
+    4. Configure offers
+    5. Publish
+
+    <Card title="Advanced Targeting" icon="bullseye" href="/resell/features/display-conditions">
+      Learn about all display condition options
+    </Card>
+  </Accordion>
+
+  <Accordion title="Is there a limit on customer orders?" icon="cart-shopping">
+    **No limits!** ReSell has no restrictions on:
+
+    - Number of customer orders
+    - Order volume per day/month
+    - Order value
+    - Number of times same customer sees offers
+
+    The only limit on the **Free plan** is 50 accepted offers per month. Upgrade to Pro for unlimited accepted offers.
+
+    <Note>
+    While there's no order limit, we recommend managing funnel priority to ensure the best offers show to each customer.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Can I track conversions in Facebook Pixel & Google Analytics?" icon="chart-line">
+    **Yes!** ReSell supports tracking post-purchase offer conversions in your analytics platforms:
+
+    **Supported Platforms**:
+    - Facebook Pixel (Meta Pixel)
+    - Google Analytics (GA4 and Universal Analytics)
+    - Google Ads conversion tracking
+    - Custom tracking pixels
+
+    **Tracked Events**:
+    - Offer impressions (viewed)
+    - Offer accepts (purchased)
+    - Offer declines (rejected)
+    - Revenue from upsells
+    - Product details
+
+    **Setup**:
+    1. Configure tracking pixels in Shopify
+    2. Enable ReSell tracking in app settings
+    3. ReSell automatically sends events to your analytics
+    4. View upsell performance alongside main store data
+
+    <Card title="Analytics Setup Guide" icon="chart-mixed" href="/resell/features/analytics">
+      Learn how to configure analytics tracking
+    </Card>
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Why is my post-purchase offer not displayed?" icon="triangle-exclamation">
+    If your funnel isn't showing offers, check these common issues:
+
+    **1. Funnel Not Published**
+    - Ensure funnel status is "Active" in Funnels tab
+    - Check if funnel was accidentally paused
+
+    **2. ReSell Not Set in Checkout Settings**
+    - Go to Shopify Settings → Checkout
+    - Verify ReSell is selected in Post-purchase section
+
+    **3. Payment Method Not Supported**
+    - Customer used wallet service (Apple Pay, Google Pay)
+    - Payment with gift card only
+    - Third-party processor without vaulting
+    - See [Payment Compatibility](/resell/advanced/payment-compatibility)
+
+    **4. Display Conditions Not Met**
+    - Customer's order doesn't match trigger product
+    - Location/cart value conditions exclude customer
+    - Review funnel conditions in edit mode
+
+    **5. Funnel Priority Conflict**
+    - Higher priority funnel took precedence
+    - Check funnel priority settings
+    - Adjust priorities or conditions
+
+    **6. Browser/Cookie Issues**
+    - Customer has cookies disabled
+    - Browser privacy settings blocking
+    - Try incognito/private mode to test
+
+    <Card title="Troubleshooting Guide" icon="screwdriver-wrench" href="/resell/support/troubleshooting">
+      View complete troubleshooting steps
+    </Card>
+  </Accordion>
+
+  <Accordion title="If I have questions or problems using ReSell, can I get help?" icon="headset">
+    **Absolutely!** We provide multiple support channels:
+
+    **Email Support**:
+    - [support@devit.software](mailto:support@devit.software)
+    - Response within 24 hours (usually faster)
+    - Priority support for Pro plan customers
+
+    **In-App Support**:
+    - Click "Support" tab in ReSell dashboard
+    - Submit ticket directly from app
+    - Include screenshots for faster resolution
+
+    **Documentation**:
+    - Comprehensive guides and tutorials
+    - Video walkthroughs
+    - FAQ section (you're here!)
+    - Best practices articles
+
+    **Setup Assistance**:
+    - Request funnel review before publishing
+    - Our team checks configuration
+    - Provides recommendations for improvement
+
+    <Tip>
+    For fastest support, include: Shopify store URL, funnel name, and screenshots of the issue.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## Still Have Questions?
+
+We're here to help! Contact our support team:
+
+<CardGroup cols={2}>
+  <Card title="Email Support" icon="envelope" href="mailto:support@devit.software">
+    support@devit.software
+  </Card>
+  <Card title="Help Center" icon="circle-info" href="/resell/support/help">
+    Browse all help articles
+  </Card>
+</CardGroup>

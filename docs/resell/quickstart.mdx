@@ -1,0 +1,317 @@
+---
+title: Quick Start Guide
+description: Get started with ReSell and create your first post-purchase upsell funnel in minutes.
+---
+
+This guide will walk you through setting up ReSell and creating your first sales funnel. You'll be ready to start increasing your average order value in less than 10 minutes.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- An active Shopify store
+- ReSell app installed from the [Shopify App Store](https://apps.shopify.com/resell)
+- Products in your store that you want to upsell or cross-sell
+- Compatible payment processor configured (see [Payment Compatibility](/resell/advanced/payment-compatibility))
+
+## Step 1: Configure Checkout Settings
+
+To enable post-purchase offers, you must select ReSell as your post-purchase app in Shopify settings.
+
+<Steps>
+  <Step title="Open Shopify Settings">
+    From your Shopify admin, click **Settings** in the bottom left corner
+  </Step>
+  <Step title="Navigate to Checkout">
+    Click **Checkout** in the settings menu
+  </Step>
+  <Step title="Select ReSell">
+    In the **Post-purchase page** section, select **ReSell** from the dropdown
+  </Step>
+  <Step title="Save Changes">
+    Click **Save** at the top right to apply the settings
+  </Step>
+</Steps>
+
+<Note>
+For detailed instructions, see [Shopify's official documentation](https://help.shopify.com/en/manual/checkout-settings/checkout-style#set-post-purchase-app) on post-purchase apps.
+</Note>
+
+## Step 2: Create Your First Funnel
+
+Now you're ready to create your first sales funnel.
+
+### Choose Your Creation Method
+
+ReSell offers two ways to create funnels:
+
+<Tabs>
+  <Tab title="AI Template (Recommended for Beginners)">
+    **AI Template** automatically creates a complete funnel with suggested products and offers.
+
+    <Steps>
+      <Step title="Click Create Funnel">
+        From the **Dashboard** or **Funnels** tab, click **Create funnel**
+      </Step>
+      <Step title="Select AI Template">
+        Choose **AI template** option
+      </Step>
+      <Step title="Review Generated Funnel">
+        ReSell will automatically create a funnel with smart product recommendations
+      </Step>
+      <Step title="Customize (Optional)">
+        Edit any settings, products, or designs as needed
+      </Step>
+      <Step title="Publish">
+        Click **Publish** to activate your funnel
+      </Step>
+    </Steps>
+
+    <Tip>
+    AI templates are great for getting started quickly. You can always edit them later to fine-tune your offers.
+    </Tip>
+  </Tab>
+
+  <Tab title="Manual Setup (Full Control)">
+    **Manual setup** gives you complete control over triggers, conditions, and product selections.
+
+    <Steps>
+      <Step title="Click Create Funnel">
+        From the **Dashboard** or **Funnels** tab, click **Create funnel**
+      </Step>
+      <Step title="Select Manual">
+        Choose **Manually** option
+      </Step>
+      <Step title="Follow the funnel wizard">
+        Complete each step of the funnel creation process (detailed below)
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+### Manual Funnel Configuration
+
+If you chose manual setup, follow these detailed steps:
+
+#### Set Display Conditions
+
+Define when your funnel should trigger:
+
+<Tabs>
+  <Tab title="Certain Product">
+    Trigger the funnel when a customer purchases a specific product.
+
+    **Example**: When customer buys "iPhone 14 Pro" → Show phone case offer
+
+    1. Select **Certain product** as trigger type
+    2. Click **Choose product**
+    3. Select the product from your catalog
+    4. Optionally add conditions (location, cart value, etc.)
+    5. Click **Next step**
+  </Tab>
+
+  <Tab title="Product from Collection">
+    Trigger the funnel when a customer purchases any product from a collection.
+
+    **Example**: When customer buys from "Summer Dresses" collection → Show accessories
+
+    1. Select **Product from collection**
+    2. Choose the collection
+    3. Optionally add conditions
+    4. Click **Next step**
+  </Tab>
+
+  <Tab title="Any Product">
+    Apply the funnel to all purchases in your store.
+
+    **Example**: Show best-selling accessory to every customer
+
+    1. Select **Any product**
+    2. Add conditions to target specific segments (optional)
+    3. Click **Next step**
+  </Tab>
+</Tabs>
+
+#### Configure Checkout Offers (Shopify Plus Only)
+
+<Note>
+This step appears **only for Shopify Plus** merchants. Skip if you're on a different plan.
+</Note>
+
+Select products to offer during the checkout process **before** payment:
+
+1. Click **Add offer**
+2. Choose product, collection, or auto-recommendation
+3. Configure discount (optional)
+4. Click **Next step**
+
+#### Set Up Post-Purchase Offers
+
+This is where you configure the main upsell and cross-sell offers.
+
+**Offer Sequence**:
+1. **Upsell Offer #1**: Shown first to all customers
+2. If accepted → **Upsell Offer #2** appears
+3. If declined → **Downsell Offer** appears instead
+
+<Tabs>
+  <Tab title="Upsell Offer #1">
+    The primary offer shown immediately after purchase.
+
+    1. Click **Add offer**
+    2. Select offer type:
+       - **Specific Product**: Choose exact product to offer
+       - **Collection**: Let customer choose from collection
+       - **Auto**: Use AI recommendations
+    3. Configure product settings:
+       - Set discount percentage or fixed amount (optional)
+       - Customize product description
+       - Choose product variant display
+    4. Click **Save**
+
+    **Best Practices**:
+    - Offer products 30-50% of the original purchase price
+    - Provide 10-20% discount to increase conversions
+    - Use complementary products (accessories, add-ons)
+  </Tab>
+
+  <Tab title="Upsell Offer #2">
+    Secondary offer shown if customer accepts first upsell.
+
+    1. Click **Add offer** in Upsell #2 section
+    2. Choose a different product or collection
+    3. Consider offering:
+       - Related products
+       - Bulk quantity discounts
+       - Product bundles
+    4. Click **Save**
+
+    **Example Flow**:
+    - Customer buys phone → Accepts case (Upsell #1) → Sees screen protector (Upsell #2)
+  </Tab>
+
+  <Tab title="Downsell Offer">
+    Alternative offer shown if customer declines Upsell #1.
+
+    1. Click **Add offer** in Downsell section
+    2. Choose strategy:
+       - **Deeper Discount**: Same product with larger discount
+       - **Alternative Product**: Lower-priced complementary item
+    3. Configure offer
+    4. Click **Save**
+
+    **Best Practices**:
+    - Offer 20-30% discount (higher than upsell)
+    - Consider free shipping threshold
+    - Use lower-priced alternatives
+  </Tab>
+</Tabs>
+
+<Tip>
+You can edit any offer by clicking **Edit offer** and customizing elements like titles, images, buttons, and layout using the drag-and-drop editor.
+</Tip>
+
+#### Configure Thank You Page Offer
+
+Display promotional content on the order confirmation page:
+
+1. Toggle **Enable Thank You Page Offer**
+2. Add promotional content:
+   - Special coupons for next purchase
+   - Newsletter signup
+   - Social media follow prompts
+   - Related product recommendations
+3. Click **Next step**
+
+#### Set Up POS Offers (If Applicable)
+
+If you use Shopify POS for physical retail locations:
+
+1. Enable POS offers
+2. Select products to offer at checkout terminal
+3. Configure display settings
+4. Click **Next step**
+
+#### Configure Order Status Page
+
+Show offers on the order tracking page:
+
+1. Click **Add offer**
+2. Choose products, collections, or auto-recommendations
+3. These appear when customers check order status
+4. Click **Next step**
+
+#### Publish Your Funnel
+
+<Steps>
+  <Step title="Review Settings">
+    Double-check all funnel configurations
+  </Step>
+  <Step title="Optional Review">
+    Select **"Request review from support team"** if you want our team to verify setup
+  </Step>
+  <Step title="Click Publish">
+    Activate your funnel to start showing offers
+  </Step>
+</Steps>
+
+<Success>
+Congratulations! Your first funnel is now live and will start displaying offers to customers.
+</Success>
+
+## Step 3: Monitor Performance
+
+Track your funnel's performance in the **Analytics** tab:
+
+- **Impressions**: How many customers saw offers
+- **Conversion Rate**: Percentage who accepted offers
+- **Revenue**: Additional income generated
+- **AOV Impact**: Increase in average order value
+
+<Card title="Learn About Analytics" icon="chart-line" href="/resell/features/analytics">
+  Discover how to interpret analytics data and optimize your funnels
+</Card>
+
+## Next Steps
+
+Now that your first funnel is running, explore advanced features:
+
+<CardGroup cols={2}>
+  <Card title="Customize Offers" icon="palette" href="/resell/features/offer-customization">
+    Design beautiful, branded offers with the visual editor
+  </Card>
+  <Card title="Advanced Targeting" icon="bullseye" href="/resell/features/display-conditions">
+    Create personalized funnels based on location, cart value, and more
+  </Card>
+  <Card title="Best Practices" icon="lightbulb" href="/resell/advanced/best-practices">
+    Learn proven strategies to maximize conversions
+  </Card>
+  <Card title="Auto Recommendations" icon="wand-magic-sparkles" href="/resell/features/auto-recommendations">
+    Understand how AI-powered product suggestions work
+  </Card>
+</CardGroup>
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="How many funnels can I create?">
+    There's no limit! Create as many funnels as you need for different products, collections, and customer segments. See [Funnel Management](/resell/features/funnel-management) for details.
+  </Accordion>
+  <Accordion title="Will customers need to re-enter payment info?">
+    No! Post-purchase offers use the payment information already provided during checkout, making acceptance frictionless and secure.
+  </Accordion>
+  <Accordion title="What if my payment processor isn't supported?">
+    Some payment methods have limitations. Check our [Payment Compatibility](/resell/advanced/payment-compatibility) guide for the full list of supported processors.
+  </Accordion>
+  <Accordion title="Can I test funnels before going live?">
+    Yes! Place test orders in your store to see exactly how funnels appear to customers. Use Shopify's test mode for payment testing.
+  </Accordion>
+</AccordionGroup>
+
+## Get Help
+
+Need assistance setting up ReSell?
+
+- **Email Support**: [support@devit.software](mailto:support@devit.software)
+- **FAQ**: [Frequently Asked Questions](/resell/support/faq)
+- **Troubleshooting**: [Common Issues](/resell/support/troubleshooting)
