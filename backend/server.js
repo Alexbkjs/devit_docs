@@ -16,19 +16,38 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SER
 const EMB_MODEL = "text-embedding-3-small";
 const CHAT_MODEL = "gpt-4o-mini"; // or "gpt-4o" / "gpt-4o-mini" / change as you like
 const TOP_K = 5;
+const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL || 'https://devit-c039f40a.mintlify.app';
+const LOCAL_DEV_URL = process.env.LOCAL_DEV_URL; // Optional: Transform URLs for local dev
+
+// Helper function to transform URLs for local development
+function transformUrl(url) {
+  if (!LOCAL_DEV_URL) return url; // Production: return as-is
+
+  // Replace production Mintlify URL with local dev URL
+  return url.replace(MINTLIFY_BASE_URL, LOCAL_DEV_URL);
+}
 
 app.post("/api/chat", async (req, res) => {
   console.log('\n📨 [REQUEST] New chat request received');
   console.log('📋 Request body:', JSON.stringify(req.body, null, 2));
 
   try {
-    const { messages } = req.body;
+    const { messages, app_name } = req.body;
     if (!messages || !Array.isArray(messages)) {
       console.error('❌ [ERROR] No messages array provided');
       return res.status(400).json({ error: "No messages array provided" });
     }
 
+    // Validate and default app_name
+    const validApps = ['selecty', 'resell', 'general'];
+    const appName = validApps.includes(app_name) ? app_name : null;
+
     console.log(`💬 [MESSAGES] Received ${messages.length} messages`);
+    if (appName) {
+      console.log(`📱 [APP] Context: ${appName}`);
+    } else {
+      console.log(`📱 [APP] Context: all apps (no filter)`);
+    }
 
     // Get the latest user message
     const lastUserMessage = messages.filter(m => m.role === 'user').pop();
@@ -60,11 +79,15 @@ app.post("/api/chat", async (req, res) => {
     const qEmbedding = embResp.data[0].embedding;
     console.log(`✅ [EMBEDDING] Created (dimension: ${qEmbedding.length})`);
 
-    // 2) Fetch top-K docs from Supabase via RPC
-    console.log(`🔍 [SEARCH] Searching for top ${TOP_K} documents...`);
+    // 2) Fetch top-K docs from Supabase via RPC with optional app filter
+    const searchContext = appName ? `in ${appName}` : 'across all apps';
+    console.log(`🔍 [SEARCH] Searching for top ${TOP_K} documents ${searchContext}...`);
     const { data: docs, error } = await supabase
-      .rpc("match_documents", { query_embedding: qEmbedding, k: TOP_K })
-      .limit(TOP_K);
+      .rpc("match_documents", {
+        query_embedding: qEmbedding,
+        match_count: TOP_K,
+        filter_app: appName  // NULL if no app specified
+      });
     if (error) {
       console.error('❌ [SEARCH ERROR]', error);
       throw error;
@@ -77,14 +100,21 @@ app.post("/api/chat", async (req, res) => {
     ).join("\n");
     console.log(`📄 [CONTEXT] Built context from ${docs.length} documents`);
 
-    // 4) Build conversation history for OpenAI
+    // 4) Build conversation history for OpenAI with app context
+    const appDisplayName = appName ? {
+      selecty: 'Selecty',
+      resell: 'ReSell',
+      general: 'DevIT.Software'
+    }[appName] : 'DevIT.Software';
+
     const conversationMessages = [
       {
         role: "system",
-        content: `You are a helpful assistant that answers questions using the provided documentation context.
-Use only the context to answer; if the answer is not in the docs say "I couldn't find that in the docs" and offer next steps. Keep answers concise and include URLs when applicable.
+        content: `You are a helpful assistant for ${appDisplayName} documentation.
 
-Context:
+Use only the provided documentation context to answer questions. If the answer is not in the docs, say "I couldn't find that in the ${appDisplayName} documentation" and offer next steps. Keep answers concise and include URLs when applicable.
+
+Documentation Context:
 ${contextText}`
       },
       // Include previous conversation history (last 5 messages for context)
@@ -123,16 +153,20 @@ ${contextText}`
 
     console.log(`📨 [STREAM] Streamed ${chunkCount} chunks, total ${fullContent.length} characters`);
 
-    // 7) Send sources as data annotation
+    // 7) Send sources as data annotation with URL transformation
     if (docs.length > 0) {
-      const sources = docs.map(d => ({
-        url: d.url,
-        path: d.url,
-        metadata: {
-          title: d.title,
-          id: d.id
-        }
-      }));
+      const sources = docs.map(d => {
+        const transformedUrl = transformUrl(d.url);
+        return {
+          url: transformedUrl,
+          path: transformedUrl,
+          metadata: {
+            title: d.title,
+            id: d.id,
+            app_name: d.app_name
+          }
+        };
+      });
 
       // Send sources as message annotation (type 8 is for message annotations)
       res.write(`8:${JSON.stringify([{
@@ -142,7 +176,9 @@ ${contextText}`
           result: sources
         }
       }])}\n`);
-      console.log(`📎 [SOURCES] Sent ${docs.length} sources`);
+
+      const envInfo = LOCAL_DEV_URL ? `(transformed to ${LOCAL_DEV_URL})` : '(production URLs)';
+      console.log(`📎 [SOURCES] Sent ${docs.length} sources ${envInfo}`);
     }
 
     // 8) Send finish event

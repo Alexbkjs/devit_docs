@@ -21,8 +21,8 @@ A production-ready backend system that provides AI-powered documentation assista
 ```mermaid
 graph TB
     subgraph "Documentation Source"
-        GH[GitHub Repository<br/>selecty-docs]
-        MI[Mintlify Published Docs<br/>acme-80ce2022.mintlify.app]
+        GH[GitHub Repository<br/>devit_docs]
+        MI[Mintlify Published Docs<br/>devit-c039f40a.mintlify.app]
     end
 
     subgraph "Sync Process (sync-docs.js)"
@@ -103,7 +103,7 @@ graph TB
 CREATE TABLE documents (
   id TEXT PRIMARY KEY,              -- e.g., "docs/quickstart.mdx--chunk-0"
   title TEXT,                       -- e.g., "quickstart"
-  url TEXT,                         -- e.g., "https://acme-80ce2022.mintlify.app/quickstart"
+  url TEXT,                         -- e.g., "https://devit-c039f40a.mintlify.app/quickstart"
   content TEXT,                     -- Chunk content
   embedding vector(1536)            -- OpenAI text-embedding-3-small embedding
 );
@@ -167,7 +167,7 @@ sequenceDiagram
 **URL Transformation Example**:
 ```
 Input:  docs/configuration/currencies.mdx
-Output: https://acme-80ce2022.mintlify.app/configuration/currencies
+Output: https://devit-c039f40a.mintlify.app/configuration/currencies
 ```
 
 ---
@@ -295,7 +295,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGc...          # Supabase service role key
 # Documentation Sync (sync-docs.js)
 REPO_RAW_BASE=https://raw.githubusercontent.com/org/repo/main/
 REPO_INDEX_URL=https://raw.githubusercontent.com/org/repo/main/docs_index.txt
-MINTLIFY_BASE_URL=https://acme-80ce2022.mintlify.app
+MINTLIFY_BASE_URL=https://devit-c039f40a.mintlify.app
 
 # Server
 PORT=9000                                     # API server port (default: 9000)
@@ -304,14 +304,17 @@ PORT=9000                                     # API server port (default: 9000)
 ### File Structure
 
 ```
-backend3/
-├── server.js              # RAG API server
+backend/
+├── api/
+│   └── chat.js            # Vercel serverless function
+├── server.js              # Local development server
 ├── sync-docs.js           # Documentation ingestion pipeline
 ├── package.json           # Dependencies
 ├── .env                   # Environment variables (gitignored)
 ├── .env.example           # Environment template
-├── docs_index.txt         # List of documentation files
-└── PROJECT_OVERVIEW.md    # This file
+├── vercel.json            # Vercel deployment config
+├── PROJECT_OVERVIEW.md    # This file
+└── DEPLOYMENT.md          # Deployment guide
 ```
 
 ---
@@ -342,7 +345,7 @@ node sync-docs.js
 ```
 Found 16 files
 Fetching https://raw.githubusercontent.com/.../currencies.mdx
-  → Split into 17 chunks (Mintlify URL: https://acme-80ce2022.mintlify.app/configuration/currencies)
+  → Split into 17 chunks (Mintlify URL: https://devit-c039f40a.mintlify.app/configuration/currencies)
   ✓ Upserted docs/configuration/currencies.mdx--chunk-0
   ✓ Upserted docs/configuration/currencies.mdx--chunk-1
   ...
@@ -383,7 +386,7 @@ curl -X POST http://localhost:9000/api/chat \
 0:"To configure currencies, you can use the "
 0:"currency selector. Here's how:\n\n"
 0:"1. Add the currency configuration..."
-8:[{"type":"tool-invocation","toolInvocation":{"toolName":"search","result":[{"url":"https://acme-80ce2022.mintlify.app/configuration/currencies","path":"https://acme-80ce2022.mintlify.app/configuration/currencies","metadata":{"title":"currencies","id":"docs/configuration/currencies.mdx--chunk-0"}}]}}]
+8:[{"type":"tool-invocation","toolInvocation":{"toolName":"search","result":[{"url":"https://devit-c039f40a.mintlify.app/configuration/currencies","path":"https://devit-c039f40a.mintlify.app/configuration/currencies","metadata":{"title":"currencies","id":"docs/configuration/currencies.mdx--chunk-0"}}]}}]
 d:{"finishReason":"stop","usage":{"promptTokens":0,"completionTokens":0}}
 ```
 
@@ -528,7 +531,7 @@ To configure multiple stores, you can use the multi-store feature. Here's how to
 2. Define your store settings
 3. Configure routing rules
 
-For complete details, see: https://acme-80ce2022.mintlify.app/features/multiple-stores
+For complete details, see: https://devit-c039f40a.mintlify.app/features/multiple-stores
 ```
 
 ---

@@ -7,6 +7,7 @@
     "sync": "node scripts/sync-docs.js",
     "widget:dev": "cd widget && npm run dev",
     "widget:build": "cd widget && npm run build",
+    "backend:sync": "cd backend && node sync-docs.js",
     "backend:dev": "cd backend && vercel dev",
     "backend:deploy": "cd backend && vercel --prod",
     "install:all": "npm install && cd widget && npm install && cd ../backend && npm install && cd ../scripts && npm install"

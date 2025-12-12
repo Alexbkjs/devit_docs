@@ -1,372 +1,174 @@
-# DevIT.Software Multi-App Documentation
+# DevIT.Software Multi-App Documentation System
 
-> Complete documentation system with AI-powered assistant for Selecty, ReSell, and other DevIT.Software applications.
+> Production-ready documentation platform with AI-powered assistant for Selecty, ReSell, and other DevIT.Software applications.
 
-## 🏗️ Architecture Overview
+## Overview
 
-This monorepo contains everything needed for a production-ready, multi-app documentation system with context-aware AI assistance:
+This monorepo contains a complete RAG (Retrieval-Augmented Generation) documentation system with:
 
-- **📚 Documentation**: Mintlify-based docs for multiple apps (Selecty, ReSell, general)
-- **🤖 AI Widget**: React-based assistant with app context detection
-- **🔌 Backend API**: Vercel serverless functions for RAG (Retrieval-Augmented Generation)
-- **🗄️ Database**: Supabase with pgvector for semantic search
-- **⚙️ Scripts**: Documentation sync and embedding generation
+- **Multi-App Documentation**: Organized docs for Selecty, ReSell, and company info
+- **AI Assistant Widget**: Context-aware chat widget that detects which app docs the user is viewing
+- **Vector Database**: Supabase with pgvector for semantic search
+- **Serverless Backend**: Vercel-deployed API with streaming responses
+- **Smart Sync System**: Automatic documentation embedding generation and storage
 
-## 📁 Project Structure
+## Architecture
+
+```
+User visits /selecty/quickstart
+        ↓
+AI Widget detects "selecty" context
+        ↓
+User asks: "How do I create switchers?"
+        ↓
+Backend searches only Selecty docs in vector DB
+        ↓
+Returns AI response with relevant Selecty documentation
+```
+
+## Project Structure
 
 ```
 devit-software-docs/
-├── docs/                      # 📚 Documentation source files
-│   ├── selecty/              # Selecty app documentation
-│   ├── resell/               # ReSell app documentation
-│   ├── general/              # DevIT.Software company info
-│   └── docs.json             # Mintlify navigation config
+├── docs/                      # Mintlify documentation source
+│   ├── selecty/              # Selecty app docs
+│   ├── resell/               # ReSell app docs
+│   ├── general/              # Company information
+│   └── docs.json             # Mintlify navigation
 │
-├── widget/                    # 🤖 AI Assistant Widget
+├── widget/                    # AI Assistant Widget
 │   ├── src/
 │   │   ├── components/       # React components
-│   │   ├── config.js         # App detection & configuration
-│   │   └── main.jsx          # Entry point
-│   ├── dist/                 # Build output
-│   ├── package.json
-│   └── vite.config.js
+│   │   ├── config.js         # App context detection
+│   │   └── main.jsx
+│   └── dist/                 # Build output
+│       └── assistant-widget.iife.js
 │
-├── backend/                   # 🔌 Backend API
+├── backend/                   # Serverless API
 │   ├── api/
-│   │   └── chat.js           # Chat endpoint with RAG
-│   ├── package.json
-│   ├── vercel.json           # Vercel deployment config
-│   └── README.md             # Backend-specific docs
+│   │   └── chat.js           # Chat endpoint (Vercel function)
+│   ├── server.js             # Local dev server
+│   ├── sync-docs.js          # Doc sync script
+│   └── .env                  # Environment config
 │
-├── database/                  # 🗄️ Database Setup
-│   └── schema.sql            # Supabase schema with pgvector
+├── database/                  # Database setup
+│   └── supabase-complete-setup.sql
 │
-├── scripts/                   # ⚙️ Utility Scripts
-│   ├── sync-docs.js          # Sync docs to vector store
-│   ├── docs_index.txt        # List of doc files to sync
-│   └── package.json
+├── scripts/                   # Utility scripts
+│   ├── sync-docs.js          # Alternative sync location
+│   └── docs_index.txt        # List of doc files
 │
-├── guides/                    # 📖 Implementation Guides
-│   ├── IMPLEMENTATION_GUIDE.md
-│   ├── SETUP_CHECKLIST.md
-│   └── BACKEND_API_GUIDE.md
-│
-├── .env.example              # Environment variables template
-├── .gitignore
-├── package.json              # Root package.json (monorepo)
-└── README.md                 # This file
+└── guides/                    # Setup guides
+    ├── SETUP_CHECKLIST.md
+    ├── IMPLEMENTATION_GUIDE.md
+    └── BACKEND_API_GUIDE.md
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- **Node.js** 18+ and npm
-- **Supabase** account and project
-- **OpenAI** API key
-- **Vercel** account (for deployment)
-- **Git** and **GitHub** repository
+- Node.js 18+ and npm
+- [Supabase](https://supabase.com) account
+- [OpenAI API](https://platform.openai.com) key
+- [Vercel](https://vercel.com) account
+- GitHub repository (for docs hosting)
 
-### 1. Clone & Install
+### Step 1: Clone and Install
 
 ```bash
-git clone https://github.com/your-org/devit-docs.git
-cd devit-docs
+# Clone your repository
+git clone https://github.com/Alexbkjs/devit_docs.git
+cd devit_docs
 
 # Install all dependencies
 npm run install:all
-
-# Or install individually
-npm install              # Root dependencies
-cd widget && npm install # Widget dependencies
-cd ../backend && npm install # Backend dependencies
-cd ../scripts && npm install # Scripts dependencies
 ```
 
-### 2. Environment Setup
+### Step 2: Set Up Supabase Database
+
+1. **Create a Supabase project** at https://supabase.com
+
+2. **Get your credentials**:
+   - Go to Settings → API
+   - Copy `URL` (looks like: https://xxx.supabase.co)
+   - Copy `service_role` key (secret key)
+
+3. **Run the SQL setup**:
+   - Open Supabase dashboard → SQL Editor
+   - Copy contents of `database/supabase-complete-setup.sql`
+   - Paste and click **Run**
+
+This creates:
+- `documents` table with pgvector extension
+- `app_name` column for multi-app filtering
+- `match_documents()` function for semantic search
+- Necessary indexes for performance
+
+### Step 3: Configure Environment Variables
+
+Create `.env` files in the root and backend directories:
+
+**Root `.env`:**
+```bash
+# OpenAI Configuration
+OPENAI_API_KEY=sk-proj-your-key-here
+
+# Supabase Configuration
+SUPABASE_URL=https://yxksdqisvufaubapvtup.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGc...your-key-here
+
+# Documentation Source (GitHub)
+REPO_RAW_BASE=https://raw.githubusercontent.com/Alexbkjs/devit_docs/main/
+REPO_INDEX_URL=https://raw.githubusercontent.com/Alexbkjs/devit_docs/main/scripts/docs_index.txt
+
+# Production Mintlify URL (stored in vector database)
+MINTLIFY_BASE_URL=https://devit-c039f40a.mintlify.app
+
+# Optional: Local development URL transformation
+# Uncomment when running Mintlify locally to transform URLs in API responses
+# LOCAL_DEV_URL=http://localhost:3000
+
+# Server Configuration
+PORT=9000
+```
+
+**Backend `.env`:** (copy the same values)
+```bash
+cd backend
+cp ../.env .env
+```
+
+### Step 4: Sync Documentation to Vector Database
+
+This step fetches all your documentation, generates embeddings, and stores them in Supabase:
 
 ```bash
-# Copy example environment file
-cp .env.example .env
+# From root directory
+npm run sync
 
-# Edit .env with your credentials
-nano .env
-```
-
-Required variables:
-```env
-OPENAI_API_KEY=sk-...
-SUPABASE_URL=https://xxx.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-REPO_RAW_BASE=https://raw.githubusercontent.com/your-org/your-repo/main/
-REPO_INDEX_URL=https://raw.githubusercontent.com/your-org/your-repo/main/scripts/docs_index.txt
-MINTLIFY_BASE_URL=https://your-docs.mintlify.app
-```
-
-### 3. Database Setup
-
-1. Create Supabase project at https://supabase.com
-2. Go to **SQL Editor** in Supabase dashboard
-3. Copy contents of `database/schema.sql`
-4. Paste and **Run** to create tables, indexes, and functions
-
-### 4. Sync Documentation
-
-```bash
-# Sync docs to vector database
+# Or from backend directory
+cd backend
 npm run sync
 ```
 
-This will:
-- Fetch all documentation files from GitHub
-- Generate embeddings using OpenAI
-- Store chunks in Supabase with app_name metadata
-
-Expected output:
+**Expected Output:**
 ```
 Found 24 files
-Fetching https://raw.githubusercontent.com/.../docs/selecty/index.mdx
-  → Split into 3 chunks (App: selecty, Mintlify URL: ...)
+Fetching https://raw.githubusercontent.com/Alexbkjs/devit_docs/main/docs/selecty/index.mdx
+  → Split into 3 chunks (App: selecty, Mintlify URL: https://devit-c039f40a.mintlify.app/selecty/index)
   ✓ Upserted docs/selecty/index.mdx--chunk-0 [selecty]
-✅ Done! Processed 24 files into 87 chunks
+  ✓ Upserted docs/selecty/index.mdx--chunk-1 [selecty]
+  ...
+✅ Done! Processed 24 files into 87 chunks (avg 3.6 chunks/file)
 ```
 
-## 🛠️ Development
-
-### Widget Development
-
-```bash
-# Start widget dev server
-npm run widget:dev
-
-# Or:
-cd widget
-npm run dev
-```
-
-- Opens at `http://localhost:5173`
-- Hot reload enabled
-- Test widget on example page
-
-### Backend Development
-
-```bash
-# Start backend dev server
-npm run backend:dev
-
-# Or:
-cd backend
-vercel dev
-```
-
-- API available at `http://localhost:3000`
-- Test endpoint: `http://localhost:3000/api/chat`
-
-### Test the API
-
-```bash
-curl -X POST http://localhost:3000/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messages": [
-      {"role": "user", "content": "How do I get started with Selecty?"}
-    ],
-    "app_name": "selecty"
-  }'
-```
-
-### Viewing Docs Locally
-
-If using Mintlify:
-
-```bash
-# Install Mintlify CLI
-npm i -g mintlify
-
-# Run docs locally
-cd docs
-mintlify dev
-```
-
-Opens at `http://localhost:3000`
-
-## 📦 Production Deployment
-
-### 1. Deploy Documentation (Mintlify)
-
-**Option A: GitHub Integration (Recommended)**
-
-1. Push to GitHub repository
-2. Connect repo to Mintlify at https://mintlify.com
-3. Auto-deploys on push to main branch
-
-**Option B: Mintlify CLI**
-
-```bash
-cd docs
-mintlify deploy
-```
-
-### 2. Deploy Backend (Vercel)
-
-```bash
-# Deploy to production
-npm run backend:deploy
-
-# Or:
-cd backend
-vercel --prod
-```
-
-**Environment Variables** (Vercel):
-
-Add in Vercel dashboard or CLI:
-
-```bash
-vercel env add OPENAI_API_KEY
-vercel env add SUPABASE_URL
-vercel env add SUPABASE_SERVICE_ROLE_KEY
-```
-
-**Custom Domain** (Optional):
-
-```bash
-vercel domains add api.your-domain.com
-```
-
-### 3. Build & Deploy Widget
-
-```bash
-# Build widget for production
-npm run widget:build
-
-# Output: widget/dist/assistant-widget.iife.js
-```
-
-**Deploy options**:
-
-1. **Mintlify Custom Script**:
-   - Upload `assistant-widget.iife.js` to your server/CDN
-   - Add in Mintlify settings → Custom Scripts
-
-2. **CDN** (e.g., Vercel, Netlify):
-   ```bash
-   cd widget/dist
-   vercel --prod
-   # Or use any static file hosting
-   ```
-
-3. **Add to Mintlify**:
-
-   In Mintlify dashboard, add custom script:
-   ```html
-   <script src="https://your-cdn.com/assistant-widget.iife.js"></script>
-   <script>
-     window.MINTLIFY_ASSISTANT_CONFIG = {
-       backendURL: 'https://your-backend.vercel.app'
-     };
-   </script>
-   ```
-
-## 🔧 Configuration
-
-### Adding New Apps
-
-To add a new app (e.g., "Quicky"):
-
-1. **Create docs folder**:
-   ```bash
-   mkdir -p docs/quicky
-   ```
-
-2. **Add content**:
-   - `docs/quicky/index.mdx`
-   - `docs/quicky/quickstart.mdx`
-   - `docs/quicky/pricing.mdx`
-
-3. **Update `docs/docs.json`**:
-   ```json
-   {
-     "tab": "Quicky",
-     "url": "quicky",
-     "groups": [...]
-   }
-   ```
-
-4. **Update `scripts/docs_index.txt`**:
-   ```
-   docs/quicky/index.mdx
-   docs/quicky/quickstart.mdx
-   ...
-   ```
-
-5. **Update `widget/src/config.js`**:
-   Add Quicky config to `getAppConfig()`
-
-6. **Update `database/schema.sql`** (optional):
-   ```sql
-   ALTER TABLE documents
-   DROP CONSTRAINT valid_app_name;
-
-   ALTER TABLE documents
-   ADD CONSTRAINT valid_app_name
-   CHECK (app_name IN ('selecty', 'resell', 'general', 'quicky'));
-   ```
-
-7. **Sync**:
-   ```bash
-   npm run sync
-   ```
-
-### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `OPENAI_API_KEY` | OpenAI API key for embeddings & chat | ✅ Yes |
-| `SUPABASE_URL` | Supabase project URL | ✅ Yes |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key | ✅ Yes |
-| `REPO_RAW_BASE` | GitHub raw content base URL | ✅ Yes (for sync) |
-| `REPO_INDEX_URL` | URL to docs_index.txt file | ✅ Yes (for sync) |
-| `MINTLIFY_BASE_URL` | Your Mintlify docs URL | ✅ Yes (for sync) |
-
-## 🧪 Testing
-
-### Test Widget Context Detection
-
-1. Navigate to `/selecty/quickstart`
-2. Open widget
-3. Verify shows "Selecty" badge
-4. Verify Selecty-specific suggestions
-
-Repeat for `/resell/*` and `/general/*`
-
-### Test Backend
-
-```bash
-# Test Selecty context
-curl -X POST https://your-backend.vercel.app/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messages": [{"role": "user", "content": "How do I create switchers?"}],
-    "app_name": "selecty"
-  }'
-
-# Test ReSell context
-curl -X POST https://your-backend.vercel.app/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messages": [{"role": "user", "content": "How do I create funnels?"}],
-    "app_name": "resell"
-  }'
-```
-
-### Verify Database
-
-In Supabase SQL Editor:
-
+**Verify in Supabase:**
 ```sql
--- Check app distribution
-SELECT app_name, COUNT(*) FROM documents GROUP BY app_name;
+-- Run in Supabase SQL Editor
+SELECT app_name, COUNT(*)
+FROM documents
+GROUP BY app_name;
 
 -- Should show:
 -- selecty  | ~54
@@ -374,90 +176,459 @@ SELECT app_name, COUNT(*) FROM documents GROUP BY app_name;
 -- general  | ~6
 ```
 
-## 📊 Monitoring
+### Step 5: Test Backend Locally
 
-### Backend Logs (Vercel)
+```bash
+# Start local dev server
+cd backend
+npm run dev
+```
 
+Server runs on `http://localhost:9000`
+
+**Test the API:**
+```bash
+curl -X POST http://localhost:9000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      {"role": "user", "content": "How do I configure currencies?"}
+    ],
+    "app_name": "selecty"
+  }'
+```
+
+**Expected Response:**
+```
+0:"To configure currencies..."
+0:"you can use the currency selector..."
+8:[{"type":"tool-invocation",...sources...}]
+d:{"finishReason":"stop",...}
+```
+
+### Step 6: Deploy Backend to Vercel
+
+```bash
+cd backend
+
+# Login to Vercel
+vercel login
+
+# Remove old project link (if exists)
+rm -rf .vercel
+
+# Deploy to production
+vercel --prod
+```
+
+**Follow prompts:**
+- Set up and deploy? → Yes
+- Which scope? → Select your account
+- Link to existing project? → No
+- Project name? → `devit-docs-api`
+- Directory? → `./` (current)
+
+**Add Environment Variables in Vercel:**
+
+Option A: Via Vercel Dashboard
+1. Go to vercel.com/dashboard
+2. Select your `devit-docs-api` project
+3. Go to Settings → Environment Variables
+4. Add each variable (select Production, Preview, Development for all):
+   - `OPENAI_API_KEY`
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `REPO_RAW_BASE`
+   - `REPO_INDEX_URL`
+   - `MINTLIFY_BASE_URL`
+
+Option B: Via CLI
+```bash
+vercel env add OPENAI_API_KEY
+vercel env add SUPABASE_URL
+vercel env add SUPABASE_SERVICE_ROLE_KEY
+vercel env add REPO_RAW_BASE
+vercel env add REPO_INDEX_URL
+vercel env add MINTLIFY_BASE_URL
+```
+
+**Redeploy** after adding variables:
+```bash
+vercel --prod
+```
+
+**Your API is now live at:**
+```
+https://devit-docs-api.vercel.app/api/chat
+```
+
+### Step 7: Build and Deploy Widget
+
+```bash
+# Build widget for production
+cd widget
+npm run build
+```
+
+Output: `widget/dist/assistant-widget.iife.js`
+
+**Update widget configuration:**
+
+Edit `widget/src/config.js` line 22:
+```javascript
+// Production default
+return 'https://devit-docs-api.vercel.app';  // ← Your Vercel URL
+```
+
+Rebuild:
+```bash
+npm run build
+```
+
+**Copy to docs folder** (for Mintlify):
+```bash
+cp dist/assistant-widget.iife.js ../docs/assistant-widget.iife.js
+```
+
+### Step 8: Deploy Documentation to Mintlify
+
+**Option A: GitHub Integration (Recommended)**
+
+1. Push your code to GitHub:
+```bash
+git add .
+git commit -m "Set up multi-app documentation with AI assistant"
+git push origin main
+```
+
+2. Connect to Mintlify:
+   - Go to https://mintlify.com/dashboard
+   - Click "New Project"
+   - Connect your GitHub repository
+   - Select the `docs` folder as the documentation root
+   - Mintlify auto-deploys on every push to main
+
+**Option B: Mintlify CLI**
+```bash
+npm i -g mintlify
+cd docs
+mintlify deploy
+```
+
+**Your docs are now live at:**
+```
+https://devit-c039f40a.mintlify.app
+```
+
+### Step 9: Verify Everything Works
+
+1. **Visit your Mintlify docs**: https://devit-c039f40a.mintlify.app
+
+2. **Test Selecty context**:
+   - Navigate to `/selecty/quickstart`
+   - Open AI widget (bottom right)
+   - Should show "Selecty" badge
+   - Ask: "How do I create language switchers?"
+   - Should get Selecty-specific answer with sources
+
+3. **Test ReSell context**:
+   - Navigate to `/resell/quickstart`
+   - Widget should show "ReSell" badge
+   - Ask: "How do I create an upsell funnel?"
+   - Should get ReSell-specific answer
+
+4. **Test General context**:
+   - Navigate to `/general`
+   - Widget should show "DevIT.Software" badge
+   - Ask: "What apps does DevIT offer?"
+   - Should get general company info
+
+## Development Workflow
+
+### Local Development
+
+**Run Mintlify docs locally:**
+```bash
+npm i -g mintlify
+cd docs
+mintlify dev
+```
+Docs run on `http://localhost:3000`
+
+**Run widget dev server:**
+```bash
+cd widget
+npm run dev
+```
+Widget runs on `http://localhost:5173`
+
+**Run backend dev server:**
+```bash
+cd backend
+npm run dev
+```
+API runs on `http://localhost:9000`
+
+**Enable local URL transformation:**
+
+Uncomment in `backend/.env`:
+```bash
+LOCAL_DEV_URL=http://localhost:3000
+```
+
+This transforms production Mintlify URLs to localhost in API responses.
+
+### Update Documentation
+
+1. **Edit docs** in `docs/` folder
+2. **Update index** if new files: `scripts/docs_index.txt`
+3. **Sync to vector database**:
+```bash
+npm run sync
+```
+4. **Commit and push**:
+```bash
+git add .
+git commit -m "Update documentation"
+git push
+```
+Mintlify auto-deploys the changes.
+
+### Update Widget
+
+1. **Edit widget** in `widget/src/`
+2. **Test locally**: `npm run dev`
+3. **Build**: `npm run build`
+4. **Copy to docs**: `cp dist/assistant-widget.iife.js ../docs/`
+5. **Commit and push** to deploy
+
+### Update Backend
+
+1. **Edit** `backend/api/chat.js`
+2. **Test locally**: `npm run dev`
+3. **Deploy**: `vercel --prod`
+
+## Adding New Apps
+
+To add a new app (e.g., "Quicky"):
+
+**1. Create docs folder:**
+```bash
+mkdir -p docs/quicky
+```
+
+**2. Add documentation files:**
+- `docs/quicky/index.mdx` (landing page)
+- `docs/quicky/quickstart.mdx`
+- `docs/quicky/pricing.mdx`
+- etc.
+
+**3. Update Mintlify navigation** (`docs/docs.json`):
+```json
+{
+  "tabs": [
+    {"name": "Selecty", "url": "selecty"},
+    {"name": "ReSell", "url": "resell"},
+    {"name": "Quicky", "url": "quicky"}  // Add this
+  ],
+  "navigation": [
+    {
+      "group": "Quicky",
+      "pages": [
+        "quicky/index",
+        "quicky/quickstart",
+        "quicky/pricing"
+      ]
+    }
+  ]
+}
+```
+
+**4. Update docs index** (`scripts/docs_index.txt`):
+```
+docs/quicky/index.mdx
+docs/quicky/quickstart.mdx
+docs/quicky/pricing.mdx
+```
+
+**5. Update widget config** (`widget/src/config.js`):
+```javascript
+const configs = {
+  selecty: { /*...*/ },
+  resell: { /*...*/ },
+  quicky: {  // Add this
+    name: 'quicky',
+    displayName: 'Quicky',
+    description: 'Quick description of Quicky',
+    docsPath: '/quicky',
+    suggestions: [
+      "How do I get started with Quicky?",
+      "What are Quicky's features?",
+      "How to configure Quicky?",
+      "Where can I get support?"
+    ]
+  }
+};
+```
+
+**6. Update database constraint** (optional):
+```sql
+-- Run in Supabase SQL Editor
+ALTER TABLE documents DROP CONSTRAINT IF EXISTS valid_app_name;
+ALTER TABLE documents ADD CONSTRAINT valid_app_name
+  CHECK (app_name IN ('selecty', 'resell', 'general', 'quicky'));
+```
+
+**7. Sync documentation:**
+```bash
+npm run sync
+```
+
+**8. Rebuild widget:**
+```bash
+cd widget && npm run build
+cp dist/assistant-widget.iife.js ../docs/
+```
+
+**9. Deploy:**
+```bash
+git add .
+git commit -m "Add Quicky app documentation"
+git push
+```
+
+## Environment Variables Reference
+
+| Variable | Description | Required | Where Used |
+|----------|-------------|----------|------------|
+| `OPENAI_API_KEY` | OpenAI API key for embeddings & chat | ✅ Yes | Backend, Sync |
+| `SUPABASE_URL` | Supabase project URL | ✅ Yes | Backend, Sync |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key | ✅ Yes | Backend, Sync |
+| `REPO_RAW_BASE` | GitHub raw content base URL | ✅ Yes | Sync script |
+| `REPO_INDEX_URL` | URL to docs_index.txt | ✅ Yes | Sync script |
+| `MINTLIFY_BASE_URL` | Production Mintlify URL | ✅ Yes | Sync script |
+| `LOCAL_DEV_URL` | Local dev URL (e.g., http://localhost:3000) | ⚠️ Dev only | Backend |
+| `PORT` | API server port | ❌ No (default: 9000) | Backend |
+
+## Troubleshooting
+
+### Widget Not Showing
+
+**Check:**
+1. Widget script loaded: Browser DevTools → Network → `assistant-widget.iife.js`
+2. Backend URL correct in `widget/src/config.js`
+3. CORS enabled in backend (already configured)
+4. Console for JavaScript errors
+
+### Wrong App Context Detected
+
+**Debug:**
+```javascript
+// In browser console
+console.log(window.location.pathname);
+// Should be /selecty/*, /resell/*, or /general/*
+```
+
+**Fix**: Ensure URL structure matches pattern in `widget/src/config.js` line 38
+
+### Empty Search Results
+
+**Causes:**
+1. Database not synced: Run `npm run sync`
+2. Wrong app_name: Check database has correct app_name values
+3. Environment variables missing in Vercel
+
+**Verify database:**
+```sql
+SELECT app_name, COUNT(*) FROM documents GROUP BY app_name;
+```
+
+### Sync Script Fails
+
+**Check:**
+1. Environment variables set: `cat .env`
+2. GitHub URLs accessible: `curl $REPO_RAW_BASE/docs/selecty/index.mdx`
+3. Supabase credentials valid
+4. OpenAI API key valid and has credits
+
+### Vercel Function Timeout
+
+**Solution:**
+- Hobby plan: 10-second timeout
+- Pro plan: 60-second timeout
+- Consider upgrading if complex queries timeout
+
+## Monitoring & Logs
+
+**Vercel Logs:**
 ```bash
 cd backend
 vercel logs --follow
 ```
 
-Or view in Vercel dashboard: https://vercel.com/your-team/your-project
+Or: Vercel Dashboard → Your Project → Logs
 
-### Database Metrics (Supabase)
+**Supabase Logs:**
+Supabase Dashboard → Logs → Database
 
-Dashboard → Database → Metrics
-
-- Check query performance
-- Monitor storage usage
-- View active connections
-
-## 🐛 Troubleshooting
-
-### Issue: Widget not showing
-
-**Check**:
-1. Widget script loaded in browser DevTools → Network
-2. Backend URL correct in config
-3. CORS headers enabled in backend
-
-### Issue: Wrong app context
-
-**Debug**:
-```javascript
-// In browser console
-console.log(window.location.pathname);
-// Should match: /selecty/*, /resell/*, or /general/*
+**Search Performance:**
+```sql
+-- Check index usage
+EXPLAIN ANALYZE
+SELECT * FROM match_documents(
+  (SELECT embedding FROM documents LIMIT 1),
+  5,
+  'selecty'
+);
 ```
 
-### Issue: Empty search results
+## Cost Estimates
 
-**Causes**:
-1. Database not synced: Run `npm run sync`
-2. App name mismatch: Check `app_name` in database
-3. Threshold too high: Lower `match_threshold` in backend
+**Vercel (Hobby Plan - Free):**
+- 100GB bandwidth/month
+- 100 hours serverless execution/month
+- Sufficient for moderate usage
 
-### Issue: Sync script fails
+**OpenAI (for 100 requests/day):**
+- Embeddings: ~$0.06/month
+- Chat completions: ~$1.80/month
+- **Total: ~$2/month**
 
-**Check**:
-1. Environment variables set: `echo $SUPABASE_URL`
-2. GitHub URLs accessible: `curl $REPO_RAW_BASE/docs/selecty/index.mdx`
-3. Supabase credentials valid
+**Supabase (Free Plan):**
+- 500MB database
+- 5GB bandwidth
+- 2GB storage
+- Sufficient for documentation use case
 
-## 📚 Documentation
+## Documentation
 
-- **Setup Guide**: `guides/SETUP_CHECKLIST.md`
-- **Implementation**: `guides/IMPLEMENTATION_GUIDE.md`
-- **Backend API**: `guides/BACKEND_API_GUIDE.md`
-- **Widget README**: `widget/README.md` (if exists)
-- **Backend README**: `backend/README.md`
+- **Quick Setup**: `guides/SETUP_CHECKLIST.md`
+- **Technical Details**: `backend/PROJECT_OVERVIEW.md`
+- **Deployment Guide**: `backend/DEPLOYMENT.md`
+- **API Integration**: `guides/BACKEND_API_GUIDE.md`
+- **URL Transformation**: `backend/URL-TRANSFORMATION.md`
 
-## 🔗 Links
+## Links
 
-- **Mintlify Docs**: https://mintlify.com/docs
-- **Supabase Docs**: https://supabase.com/docs
-- **Vercel Docs**: https://vercel.com/docs
-- **OpenAI API**: https://platform.openai.com/docs
+- **Your Docs**: https://devit-c039f40a.mintlify.app
+- **Backend API**: https://devit-docs-api.vercel.app/api/chat
+- **GitHub Repo**: https://github.com/Alexbkjs/devit_docs
+- **Supabase**: https://app.supabase.com
+- **Vercel**: https://vercel.com/dashboard
 
-## 🤝 Contributing
+**Mintlify**: https://mintlify.com/docs
+**Supabase Docs**: https://supabase.com/docs
+**Vercel Docs**: https://vercel.com/docs
+**OpenAI API**: https://platform.openai.com/docs
 
-1. Create feature branch: `git checkout -b feature/amazing-feature`
-2. Make changes
-3. Test locally
-4. Commit: `git commit -m 'Add amazing feature'`
-5. Push: `git push origin feature/amazing-feature`
-6. Open Pull Request
-
-## 📝 License
-
-MIT
-
-## 👥 Support
+## Support
 
 - **Email**: support@devit.software
-- **Issues**: https://github.com/your-org/devit-docs/issues
-- **Documentation**: See `guides/` folder
+- **Issues**: https://github.com/Alexbkjs/devit_docs/issues
+
+## License
+
+MIT
 
 ---
 

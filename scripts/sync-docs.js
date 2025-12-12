@@ -14,7 +14,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const REPO_RAW_BASE = process.env.REPO_RAW_BASE; // e.g., https://raw.githubusercontent.com/<org>/<repo>/main/docs/
-const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL; // e.g., https://acme-80ce2022.mintlify.app
+const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL; // e.g., https://devit-c039f40a.mintlify.app
 
 if (!OPENAI_API_KEY || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !REPO_RAW_BASE || !MINTLIFY_BASE_URL) {
   console.error("Set OPENAI_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, REPO_RAW_BASE, MINTLIFY_BASE_URL in .env");

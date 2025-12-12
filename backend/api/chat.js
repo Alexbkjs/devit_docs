@@ -12,6 +12,16 @@ const supabase = createClient(
 const EMB_MODEL = "text-embedding-3-small";
 const CHAT_MODEL = "gpt-4o-mini";
 const TOP_K = 5;
+const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL || 'https://devit-c039f40a.mintlify.app';
+const LOCAL_DEV_URL = process.env.LOCAL_DEV_URL; // Optional: Transform URLs for local dev
+
+// Helper function to transform URLs for local development
+function transformUrl(url) {
+  if (!LOCAL_DEV_URL) return url; // Production: return as-is
+
+  // Replace production Mintlify URL with local dev URL
+  return url.replace(MINTLIFY_BASE_URL, LOCAL_DEV_URL);
+}
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -85,7 +95,6 @@ export default async function handler(req, res) {
     const { data: docs, error } = await supabase
       .rpc("match_documents", {
         query_embedding: qEmbedding,
-        match_threshold: 0.7,
         match_count: TOP_K,
         filter_app: appName  // IMPORTANT: Filter by app context
       });
@@ -154,16 +163,20 @@ ${contextText}`
 
     console.log(`📨 [STREAM] Streamed ${chunkCount} chunks, total ${fullContent.length} characters`);
 
-    // 7) Send sources as data annotation
+    // 7) Send sources as data annotation with URL transformation
     if (docs.length > 0) {
-      const sources = docs.map(d => ({
-        url: d.url,
-        path: d.url,
-        metadata: {
-          title: d.title,
-          id: d.id
-        }
-      }));
+      const sources = docs.map(d => {
+        const transformedUrl = transformUrl(d.url);
+        return {
+          url: transformedUrl,
+          path: transformedUrl,
+          metadata: {
+            title: d.title,
+            id: d.id,
+            app_name: d.app_name
+          }
+        };
+      });
 
       // Send sources as message annotation (type 8 is for message annotations)
       res.write(`8:${JSON.stringify([{
@@ -173,7 +186,9 @@ ${contextText}`
           result: sources
         }
       }])}\n`);
-      console.log(`📎 [SOURCES] Sent ${docs.length} sources`);
+
+      const envInfo = LOCAL_DEV_URL ? `(transformed to ${LOCAL_DEV_URL})` : '(production URLs)';
+      console.log(`📎 [SOURCES] Sent ${docs.length} sources ${envInfo}`);
     }
 
     // 8) Send finish event

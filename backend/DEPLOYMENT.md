@@ -35,7 +35,7 @@ This guide walks you through deploying your RAG-powered documentation assistant 
 Your project now has the following structure for Vercel deployment:
 
 ```
-backend3/
+backend/
 ├── api/
 │   └── chat.js           # Serverless function for /api/chat endpoint
 ├── server.js             # Local development server (not deployed)
@@ -64,16 +64,16 @@ backend3/
 
 2. **Deploy to Vercel**:
    ```bash
-   cd /home/alex/backend3
+   cd backend
    vercel
    ```
 
 3. **Follow the prompts**:
    ```
-   ? Set up and deploy "~/backend3"? [Y/n] y
+   ? Set up and deploy "~/backend"? [Y/n] y
    ? Which scope do you want to deploy to? Your Name
    ? Link to existing project? [y/N] n
-   ? What's your project's name? rag-docs-api
+   ? What's your project's name? devit-docs-api
    ? In which directory is your code located? ./
    ```
 
@@ -82,7 +82,7 @@ backend3/
    vercel --prod
    ```
 
-5. **Copy the production URL** (e.g., `https://rag-docs-api.vercel.app`)
+5. **Copy the production URL** (e.g., `https://devit-docs-api.vercel.app`)
 
 ### Option 2: Deploy via Vercel Dashboard
 
@@ -218,7 +218,7 @@ https://YOUR-PROJECT-NAME.vercel.app/api/chat
 
 Example:
 ```
-https://rag-docs-api.vercel.app/api/chat
+https://devit-docs-api.vercel.app/api/chat
 ```
 
 ### Step 2: Update Mintlify Configuration
@@ -256,7 +256,7 @@ In your Mintlify documentation repository, update the AI assistant configuration
   "ai": {
     "enabled": true,
     "backend": {
-      "url": "https://rag-docs-api.vercel.app/api/chat"
+      "url": "https://devit-docs-api.vercel.app/api/chat"
     }
   }
 }
@@ -274,7 +274,7 @@ git push
 ### Step 4: Verify Mintlify Deployment
 
 1. Wait for Mintlify to rebuild (usually automatic)
-2. Visit your Mintlify docs: `https://acme-80ce2022.mintlify.app`
+2. Visit your Mintlify docs: `https://devit-c039f40a.mintlify.app`
 3. Open the AI assistant chat widget
 4. Ask a question (e.g., "How do I configure currencies?")
 5. Verify you get responses with source links
@@ -467,7 +467,7 @@ git push origin main
 |---------|-----|
 | Vercel Dashboard | https://vercel.com/dashboard |
 | Your API Endpoint | `https://YOUR-PROJECT.vercel.app/api/chat` |
-| Mintlify Docs | https://acme-80ce2022.mintlify.app |
+| Mintlify Docs | https://devit-c039f40a.mintlify.app |
 | Supabase Dashboard | https://app.supabase.com |
 
 ### Common Commands

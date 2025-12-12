@@ -1,40 +1,54 @@
 # Project Structure
 
-Complete folder organization for DevIT.Software multi-app documentation system.
+Complete folder organization for the DevIT.Software multi-app documentation system with AI assistant.
+
+---
 
 ## Root Directory
 
 ```
-devit-software-docs/
-├── .env.example               # Environment variables template
+devit_docs/
+├── .env                       # Environment variables (gitignored)
+├── .env.example               # Environment template
 ├── .gitignore                 # Git ignore patterns
-├── package.json               # Root package.json (monorepo)
-├── README.md                  # Main documentation (THIS IS THE ENTRY POINT)
-├── CLAUDE.md                  # AI assistant project instructions
-└── PROJECT_STRUCTURE.md       # This file
+├── package.json               # Root package.json (monorepo scripts)
+├── package-lock.json          # Dependency lock file
+├── README.md                  # ⭐ MAIN ENTRY POINT - Start here!
+├── CLAUDE.md                  # AI assistant instructions
+├── PROJECT_STRUCTURE.md       # This file
+└── TODO                       # Development notes
 ```
+
+**Key Files:**
+- **README.md** - Complete setup guide with step-by-step instructions
+- **.env** - Local environment configuration (not in Git)
+- **package.json** - Monorepo scripts (`sync`, `widget:build`, `backend:deploy`, etc.)
+
+---
 
 ## Documentation (`/docs`)
 
-All Mintlify documentation source files organized by app.
+Mintlify documentation source files organized by app.
 
 ```
 docs/
-├── docs.json                  # Mintlify navigation configuration
+├── docs.json                  # ⭐ Mintlify navigation (multi-tab config)
 ├── LICENSE                    # Documentation license
 ├── favicon.svg                # Site favicon
-├── logo/                      # Logo files
+├── assistant-widget.iife.js   # ⭐ Built AI widget (deployed here)
+│
+├── logo/                      # Brand assets
 │   ├── light.svg
 │   └── dark.svg
+│
 ├── images/                    # Documentation images
 │   ├── hero-dark.png
 │   ├── hero-light.png
 │   └── checks-passed.png
-├── assistant-widget.iife.js   # AI widget (deployed build)
 │
-├── selecty/                   # Selecty app documentation
-│   ├── index.mdx
-│   ├── quickstart.mdx
+├── selecty/                   # ⭐ Selecty app documentation
+│   ├── index.mdx              # Landing page
+│   ├── quickstart.mdx         # Getting started
 │   ├── pricing.mdx
 │   ├── features/
 │   │   ├── selectors.mdx
@@ -56,35 +70,37 @@ docs/
 │       ├── accessibility.mdx
 │       └── privacy.mdx
 │
-├── resell/                    # ReSell app documentation
+├── resell/                    # ⭐ ReSell app documentation
 │   ├── index.mdx
 │   ├── quickstart.mdx
 │   ├── pricing.mdx
-│   ├── features/              # (empty - to be added)
-│   ├── advanced/              # (empty - to be added)
 │   └── support/
 │       └── faq.mdx
 │
-└── general/                   # DevIT.Software general info
+└── general/                   # ⭐ DevIT.Software general info
     ├── index.mdx
     └── custom-solutions.mdx
 ```
 
-**Key Files**:
-- `docs.json`: Multi-tab navigation configuration
-- `*/index.mdx`: Landing page for each app section
-- `*/quickstart.mdx`: Getting started guide for each app
+**Key Files:**
+- **docs.json** - Multi-tab navigation configuration
+- **assistant-widget.iife.js** - Built widget file (copy here from `widget/dist/`)
+- ***/index.mdx** - Landing page for each app section
+- ***/quickstart.mdx** - Getting started guide for each app
+
+---
 
 ## AI Widget (`/widget`)
 
-React-based AI assistant with context detection.
+React-based AI assistant with automatic app context detection.
 
 ```
 widget/
 ├── package.json               # Widget dependencies
+├── package-lock.json
 ├── vite.config.js             # Vite build configuration
-├── tailwind.config.js         # Tailwind CSS configuration
-├── postcss.config.js          # PostCSS configuration
+├── tailwind.config.js         # Tailwind CSS
+├── postcss.config.js          # PostCSS
 ├── index.html                 # Development HTML
 │
 ├── src/
@@ -99,31 +115,64 @@ widget/
 │       ├── Message.jsx
 │       └── Icons.jsx
 │
-└── dist/                      # Build output
-    └── assistant-widget.iife.js   # Compiled widget
+└── dist/                      # ⭐ Build output
+    └── assistant-widget.iife.js   # Compiled widget (deploy this)
 ```
 
-**Key Files**:
-- `src/config.js`: URL parsing and app context detection
-- `src/components/AssistantWidget.jsx`: Widget UI with app-specific features
+**Key Files:**
+- **src/config.js** - URL parsing logic for app context detection (`getAppNameFromUrl()`, `getAppConfig()`)
+- **src/components/AssistantWidget.jsx** - Widget UI with app-specific features
+- **dist/assistant-widget.iife.js** - Final built file to deploy
+
+**Development:**
+```bash
+cd widget
+npm run dev        # Start dev server (localhost:5173)
+npm run build      # Build for production
+```
+
+---
 
 ## Backend API (`/backend`)
 
-Vercel serverless functions for RAG (Retrieval-Augmented Generation).
+Vercel serverless functions for RAG-powered documentation chat.
 
 ```
 backend/
 ├── package.json               # Backend dependencies
-├── vercel.json                # Vercel deployment configuration
-├── README.md                  # Backend-specific documentation
+├── package-lock.json
+├── vercel.json                # ⭐ Vercel deployment config
+├── .vercelignore              # Files to ignore in deployment
+├── .env                       # Environment variables (gitignored)
+├── .env.example               # Environment template
 │
-└── api/
-    └── chat.js                # ⭐ Main chat endpoint with multi-app support
+├── api/
+│   └── chat.js                # ⭐ Main chat endpoint (Vercel function)
+│
+├── server.js                  # ⭐ Local development server
+├── sync-docs.js               # ⭐ Documentation sync script
+│
+├── README.md                  # Backend overview
+├── PROJECT_OVERVIEW.md        # Technical architecture details
+├── DEPLOYMENT.md              # Vercel deployment guide
+└── URL-TRANSFORMATION.md      # Local dev URL transformation guide
 ```
 
-**Key Files**:
-- `api/chat.js`: Handles chat requests with app context filtering
-- `vercel.json`: Deployment configuration for Vercel
+**Key Files:**
+- **api/chat.js** - Chat endpoint deployed as Vercel serverless function
+- **server.js** - Local Express server for development
+- **sync-docs.js** - Fetches docs, generates embeddings, stores in Supabase
+- **vercel.json** - Deployment configuration
+
+**Development:**
+```bash
+cd backend
+npm run dev        # Start local server (localhost:9000)
+npm run sync       # Sync docs to Supabase
+vercel --prod      # Deploy to production
+```
+
+---
 
 ## Database (`/database`)
 
@@ -131,15 +180,26 @@ Supabase database schema and setup scripts.
 
 ```
 database/
-└── schema.sql                 # ⭐ Complete Supabase setup
+└── supabase-complete-setup.sql   # ⭐ Complete database setup
 ```
 
-**Contents**:
+**Contents:**
 - pgvector extension enablement
-- `documents` table with `app_name` column
-- Indexes for performance
-- `match_documents()` RPC function for filtered search
+- `documents` table with multi-app support:
+  - `id` (text) - Document chunk ID
+  - `title` (text) - Document title
+  - `url` (text) - Mintlify URL
+  - `content` (text) - Chunk content
+  - `app_name` (text) - App identifier (selecty/resell/general)
+  - `embedding` (vector(1536)) - OpenAI embedding
+- Indexes for fast similarity search
+- `match_documents()` function with optional app filtering
 - Validation constraints
+
+**Setup:**
+Run the SQL file in Supabase SQL Editor to create all necessary database objects.
+
+---
 
 ## Scripts (`/scripts`)
 
@@ -148,13 +208,18 @@ Utility scripts for documentation management.
 ```
 scripts/
 ├── package.json               # Script dependencies
-├── sync-docs.js               # ⭐ Documentation sync script
-└── docs_index.txt             # List of documentation files
+├── sync-docs.js               # Documentation sync script
+├── docs_index.txt             # ⭐ List of documentation files
+└── README.md                  # Scripts documentation
 ```
 
-**Key Files**:
-- `sync-docs.js`: Fetches docs, generates embeddings, stores in Supabase
-- `docs_index.txt`: Index of all documentation files to process
+**Key Files:**
+- **sync-docs.js** - Alternative location for sync script (also in `/backend`)
+- **docs_index.txt** - Index of all documentation files to process
+
+**Note:** The sync script can be run from either `/scripts` or `/backend` directory.
+
+---
 
 ## Guides (`/guides`)
 
@@ -166,6 +231,13 @@ guides/
 ├── SETUP_CHECKLIST.md         # Step-by-step setup instructions
 └── BACKEND_API_GUIDE.md       # Backend integration guide
 ```
+
+**Purpose:**
+- **IMPLEMENTATION_GUIDE.md** - Deep technical details about the system
+- **SETUP_CHECKLIST.md** - Checklist-style setup walkthrough
+- **BACKEND_API_GUIDE.md** - API integration and usage guide
+
+---
 
 ## File Relationships
 
@@ -185,37 +257,42 @@ guides/
 
 ```
 Widget:
-  /widget/src/* → Build → /widget/dist/assistant-widget.iife.js
-                        ↓
-                 Deploy to CDN/Mintlify
+  /widget/src/* → npm run build → /widget/dist/assistant-widget.iife.js
+                                 ↓
+                         Copy to /docs/assistant-widget.iife.js
+                                 ↓
+                         Git push → Mintlify deploys
 
 Backend:
-  /backend/api/* → Deploy → Vercel Serverless Functions
-                          ↓
-                   API at https://your-backend.vercel.app
+  /backend/api/chat.js → vercel --prod → Vercel Serverless
+                                        ↓
+                         Live at https://devit-docs-api.vercel.app
 
 Docs:
-  /docs/* → Push to GitHub → Mintlify Auto-Deploy
-                            ↓
-                     Live at https://your-docs.mintlify.app
+  /docs/* → Git push → Mintlify Auto-Deploy
+                     ↓
+           Live at https://devit-c039f40a.mintlify.app
 ```
+
+---
 
 ## NPM Scripts Reference
 
-### Root Level
+### Root Level (`package.json`)
 
 ```json
 {
   "sync": "node scripts/sync-docs.js",
   "widget:dev": "cd widget && npm run dev",
   "widget:build": "cd widget && npm run build",
+  "backend:sync": "cd backend && node sync-docs.js",
   "backend:dev": "cd backend && vercel dev",
   "backend:deploy": "cd backend && vercel --prod",
   "install:all": "npm install && cd widget && npm install && cd ../backend && npm install && cd ../scripts && npm install"
 }
 ```
 
-### Widget (`/widget`)
+### Widget (`/widget/package.json`)
 
 ```json
 {
@@ -225,42 +302,41 @@ Docs:
 }
 ```
 
-### Backend (`/backend`)
+### Backend (`/backend/package.json`)
 
 ```json
 {
-  "dev": "vercel dev",
-  "deploy": "vercel --prod"
-}
-```
-
-### Scripts (`/scripts`)
-
-```json
-{
+  "dev": "node server.js",
   "sync": "node sync-docs.js"
 }
 ```
 
+---
+
 ## Environment Variables
 
-Required in `.env` file at root:
+Required in `.env` files (root and `/backend`):
 
-```env
+```bash
 # OpenAI
-OPENAI_API_KEY=sk-...
+OPENAI_API_KEY=sk-proj-...
 
 # Supabase
-SUPABASE_URL=https://xxx.supabase.co
+SUPABASE_URL=https://yxksdqisvufaubapvtup.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 
 # GitHub (for sync)
-REPO_RAW_BASE=https://raw.githubusercontent.com/your-org/your-repo/main/
-REPO_INDEX_URL=https://raw.githubusercontent.com/your-org/your-repo/main/scripts/docs_index.txt
+REPO_RAW_BASE=https://raw.githubusercontent.com/Alexbkjs/devit_docs/main/
+REPO_INDEX_URL=https://raw.githubusercontent.com/Alexbkjs/devit_docs/main/scripts/docs_index.txt
 
 # Mintlify
-MINTLIFY_BASE_URL=https://your-docs.mintlify.app
+MINTLIFY_BASE_URL=https://devit-c039f40a.mintlify.app
+
+# Optional: Local development (transforms URLs to localhost)
+LOCAL_DEV_URL=http://localhost:3000
 ```
+
+---
 
 ## Critical Paths
 
@@ -270,35 +346,79 @@ MINTLIFY_BASE_URL=https://your-docs.mintlify.app
 2. Update: `/docs/docs.json` (add to navigation)
 3. Update: `/scripts/docs_index.txt` (add file path)
 4. Run: `npm run sync`
+5. Commit and push
 
 ### For Modifying AI Widget
 
 1. Edit: `/widget/src/components/AssistantWidget.jsx`
 2. Build: `npm run widget:build`
-3. Deploy: Upload `/widget/dist/assistant-widget.iife.js` to CDN
+3. Copy: `cp widget/dist/assistant-widget.iife.js docs/`
+4. Commit and push
 
 ### For Updating Backend
 
 1. Edit: `/backend/api/chat.js`
 2. Test locally: `npm run backend:dev`
-3. Deploy: `npm run backend:deploy`
+3. Deploy: `vercel --prod`
 
 ### For Adding New App
 
 1. Create: `/docs/app-name/` folder structure
 2. Update: `/docs/docs.json` (add tab)
 3. Update: `/widget/src/config.js` (add app config)
-4. Update: `/database/schema.sql` (add to constraint, if using)
+4. Update: `/database/supabase-complete-setup.sql` (add to constraint)
 5. Update: `/scripts/docs_index.txt` (add file paths)
 6. Run: `npm run sync`
-
-## Next Steps
-
-1. Read `README.md` for complete setup instructions
-2. Follow `guides/SETUP_CHECKLIST.md` for step-by-step setup
-3. Review `guides/IMPLEMENTATION_GUIDE.md` for technical details
+7. Rebuild widget: `npm run widget:build`
+8. Copy widget: `cp widget/dist/assistant-widget.iife.js docs/`
+9. Commit and push
 
 ---
 
-**Last Updated**: December 11, 2025
-**Maintainer**: DevIT.Software
+## Production URLs
+
+| Service | URL | Purpose |
+|---------|-----|---------|
+| **Mintlify Docs** | https://devit-c039f40a.mintlify.app | Published documentation |
+| **Backend API** | https://devit-docs-api.vercel.app/api/chat | Chat endpoint |
+| **GitHub Repo** | https://github.com/Alexbkjs/devit_docs | Source code |
+| **Supabase** | https://app.supabase.com | Database dashboard |
+| **Vercel** | https://vercel.com/dashboard | API deployment |
+
+---
+
+## Common Commands
+
+```bash
+# Setup
+npm run install:all              # Install all dependencies
+
+# Development
+npm run widget:dev               # Start widget dev server
+npm run backend:dev              # Start backend dev server
+cd docs && mintlify dev          # Start Mintlify dev server
+
+# Build & Deploy
+npm run widget:build             # Build widget
+npm run backend:deploy           # Deploy backend to Vercel
+git push                         # Deploy docs via Mintlify
+
+# Maintenance
+npm run sync                     # Sync docs to vector database
+vercel logs --follow             # View backend logs
+```
+
+---
+
+## Next Steps
+
+1. **New to this project?** Read `README.md` for complete setup
+2. **Need step-by-step setup?** Follow `guides/SETUP_CHECKLIST.md`
+3. **Want technical details?** Read `backend/PROJECT_OVERVIEW.md`
+4. **Deploying to Vercel?** Follow `backend/DEPLOYMENT.md`
+
+---
+
+**Last Updated:** December 12, 2025
+**Current State:** Production-ready with deployed backend and widget
+**Maintainer:** DevIT.Software

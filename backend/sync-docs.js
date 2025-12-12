@@ -14,7 +14,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const REPO_RAW_BASE = process.env.REPO_RAW_BASE; // e.g., https://raw.githubusercontent.com/<org>/<repo>/main/docs/
-const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL; // e.g., https://acme-80ce2022.mintlify.app
+const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL; // e.g., https://devit-c039f40a.mintlify.app
 
 if (!OPENAI_API_KEY || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !REPO_RAW_BASE || !MINTLIFY_BASE_URL) {
   console.error("Set OPENAI_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, REPO_RAW_BASE, MINTLIFY_BASE_URL in .env");
@@ -43,13 +43,28 @@ function transformToMintlifyUrl(relPath, mintlifyBase) {
   // Remove 'docs/' prefix and '.mdx' extension
   let urlPath = relPath.replace(/^docs\//, '').replace(/\.mdx$/, '');
 
-  // Handle index page
-  if (urlPath === 'index') {
-    return mintlifyBase;
+  // Handle index pages for each app
+  if (urlPath === 'selecty/index') {
+    return `${mintlifyBase}/selecty`;
+  }
+  if (urlPath === 'resell/index') {
+    return `${mintlifyBase}/resell`;
+  }
+  if (urlPath === 'general/index') {
+    return `${mintlifyBase}/general`;
   }
 
   // Construct Mintlify URL
   return `${mintlifyBase}/${urlPath}`;
+}
+
+function extractAppName(relPath) {
+  // Extract app name from path: docs/selecty/... -> "selecty"
+  const match = relPath.match(/^docs\/([^/]+)\//);
+  if (match) {
+    return match[1]; // Returns: selecty, resell, or general
+  }
+  return 'unknown';
 }
 
 function createMarkdownSplitter() {
@@ -69,11 +84,11 @@ async function embedTexts(texts) {
   return resp.data.map(d => d.embedding);
 }
 
-async function upsertChunk(id, title, url, content, embedding) {
+async function upsertChunk(id, title, url, content, embedding, appName) {
   const { data, error } = await supabase
     .from("documents")
     .upsert(
-      { id, title, url, content, embedding },
+      { id, title, url, content, embedding, app_name: appName },
       { onConflict: "id" }
     );
   if (error) throw error;
@@ -98,6 +113,7 @@ async function main() {
     const mdContent = await r.text();
     const title = path.basename(relPath, '.mdx');
     const mintlifyUrl = transformToMintlifyUrl(relPath, MINTLIFY_BASE_URL);
+    const appName = extractAppName(relPath); // Extract app name from path
 
     // Create LangChain Document with metadata
     const doc = new Document({
@@ -105,23 +121,24 @@ async function main() {
       metadata: {
         source: mintlifyUrl,
         title: title,
-        filePath: relPath
+        filePath: relPath,
+        appName: appName
       }
     });
 
     // Split document using markdown-aware splitter
     const chunks = await splitter.splitDocuments([doc]);
-    console.log(`  → Split into ${chunks.length} chunks (Mintlify URL: ${mintlifyUrl})`);
+    console.log(`  → Split into ${chunks.length} chunks (App: ${appName}, Mintlify URL: ${mintlifyUrl})`);
 
     // Extract text content and create embeddings
     const chunkTexts = chunks.map(chunk => chunk.pageContent);
     const embeddings = await embedTexts(chunkTexts);
 
-    // Upsert each chunk with metadata
+    // Upsert each chunk with metadata including app name
     for (let i = 0; i < chunks.length; i++) {
       const id = `${relPath}--chunk-${i}`;
-      await upsertChunk(id, title, mintlifyUrl, chunks[i].pageContent, embeddings[i]);
-      console.log(`  ✓ Upserted ${id}`);
+      await upsertChunk(id, title, mintlifyUrl, chunks[i].pageContent, embeddings[i], appName);
+      console.log(`  ✓ Upserted ${id} [${appName}]`);
     }
 
     totalChunks += chunks.length;

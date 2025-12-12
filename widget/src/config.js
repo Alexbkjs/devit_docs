@@ -19,7 +19,7 @@ export function getBackendURL() {
   }
 
   // Production default
-  return 'https://rag-docs-api.vercel.app';
+  return 'https://devit-docs-api.vercel.app';
 }
 
 /**
