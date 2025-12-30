@@ -1,0 +1,337 @@
+---
+title: Payment Compatibility
+description: Understand which payment processors and methods work with ReSell post-purchase offers.
+---
+
+ReSell post-purchase offers require payment processors that support **payment vaulting** - the ability to securely store and reuse payment information for additional charges. This guide explains which payment methods are compatible.
+
+## How Post-Purchase Payments Work
+
+<Steps>
+  <Step title="Initial Checkout">
+    Customer completes checkout and payment for original order
+  </Step>
+  <Step title="Payment Vaulted">
+    Payment processor securely stores payment information
+  </Step>
+  <Step title="Offer Displayed">
+    ReSell shows post-purchase offer
+  </Step>
+  <Step title="Customer Accepts">
+    Customer clicks "Add to Order" (one-click)
+  </Step>
+  <Step title="Automatic Charge">
+    Payment processor charges vaulted payment method for upsell
+  </Step>
+</Steps>
+
+<Note>
+ReSell never stores or accesses payment information. All payment processing is handled securely through Shopify's payment system.
+</Note>
+
+## Fully Compatible Payment Processors
+
+These processors fully support post-purchase offers:
+
+### Shopify Payments (Recommended)
+
+**Compatibility**: ✅ Fully supported
+
+Shopify's native payment solution with the best compatibility.
+
+**Features**:
+- Automatic payment vaulting
+- Supports all card types
+- No additional configuration needed
+- Works in all supported countries
+
+**Setup**: Already configured if you use Shopify Payments
+
+### Stripe
+
+**Compatibility**: ✅ Fully supported
+
+Popular payment processor with excellent vaulting support.
+
+**Features**:
+- Automatic payment vaulting
+- Supports credit and debit cards
+- Works with Stripe Checkout
+- Global availability
+
+**Requirements**: Enable payment vaulting in Stripe settings
+
+### Braintree
+
+**Compatibility**: ✅ Supported (with configuration)
+
+PayPal-owned processor supporting vaulted payments.
+
+**Features**:
+- Payment vaulting available
+- Supports major card networks
+- Works with credit and debit cards
+
+**Requirements**:
+- Enable vault feature in Braintree account
+- Configure vaulting in Shopify integration
+
+### Authorize.Net
+
+**Compatibility**: ✅ Supported
+
+Long-established payment processor with vaulting capabilities.
+
+**Features**:
+- Customer payment profiles (vaulting)
+- Supports major credit cards
+- Available in US, Canada, UK, Europe, Australia
+
+**Requirements**: Enable Customer Information Manager (CIM) feature
+
+## Partially Compatible Methods
+
+These payment methods work in some scenarios but have limitations:
+
+### PayPal Express Checkout
+
+**Compatibility**: ⚠️ Limited
+
+**Works when**:
+- Used alongside Shopify Payments
+- Shopify Payments is enabled as backup processor
+- Customer paid with card through PayPal
+
+**Doesn't work when**:
+- PayPal is the only payment method
+- Customer paid using PayPal balance
+- PayPal account is funding source (not card)
+
+**Recommendation**: Enable Shopify Payments alongside PayPal for best compatibility
+
+### Wallet Services (Apple Pay, Google Pay, Shop Pay)
+
+**Compatibility**: ⚠️ Limited
+
+**Works when**:
+- Underlying processor supports vaulting (e.g., Shopify Payments)
+- Card is saved to Shopify customer account
+- Customer is logged in
+
+**Doesn't work when**:
+- Guest checkout with wallet
+- One-time wallet payment
+- Processor doesn't support vaulting
+
+**Behavior**: Offers may not display for wallet-only transactions
+
+## Incompatible Payment Methods
+
+These payment methods do NOT support post-purchase offers:
+
+### Buy Now, Pay Later (BNPL)
+
+**Compatibility**: ❌ Not supported
+
+**Services**:
+- Klarna
+- Affirm
+- Afterpay
+- Sezzle
+- Zip
+
+**Why not supported**: These services don't support vaulting or additional charges after initial approval
+
+**Impact**: Customers using BNPL will not see post-purchase offers
+
+### Alternative Payment Methods
+
+**Compatibility**: ❌ Not supported
+
+**Methods**:
+- Amazon Pay
+- Cash on Delivery (COD)
+- Bank transfer
+- Cryptocurrency payments
+- Manual payment methods
+
+**Why not supported**: No automated charge capability
+
+### Gift Cards Only
+
+**Compatibility**: ❌ Not supported
+
+**Scenario**: Customer pays entirely with gift card balance
+
+**Why not supported**: No payment method to charge for additional items
+
+**Workaround**: If customer uses gift card + credit card, post-purchase offers work (credit card is charged)
+
+## Payment Method Priority
+
+If a customer's order was paid with multiple methods, ReSell charges in this priority:
+
+<Steps>
+  <Step title="Primary Card">
+    Credit or debit card used at checkout
+  </Step>
+  <Step title="Vaulted Payment">
+    Saved payment method on customer account
+  </Step>
+  <Step title="Default Method">
+    Customer's default payment method (if logged in)
+  </Step>
+</Steps>
+
+## Regional Considerations
+
+### United States
+
+**Best options**:
+- Shopify Payments
+- Stripe
+- Authorize.Net
+
+**Coverage**: Nearly all credit/debit card payments supported
+
+### Canada
+
+**Best options**:
+- Shopify Payments
+- Stripe
+- Braintree
+
+**Coverage**: Major credit cards and Interac debit (through Shopify Payments)
+
+### United Kingdom & Europe
+
+**Best options**:
+- Shopify Payments
+- Stripe
+
+**Coverage**: Credit cards, debit cards, UK Maestro
+
+**Note**: Some local payment methods (Ideal, Sofort, Bancontact) are not compatible
+
+### Australia & New Zealand
+
+**Best options**:
+- Shopify Payments
+- Stripe
+
+**Coverage**: Major credit and debit cards
+
+### Asia
+
+**Best options**:
+- Shopify Payments (where available)
+- Stripe
+
+**Note**: Many local payment methods in Asia do not support vaulting
+
+## Testing Payment Compatibility
+
+Before going live, test your payment setup:
+
+<Steps>
+  <Step title="Enable Test Mode">
+    Use Shopify's test mode or payment processor sandbox
+  </Step>
+  <Step title="Create Test Funnel">
+    Set up a simple funnel with one upsell offer
+  </Step>
+  <Step title="Place Test Order">
+    Complete checkout using your payment method
+  </Step>
+  <Step title="Verify Offer Appears">
+    Confirm post-purchase offer displays correctly
+  </Step>
+  <Step title="Accept Offer">
+    Test the one-click acceptance flow
+  </Step>
+  <Step title="Check Order">
+    Verify upsell item was added to order and charged successfully
+  </Step>
+</Steps>
+
+## Troubleshooting Payment Issues
+
+<AccordionGroup>
+  <Accordion title="Offers not showing for certain customers">
+    **Possible causes**:
+    - Customer used incompatible payment method
+    - Customer paid with gift card only
+    - Payment processor doesn't support vaulting
+
+    **Solution**: Check which payment method was used in Shopify order details
+  </Accordion>
+
+  <Accordion title="Upsell payment failed">
+    **Possible causes**:
+    - Card declined (insufficient funds, expired card)
+    - Payment method no longer valid
+    - Fraud detection triggered
+
+    **Solution**: This creates a "partially paid" order. Customer receives notification to update payment, or you can remove the unpaid item.
+  </Accordion>
+
+  <Accordion title="Inconsistent offer display">
+    **Possible causes**:
+    - Mix of compatible and incompatible payment methods
+    - Some customers using wallets, others using cards
+
+    **Solution**: Review analytics to see what percentage of customers are using compatible methods. Consider offering alternative payment options.
+  </Accordion>
+</AccordionGroup>
+
+## Maximizing Compatibility
+
+To ensure the most customers see your offers:
+
+<CardGroup cols={2}>
+  <Card title="Use Shopify Payments" icon="check">
+    Best overall compatibility across all scenarios
+  </Card>
+  <Card title="Enable Multiple Processors" icon="credit-card">
+    Offer both Shopify Payments and PayPal for flexibility
+  </Card>
+  <Card title="Educate Customers" icon="graduation-cap">
+    Mention post-purchase perks during checkout
+  </Card>
+  <Card title="Monitor Analytics" icon="chart-line">
+    Track which payment methods customers use
+  </Card>
+</CardGroup>
+
+## Impact on Conversion Rates
+
+Typical offer display rates by payment method:
+
+| Payment Method | Offer Display Rate | Notes |
+|----------------|-------------------|-------|
+| Shopify Payments | 95-100% | Highest compatibility |
+| Stripe | 95-100% | Excellent compatibility |
+| PayPal + Shopify Payments | 80-90% | Depends on payment choice |
+| Wallet Services | 60-80% | Variable by implementation |
+| BNPL Services | 0% | Not supported |
+
+<Tip>
+If 20%+ of your customers use incompatible payment methods, focus on checkout upsells (Shopify Plus) or thank you page recommendations instead.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quick Start Guide" icon="rocket" href="/resell/quickstart">
+    Set up your first funnel
+  </Card>
+  <Card title="Offer Placement" icon="location-dot" href="/resell/features/offer-placement">
+    Learn about all placement options
+  </Card>
+  <Card title="FAQ" icon="question" href="/resell/support/faq">
+    Common payment questions
+  </Card>
+  <Card title="Pricing" icon="dollar-sign" href="/resell/pricing">
+    View ReSell pricing plans
+  </Card>
+</CardGroup>

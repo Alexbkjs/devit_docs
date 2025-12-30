@@ -1,0 +1,332 @@
+---
+title: Custom Fonts
+description: Use custom fonts in your labels and badges to maintain perfect brand consistency across your Shopify store.
+---
+
+Custom fonts allow you to maintain complete brand consistency by using the same typography in your labels as the rest of your store. Lably supports both theme fonts and custom font uploads.
+
+## Why Use Custom Fonts?
+
+<CardGroup cols={2}>
+  <Card title="Brand Consistency" icon="palette">
+    Match your store's typography exactly
+  </Card>
+  <Card title="Professional Look" icon="award">
+    Use premium or branded fonts for polished appearance
+  </Card>
+  <Card title="Stand Out" icon="star">
+    Differentiate with unique typography
+  </Card>
+  <Card title="Better Recognition" icon="eye">
+    Reinforce brand identity across all touchpoints
+  </Card>
+</CardGroup>
+
+## How to Use Custom Fonts
+
+<Steps>
+  <Step title="Open Your Label">
+    Navigate to the label or badge you want to customize
+  </Step>
+
+  <Step title="Access Styles">
+    In the left-side menu, click **Styles**
+  </Step>
+
+  <Step title="Enable Custom Font">
+    Toggle on the **Use custom font** option
+  </Step>
+
+  <Step title="Enter Font Family">
+    In the text field that appears, enter your font family name
+  </Step>
+
+  <Step title="Save Changes">
+    Click **Save** in the top-right corner
+  </Step>
+</Steps>
+
+## Font Options
+
+### Option 1: Use Theme Fonts
+
+If your Shopify theme already includes custom fonts, you can reference them in Lably.
+
+**Advantages**:
+- No additional setup required
+- Font files already loaded in your theme
+- Guaranteed compatibility
+
+**How to find your theme font name**:
+
+<Steps>
+  <Step title="Open Theme Customizer">
+    Go to Shopify Admin → Online Store → Themes → Customize
+  </Step>
+  <Step title="Check Typography Settings">
+    Look in Theme Settings → Typography to see font names
+  </Step>
+  <Step title="Copy Font Family Name">
+    Note the exact font family name (e.g., "Montserrat", "Playfair Display")
+  </Step>
+  <Step title="Use in Lably">
+    Enter this font name in the custom font field
+  </Step>
+</Steps>
+
+### Option 2: Google Fonts
+
+You can use any font from [Google Fonts](https://fonts.google.com/) library.
+
+**How to use Google Fonts**:
+
+<Steps>
+  <Step title="Browse Google Fonts">
+    Visit [fonts.google.com](https://fonts.google.com/) and choose a font
+  </Step>
+  <Step title="Note Font Name">
+    Copy the exact font family name (e.g., "Roboto", "Open Sans")
+  </Step>
+  <Step title="Add to Theme">
+    You may need to add the Google Font to your theme first (see below)
+  </Step>
+  <Step title="Enter in Lably">
+    Use the font family name in Lably's custom font field
+  </Step>
+</Steps>
+
+**Adding Google Fonts to your theme**:
+
+If the Google Font isn't already in your theme, you'll need to add it first. Refer to [Shopify's Custom Fonts documentation](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#custom-fonts) for detailed instructions.
+
+### Option 3: Upload Custom Fonts
+
+For brand-specific fonts (like proprietary typefaces), you'll need to use CSS `@font-face`.
+
+<Warning>
+Custom font uploads require CSS knowledge and theme file editing. If you're not comfortable with code, contact our support team for assistance.
+</Warning>
+
+**How to upload custom fonts**:
+
+<Steps>
+  <Step title="Obtain Font Files">
+    Get your font files in web formats (WOFF, WOFF2, TTF)
+  </Step>
+  <Step title="Upload to Shopify">
+    Upload font files to your theme's assets folder
+  </Step>
+  <Step title="Add @font-face CSS">
+    Add CSS code to define the font (see example below)
+  </Step>
+  <Step title="Use Font Name in Lably">
+    Reference the font family name you defined in CSS
+  </Step>
+</Steps>
+
+**Example @font-face code**:
+
+```css
+@font-face {
+  font-family: 'YourBrandFont';
+  src: url('{{ "your-font.woff2" | asset_url }}') format('woff2'),
+       url('{{ "your-font.woff" | asset_url }}') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+Then in Lably, enter: `YourBrandFont`
+
+<Tip>
+Learn more about `@font-face` in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face).
+</Tip>
+
+## Font Family Syntax
+
+When entering font names, use proper CSS font-family syntax:
+
+### Single Font
+
+```
+Montserrat
+```
+
+### Font with Fallback
+
+```
+Montserrat, sans-serif
+```
+
+### Font with Spaces (use quotes)
+
+```
+"Playfair Display", serif
+```
+
+### Multiple Fallbacks
+
+```
+"Helvetica Neue", Helvetica, Arial, sans-serif
+```
+
+## Font Weight and Style
+
+Custom fonts support different weights and styles:
+
+- **Font Weight**: 100 (Thin) to 900 (Black)
+- **Font Style**: Normal, Italic, Oblique
+
+After enabling custom font, you can still use Lably's style controls:
+- **Bold**: Applies font-weight: bold
+- **Italic**: Applies font-style: italic
+
+Ensure your custom font includes the weights and styles you want to use.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Performance Considerations" icon="gauge-high">
+    **Loading fonts impacts page speed**:
+    - Use only fonts already loaded in your theme when possible
+    - Limit the number of custom fonts
+    - Use modern formats (WOFF2) for smaller file sizes
+    - Consider using `font-display: swap` to prevent invisible text
+  </Accordion>
+
+  <Accordion title="Font Licensing" icon="file-contract">
+    **Ensure you have proper licenses**:
+    - Google Fonts are free and open-source
+    - Premium fonts require commercial licenses
+    - Check if your font license allows web embedding
+    - Respect font foundry terms of service
+  </Accordion>
+
+  <Accordion title="Fallback Fonts" icon="shield">
+    **Always specify fallback fonts**:
+    - Use web-safe fonts as backups (Arial, Helvetica, Georgia)
+    - Include generic family (serif, sans-serif, monospace)
+    - Ensures labels display even if custom font fails to load
+  </Accordion>
+
+  <Accordion title="Cross-Browser Compatibility" icon="browsers">
+    **Test across browsers**:
+    - Different browsers support different font formats
+    - Provide multiple formats (WOFF2, WOFF, TTF) for best compatibility
+    - Test on Chrome, Firefox, Safari, and Edge
+  </Accordion>
+</AccordionGroup>
+
+## Common Font Examples
+
+### Popular Google Fonts for Labels
+
+- **Montserrat**: Modern, clean geometric sans-serif
+- **Roboto**: Friendly, readable sans-serif
+- **Playfair Display**: Elegant serif for premium products
+- **Oswald**: Bold, condensed for impact
+- **Lato**: Professional, versatile sans-serif
+
+### Web-Safe Fallback Fonts
+
+- **Sans-serif**: Arial, Helvetica, Verdana
+- **Serif**: Georgia, Times New Roman
+- **Monospace**: Courier New, Courier
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Custom font not displaying">
+    **Possible causes**:
+    - Font name spelled incorrectly
+    - Font not loaded in theme
+    - Font files missing or incorrect path
+    - Browser cache issue
+
+    **Solutions**:
+    1. Verify exact font family name (case-sensitive)
+    2. Check that font is loaded in your theme
+    3. Clear browser cache and hard refresh
+    4. Inspect element in browser dev tools to see applied font
+  </Accordion>
+
+  <Accordion title="Font looks different than expected">
+    **Possible causes**:
+    - Wrong font weight selected
+    - Font variant not included
+    - CSS conflicts with theme
+
+    **Solutions**:
+    1. Check font weight and style settings in Lably
+    2. Ensure font file includes desired weight/style
+    3. Use browser dev tools to check computed styles
+  </Accordion>
+
+  <Accordion title="Special characters not displaying">
+    **Possible causes**:
+    - Font doesn't include required character set
+    - Missing Unicode ranges in @font-face
+
+    **Solutions**:
+    1. Choose a font with extended character support
+    2. Use fonts like Noto Sans for multi-language support
+    3. Specify unicode-range in @font-face definition
+  </Accordion>
+
+  <Accordion title="Font loading slowly">
+    **Possible causes**:
+    - Large font file sizes
+    - Multiple font weights/styles loading
+    - Font not cached
+
+    **Solutions**:
+    1. Use WOFF2 format (better compression)
+    2. Load only needed font weights
+    3. Implement font-display: swap
+    4. Consider using system fonts for better performance
+  </Accordion>
+</AccordionGroup>
+
+## Example Configurations
+
+### Using Theme Font
+
+```
+font-family: "Futura", sans-serif
+```
+
+### Using Google Font
+
+```
+font-family: "Montserrat", sans-serif
+```
+
+### Custom Brand Font with Fallbacks
+
+```
+font-family: "YourBrandFont", "Helvetica Neue", Arial, sans-serif
+```
+
+### System Font Stack (Best Performance)
+
+```
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+```
+
+## Need Help?
+
+Custom font implementation can be technical. Our support team is happy to help.
+
+<CardGroup cols={2}>
+  <Card title="Email Support" icon="envelope" href="mailto:support@devit.software">
+    Get personalized assistance with custom fonts
+  </Card>
+  <Card title="Shopify Font Docs" icon="book" href="https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts">
+    Learn about Shopify theme fonts
+  </Card>
+</CardGroup>
+
+<Note>
+**Need help with font setup?** Contact [support@devit.software](mailto:support@devit.software) and we'll guide you through the process.
+</Note>

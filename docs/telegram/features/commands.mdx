@@ -1,0 +1,378 @@
+---
+title: Bot Commands
+description: Learn all available Telegram Bot slash commands for Discord and how to use them.
+---
+
+Telegram Bot uses Discord's slash command system for managing integrations. Here's a complete reference of available commands.
+
+## Core Commands
+
+### /connect
+
+Connects a Telegram bot to the current Discord channel.
+
+**Usage**:
+```
+/connect [token]
+```
+
+**Parameters**:
+- `token`: Your Telegram bot token from BotFather
+
+**Example**:
+```
+/connect 123456789:ABCdefGHIjklMNOpqrsTUVwxyz
+```
+
+**What happens**:
+1. Bot validates the Telegram token
+2. Establishes connection between Telegram and Discord
+3. Activates message forwarding
+4. Creates threads for incoming Telegram conversations
+
+**Response**:
+```
+✅ Connected successfully!
+
+Your Telegram bot is now linked to this channel.
+Telegram conversations will appear as threads here.
+
+Bot username: @your_bot_name
+Status: Active
+```
+
+<Warning>
+Keep your bot token secret! Anyone with this token can control your Telegram bot. Never share it publicly.
+</Warning>
+
+**Notes**:
+- One Discord channel can connect to one Telegram bot
+- Multiple Discord channels can connect to different Telegram bots
+- Connection persists until you use `/disconnect`
+
+### /list
+
+Displays all connected Telegram bots and their settings.
+
+**Usage**:
+```
+/list
+```
+
+**What it shows**:
+- Connected Telegram bot username
+- Integration status (active/inactive)
+- Quick access buttons:
+  - **Settings**: Configure forwarding and notifications
+  - **Disconnect**: Remove the integration
+
+**Example Response**:
+```
+📱 Telegram Bot Connections
+
+Bot: @your_support_bot
+Status: Active ✅
+Connected: 2 days ago
+
+[Settings] [Disconnect]
+```
+
+**When to use**:
+- Check connection status
+- Access settings menu
+- Verify which bot is connected
+- View integration details
+
+### /disconnect
+
+Removes a Telegram bot integration from the channel.
+
+**Usage**:
+```
+/disconnect
+```
+
+**What happens**:
+1. Stops forwarding messages from Telegram
+2. Preserves existing threads (doesn't delete them)
+3. Breaks the connection between Telegram and Discord
+4. Token is removed from the system
+
+**Confirmation prompt**:
+```
+⚠️ Disconnect Telegram Bot?
+
+This will stop forwarding messages from Telegram to this channel.
+Existing threads will remain.
+
+[Confirm] [Cancel]
+```
+
+**Notes**:
+- Existing Discord threads remain accessible
+- You can reconnect anytime with `/connect`
+- Your Telegram bot continues to exist (still accessible in Telegram)
+
+### /help
+
+Get help with commands and support resources.
+
+**Usage**:
+```
+/help
+```
+
+**Provides**:
+- Quick command reference
+- Link to documentation
+- Support contact information
+- Top.gg bot page link
+
+**Example Response**:
+```
+🤖 Telegram Bot for Discord - Help
+
+Available Commands:
+• /connect [token] - Connect Telegram bot
+• /list - View connected bots
+• /disconnect - Remove integration
+• /help - Show this help message
+
+📚 Documentation: docs.devit.software/telegram
+💬 Support: support@devit.software
+🔗 Bot Page: top.gg/bot/1123949801613049866
+```
+
+## Using /list Settings Menu
+
+Access advanced settings through the `/list` command:
+
+<Steps>
+  <Step title="Run /list">
+    Type `/list` in the connected Discord channel
+  </Step>
+  <Step title="Click Settings">
+    Click the **Settings** button
+  </Step>
+  <Step title="Choose Setting Category">
+    Select from available options:
+    - New Message Notification
+    - Message Forwarding
+    - Message Filters
+    - Greeting Message Notification
+    - Other Settings
+  </Step>
+  <Step title="Configure">
+    Adjust settings according to your needs
+  </Step>
+</Steps>
+
+### Available Settings
+
+<CardGroup cols={2}>
+  <Card title="New Message Notification" icon="bell">
+    Configure how Discord notifies you of new Telegram messages
+  </Card>
+  <Card title="Message Forwarding" icon="arrow-right-arrow-left">
+    Control which messages forward and threading behavior
+  </Card>
+  <Card title="Message Filters" icon="filter">
+    Filter messages by content, user, or type
+  </Card>
+  <Card title="Greeting Messages" icon="hand-wave">
+    Set automatic greetings for new Telegram users
+  </Card>
+</CardGroup>
+
+<Card title="Settings Guide" icon="sliders" href="/telegram/features/settings">
+  Learn about all customization options
+</Card>
+
+## Command Permissions
+
+### Who Can Use Commands
+
+By default, Discord permissions determine command access:
+
+- **Server Administrators**: Full access to all commands
+- **Channel Managers**: Can use commands in channels they manage
+- **Regular Members**: Can use `/help` only
+
+### Restricting Access
+
+To limit who can connect Telegram bots:
+
+<Steps>
+  <Step title="Server Settings">
+    Open Discord Server Settings → Integrations
+  </Step>
+  <Step title="Find Telegram Bot">
+    Locate Telegram Bot in integrations list
+  </Step>
+  <Step title="Configure Permissions">
+    Set which roles can use `/connect` and `/disconnect`
+  </Step>
+  <Step title="Save">
+    Apply permission changes
+  </Step>
+</Steps>
+
+## Command Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Secure Your Token" icon="lock">
+    Never share bot tokens in public channels
+  </Card>
+  <Card title="Use /list Regularly" icon="list">
+    Monitor connection status and settings
+  </Card>
+  <Card title="Test After Connecting" icon="flask">
+    Send test message from Telegram to verify
+  </Card>
+  <Card title="Document Connections" icon="book">
+    Keep record of which bots connect to which channels
+  </Card>
+</CardGroup>
+
+## Common Command Workflows
+
+### Initial Setup
+
+```
+1. /connect [token] → Connect Telegram bot
+2. Send test message in Telegram → Verify forwarding
+3. /list → Access settings
+4. Configure notifications and filters
+```
+
+### Troubleshooting
+
+```
+1. /list → Check connection status
+2. /disconnect → Remove faulty connection
+3. /connect [token] → Reconnect with correct token
+4. Send test message → Verify it works
+```
+
+### Changing Settings
+
+```
+1. /list → Open settings menu
+2. Click Settings button
+3. Choose setting category
+4. Make changes
+5. Test with new Telegram message
+```
+
+## Troubleshooting Commands
+
+<AccordionGroup>
+  <Accordion title="/connect not working">
+    **Possible causes**:
+    - Invalid or expired token
+    - Token already in use on another channel
+    - Bot lacks Discord permissions
+
+    **Solutions**:
+    1. Verify token is correct (copy directly from BotFather)
+    2. Check if bot is already connected elsewhere with `/list`
+    3. Ensure Discord bot has required permissions
+    4. Generate new token from BotFather if needed
+  </Accordion>
+
+  <Accordion title="Commands not responding">
+    **Possible causes**:
+    - Bot offline or restarting
+    - Discord API issues
+    - Insufficient permissions
+
+    **Solutions**:
+    1. Check bot online status (green dot)
+    2. Wait a moment and retry
+    3. Verify bot has "Use Application Commands" permission
+    4. Re-invite bot with full permissions if needed
+  </Accordion>
+
+  <Accordion title="/list shows no connections">
+    **Possible causes**:
+    - No bot connected to current channel
+    - Connection was removed
+    - Wrong channel
+
+    **Solutions**:
+    1. Verify you're in the correct Discord channel
+    2. Reconnect with `/connect [token]`
+    3. Check if connection was moved to different channel
+  </Accordion>
+
+  <Accordion title="Settings not saving">
+    **Possible causes**:
+    - Discord permissions issue
+    - Connection interrupted during save
+
+    **Solutions**:
+    1. Try again after a few moments
+    2. Verify stable internet connection
+    3. Reconnect bot if problem persists
+  </Accordion>
+</AccordionGroup>
+
+## Telegram Bot Commands
+
+You can also interact with your Telegram bot directly in Telegram:
+
+### /start
+
+Initiates conversation with the bot.
+
+**Usage in Telegram**:
+```
+/start
+```
+
+**Response**: Bot sends greeting message (if configured)
+
+### Custom Commands
+
+You can add custom commands to your Telegram bot via BotFather:
+
+<Steps>
+  <Step title="Message BotFather">
+    Open BotFather in Telegram
+  </Step>
+  <Step title="Use /setcommands">
+    Send `/setcommands` to BotFather
+  </Step>
+  <Step title="Select Your Bot">
+    Choose the bot to configure
+  </Step>
+  <Step title="Add Commands">
+    Enter commands in format: `command - description`
+
+    Example:
+    ```
+    help - Get help
+    support - Contact support
+    status - Check bot status
+    ```
+  </Step>
+</Steps>
+
+These custom commands will appear in Telegram's command menu but won't affect Discord forwarding.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Settings Configuration" icon="sliders" href="/telegram/features/settings">
+    Customize notifications and forwarding
+  </Card>
+  <Card title="Quick Start Guide" icon="rocket" href="/telegram/quickstart">
+    Complete setup tutorial
+  </Card>
+  <Card title="Group Forwarding" icon="users" href="/telegram/features/group-forwarding">
+    Forward from Telegram groups
+  </Card>
+  <Card title="FAQ" icon="question" href="/telegram/support/faq">
+    Common questions
+  </Card>
+</CardGroup>

@@ -1,0 +1,414 @@
+---
+title: Custom Selectors
+description: Use CSS selectors for precise control over label placement in custom themes and complex layouts.
+---
+
+Custom CSS selectors give you precise control over where labels appear on your storefront. This is especially useful for custom themes, page builders, or when labels don't display correctly with default settings.
+
+## When to Use Custom Selectors
+
+<CardGroup cols={2}>
+  <Card title="Custom Themes" icon="paintbrush">
+    Theme has non-standard HTML structure
+  </Card>
+  <Card title="Page Builders" icon="puzzle-piece">
+    Using PageFly, Shogun, or similar tools
+  </Card>
+  <Card title="Specific Positioning" icon="location-dot">
+    Need labels in exact, non-standard locations
+  </Card>
+  <Card title="Labels Not Showing" icon="triangle-exclamation">
+    Default detection fails to find product images
+  </Card>
+</CardGroup>
+
+<Note>
+Most Shopify themes work perfectly with Lably's automatic detection. Only use custom selectors if you're experiencing display issues or need non-standard placement.
+</Note>
+
+## How to Apply Custom Selectors
+
+<Steps>
+  <Step title="Open Your Label">
+    Navigate to the label you want to customize
+  </Step>
+
+  <Step title="Go to Position Settings">
+    In the left-side menu, click **Position**
+  </Step>
+
+  <Step title="Find Custom CSS Selector">
+    Scroll to the **Custom CSS selector** field
+  </Step>
+
+  <Step title="Enter Selector">
+    Paste the CSS selector code (see below for how to find it)
+  </Step>
+
+  <Step title="Save">
+    Click **Save** to apply changes
+  </Step>
+
+  <Step title="Test">
+    View your storefront to verify label appears correctly
+  </Step>
+</Steps>
+
+## How to Find CSS Selectors
+
+### Method 1: Using Browser Inspector
+
+<Steps>
+  <Step title="Open Your Store">
+    Navigate to a product page on your storefront
+  </Step>
+
+  <Step title="Right-Click Target Element">
+    Right-click on the product image (or wherever you want the label)
+  </Step>
+
+  <Step title="Select Inspect">
+    Choose **Inspect** or **Inspect Element** from the context menu
+  </Step>
+
+  <Step title="Find the Element">
+    In the Developer Tools, locate the HTML element you want to target
+  </Step>
+
+  <Step title="Copy Selector">
+    Right-click the element → Copy → Copy selector
+  </Step>
+
+  <Step title="Paste in Lably">
+    Paste the selector into the Custom CSS selector field
+  </Step>
+</Steps>
+
+<Tip>
+Most browsers let you copy selectors directly. In Chrome: Right-click element in DevTools → Copy → Copy selector.
+</Tip>
+
+### Method 2: Manual Selector Creation
+
+If you understand CSS, you can write selectors manually for better control.
+
+**Common selector patterns**:
+
+```css
+/* Target by class */
+.product-image
+
+/* Target by ID */
+#main-product-image
+
+/* Target by data attribute */
+[data-product-image]
+
+/* Target nested elements */
+.product-card .image-wrapper
+
+/* Target specific child */
+.product-container > img
+
+/* Combination selector */
+.product-grid .card img.featured
+```
+
+## Selector Examples
+
+### Product Collection Pages
+
+**Target product cards in collection grid**:
+```css
+.product-grid .product-card
+```
+
+**Target product images in collection**:
+```css
+.collection-products .product-image-wrapper
+```
+
+### Product Pages
+
+**Target main product image**:
+```css
+.product-single__photo-wrapper
+```
+
+**Target product gallery container**:
+```css
+#product-photos .product-image
+```
+
+### Custom Theme Selectors
+
+**Dawn theme (Shopify's default)**:
+```css
+.product-media-container
+```
+
+**Debut theme**:
+```css
+.product-single__photo
+```
+
+**Custom theme with data attributes**:
+```css
+[data-product-media]
+```
+
+## Advanced Selector Techniques
+
+### Using Multiple Selectors
+
+Target multiple elements at once (comma-separated):
+
+```css
+.product-image, .product-photo, [data-image]
+```
+
+### Excluding Elements
+
+Use `:not()` to exclude specific elements:
+
+```css
+.product-card:not(.hidden)
+```
+
+### Nth-Child Selectors
+
+Target specific positions:
+
+```css
+/* First product in grid */
+.product-grid .product:first-child
+
+/* Every third product */
+.product-grid .product:nth-child(3n)
+
+/* Last product */
+.product-grid .product:last-child
+```
+
+### Attribute Selectors
+
+Target elements by attributes:
+
+```css
+/* Has data-product attribute */
+[data-product]
+
+/* Specific attribute value */
+[data-product="featured"]
+
+/* Attribute contains value */
+[class*="product-image"]
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Selector not working">
+    **Possible causes**:
+    - Selector is too specific or too generic
+    - Element doesn't exist on the page
+    - Selector has typos or syntax errors
+    - Element loads dynamically after page load
+
+    **Solutions**:
+    1. Simplify the selector (remove unnecessary specificity)
+    2. Verify element exists using browser inspector
+    3. Check for typos and proper CSS syntax
+    4. Try a parent element selector instead
+  </Accordion>
+
+  <Accordion title="Label appears on wrong elements">
+    **Possible causes**:
+    - Selector is too broad
+    - Multiple elements match the selector
+
+    **Solutions**:
+    1. Make selector more specific
+    2. Add additional class or ID constraints
+    3. Use child selectors (>) instead of descendant selectors (space)
+    4. Test selector in browser console first
+  </Accordion>
+
+  <Accordion title="Label position is off">
+    **Possible causes**:
+    - Target element has unusual CSS positioning
+    - Element size changes dynamically
+    - Theme CSS conflicts
+
+    **Solutions**:
+    1. Adjust position settings in Lably (not just selector)
+    2. Target a parent container instead
+    3. Use margins to fine-tune placement
+    4. Contact support for complex positioning issues
+  </Accordion>
+
+  <Accordion title="Labels work on some pages but not others">
+    **Possible causes**:
+    - Different templates use different HTML structure
+    - Selector is page-specific
+
+    **Solutions**:
+    1. Create separate labels for different templates
+    2. Use more generic selectors that work across pages
+    3. Check page visibility settings in Lably
+  </Accordion>
+</AccordionGroup>
+
+## Testing Your Selectors
+
+Before applying selectors in Lably, test them in your browser:
+
+<Steps>
+  <Step title="Open Browser Console">
+    Press F12 or right-click → Inspect → Console tab
+  </Step>
+
+  <Step title="Test Selector">
+    Type: `document.querySelectorAll('YOUR_SELECTOR')`
+
+    Replace YOUR_SELECTOR with your actual selector
+  </Step>
+
+  <Step title="Check Results">
+    If it returns elements, the selector works
+
+    If it returns empty, the selector needs adjustment
+  </Step>
+
+  <Step title="Refine">
+    Adjust selector until it targets exactly what you need
+  </Step>
+</Steps>
+
+**Example**:
+```javascript
+// Test if selector finds product images
+document.querySelectorAll('.product-image')
+
+// Should return NodeList with your product images
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Keep It Simple" icon="minimize">
+    Use the simplest selector that works reliably
+  </Card>
+  <Card title="Avoid Overly Specific" icon="ban">
+    Don't copy entire selector paths from Inspector
+  </Card>
+  <Card title="Test Thoroughly" icon="vial">
+    Check selectors on different products and pages
+  </Card>
+  <Card title="Document Changes" icon="note-sticky">
+    Keep notes on custom selectors for future reference
+  </Card>
+</CardGroup>
+
+### Good vs Bad Selectors
+
+**Good** (simple, maintainable):
+```css
+.product-card
+.product-image-wrapper
+[data-product-media]
+```
+
+**Bad** (overly specific, fragile):
+```css
+body > div#main > section.products > div:nth-child(3) > div.grid > div.card:first-child
+```
+
+The "bad" example will break if theme structure changes even slightly.
+
+## Common Theme Selectors
+
+### Popular Shopify Themes
+
+| Theme | Product Card Selector | Product Page Image |
+|-------|----------------------|-------------------|
+| Dawn | `.card-wrapper` | `.product__media-wrapper` |
+| Debut | `.product-card` | `.product-single__photo` |
+| Brooklyn | `.product-card-wrapper` | `.product-image-main` |
+| Minimal | `.product-item` | `.product-photo-container` |
+| Supply | `.product-block` | `.product-image` |
+
+<Warning>
+These selectors may change with theme updates. Always verify selectors work in your specific theme version.
+</Warning>
+
+## Page Builder Compatibility
+
+### PageFly
+
+PageFly uses custom elements. Look for:
+```css
+[data-pf-type="ProductBox"]
+[data-pf-type="ProductMedia"]
+```
+
+### Shogun
+
+```css
+.shg-product-image
+.shg-box-product
+```
+
+### GemPages
+
+```css
+.gem-product-card
+.gem-image-wrapper
+```
+
+## App Embed Check
+
+If custom selectors still don't work, verify Lably is enabled in App embeds:
+
+<Steps>
+  <Step title="Go to Theme Editor">
+    Online Store → Themes → Customize
+  </Step>
+  <Step title="Open App Embeds">
+    Click theme settings (usually on left sidebar)
+  </Step>
+  <Step title="Find Lably">
+    Scroll to App embeds section
+  </Step>
+  <Step title="Enable Lably">
+    Toggle Lably app to ON
+  </Step>
+  <Step title="Save">
+    Save your theme changes
+  </Step>
+</Steps>
+
+## Learn More About CSS Selectors
+
+<CardGroup cols={2}>
+  <Card title="MDN CSS Selectors" icon="book" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors">
+    Complete CSS selector reference
+  </Card>
+  <Card title="CSS Selector Cheat Sheet" icon="table" href="https://www.w3schools.com/cssref/css_selectors.php">
+    Quick reference for common selectors
+  </Card>
+</CardGroup>
+
+## Need Help?
+
+Custom selectors can be technical. Our support team is here to help.
+
+<Card title="Contact Support" icon="envelope" href="mailto:support@devit.software">
+  Send us your store URL and we'll help you find the right selectors
+</Card>
+
+Include in your email:
+- Your store URL
+- Which page has the issue (product page, collection page, etc.)
+- Screenshot of where you want labels to appear
+- Theme name (if you know it)

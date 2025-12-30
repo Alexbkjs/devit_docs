@@ -1,0 +1,480 @@
+---
+title: Common Use Cases
+description: Discover practical ways to integrate Email Bot with your workflows and services.
+---
+
+Email Bot bridges email and Discord, enabling countless integration possibilities. Here are the most common and effective use cases to inspire your setup.
+
+## Customer Support
+
+Forward customer inquiries from your website contact form directly to a Discord support channel.
+
+### Setup
+
+<Steps>
+  <Step title="Create Support Channel">
+    Set up `#customer-support` or `#inquiries` channel in Discord
+  </Step>
+  <Step title="Connect Bot">
+    Run `/connect` to get unique email address
+  </Step>
+  <Step title="Configure Contact Form">
+    Update website contact form to send submissions to bot's email
+  </Step>
+  <Step title="Enable Preview">
+    Turn on "Email Preview" setting for immediate context
+  </Step>
+  <Step title="Set Up Threads">
+    Use Discord threads to organize responses per inquiry
+  </Step>
+</Steps>
+
+### Benefits
+
+- **Faster Response**: Team sees inquiries immediately in Discord
+- **Collaborative**: Multiple team members can discuss and respond
+- **Organized**: Each inquiry becomes its own thread
+- **Transparent**: Everyone sees customer issues and resolutions
+
+### Recommended Settings
+
+- **Display Mode**: Subject + Preview
+- **Web Version**: Enabled (for form-rich submissions)
+- **Personalization**: "Customer Support" with support icon avatar
+- **Threads**: Enabled for per-inquiry discussions
+
+## Server Monitoring & Alerts
+
+Receive uptime monitoring alerts, server notifications, and infrastructure warnings in Discord.
+
+### Compatible Services
+
+<CardGroup cols={3}>
+  <Card title="UptimeRobot" icon="chart-line">
+    Downtime and uptime alerts
+  </Card>
+  <Card title="Pingdom" icon="signal">
+    Performance monitoring notifications
+  </Card>
+  <Card title="Datadog" icon="database">
+    Infrastructure alerts and metrics
+  </Card>
+  <Card title="New Relic" icon="gauge">
+    Application performance alerts
+  </Card>
+  <Card title="PagerDuty" icon="bell">
+    Incident management notifications
+  </Card>
+  <Card title="CloudWatch" icon="cloud">
+    AWS service alerts
+  </Card>
+</CardGroup>
+
+### Setup Example (UptimeRobot)
+
+<Steps>
+  <Step title="Create Alerts Channel">
+    Set up `#server-alerts` in Discord
+  </Step>
+  <Step title="Get Email Address">
+    Use `/connect` to generate email
+  </Step>
+  <Step title="Configure UptimeRobot">
+    1. Go to UptimeRobot Alert Contacts
+    2. Add new email contact
+    3. Enter bot's email address
+    4. Assign to monitors
+  </Step>
+  <Step title="Test Alert">
+    Pause a monitor to trigger test alert
+  </Step>
+</Steps>
+
+### Recommended Settings
+
+- **Display Mode**: Subject + Preview
+- **Web Version**: Disabled (alerts are plain text)
+- **Personalization**: "Server Alerts" with warning icon
+- **Mentions**: Set up Discord @mentions for critical alerts
+
+## Gmail Forwarding
+
+Automatically forward specific Gmail messages to Discord channels.
+
+### Use Cases
+
+- Forward emails from specific senders
+- Route emails with certain keywords
+- Create department-specific channels
+- Archive important emails in Discord
+
+### Setup
+
+<Steps>
+  <Step title="Open Gmail Settings">
+    Gmail → Settings (gear icon) → See all settings
+  </Step>
+  <Step title="Go to Forwarding">
+    Click "Forwarding and POP/IMAP" tab
+  </Step>
+  <Step title="Add Forwarding Address">
+    Click "Add a forwarding address"
+    Enter bot's email from `/connect`
+  </Step>
+  <Step title="Verify in Discord">
+    Gmail sends verification email to Discord channel
+    Click verification link in Discord message
+  </Step>
+  <Step title="Enable Forwarding">
+    Back in Gmail, select "Forward a copy of incoming mail to..."
+    Choose bot's email address
+  </Step>
+  <Step title="Create Filters (Optional)">
+    Set up Gmail filters to forward only specific emails
+  </Step>
+</Steps>
+
+### Filter Examples
+
+**Forward from specific sender**:
+```
+From: boss@company.com
+Action: Forward to [bot email], Skip inbox
+```
+
+**Forward by keyword**:
+```
+Subject: [URGENT]
+Action: Forward to [bot email]
+```
+
+**Forward by label**:
+```
+Has label: Important
+Action: Forward to [bot email]
+```
+
+<Tip>
+Learn more about Gmail filters: [Gmail filter guide](https://support.google.com/mail/answer/6579)
+</Tip>
+
+## GitHub Notifications
+
+Receive repository notifications, pull request updates, and issue comments in Discord.
+
+### Setup
+
+<Steps>
+  <Step title="Create GitHub Channel">
+    Set up `#github-notifications` in Discord
+  </Step>
+  <Step title="Connect Bot">
+    Get email address with `/connect`
+  </Step>
+  <Step title="Configure GitHub Notifications">
+    1. Go to GitHub → Settings → Notifications
+    2. Set email to bot's address
+    3. Choose notification preferences
+  </Step>
+  <Step title="Repository-Specific">
+    For specific repos: Repository → Settings → Webhooks
+    Configure email notifications
+  </Step>
+</Steps>
+
+### What You'll Receive
+
+- Pull request creation and updates
+- Issue comments and mentions
+- Release notifications
+- Security alerts
+- Dependabot updates
+- Code review requests
+
+### Recommended Settings
+
+- **Display Mode**: Subject Only (high volume)
+- **Web Version**: Enabled (for code diff viewing)
+- **Personalization**: "GitHub" with GitHub logo
+- **Organization**: Use threads for each PR/issue
+
+## Billing & Payment Notifications
+
+Centralize billing alerts, payment confirmations, and subscription renewals.
+
+### Common Services
+
+- Stripe payment notifications
+- Domain registration renewals
+- Cloud hosting bills (AWS, DigitalOcean, Heroku)
+- SaaS subscription renewals
+- Invoice receipts
+
+### Setup
+
+<Steps>
+  <Step title="Create Billing Channel">
+    Set up `#billing` or `#payments` in Discord
+  </Step>
+  <Step title="Get Email Address">
+    Use `/connect` command
+  </Step>
+  <Step title="Update Service Emails">
+    For each service:
+    1. Go to account settings
+    2. Update notification email
+    3. Enter bot's email address
+  </Step>
+  <Step title="Enable Web Version">
+    Turn on web version for invoice viewing
+  </Step>
+</Steps>
+
+### Benefits
+
+- Never miss renewal notifications
+- Team visibility into expenses
+- Quick access to invoices
+- Centralized billing records
+
+### Recommended Settings
+
+- **Display Mode**: Subject + Preview
+- **Web Version**: Enabled (for invoice viewing)
+- **Personalization**: "Billing" with dollar sign icon
+- **Archive**: Pin important payment confirmations
+
+## Form Submissions
+
+Receive website form submissions directly in Discord.
+
+### Compatible Forms
+
+- Contact forms
+- Job applications
+- Event registrations
+- Survey responses
+- Newsletter signups
+- Support tickets
+
+### Setup
+
+<Steps>
+  <Step title="Choose Form Service">
+    Examples: Typeform, Google Forms, Wufoo, JotForm
+  </Step>
+  <Step title="Create Forms Channel">
+    Set up dedicated channel like `#form-submissions`
+  </Step>
+  <Step title="Connect Bot">
+    Get email with `/connect`
+  </Step>
+  <Step title="Configure Form">
+    In form settings, set notification email to bot's address
+  </Step>
+  <Step title="Test Submission">
+    Submit test form to verify delivery
+  </Step>
+</Steps>
+
+### Example (Google Forms)
+
+<Steps>
+  <Step title="Open Form Settings">
+    In Google Forms editor, click Settings gear
+  </Step>
+  <Step title="Go to Responses">
+    Click "Responses" tab
+  </Step>
+  <Step title="Get Email Notifications">
+    Enable "Get email notifications for new responses"
+  </Step>
+  <Step title="Set Email">
+    Cannot set custom email directly - use Gmail forwarding instead
+  </Step>
+</Steps>
+
+## Newsletter Subscriptions
+
+Forward newsletters and industry updates to team channels for shared knowledge.
+
+### Use Cases
+
+- Industry news and trends
+- Competitor updates
+- Marketing inspiration
+- Technical newsletters
+- Product updates from tools you use
+
+### Setup
+
+<Steps>
+  <Step title="Create Newsletter Channel">
+    Set up `#newsletters` or `#industry-news`
+  </Step>
+  <Step title="Get Email Address">
+    Use `/connect` command
+  </Step>
+  <Step title="Subscribe to Newsletters">
+    Use bot's email when subscribing to newsletters
+  </Step>
+  <Step title="Enable Web Version">
+    Turn on for proper newsletter formatting
+  </Step>
+</Steps>
+
+### Recommended Settings
+
+- **Display Mode**: Subject Only (newsletters are long)
+- **Web Version**: Enabled (for design and images)
+- **Personalization**: "Industry News" with newspaper icon
+- **Posting**: Consider weekly digest instead of real-time
+
+## CI/CD Pipeline Notifications
+
+Receive build, deployment, and testing notifications from your CI/CD tools.
+
+### Compatible Services
+
+- GitHub Actions
+- GitLab CI
+- CircleCI
+- Jenkins
+- Travis CI
+- Netlify
+- Vercel
+
+### Setup
+
+<Steps>
+  <Step title="Create DevOps Channel">
+    Set up `#deployments` or `#ci-cd` channel
+  </Step>
+  <Step title="Connect Bot">
+    Get unique email address
+  </Step>
+  <Step title="Configure CI Service">
+    In CI/CD tool notification settings, add bot's email
+  </Step>
+  <Step title="Filter Notifications">
+    Configure to receive only:
+    - Failed builds
+    - Successful deployments
+    - Security scan results
+  </Step>
+</Steps>
+
+### What to Monitor
+
+- Build failures
+- Deployment successes
+- Test suite results
+- Code quality reports
+- Security vulnerability scans
+- Performance benchmarks
+
+## E-commerce Order Notifications
+
+Forward order confirmations, shipping updates, and customer notifications.
+
+### Platforms
+
+- Shopify
+- WooCommerce
+- BigCommerce
+- Etsy
+- eBay
+- Amazon Seller Central
+
+### Setup
+
+<Steps>
+  <Step title="Create Orders Channel">
+    Set up `#orders` in Discord
+  </Step>
+  <Step title="Get Email">
+    Use `/connect` command
+  </Step>
+  <Step title="Platform Configuration">
+    In e-commerce admin:
+    1. Go to notification settings
+    2. Add bot's email for order notifications
+    3. Select which events to forward
+  </Step>
+  <Step title="Enable Preview">
+    Turn on preview to see order details
+  </Step>
+</Steps>
+
+### Recommended Settings
+
+- **Display Mode**: Subject + Preview
+- **Web Version**: Enabled (for order details)
+- **Personalization**: "Orders" with shopping cart icon
+- **Threads**: Group by order number
+
+## Best Practices by Use Case
+
+### High Volume (>50 emails/day)
+
+<CardGroup cols={2}>
+  <Card title="Use Subject Only" icon="minimize">
+    Keep channel clean and scannable
+  </Card>
+  <Card title="Enable Threads" icon="messages">
+    Organize responses and discussions
+  </Card>
+  <Card title="Set Up Filters" icon="filter">
+    Forward only important emails
+  </Card>
+  <Card title="Archive Regularly" icon="box-archive">
+    Create archive channels for old messages
+  </Card>
+</CardGroup>
+
+### Low Volume (<10 emails/day)
+
+<CardGroup cols={2}>
+  <Card title="Enable Preview" icon="eye">
+    Show content for immediate context
+  </Card>
+  <Card title="Enable Web Version" icon="globe">
+    View full formatted emails
+  </Card>
+  <Card title="Use Personalization" icon="user">
+    Custom names and avatars for clarity
+  </Card>
+  <Card title="Pin Important" icon="thumbtack">
+    Pin critical emails to channel
+  </Card>
+</CardGroup>
+
+## Multi-Channel Strategy
+
+Organize emails across multiple channels for better workflow:
+
+```
+#customer-support → Contact form submissions
+#server-alerts → Monitoring and uptime alerts
+#billing → Payment and renewal notifications
+#orders → E-commerce order confirmations
+#github → Repository notifications
+#newsletters → Industry news and updates
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Commands Reference" icon="terminal" href="/email/features/commands">
+    Learn all bot commands
+  </Card>
+  <Card title="Display Modes" icon="eye" href="/email/features/display-modes">
+    Customize email appearance
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/email/quickstart">
+    Set up your first integration
+  </Card>
+  <Card title="FAQ" icon="question" href="/email/support/faq">
+    Common questions and answers
+  </Card>
+</CardGroup>

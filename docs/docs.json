@@ -72,9 +72,140 @@
             ]
           },
           {
+            "group": "Features",
+            "pages": [
+              "resell/features/offer-types",
+              "resell/features/offer-placement",
+              "resell/features/analytics",
+              "resell/features/display-conditions",
+              "resell/features/auto-recommendations"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "resell/advanced/payment-compatibility"
+            ]
+          },
+          {
             "group": "FAQ & Support",
             "pages": [
               "resell/support/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Lably",
+        "url": "lably",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "lably/index",
+              "lably/quickstart",
+              "lably/pricing"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "lably/features/conditions"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "lably/configuration/localization",
+              "lably/configuration/custom-fonts",
+              "lably/configuration/custom-selectors"
+            ]
+          },
+          {
+            "group": "FAQ & Support",
+            "pages": [
+              "lably/support/faq",
+              "lably/support/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Email Bot",
+        "url": "email",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "email/index",
+              "email/quickstart"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "email/features/commands",
+              "email/features/display-modes",
+              "email/features/use-cases"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "email/configuration/permissions"
+            ]
+          },
+          {
+            "group": "FAQ & Support",
+            "pages": [
+              "email/support/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Telegram Bot",
+        "url": "telegram",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "telegram/index",
+              "telegram/quickstart"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "telegram/features/commands",
+              "telegram/features/settings",
+              "telegram/features/thread-management"
+            ]
+          },
+          {
+            "group": "FAQ & Support",
+            "pages": [
+              "telegram/support/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "React Flow",
+        "url": "reactflow",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "reactflow/index",
+              "reactflow/quickstart",
+              "reactflow/pricing"
+            ]
+          },
+          {
+            "group": "FAQ & Support",
+            "pages": [
+              "reactflow/support/faq"
             ]
           }
         ]
@@ -102,7 +233,7 @@
         },
         {
           "anchor": "Terms of Use",
-          "href": "https://devit.software/terms-of-use/discord",
+          "href": "https://devit.software/terms-of-use/shopify",
           "icon": "file-contract"
         },
         {
@@ -121,7 +252,7 @@
     "links": [
       {
         "label": "Terms of Use",
-        "href": "https://devit.software/terms-of-use/discord"
+        "href": "https://devit.software/terms-of-use/shopify"
       },
       {
         "label": "Shopify Partner",

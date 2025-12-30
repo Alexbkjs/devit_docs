@@ -1,0 +1,360 @@
+---
+title: Display Conditions
+description: Control when and where labels appear with powerful targeting rules based on products, inventory, customers, and location.
+---
+
+Display Conditions give you complete control over when and where your labels appear. Target specific products, customer segments, and scenarios to ensure labels are always relevant and effective.
+
+## About Display Conditions
+
+With Display Conditions, you can automatically apply labels without manual assignment. Set the right conditions, and labels will appear on matching products automatically.
+
+<Note>
+This feature eliminates the need to manually tag or update individual products. Changes to your catalog automatically trigger label visibility based on your rules.
+</Note>
+
+## Available Condition Types
+
+### Product Conditions
+
+Target products based on their attributes:
+
+<AccordionGroup>
+  <Accordion title="Product Tags" icon="tag">
+    Show labels on products with specific tags.
+
+    **Example**: Display a "Best Seller" label on all products tagged with `bestseller`.
+
+    **How to set**:
+    1. Add condition → Select **Product tag**
+    2. Choose "is equal to" or "contains"
+    3. Enter tag name (e.g., `bestseller`, `new`, `sale`)
+  </Accordion>
+
+  <Accordion title="Product Type" icon="box">
+    Target products by their product type.
+
+    **Example**: Show "Handmade" badge on all products with type `Handcrafted`.
+
+    **How to set**:
+    1. Add condition → Select **Product type**
+    2. Choose comparison operator
+    3. Enter product type name
+  </Accordion>
+
+  <Accordion title="Product Vendor" icon="store">
+    Display labels for specific brands or vendors.
+
+    **Example**: Highlight eco-friendly products from vendor `GreenBrand`.
+
+    **How to set**:
+    1. Add condition → Select **Product vendor**
+    2. Select "is equal to"
+    3. Enter vendor name
+  </Accordion>
+
+  <Accordion title="Product Collections" icon="layer-group">
+    Show labels on all products in specific collections.
+
+    **Example**: Add "Summer Sale" labels to all items in the "Summer Collection".
+
+    **How to set**:
+    1. Add condition → Select **Collection**
+    2. Choose the target collection
+    3. Select whether to include or exclude
+  </Accordion>
+
+  <Accordion title="Specific Products" icon="check-square">
+    Manually select individual products.
+
+    **Example**: Feature specific hero products with custom labels.
+
+    **How to set**:
+    1. Add condition → Select **Specific products**
+    2. Search and select products
+    3. Add multiple products as needed
+  </Accordion>
+
+  <Accordion title="Product Created Date" icon="calendar-plus">
+    Target products based on when they were created.
+
+    **Example**: Show "New Arrival" on products created in the last 30 days.
+
+    **How to set**:
+    1. Add condition → Select **Product created**
+    2. Choose date range (last 7/30/60/90 days)
+    3. Labels update automatically as products age
+  </Accordion>
+</AccordionGroup>
+
+### Price Conditions
+
+Show labels based on pricing:
+
+<AccordionGroup>
+  <Accordion title="Price Range" icon="dollar-sign">
+    Target products within specific price ranges.
+
+    **Example**: Show "Premium" badge on products over $100.
+
+    **How to set**:
+    1. Add condition → Select **Price**
+    2. Choose operator (greater than, less than, between)
+    3. Enter price value(s)
+  </Accordion>
+
+  <Accordion title="Compare At Price (Sale Items)" icon="percent">
+    Show labels only on products with a compare-at price.
+
+    **Example**: Display "On Sale" badge on discounted items.
+
+    **How to set**:
+    1. Add condition → Select **Compare at price**
+    2. Choose "exists" or set specific conditions
+    3. Labels appear automatically when products go on sale
+  </Accordion>
+
+  <Accordion title="Discount Percentage" icon="tag">
+    Target products by discount amount.
+
+    **Example**: Show "50% OFF" on items with 50% or greater discount.
+
+    **How to set**:
+    1. Add condition → Select **Discount percentage**
+    2. Set minimum percentage threshold
+    3. Automatically updates with price changes
+  </Accordion>
+</AccordionGroup>
+
+### Inventory Conditions
+
+Display labels based on stock levels:
+
+<AccordionGroup>
+  <Accordion title="Stock Quantity" icon="boxes">
+    Show labels when inventory reaches certain levels.
+
+    **Example**: Display "Low Stock" when quantity is below 5 units.
+
+    **How to set**:
+    1. Add condition → Select **Inventory quantity**
+    2. Choose operator (less than, greater than, equal to)
+    3. Enter quantity threshold
+  </Accordion>
+
+  <Accordion title="In Stock Status" icon="check-circle">
+    Target products based on availability.
+
+    **Example**: Hide promotional labels on out-of-stock items.
+
+    **How to set**:
+    1. Add condition → Select **In stock**
+    2. Choose true/false
+    3. Labels update automatically with inventory
+  </Accordion>
+</AccordionGroup>
+
+### Customer & Location Conditions
+
+Target specific customer segments and regions:
+
+<AccordionGroup>
+  <Accordion title="Visitor Country" icon="globe">
+    Display labels to customers from specific countries.
+
+    **Example**: Show "Free Shipping" badge to US customers only.
+
+    **How to set**:
+    1. Add condition → Select **Visitor country**
+    2. Choose "include" or "exclude"
+    3. Select countries from the list
+  </Accordion>
+
+  <Accordion title="Customer Tags" icon="user-tag">
+    Show labels to tagged customer groups.
+
+    **Example**: Display "VIP Pricing" for customers tagged `wholesale`.
+
+    **How to set**:
+    1. Add condition → Select **Customer tag**
+    2. Enter customer tag
+    3. Labels appear only to logged-in customers with that tag
+  </Accordion>
+</AccordionGroup>
+
+## Condition Examples
+
+### Example 1: New Arrival Label
+
+Display "New" label on products created in the last 30 days:
+
+<Steps>
+  <Step title="Create Label">
+    Create a label with "New" text and desired styling
+  </Step>
+  <Step title="Add Condition">
+    Go to Display Conditions → **Add condition**
+  </Step>
+  <Step title="Select Product Created">
+    Choose **Product created** → **Last 30 days**
+  </Step>
+  <Step title="Save">
+    Label automatically appears on new products and removes after 30 days
+  </Step>
+</Steps>
+
+### Example 2: Eco-Friendly Badge
+
+Highlight products from eco-conscious vendors:
+
+<Steps>
+  <Step title="Create Badge">
+    Design an "Eco-Friendly" badge with green styling
+  </Step>
+  <Step title="Add Condition">
+    Display Conditions → **Add condition**
+  </Step>
+  <Step title="Select Vendor">
+    Choose **Product vendor** → **is equal to** → Enter `EcoBrand`
+  </Step>
+  <Step title="Save">
+    Badge appears on all products from that vendor
+  </Step>
+</Steps>
+
+### Example 3: Location-Based Free Shipping
+
+Show shipping badge to specific countries:
+
+<Steps>
+  <Step title="Create Label">
+    Design a "Free Shipping" label
+  </Step>
+  <Step title="Add Condition">
+    Display Conditions → **Add condition**
+  </Step>
+  <Step title="Select Countries">
+    Choose **Visitor country** → **Include** → Select US, Canada
+  </Step>
+  <Step title="Save">
+    Label visible only to customers in selected countries
+  </Step>
+</Steps>
+
+### Example 4: Low Stock Alert
+
+Create urgency with inventory-based labels:
+
+<Steps>
+  <Step title="Create Label">
+    Design "Only X Left!" label with dynamic text
+  </Step>
+  <Step title="Add Condition">
+    Display Conditions → **Add condition**
+  </Step>
+  <Step title="Set Inventory Rule">
+    Choose **Inventory quantity** → **Less than** → `5`
+  </Step>
+  <Step title="Save">
+    Label appears automatically when stock drops below 5 units
+  </Step>
+</Steps>
+
+### Example 5: Flash Sale Badge
+
+Combine multiple conditions for targeted promotions:
+
+<Steps>
+  <Step title="Create Badge">
+    Design a "Flash Sale" badge
+  </Step>
+  <Step title="Add Collection Condition">
+    **Collection** → Select "Summer Collection"
+  </Step>
+  <Step title="Add Price Condition">
+    **Compare at price** → **exists** (ensures items are on sale)
+  </Step>
+  <Step title="Set Display Period">
+    Use Display Period to limit to sale dates
+  </Step>
+  <Step title="Save">
+    Badge shows only on sale items in that collection during the sale period
+  </Step>
+</Steps>
+
+## Combining Multiple Conditions
+
+You can add multiple conditions to create precise targeting rules.
+
+### AND Logic
+
+When you add multiple conditions, **ALL** conditions must be met for the label to appear.
+
+**Example**: Show label on products that:
+- Have tag `premium` **AND**
+- Are in "Featured Collection" **AND**
+- Price is greater than $50
+
+This ensures only premium, featured products above $50 show the label.
+
+### Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Start Simple" icon="seedling">
+    Begin with one condition and add more as needed
+  </Card>
+  <Card title="Test Thoroughly" icon="vial">
+    Preview labels on different products to verify conditions
+  </Card>
+  <Card title="Use Product Tags" icon="tag">
+    Tags offer the most flexible product targeting
+  </Card>
+  <Card title="Monitor Performance" icon="chart-line">
+    Track which conditions drive the best results
+  </Card>
+</CardGroup>
+
+## Tips for Effective Conditions
+
+1. **Keep It Dynamic**: Use conditions that automatically update (like product created date or inventory) instead of manual product selection
+2. **Layer Conditions**: Combine multiple conditions for precise targeting without manual updates
+3. **Use Exclusions**: Sometimes it's easier to exclude products than include them
+4. **Plan for Scale**: Structure conditions to work as your catalog grows
+5. **Test Edge Cases**: Verify labels appear correctly when products match or don't match conditions
+
+## Common Use Cases
+
+<Tabs>
+  <Tab title="Promotions">
+    - Sale badges on discounted items
+    - Flash sale labels with time limits
+    - Bundle deal highlights
+    - Seasonal promotion badges
+  </Tab>
+  <Tab title="Inventory">
+    - Low stock alerts
+    - Out of stock notifications
+    - Restock announcements
+    - Limited edition labels
+  </Tab>
+  <Tab title="Product Attributes">
+    - New arrival badges
+    - Best seller labels
+    - Staff picks highlights
+    - Quality certifications
+  </Tab>
+  <Tab title="Regional">
+    - Free shipping badges by country
+    - Regional restrictions
+    - Language-specific labels
+    - Currency-based offers
+  </Tab>
+</Tabs>
+
+## Need Help?
+
+<Card title="View FAQ" icon="question" href="/lably/support/faq">
+  Find answers to common questions about display conditions
+</Card>
+
+If you need assistance setting up complex conditions, contact [support@devit.software](mailto:support@devit.software).

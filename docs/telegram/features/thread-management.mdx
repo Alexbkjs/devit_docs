@@ -1,0 +1,368 @@
+---
+title: Thread Management
+description: Understand how Telegram conversations are organized into Discord threads and how to manage them effectively.
+---
+
+Telegram Bot uses Discord's threading feature to organize conversations, keeping each Telegram chat separate and manageable. Learn how thread creation works and best practices for organization.
+
+## How Threading Works
+
+### New Conversations
+
+When a new Telegram user messages your bot:
+
+<Steps>
+  <Step title="Message Received">
+    Telegram user sends first message to your bot
+  </Step>
+  <Step title="Thread Created">
+    Discord bot creates a new thread in the connected channel
+  </Step>
+  <Step title="Thread Named">
+    Thread name set to Telegram user's name/username
+  </Step>
+  <Step title="Message Posted">
+    First message appears in the thread
+  </Step>
+  <Step title="Avatar Displayed">
+    User's Telegram avatar shows in thread (if privacy allows)
+  </Step>
+</Steps>
+
+**Thread naming format**:
+- If user has @username: `@username`
+- If no username: User's first name
+- Customizable via settings
+
+### Ongoing Conversations
+
+When an existing user sends another message:
+
+**If thread is less than 24 hours old**:
+- Message added to existing thread
+- Thread bumped to top of channel
+- Notification sent (if enabled)
+
+**If thread is older than 24 hours**:
+- New thread created
+- Original thread remains archived
+- Prevents thread clutter
+
+<Tip>
+Adjust the 24-hour threshold in Settings → Message Forwarding → Thread Duration
+</Tip>
+
+## Thread Modes
+
+Choose how conversations are organized:
+
+### Auto-Create Threads (Recommended)
+
+**Behavior**: Each Telegram user gets their own thread
+
+**Advantages**:
+- Clean organization
+- Easy to track individual conversations
+- Team members can pick up any conversation
+- Searchable by user
+
+**Best for**:
+- Customer support
+- Help desk
+- Community management
+- Multi-user conversations
+
+**Example**:
+```
+#telegram-support
+  └─ Thread: @customer1
+  └─ Thread: @customer2
+  └─ Thread: @support_inquiry
+```
+
+### Single Thread Mode
+
+**Behavior**: All messages forward to one designated thread
+
+**Advantages**:
+- Simple setup
+- All messages in one place
+- No thread proliferation
+
+**Best for**:
+- Low volume forwarding
+- Personal bot monitoring
+- Single-purpose bots
+
+**Example**:
+```
+#telegram-monitor
+  └─ Thread: All Conversations
+      ├─ Message from @user1
+      ├─ Message from @user2
+      └─ Message from @user3
+```
+
+### No Threads (Channel Mode)
+
+**Behavior**: Messages post directly in channel
+
+**Advantages**:
+- Maximum visibility
+- No clicking into threads
+- Chronological feed
+
+**Best for**:
+- Announcements only
+- Read-only monitoring
+- Archive purposes
+
+**Example**:
+```
+#telegram-feed
+  ├─ Message from @announcer
+  ├─ Message from @news_bot
+  └─ Message from @updates
+```
+
+## Thread Naming Strategies
+
+Customize how threads are named:
+
+### By Username (Default)
+
+**Format**: `@username`
+
+**Pros**:
+- Unique identifier
+- Easy to search
+- Professional
+
+**Cons**:
+- Not all users have usernames
+- Falls back to first name
+
+### By First Name
+
+**Format**: `John`
+
+**Pros**:
+- More personal
+- Always available
+
+**Cons**:
+- May not be unique
+- Less searchable
+
+### By Full Name
+
+**Format**: `John Doe`
+
+**Pros**:
+- Complete identification
+- More unique than first name
+
+**Cons**:
+- Some users only set first name
+
+### Custom Format
+
+**Format**: `Support - @username` or `[VIP] John Doe`
+
+**How to set**:
+1. Settings → Message Forwarding → Thread Name Format
+2. Use variables: `{username}`, `{first_name}`, `{last_name}`
+3. Add prefixes: `Support - {username}`
+4. Add categories: `[{category}] {first_name}`
+
+**Examples**:
+```
+Support - @customer123
+[Premium] John Doe
+Inquiry from @user_name
+```
+
+## Managing Active Threads
+
+### Replying to Users
+
+<Steps>
+  <Step title="Open Thread">
+    Click on the thread for the conversation
+  </Step>
+  <Step title="Type Response">
+    Type your message in the thread (not main channel!)
+  </Step>
+  <Step title="Send">
+    Press Enter - message forwards to Telegram user
+  </Step>
+</Steps>
+
+<Warning>
+Always reply **inside the thread**, not in the main channel. Messages in main channel won't forward to Telegram.
+</Warning>
+
+### Closing/Archiving Threads
+
+**Manual Archive**:
+1. Right-click thread
+2. Select "Archive Thread"
+3. Thread hidden from active view
+4. Accessible in "Archived Threads"
+
+**Auto-Archive**:
+- Threads auto-archive after configured inactivity period
+- Default: 24 hours
+- Adjustable in settings
+
+### Locking Threads
+
+Prevent further messages in resolved conversations:
+
+<Steps>
+  <Step title="Open Thread">
+    Navigate to the conversation thread
+  </Step>
+  <Step title="Thread Settings">
+    Click thread name → Thread Settings
+  </Step>
+  <Step title="Lock Thread">
+    Toggle "Locked" on
+  </Step>
+</Steps>
+
+**Effect**: Team can't send messages, but can still view history
+
+**Use cases**:
+- Resolved support tickets
+- Completed conversations
+- Archived inquiries
+
+## Thread Organization Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Use Thread Tags" icon="tags">
+    Add Discord tags like "Urgent", "Resolved", "Pending"
+  </Card>
+  <Card title="Pin Important Threads" icon="thumbtack">
+    Pin high-priority conversations to top
+  </Card>
+  <Card title="Archive Regularly" icon="box-archive">
+    Archive resolved threads to keep channel clean
+  </Card>
+  <Card title="Search by Name" icon="magnifying-glass">
+    Use Ctrl+F to find threads by username
+  </Card>
+</CardGroup>
+
+## Group and Channel Threading
+
+### Telegram Groups
+
+**Default behavior**: Each group creates one thread
+
+**Thread name**: Telegram group name
+
+**Messages**:
+- All group messages appear in single thread
+- Sender name shows in each message
+- Replies go to entire group
+
+### Telegram Channels
+
+**Default behavior**: Channel posts create individual messages or threads
+
+**Options**:
+- **Thread per post**: Each channel message gets own thread
+- **Single thread**: All posts in one thread
+- **No threads**: Posts directly in channel
+
+## Troubleshooting Threads
+
+<AccordionGroup>
+  <Accordion title="New thread for every message">
+    **Cause**: Thread duration set too short or user has dynamic username
+
+    **Solution**:
+    1. Increase thread duration to 48 hours
+    2. Check if user's Telegram name changes frequently
+    3. Verify settings are saved correctly
+  </Accordion>
+
+  <Accordion title="Threads not being created">
+    **Cause**: Discord bot lacks thread permissions
+
+    **Solution**:
+    1. Check bot has "Create Public Threads" permission
+    2. Verify "Send Messages in Threads" permission
+    3. Re-invite bot with correct permissions
+  </Accordion>
+
+  <Accordion title="Can't reply in thread">
+    **Cause**: Thread is archived or locked
+
+    **Solution**:
+    1. Unarchive the thread
+    2. Unlock if locked
+    3. Check bot still connected with `/list`
+  </Accordion>
+
+  <Accordion title="Messages going to wrong thread">
+    **Cause**: Telegram user changed username
+
+    **Solution**:
+    - This is normal behavior
+    - Bot tracks by Telegram user ID, not username
+    - Thread continues correctly even if name changes
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Thread Workflows
+
+### Customer Support Workflow
+
+```
+1. New message creates thread
+2. Team member responds in thread
+3. Add "In Progress" tag
+4. Continue conversation in thread
+5. When resolved, add "Resolved" tag
+6. Archive thread after 24 hours
+```
+
+### Prioritization Workflow
+
+```
+1. Monitor incoming threads
+2. Pin urgent threads to top
+3. Assign team members to threads
+4. Use thread tags: "High", "Medium", "Low"
+5. Review and archive completed threads
+```
+
+### Multi-Team Workflow
+
+```
+1. Different Telegram bots for departments
+2. Sales bot → #telegram-sales
+3. Support bot → #telegram-support
+4. Each creates separate threads
+5. Transfer threads between channels if needed
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Settings" icon="sliders" href="/telegram/features/settings">
+    Customize threading behavior
+  </Card>
+  <Card title="Commands" icon="terminal" href="/telegram/features/commands">
+    Learn management commands
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/telegram/quickstart">
+    Set up your first integration
+  </Card>
+  <Card title="FAQ" icon="question" href="/telegram/support/faq">
+    Common thread questions
+  </Card>
+</CardGroup>

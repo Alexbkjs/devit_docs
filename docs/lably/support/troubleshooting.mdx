@@ -1,0 +1,368 @@
+---
+title: Troubleshooting
+description: Solutions to common issues with Lably labels and badges not displaying correctly.
+---
+
+If your labels aren't showing up or displaying correctly, this guide will help you identify and fix the issue.
+
+## Labels Not Showing
+
+If labels aren't appearing on your storefront, work through these checks in order:
+
+### 1. Check App Embed Status
+
+The most common reason labels don't appear is the app embed being disabled.
+
+<Steps>
+  <Step title="Open Theme Customizer">
+    Shopify Admin → Online Store → Themes → Customize
+  </Step>
+  <Step title="Open Theme Settings">
+    Click the theme settings icon (usually in left sidebar)
+  </Step>
+  <Step title="Find App Embeds">
+    Scroll down to the **App embeds** section
+  </Step>
+  <Step title="Enable Lably">
+    Find **Lably** in the list and toggle it ON (should be blue/green)
+  </Step>
+  <Step title="Save">
+    Click **Save** in the top right corner
+  </Step>
+  <Step title="Test">
+    View your storefront to check if labels now appear
+  </Step>
+</Steps>
+
+<Warning>
+If you recently updated or changed your theme, app embeds may be disabled by default. Always check this first.
+</Warning>
+
+### 2. Verify Label Status
+
+Ensure your label is published and active.
+
+**Check for**:
+- Label status is **Published** (not Draft or Unpublished)
+- Label is not paused or archived
+- Label appears in your active labels list
+
+**How to fix**:
+1. Go to Lably dashboard
+2. Find the label in your list
+3. Check status column
+4. Click label → Change status to Published
+5. Save changes
+
+### 3. Review Display Settings
+
+Labels may be hidden due to scheduling or page visibility settings.
+
+<AccordionGroup>
+  <Accordion title="Week Schedule" icon="calendar">
+    **Check**: Is today/now within the scheduled time?
+
+    **How to check**:
+    1. Open label → Left menu → **Week schedule**
+    2. Verify current day is enabled
+    3. Check that current time falls within enabled hours
+    4. Default is 24/7 - if you see restrictions, this may be the issue
+
+    **Quick fix**: Enable all days and hours to test
+  </Accordion>
+
+  <Accordion title="Display Period" icon="clock">
+    **Check**: Is today's date within the display period?
+
+    **How to check**:
+    1. Open label → Left menu → **Display period**
+    2. If "All time" is disabled, check dates
+    3. Ensure current date is between start and end dates
+
+    **Quick fix**: Enable "All time" to test
+  </Accordion>
+
+  <Accordion title="Visibility on Pages" icon="eye">
+    **Check**: Is the label enabled for the page you're viewing?
+
+    **How to check**:
+    1. Open label → Left menu → **Visibility on pages**
+    2. Verify checkboxes for relevant pages:
+       - Home page
+       - Collection pages
+       - Product pages
+       - Search results
+
+    **Quick fix**: Enable all pages to test
+  </Accordion>
+</AccordionGroup>
+
+### 4. Check Display Conditions
+
+Labels with display conditions only appear when conditions are met.
+
+**Common issues**:
+- Product doesn't match the condition criteria
+- Condition is too restrictive
+- Multiple conditions are conflicting
+
+**How to check**:
+1. Open label → Left menu → **Display conditions**
+2. Review all active conditions
+3. Verify your test product meets ALL conditions
+
+**Quick fix**: Temporarily remove all conditions to test if label appears
+
+**Example issue**:
+```
+Condition: Product tag = "sale"
+Problem: Test product doesn't have "sale" tag
+Solution: Add tag to product OR remove condition to test
+```
+
+### 5. Verify Custom Selectors
+
+If you've added custom selectors, they may be incorrect.
+
+**How to check**:
+1. Open label → Left menu → **Position**
+2. Find **Custom CSS selector** field
+3. Check if selector is populated
+
+**Quick fix**:
+1. Clear the custom selector field
+2. Save and test
+3. If labels now appear, the selector was wrong
+4. See [Custom Selectors guide](/lably/configuration/custom-selectors) for proper setup
+
+### 6. Clear Cache
+
+Browser and CDN caching can prevent labels from appearing.
+
+<Steps>
+  <Step title="Clear Browser Cache">
+    Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+  </Step>
+  <Step title="Clear Shopify Cache">
+    Edit any theme file (add a space), save, then undo and save again
+  </Step>
+  <Step title="Wait">
+    Give it 2-3 minutes for CDN to update
+  </Step>
+  <Step title="Test in Incognito">
+    Open store in private/incognito window
+  </Step>
+</Steps>
+
+## Labels in Wrong Position
+
+If labels appear but in the wrong location:
+
+### Adjust Position Settings
+
+<Steps>
+  <Step title="Open Label">
+    Navigate to the problematic label
+  </Step>
+  <Step title="Go to Position">
+    Left menu → **Position**
+  </Step>
+  <Step title="Try Presets">
+    Click position presets: top-left, top-right, bottom-left, bottom-right
+  </Step>
+  <Step title="Adjust Margins">
+    Fine-tune with margin sliders (top, right, bottom, left)
+  </Step>
+  <Step title="Save and Test">
+    Save changes and view storefront
+  </Step>
+</Steps>
+
+### Use Custom Selectors
+
+If position adjustments don't work, your theme may need custom selectors.
+
+<Card title="Custom Selectors Guide" icon="code" href="/lably/configuration/custom-selectors">
+  Learn how to target specific elements in your theme
+</Card>
+
+## Labels Look Different Than Preview
+
+### Check for Theme CSS Conflicts
+
+**Possible causes**:
+- Theme CSS overriding label styles
+- Custom CSS in theme conflicting with labels
+- Third-party app CSS interference
+
+**Solutions**:
+1. Disable other apps temporarily to test
+2. Check theme's custom CSS for conflicts
+3. Contact support with screenshots of both preview and live
+
+### Browser Compatibility
+
+Test in multiple browsers:
+- Chrome
+- Firefox
+- Safari
+- Edge
+
+If labels work in one browser but not another, it may be a CSS compatibility issue.
+
+## Labels Not Showing on Mobile
+
+### Check Responsive Settings
+
+Some themes have different structures for mobile vs desktop.
+
+**How to test**:
+1. Open storefront on mobile device or use browser DevTools
+2. Toggle device toolbar (F12 → device icon)
+3. Check if labels appear
+
+**Possible fixes**:
+- Adjust label size for mobile in Styles settings
+- Create separate labels for mobile (use custom selectors)
+- Disable animations on mobile if causing issues
+
+## Performance Issues
+
+### Labels Slow Down Page Load
+
+Labels should have minimal performance impact, but if you notice slowdown:
+
+**Solutions**:
+1. Reduce number of active labels (combine similar labels)
+2. Optimize label images (compress PNG/JPG files)
+3. Disable complex animations
+4. Use text labels instead of image labels when possible
+
+### Labels Flicker or Flash on Load
+
+**Causes**:
+- Labels loading after page renders
+- CSS not inlined properly
+
+**Solutions**:
+1. Ensure app embed is enabled
+2. Contact support if flickering persists
+
+## Labels Disappear After Theme Update
+
+**Why this happens**:
+- Theme updates may change HTML structure
+- App embeds get disabled during theme switch
+- Custom selectors may no longer match
+
+**How to fix**:
+<Steps>
+  <Step title="Re-enable App Embed">
+    Theme may have disabled Lably embed during update
+  </Step>
+  <Step title="Test Labels">
+    View storefront to see if labels now appear
+  </Step>
+  <Step title="Update Custom Selectors">
+    If using custom selectors, they may need updating for new theme structure
+  </Step>
+  <Step title="Contact Support">
+    If labels still don't work, theme structure may have changed significantly
+  </Step>
+</Steps>
+
+## Specific Theme Issues
+
+### Page Builder Apps (PageFly, Shogun, GemPages)
+
+Page builders often require custom selectors.
+
+<Card title="Custom Selectors for Page Builders" icon="puzzle-piece" href="/lably/configuration/custom-selectors">
+  Learn how to use labels with page builders
+</Card>
+
+### Highly Custom Themes
+
+If you have a heavily customized or custom-built theme:
+1. Labels may not auto-detect product images
+2. Use custom selectors (required for non-standard themes)
+3. Contact support for assistance
+
+## Still Having Issues?
+
+If you've tried everything above and labels still aren't working:
+
+### Before Contacting Support
+
+Gather this information:
+1. **Your store URL** (e.g., yourstore.myshopify.com)
+2. **Theme name** (if you know it)
+3. **Which pages** have the issue (product, collection, home, etc.)
+4. **Screenshots** of:
+   - Label settings (especially Display Conditions, Week Schedule, Display Period)
+   - How label looks (or doesn't look) on storefront
+   - Browser console errors (F12 → Console tab)
+5. **What you've already tried** from this guide
+
+### Contact Support
+
+<Card title="Email Support" icon="envelope" href="mailto:support@devit.software">
+  Send the information above to support@devit.software for personalized help
+</Card>
+
+**Response time**: Usually within 24 hours on business days
+
+## Diagnostic Checklist
+
+Use this checklist to systematically troubleshoot:
+
+- [ ] App embed enabled in theme
+- [ ] Label status is Published
+- [ ] Current date/time is within Week Schedule
+- [ ] Current date is within Display Period (or "All time" is enabled)
+- [ ] Page type is enabled in Visibility on Pages
+- [ ] Product matches all Display Conditions
+- [ ] Custom selector is correct (or empty)
+- [ ] Browser cache cleared
+- [ ] Tested in incognito/private mode
+- [ ] Tested on different browser
+- [ ] No console errors in browser DevTools
+
+## Common Error Messages
+
+<AccordionGroup>
+  <Accordion title="'Label is not published'">
+    **Solution**: Change label status to Published in Lably dashboard
+  </Accordion>
+
+  <Accordion title="'App embed is disabled'">
+    **Solution**: Enable Lably in Theme Customizer → App embeds
+  </Accordion>
+
+  <Accordion title="'No products match conditions'">
+    **Solution**: Adjust Display Conditions or test on products that meet criteria
+  </Accordion>
+
+  <Accordion title="'Custom selector not found'">
+    **Solution**: Update custom selector or remove it to use automatic detection
+  </Accordion>
+</AccordionGroup>
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="FAQ" icon="question" href="/lably/support/faq">
+    Frequently asked questions
+  </Card>
+  <Card title="Display Conditions" icon="filter" href="/lably/features/conditions">
+    Learn about targeting rules
+  </Card>
+  <Card title="Custom Selectors" icon="code" href="/lably/configuration/custom-selectors">
+    Advanced positioning control
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/lably/quickstart">
+    Basic setup guide
+  </Card>
+</CardGroup>
+
+Most issues can be resolved by checking app embeds, label status, and display settings. If problems persist, our support team is ready to help.

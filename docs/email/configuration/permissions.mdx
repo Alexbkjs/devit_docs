@@ -1,0 +1,406 @@
+---
+title: Discord Permissions
+description: Configure optimal Discord permissions for Email Bot to ensure full functionality.
+---
+
+Email Bot requires specific Discord permissions to forward emails, display content, and provide advanced features. This guide explains each permission and how to configure them.
+
+## Required Permissions
+
+These permissions are essential for basic email forwarding:
+
+### Read Messages / View Channels
+
+**Purpose**: Allows the bot to access and see the channel
+
+**What it enables**:
+- Bot can read slash commands
+- Bot can see when it's mentioned
+- Bot can access channel settings
+
+**Impact if missing**: Bot cannot function in the channel at all
+
+### Send Messages
+
+**Purpose**: Allows the bot to post incoming emails to the channel
+
+**What it enables**:
+- Forward email content as Discord messages
+- Post notifications and confirmations
+- Display command responses
+
+**Impact if missing**: Emails cannot be delivered to Discord
+
+### Embed Links
+
+**Purpose**: Allows the bot to create rich embedded message content
+
+**What it enables**:
+- Formatted email displays with subject, sender, preview
+- Clickable links in email content
+- Rich text formatting
+
+**Impact if missing**: Emails display as plain text only, losing formatting and structure
+
+### Attach Files
+
+**Purpose**: Allows the bot to upload email attachments to Discord
+
+**What it enables**:
+- Forward email attachments (PDFs, images, documents)
+- Display inline images from emails
+- Attach up to 20 files per email
+
+**Impact if missing**: Email attachments will not be delivered; users will only see email text
+
+## Optional Permissions
+
+These permissions enable advanced features:
+
+### Manage Webhooks
+
+**Purpose**: Allows the bot to create and use webhooks for custom avatars and names
+
+**What it enables**:
+- Email Personalization feature
+- Custom bot names per channel
+- Custom avatars for different senders
+- Better visual organization
+
+**Impact if missing**:
+- Email Personalization feature won't work
+- All emails show default bot avatar
+- Cannot customize bot display name
+
+**How to enable**:
+<Steps>
+  <Step title="Open Channel Settings">
+    Right-click channel → Edit Channel
+  </Step>
+  <Step title="Go to Permissions">
+    Click "Permissions" tab
+  </Step>
+  <Step title="Add Bot">
+    Click "+" under "Roles/Members" → Select Email Bot
+  </Step>
+  <Step title="Enable Manage Webhooks">
+    Toggle "Manage Webhooks" to green (allow)
+  </Step>
+  <Step title="Save Changes">
+    Click "Save Changes"
+  </Step>
+</Steps>
+
+### Read Message History
+
+**Purpose**: Allows the bot to view past messages in the channel
+
+**What it enables**:
+- Reply to Emails feature (threads and replies)
+- Context for email conversations
+- Better email threading
+
+**Impact if missing**:
+- Reply functionality may not work properly
+- Cannot create proper email threads
+
+### Add Reactions
+
+**Purpose**: Allows the bot to add emoji reactions to messages
+
+**What it enables**:
+- Quick actions via reactions
+- Email status indicators
+- Interactive buttons
+
+**Impact if missing**: Reaction-based features won't work (if implemented)
+
+## Permission Setup Methods
+
+### Method 1: Grant During Bot Invite
+
+When initially inviting the bot, select all permissions:
+
+<Steps>
+  <Step title="Click Invite Link">
+    Use official invite link from top.gg
+  </Step>
+  <Step title="Select Server">
+    Choose your Discord server
+  </Step>
+  <Step title="Review Permissions">
+    All recommended permissions are pre-selected
+  </Step>
+  <Step title="Authorize">
+    Click "Authorize" to grant permissions
+  </Step>
+</Steps>
+
+This ensures the bot has all necessary permissions from the start.
+
+### Method 2: Server-Wide Bot Role
+
+Create a dedicated role for Email Bot with all permissions:
+
+<Steps>
+  <Step title="Open Server Settings">
+    Click server name → Server Settings
+  </Step>
+  <Step title="Go to Roles">
+    Click "Roles" in left sidebar
+  </Step>
+  <Step title="Create New Role">
+    Click "Create Role"
+    Name it "Email Bot" or similar
+  </Step>
+  <Step title="Set Permissions">
+    Enable:
+    - View Channels
+    - Send Messages
+    - Embed Links
+    - Attach Files
+    - Manage Webhooks (optional)
+    - Read Message History (optional)
+  </Step>
+  <Step title="Save Role">
+    Click "Save Changes"
+  </Step>
+  <Step title="Assign to Bot">
+    Go to Members → Find Email Bot → Add Role
+  </Step>
+</Steps>
+
+### Method 3: Channel-Specific Permissions
+
+Grant permissions only in specific channels:
+
+<Steps>
+  <Step title="Open Channel Settings">
+    Right-click channel → Edit Channel
+  </Step>
+  <Step title="Go to Permissions">
+    Click "Permissions" tab
+  </Step>
+  <Step title="Add Bot">
+    Click "+" → Select "Email Bot"
+  </Step>
+  <Step title="Configure Permissions">
+    Set each permission:
+    - View Channel: ✅ Allow
+    - Send Messages: ✅ Allow
+    - Embed Links: ✅ Allow
+    - Attach Files: ✅ Allow
+    - Manage Webhooks: ✅ Allow (optional)
+  </Step>
+  <Step title="Save">
+    Click "Save Changes"
+  </Step>
+</Steps>
+
+## Verifying Permissions
+
+Check if the bot has correct permissions:
+
+### Quick Check
+
+<Steps>
+  <Step title="Run /connect">
+    Type `/connect` in the channel
+  </Step>
+  <Step title="Check Response">
+    If bot responds with email address → Basic permissions OK
+  </Step>
+  <Step title="Send Test Email">
+    Send test email to verify full functionality
+  </Step>
+  <Step title="Check Attachments">
+    Send email with attachment to verify file permissions
+  </Step>
+</Steps>
+
+### Detailed Check
+
+<Steps>
+  <Step title="Open Channel Settings">
+    Right-click channel → Edit Channel
+  </Step>
+  <Step title="View Permissions">
+    Click "Permissions" → Find "Email Bot" or its role
+  </Step>
+  <Step title="Review Settings">
+    Verify all required permissions show green checkmarks
+  </Step>
+</Steps>
+
+## Common Permission Issues
+
+<AccordionGroup>
+  <Accordion title="Bot not responding to commands">
+    **Missing permission**: View Channels or Send Messages
+
+    **Solution**:
+    1. Open channel permissions
+    2. Add Email Bot
+    3. Enable "View Channels" and "Send Messages"
+    4. Save and try command again
+  </Accordion>
+
+  <Accordion title="Emails not appearing in channel">
+    **Missing permission**: Send Messages or Embed Links
+
+    **Solution**:
+    1. Grant "Send Messages" permission
+    2. Grant "Embed Links" permission
+    3. Send test email to verify
+  </Accordion>
+
+  <Accordion title="Attachments not being delivered">
+    **Missing permission**: Attach Files
+
+    **Solution**:
+    1. Enable "Attach Files" permission for bot
+    2. Verify permission is not denied at server level
+    3. Send test email with attachment
+  </Accordion>
+
+  <Accordion title="Personalization not working">
+    **Missing permission**: Manage Webhooks
+
+    **Solution**:
+    1. Grant "Manage Webhooks" permission to bot
+    2. Re-configure personalization settings via `/list` → Settings
+    3. Send test email to verify custom name/avatar
+  </Accordion>
+
+  <Accordion title="Emails show but look broken">
+    **Missing permission**: Embed Links
+
+    **Solution**:
+    1. Enable "Embed Links" permission
+    2. May need to disconnect and reconnect bot
+    3. Check server-wide embed settings aren't disabled
+  </Accordion>
+</AccordionGroup>
+
+## Permission Hierarchy
+
+Discord permission hierarchy (higher overrides lower):
+
+1. **Channel-specific user permissions** (highest)
+2. **Channel-specific role permissions**
+3. **Server-wide role permissions**
+4. **@everyone role permissions** (lowest)
+
+**Important**: A channel-level "Deny" always overrides any "Allow", even at higher levels.
+
+## Security Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Principle of Least Privilege" icon="shield">
+    Only grant permissions the bot actually needs
+  </Card>
+  <Card title="Channel-Specific" icon="lock">
+    Use channel permissions instead of server-wide when possible
+  </Card>
+  <Card title="Regular Audits" icon="clipboard-check">
+    Periodically review bot permissions
+  </Card>
+  <Card title="Limit Admin Access" icon="user-shield">
+    Don't give bot Administrator permission
+  </Card>
+</CardGroup>
+
+## Advanced Configurations
+
+### Separate Permissions by Channel Type
+
+**Support Channel**:
+- View Channel: ✅
+- Send Messages: ✅
+- Embed Links: ✅
+- Attach Files: ✅
+- Manage Webhooks: ✅ (for custom support icon)
+- Read Message History: ✅ (for replies)
+
+**Alerts Channel**:
+- View Channel: ✅
+- Send Messages: ✅
+- Embed Links: ✅
+- Attach Files: ❌ (alerts don't need attachments)
+- Manage Webhooks: ✅ (for custom alert icon)
+
+**Newsletter Channel**:
+- View Channel: ✅
+- Send Messages: ✅
+- Embed Links: ✅
+- Attach Files: ❌
+- Manage Webhooks: ✅
+- Read Message History: ❌
+
+### Role-Based Access Control
+
+Restrict who can use bot commands:
+
+<Steps>
+  <Step title="Server Settings">
+    Server Settings → Integrations
+  </Step>
+  <Step title="Find Email Bot">
+    Locate Email Bot in integrations list
+  </Step>
+  <Step title="Manage Commands">
+    Click "Manage" next to Email Bot
+  </Step>
+  <Step title="Set Command Permissions">
+    For each command, set which roles can use it:
+    - /connect → Admin only
+    - /list → Support team
+    - /help → Everyone
+  </Step>
+</Steps>
+
+## Troubleshooting Permission Conflicts
+
+### Check for Denies
+
+<Steps>
+  <Step title="Open Channel Permissions">
+    Channel Settings → Permissions
+  </Step>
+  <Step title="Check @everyone">
+    Look for any permissions set to ❌ (red X)
+  </Step>
+  <Step title="Check Bot's Roles">
+    Verify no inherited roles have denies
+  </Step>
+  <Step title="Override if Needed">
+    Add bot specifically and set to ✅ (green check)
+  </Step>
+</Steps>
+
+### Permission Priority Test
+
+If unsure which permission is applying:
+
+1. Remove bot from all channel-specific permissions
+2. Test functionality
+3. Add bot back with explicit "Allow" for each permission
+4. Test after each permission added
+5. Identify which permission resolves the issue
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/email/quickstart">
+    Set up Email Bot after configuring permissions
+  </Card>
+  <Card title="Commands" icon="terminal" href="/email/features/commands">
+    Learn bot commands
+  </Card>
+  <Card title="Display Modes" icon="eye" href="/email/features/display-modes">
+    Customize email display options
+  </Card>
+  <Card title="FAQ" icon="question" href="/email/support/faq">
+    Common permission questions
+  </Card>
+</CardGroup>

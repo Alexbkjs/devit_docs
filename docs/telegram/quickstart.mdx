@@ -1,0 +1,199 @@
+---
+title: Quick Start Guide
+description: Learn how to connect your Telegram bot to Discord and start forwarding messages in minutes.
+---
+
+This guide will walk you through setting up Telegram Bot for Discord. You'll create a Telegram bot, get its token, and connect it to Discord to start forwarding messages.
+
+## Prerequisites
+
+- Discord server where you have permission to add bots
+- Telegram account
+- Administrator permissions in Discord
+
+## Video Tutorial
+
+<iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/-Ll_-XG9i9w"
+  title="How to connect Telegram bot"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+## Step 1: Create a Telegram Bot
+
+If you already have a Telegram bot and token, skip to Step 2.
+
+<Steps>
+  <Step title="Open Telegram">
+    Launch Telegram on any device (mobile app, desktop, or web)
+  </Step>
+
+  <Step title="Find BotFather">
+    Search for [@BotFather](https://t.me/BotFather) in Telegram and open the chat
+
+    <Tip>
+    BotFather is Telegram's official bot for creating and managing bots. It's verified with a blue checkmark.
+    </Tip>
+  </Step>
+
+  <Step title="Start BotFather">
+    Click **Start** button or send `/start` command
+  </Step>
+
+  <Step title="Create New Bot">
+    Send the `/newbot` command to BotFather
+  </Step>
+
+  <Step title="Choose Bot Name">
+    BotFather will ask for a name. Enter your bot's display name (e.g., "My Support Bot")
+
+    This is what users will see when they interact with your bot.
+  </Step>
+
+  <Step title="Choose Username">
+    Enter a username for your bot. Must end with "bot" (e.g., "my_support_bot" or "MyCompanyBot")
+
+    <Note>
+    Usernames must be unique across all of Telegram. If your choice is taken, try adding numbers or your company name.
+    </Note>
+  </Step>
+
+  <Step title="Copy Your Token">
+    BotFather provides a token that looks like: `123456789:ABCdefGHIjklMNOpqrsTUVwxyz`
+
+    **Copy this token** - you'll need it for the Discord connection.
+
+    <Warning>
+    Keep your bot token secret! Anyone with this token can control your bot. Never share it publicly.
+    </Warning>
+  </Step>
+</Steps>
+
+## Step 2: Add Discord Bot to Your Server
+
+<Steps>
+  <Step title="Visit Bot Page">
+    Go to the [Telegram Bot page on top.gg](https://top.gg/bot/1123949801613049866)
+  </Step>
+
+  <Step title="Click Invite">
+    Click the **Invite** button to add the bot to your Discord server
+  </Step>
+
+  <Step title="Select Server">
+    Choose which Discord server to add the bot to
+  </Step>
+
+  <Step title="Authorize Permissions">
+    Review and authorize the required permissions
+
+    The bot needs permissions to create threads, send messages, and attach files.
+  </Step>
+
+  <Step title="Complete Setup">
+    Click **Authorize** to finish adding the bot
+  </Step>
+</Steps>
+
+## Step 3: Connect Telegram Bot to Discord
+
+<Steps>
+  <Step title="Open Discord Channel">
+    Go to the Discord channel where you want Telegram messages to appear
+  </Step>
+
+  <Step title="Use Connect Command">
+    Type `/connect` in the message field
+
+    A prompt will appear asking for your Telegram bot token
+  </Step>
+
+  <Step title="Enter Token">
+    Paste the token you copied from BotFather
+
+    <Tip>
+    Make sure you paste the complete token, including all characters and numbers.
+    </Tip>
+  </Step>
+
+  <Step title="Submit">
+    Press Enter to submit the token
+  </Step>
+
+  <Step title="Confirmation">
+    The bot will confirm the connection and show your integration is active
+
+    <Note>
+    Telegram conversations will now forward to this Discord channel as threads.
+    </Note>
+  </Step>
+</Steps>
+
+## Step 4: Test the Integration
+
+<Steps>
+  <Step title="Find Your Bot on Telegram">
+    Open Telegram and search for your bot's username
+  </Step>
+
+  <Step title="Start Conversation">
+    Click **Start** or send `/start` to your bot
+  </Step>
+
+  <Step title="Send Test Message">
+    Send a test message like "Hello, testing!"
+  </Step>
+
+  <Step title="Check Discord">
+    Go to your Discord channel - you should see a new thread created with your message
+  </Step>
+
+  <Step title="Reply from Discord">
+    Reply in the Discord thread to send a message back to Telegram
+  </Step>
+
+  <Step title="Verify Two-Way Messaging">
+    Check Telegram to confirm your Discord reply appeared
+  </Step>
+</Steps>
+
+## Customize Settings (Optional)
+
+Once connected, customize how messages forward:
+
+<Steps>
+  <Step title="Use /list Command">
+    Type `/list` in the connected channel
+  </Step>
+  <Step title="Click Settings">
+    Click the **Settings** button
+  </Step>
+  <Step title="Configure Options">
+    Adjust notifications, filters, greetings, and threading
+  </Step>
+</Steps>
+
+<Card title="Settings Guide" icon="sliders" href="/telegram/features/settings">
+  Learn about all customization options
+</Card>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Bot Commands" icon="terminal" href="/telegram/features/commands">
+    Learn all available commands
+  </Card>
+  <Card title="Settings" icon="sliders" href="/telegram/features/settings">
+    Customize notifications and filters
+  </Card>
+  <Card title="Thread Management" icon="messages" href="/telegram/features/thread-management">
+    Understand conversation organization
+  </Card>
+  <Card title="FAQ" icon="question" href="/telegram/support/faq">
+    Common questions
+  </Card>
+</CardGroup>

@@ -1,0 +1,345 @@
+---
+title: Frequently Asked Questions
+description: Find answers to common questions about using Telegram Bot for Discord.
+---
+
+Get quick answers to the most frequently asked questions about Telegram Bot.
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="What if a customer replies to an old thread?">
+    If the thread is **more than 24 hours old**, a new thread will be created automatically. Otherwise, the customer's reply will be added to the existing thread.
+
+    This behavior prevents thread clutter while keeping recent conversations organized.
+  </Accordion>
+
+  <Accordion title="Does your bot store messages?">
+    No, our application **does not store your messages**. Messages are forwarded in real-time between Telegram and Discord without being saved on our servers.
+
+    Message history exists only in Discord threads and Telegram chats.
+  </Accordion>
+
+  <Accordion title="If my customer uses an attachment, will I see it in Discord?">
+    Yes! All messages are forwarded with their attached content, including:
+    - Files and documents
+    - Images and photos
+    - Videos
+    - Voice messages
+    - Audio files
+    - Stickers
+    - Emojis
+
+    Everything that appears in Telegram will appear in Discord.
+  </Accordion>
+
+  <Accordion title="How do I remove an integration?">
+    To disconnect a Telegram bot integration:
+    1. Use the `/disconnect` command in the Discord channel
+    2. Confirm the disconnection
+
+    Alternatively, use `/list` and click the **Disconnect** button.
+
+    After disconnecting, messages will no longer forward from Telegram to Discord.
+  </Accordion>
+</AccordionGroup>
+
+## Display & Appearance
+
+<AccordionGroup>
+  <Accordion title="Why is my Telegram avatar not displayed in Discord?">
+    This is due to Telegram privacy settings. To allow avatars to display:
+
+    **In Telegram**:
+    1. Go to Settings → Privacy and Security → Profile Photo
+    2. Set it to **"Everybody"**
+
+    OR
+
+    Add an exception for your specific bot or group in the privacy settings.
+
+    Without these permissions, Discord cannot access the user's profile photo.
+  </Accordion>
+
+  <Accordion title="Why is Full Name displayed instead of Username?">
+    In Telegram:
+    - **First Name** is mandatory (everyone must have one)
+    - **Username** is optional (not all users set one)
+
+    The bot displays usernames when available using variables like `{{username}}` or `{{name}}`. If a user hasn't set a username, Telegram displays their first name by default.
+
+    This is expected behavior based on Telegram's user profile structure.
+  </Accordion>
+
+  <Accordion title="Can I customize how messages appear in Discord?">
+    Yes! Use the Settings menu (access via `/list`):
+    - **New Message Notification**: Customize notification behavior
+    - **Message Forwarding**: Configure forwarding options
+    - **Message Filters**: Filter which messages to forward
+    - **Greeting Message Notification**: Set automatic greetings
+    - **Other Settings**: Additional customization options
+
+    See our [Settings documentation](/telegram/features/settings) for details.
+  </Accordion>
+</AccordionGroup>
+
+## Telegram Groups and Channels
+
+<AccordionGroup>
+  <Accordion title="How do I forward messages from a Telegram group to Discord?">
+    To forward Telegram group messages:
+
+    <Steps>
+      <Step title="Add Bot to Group">
+        Add your Telegram bot to the desired group
+      </Step>
+      <Step title="Grant Admin Rights">
+        Make the bot an administrator with message viewing permissions
+
+        **Required permissions**:
+        - View messages
+        - Send messages
+        - Send media
+      </Step>
+      <Step title="Connect in Discord">
+        Use `/connect [token]` in your Discord channel
+      </Step>
+      <Step title="Messages Forward">
+        All group messages now appear in Discord
+      </Step>
+    </Steps>
+
+    <Warning>
+    The bot **must have admin rights** in the Telegram group to view and forward messages. Without admin permissions, the bot cannot access group content.
+    </Warning>
+
+    See our detailed [Group Forwarding guide](/telegram/features/group-forwarding).
+  </Accordion>
+
+  <Accordion title="How do I forward messages from a Telegram channel to Discord?">
+    To forward Telegram channel posts:
+
+    <Steps>
+      <Step title="Add Bot to Channel">
+        Add your Telegram bot to the channel as an administrator
+      </Step>
+      <Step title="Grant Admin Rights">
+        Provide admin permissions for message access
+      </Step>
+      <Step title="Connect in Discord">
+        Use `/connect [token]` in Discord
+      </Step>
+      <Step title="Posts Forward">
+        Channel posts automatically appear in Discord
+      </Step>
+    </Steps>
+
+    <Warning>
+    Channel forwarding requires the bot to have admin rights in the Telegram channel.
+    </Warning>
+
+    See our detailed [Channel Forwarding guide](/telegram/features/channel-forwarding).
+  </Accordion>
+
+  <Accordion title="Can I forward from multiple groups to the same Discord channel?">
+    Yes, but be aware that all messages from different Telegram groups will be mixed together in the same Discord channel.
+
+    **Better approach**:
+    Create separate Discord channels for each Telegram group:
+    - `#telegram-group-1` → Telegram Group A
+    - `#telegram-group-2` → Telegram Group B
+    - `#telegram-group-3` → Telegram Channel C
+
+    This keeps conversations organized and easier to manage.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="What Discord permissions does the bot need?">
+    **Required permissions**:
+    - View Channels
+    - Send Messages
+    - Send Messages in Threads
+    - Create Public Threads
+    - Embed Links
+    - Attach Files
+
+    **Recommended permissions**:
+    - Manage Threads (for better thread control)
+    - Read Message History (for reply functionality)
+    - Use External Emojis (for sticker support)
+
+    Without these permissions, the bot may not function properly.
+  </Accordion>
+
+  <Accordion title="What Telegram permissions does the bot need?">
+    **For bot DMs**: No special permissions needed
+
+    **For groups and channels**: Bot must be an administrator with:
+    - View/Read messages
+    - Send messages
+    - Send media
+    - Manage messages (recommended)
+
+    The bot cannot forward messages from groups/channels without admin rights.
+  </Accordion>
+
+  <Accordion title="Is there a message limit?">
+    There are no hard message limits, but:
+    - Very high message volumes may experience slight delays
+    - Discord API rate limits apply (handled automatically)
+    - Messages are queued and delivered in order during high traffic
+
+    For most use cases, you won't notice any limitations.
+  </Accordion>
+
+  <Accordion title="Can I use multiple Telegram bots in one Discord server?">
+    Yes! You can connect multiple Telegram bots to different Discord channels within the same server.
+
+    **Example setup**:
+    - Support Bot → #telegram-support
+    - Community Bot → #telegram-community
+    - Announcements Bot → #telegram-news
+
+    Each integration operates independently with its own settings.
+  </Accordion>
+</AccordionGroup>
+
+## Features & Functionality
+
+<AccordionGroup>
+  <Accordion title="Can I filter which messages are forwarded?">
+    Yes! Use the **Message Filters** setting:
+    1. Use `/list` command
+    2. Click Settings
+    3. Select **Message Filters**
+    4. Configure filter rules
+
+    You can filter by:
+    - Message content
+    - User type
+    - Message type (text, media, etc.)
+    - Other criteria
+
+    See our [Message Filters guide](/telegram/features/filters) for details.
+  </Accordion>
+
+  <Accordion title="Can I set up automatic greeting messages?">
+    Yes! Enable **Greeting Message Notification**:
+    1. Use `/list` command
+    2. Go to Settings
+    3. Select **Greeting Message Notification**
+    4. Configure your greeting message
+
+    New users will automatically receive your greeting when they first message your bot.
+  </Accordion>
+
+  <Accordion title="Can team members reply from Discord?">
+    Yes! Two-way messaging works automatically:
+    - Telegram messages create Discord threads
+    - Replies in Discord threads send back to Telegram
+    - All team members can participate in conversations
+
+    Just make sure to reply **inside the thread**, not in the main channel.
+  </Accordion>
+
+  <Accordion title="Do Telegram stickers work in Discord?">
+    Yes, Telegram stickers are converted to images and forwarded to Discord. They appear as image attachments rather than interactive stickers.
+  </Accordion>
+</AccordionGroup>
+
+## Support & Help
+
+<AccordionGroup>
+  <Accordion title="If I have questions about the bot, how can I get help?">
+    You can get support in several ways:
+
+    1. **In-bot help**: Use `/help` command in Discord
+    2. **Email support**: [support@devit.software](mailto:support@devit.software)
+    3. **Documentation**: Browse these docs for detailed guides
+
+    Our support team typically responds within 24 hours on business days.
+  </Accordion>
+
+  <Accordion title="Where can I leave feedback about the bot?">
+    We'd love to hear your feedback!
+
+    - **top.gg**: [Leave a review](https://top.gg/bot/1123949801613049866)
+    - **Email**: [support@devit.software](mailto:support@devit.software)
+
+    Your feedback helps us improve Telegram Bot for everyone.
+  </Accordion>
+
+  <Accordion title="I found a bug. How do I report it?">
+    To report bugs:
+    1. Email [support@devit.software](mailto:support@devit.software)
+    2. Include:
+       - Description of the issue
+       - Steps to reproduce
+       - Screenshots if applicable
+       - Your Discord server ID (optional)
+
+    We investigate all bug reports promptly.
+  </Accordion>
+</AccordionGroup>
+
+## Privacy & Security
+
+<AccordionGroup>
+  <Accordion title="Is my bot token secure?">
+    Yes. Bot tokens are:
+    - Encrypted during transmission
+    - Stored securely on our servers
+    - Never shared or exposed publicly
+    - Only used to connect to your Telegram bot
+
+    Always keep your token private and never share it publicly. If compromised, regenerate a new token in BotFather.
+  </Accordion>
+
+  <Accordion title="Can you see my messages?">
+    No. Messages are forwarded directly between Telegram and Discord without being stored on our servers. We cannot read or access your conversation content.
+
+    The bot acts as a real-time relay, not a message storage system.
+  </Accordion>
+
+  <Accordion title="What data do you collect?">
+    We collect minimal data required for functionality:
+    - Bot tokens (encrypted)
+    - Connection metadata (which Discord channel, which Telegram bot)
+    - Basic usage statistics for service improvement
+
+    We do NOT collect or store:
+    - Message content
+    - Attachments
+    - User conversation history
+    - Personal information beyond what's necessary for the integration
+  </Accordion>
+</AccordionGroup>
+
+## Still Have Questions?
+
+If you didn't find your answer here:
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope" href="mailto:support@devit.software">
+    Email our support team for personalized help
+  </Card>
+  <Card title="Quick Start Guide" icon="rocket" href="/telegram/quickstart">
+    Review the setup process
+  </Card>
+  <Card title="Settings Guide" icon="sliders" href="/telegram/features/settings">
+    Learn about all available settings
+  </Card>
+  <Card title="Bot Page" icon="telegram" href="https://top.gg/bot/1123949801613049866">
+    View bot details on top.gg
+  </Card>
+</CardGroup>
+
+## Suggested Articles
+
+- [Welcome to Telegram Bot](/telegram/index)
+- [Quick Start Guide](/telegram/quickstart)
+- [Group Forwarding](/telegram/features/group-forwarding)
+- [Channel Forwarding](/telegram/features/channel-forwarding)

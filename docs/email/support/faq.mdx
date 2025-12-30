@@ -1,0 +1,297 @@
+---
+title: Frequently Asked Questions
+description: Find answers to common questions about using Email Bot for Discord.
+---
+
+Get quick answers to the most frequently asked questions about Email Bot.
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="Does the Email Bot send any emails?">
+    No, it does not. Email Bot only **receives and forwards** emails to Discord channels. It cannot send outgoing emails.
+
+    If you need to reply to emails, you can enable the Reply functionality which forwards your Discord messages back to the email sender.
+  </Accordion>
+
+  <Accordion title="Does the Email Bot store attachments?">
+    No, Email Bot **does not store attachments** on our servers. All attachments are forwarded directly to your Discord channel through Discord's infrastructure. We don't keep copies of files.
+  </Accordion>
+
+  <Accordion title="Does the Email Bot store the body of emails?">
+    Yes, but only for display purposes. Since Discord cannot render HTML email markup directly, the email body is stored on our servers for **3 months** to enable the web version feature.
+
+    This allows you to view the full HTML-formatted email in a browser when needed. After 3 months, the email body is automatically deleted.
+  </Accordion>
+
+  <Accordion title="Can I add the bot to all my channels?">
+    Yes! Email Bot generates **unique email addresses for every integration**. You can create as many integrations as you need across all your channels.
+
+    Each channel gets its own dedicated email address, perfect for organizing different types of notifications.
+  </Accordion>
+
+  <Accordion title="Can I remove the bot from a channel if I don't need it anymore?">
+    Yes, you can disconnect the bot at any time:
+    1. Use the `/list` command in the channel
+    2. Click the **Disconnect** button
+    3. Confirm the disconnection
+
+    The unique email address for that channel will be deactivated.
+  </Accordion>
+</AccordionGroup>
+
+## Email Forwarding
+
+<AccordionGroup>
+  <Accordion title="Is it possible to set up forwarding from an existing email address?">
+    Yes! You can forward emails from services like Gmail, Outlook, or any other email provider to the bot's unique address.
+
+    **For Gmail**:
+    Follow Google's guide: [Automatically forward Gmail messages](https://support.google.com/mail/answer/10957)
+
+    **General steps**:
+    1. Open your email provider's settings
+    2. Find forwarding or filters section
+    3. Add the bot's email as a forwarding destination
+    4. Verify the forwarding address if required
+  </Accordion>
+
+  <Accordion title="What should I do if my email didn't appear in the Discord channel?">
+    First, check our [troubleshooting guide](/email/support/troubleshooting) for detailed solutions.
+
+    **Quick checks**:
+    - Verify you sent to the correct email address (use `/list` to confirm)
+    - Check if email was caught in your spam folder
+    - Ensure the bot has permission to post in the channel
+    - Wait a few minutes - high volumes may be queued
+    - Check email size doesn't exceed limits (30MB total)
+
+    If the issue persists, contact [support@devit.software](mailto:support@devit.software).
+  </Accordion>
+
+  <Accordion title="Do emails appear instantly or is there a delay?">
+    Emails typically appear within seconds. However, delivery may be delayed due to:
+    - **Rate limiting**: 2 emails/second, 100/minute (varies by subscription)
+    - **Queue processing**: High-volume bursts are queued
+    - **Discord API limits**: Technical limitations of Discord's platform
+
+    All emails are delivered in order. Nothing is lost - just potentially delayed during high volume.
+  </Accordion>
+</AccordionGroup>
+
+## Features & Functionality
+
+<AccordionGroup>
+  <Accordion title="Can I reply to emails from Discord?">
+    Yes, when you enable the **Message Reply Option**:
+    1. Use `/list` command
+    2. Go to Settings → Message Reply Option
+    3. Enable the feature
+
+    Once enabled, team members can reply to emails directly from Discord, and those replies will be sent back to the original email sender.
+  </Accordion>
+
+  <Accordion title="Can I see the full HTML version of emails?">
+    Yes! Enable the **Web Version of Emails** feature:
+    1. Use `/list` command
+    2. Go to Settings → Web version of emails
+    3. Enable the feature
+
+    Each email will include a link to view the full HTML-formatted version in a browser. This is perfect for newsletters and richly formatted emails.
+  </Accordion>
+
+  <Accordion title="Can I customize how the sender's name appears?">
+    Yes, use the **Email Personalization** feature:
+    - Set a custom bot name to replace sender email addresses
+    - Configure sender avatars for brand consistency
+    - Choose whether to display email avatars
+
+    See our [Email Personalization guide](/email/features/personalization) for details.
+  </Accordion>
+
+  <Accordion title="Can I filter which emails get forwarded?">
+    While Email Bot forwards all emails sent to its unique address, you can control what gets sent to it:
+
+    - Use Gmail filters to forward only specific emails
+    - Set up rules in your email provider
+    - Create different bot integrations for different email types
+    - Use separate email addresses for different purposes
+
+    Email Bot itself doesn't have built-in filtering - control happens at the email provider level.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="What are the email size limitations?">
+    Email Bot has the following limits:
+    - **Headers + body combined**: Max 1MB
+    - **Email with attachments**: Max 30MB total
+    - **Attachments per email**: Maximum 20
+
+    Additionally, Discord has its own attachment size limits:
+    - Free servers: 8MB per file
+    - Boosted servers: Up to 50MB per file
+
+    Emails exceeding these limits may not be delivered or have attachments stripped.
+  </Accordion>
+
+  <Accordion title="What happens if I exceed the rate limit?">
+    Rate limits:
+    - 2 emails per second
+    - 100 emails per minute (varies by subscription)
+
+    If you receive more emails than this, they're **placed in a delivery queue** and sent as soon as capacity allows. No emails are lost - just temporarily delayed.
+
+    This ensures smooth operation and compliance with Discord's API limits.
+  </Accordion>
+
+  <Accordion title="What Discord permissions does the bot need?">
+    **Required permissions**:
+    - Read Messages/View Channels
+    - Send Messages
+    - Embed Links
+    - Attach Files
+
+    **Optional but recommended**:
+    - Manage Webhooks (for custom avatars)
+    - Read Message History (for reply functionality)
+
+    See our [Permissions guide](/email/configuration/permissions) for detailed setup.
+  </Accordion>
+
+  <Accordion title="Is my email data secure?">
+    Email Bot is designed with security in mind:
+    - **Unique email addresses**: Each channel has its own private email
+    - **No permanent storage**: Attachments aren't stored on our servers
+    - **Limited retention**: Email bodies stored for 3 months only
+    - **Discord infrastructure**: Actual emails appear in Discord's secure platform
+
+    We never share or sell email data to third parties.
+  </Accordion>
+</AccordionGroup>
+
+## Integration & Setup
+
+<AccordionGroup>
+  <Accordion title="Can I use this for customer support?">
+    Yes! Email Bot is perfect for customer support:
+    - Forward contact form submissions to a #support channel
+    - Team collaborates on responses in Discord
+    - Enable reply functionality for two-way communication
+    - Track conversation history in Discord threads
+
+    Many users integrate Email Bot with support forms, ticketing systems, and customer inquiries.
+  </Accordion>
+
+  <Accordion title="Can I use this with Zapier or other automation tools?">
+    Yes! Since Email Bot provides a real email address, it works with any service that can send emails:
+    - **Zapier**: Create zaps that email the bot
+    - **IFTTT**: Set up applets to trigger emails
+    - **Make (Integromat)**: Include email sending in workflows
+    - **Any automation tool**: As long as it can send emails
+
+    This makes Email Bot incredibly versatile for integrations.
+  </Accordion>
+
+  <Accordion title="Can I use this for newsletter subscriptions?">
+    Yes, you can subscribe the bot's email to newsletters. However, keep in mind:
+    - High-frequency emails may hit rate limits (queued, not lost)
+    - HTML newsletters are best viewed with Web Version enabled
+    - Consider channel organization for high-volume subscriptions
+    - Use separate channels for different newsletter types
+  </Accordion>
+</AccordionGroup>
+
+## Support & Feedback
+
+<AccordionGroup>
+  <Accordion title="If I have questions about the bot, how can I get help?">
+    You can get support in several ways:
+
+    1. **In-bot help**: Use `/help` command in any channel with the bot
+    2. **Email support**: [support@devit.software](mailto:support@devit.software)
+    3. **Discord server**: [Join our support server](https://discord.gg/sg72ENbAz4)
+    4. **Documentation**: Browse this docs site for detailed guides
+
+    Our support team typically responds within 24 hours on business days.
+  </Accordion>
+
+  <Accordion title="Where can I leave feedback about the bot?">
+    We'd love to hear your feedback!
+
+    - **top.gg**: [Leave a review](https://top.gg/bot/1106165894859735070)
+    - **Email**: [support@devit.software](mailto:support@devit.software)
+    - **Discord**: Share feedback in our [support server](https://discord.gg/sg72ENbAz4)
+
+    Your feedback helps us improve Email Bot for everyone.
+  </Accordion>
+
+  <Accordion title="Do you have any limitations I should know about?">
+    Yes, several limitations exist:
+
+    **Email size limits**:
+    - 1MB for headers + body
+    - 30MB total with attachments
+    - 20 attachments max
+
+    **Rate limits**:
+    - 2 emails/second
+    - 100 emails/minute
+
+    **Retention**:
+    - Email bodies stored for 3 months
+    - Attachments not stored (forwarded to Discord only)
+
+    See our [Rate Limits documentation](/email/configuration/rate-limits) for full details.
+  </Accordion>
+</AccordionGroup>
+
+## Billing & Subscription
+
+<AccordionGroup>
+  <Accordion title="Is Email Bot free to use?">
+    Email Bot offers both free and premium plans:
+    - **Free plan**: Basic email forwarding with standard rate limits
+    - **Premium plans**: Higher rate limits and priority delivery
+
+    Check the bot's top.gg page or use `/list` in Discord to see your current plan and limits.
+  </Accordion>
+
+  <Accordion title="What happens if I downgrade or cancel?">
+    If you downgrade or cancel:
+    - Existing integrations remain connected
+    - Rate limits revert to free tier levels
+    - Email addresses continue working
+    - No data is immediately deleted (3-month retention still applies)
+
+    You can upgrade again at any time to restore premium features.
+  </Accordion>
+</AccordionGroup>
+
+## Still Have Questions?
+
+If you didn't find your answer here:
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope" href="mailto:support@devit.software">
+    Email our support team for personalized help
+  </Card>
+  <Card title="Troubleshooting Guide" icon="wrench" href="/email/support/troubleshooting">
+    Check detailed troubleshooting steps
+  </Card>
+  <Card title="Quick Start Guide" icon="rocket" href="/email/quickstart">
+    Review the setup process
+  </Card>
+  <Card title="Discord Server" icon="discord" href="https://discord.gg/sg72ENbAz4">
+    Join our community for live support
+  </Card>
+</CardGroup>
+
+## Suggested Articles
+
+- [Welcome to Email Bot](/email/index)
+- [Quick Start Guide](/email/quickstart)
+- [Email Personalization](/email/features/personalization)
+- [Troubleshooting](/email/support/troubleshooting)

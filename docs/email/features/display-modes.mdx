@@ -1,0 +1,390 @@
+---
+title: Display Modes
+description: Customize how emails appear in your Discord channels with different display options.
+---
+
+Email Bot offers flexible display modes to match your workflow and channel needs. Choose how much email content to show and how to present it to your team.
+
+## Available Display Modes
+
+### Subject Only (Default)
+
+Clean, minimal display showing just the email subject line.
+
+**Best for**:
+- High-volume email channels
+- Quick scanning of multiple emails
+- Channels where detailed previews aren't needed
+- Keeping Discord messages compact
+
+**What you see**:
+```
+📧 New Email from: notifications@github.com
+Subject: [Repository] New pull request opened
+
+[View Full Email] [Show Details]
+```
+
+**Advantages**:
+- Clean, uncluttered channel
+- Fast visual scanning
+- Minimal Discord space used
+- Works well with thread organization
+
+**How to set**:
+This is the default mode. If you've enabled preview, you can disable it:
+
+<Steps>
+  <Step title="Run /list">
+    Type `/list` in the channel
+  </Step>
+  <Step title="Click Settings">
+    Click the **Settings** button
+  </Step>
+  <Step title="Select Email Preview">
+    Choose **Email Preview in Message**
+  </Step>
+  <Step title="Disable">
+    Turn off the preview option
+  </Step>
+</Steps>
+
+### Subject + Preview
+
+Display subject with a preview of the email content.
+
+**Best for**:
+- Support channels where context is important
+- Moderate email volume
+- Team collaboration on email responses
+- Quick decision-making without opening full email
+
+**What you see**:
+```
+📧 New Email from: customer@example.com
+Subject: Question about order #12345
+
+Preview: Hi, I placed an order yesterday (order #12345)
+and I'm wondering when it will ship. I need it before
+Friday for an event. Can you provide an update?
+
+[View Full Email] [Show Details]
+```
+
+**Advantages**:
+- Immediate context without clicking
+- Team can quickly assess importance
+- Reduces need to open full emails
+- Better for collaboration
+
+**Character limit**:
+- Approximately 200-300 characters shown
+- Truncated with "..." if longer
+- Plain text extraction from HTML emails
+
+**How to enable**:
+<Steps>
+  <Step title="Run /list">
+    Type `/list` in the channel
+  </Step>
+  <Step title="Click Settings">
+    Click the **Settings** button
+  </Step>
+  <Step title="Select Email Preview">
+    Choose **Email Preview in Message**
+  </Step>
+  <Step title="Enable">
+    Turn on the preview option
+  </Step>
+  <Step title="Test">
+    Send a test email to verify preview appears
+  </Step>
+</Steps>
+
+### Web Version Link
+
+Include a clickable link to view the full HTML email in a browser.
+
+**Best for**:
+- Marketing emails with complex designs
+- Newsletters with images and formatting
+- Invoices and receipts
+- Any HTML-rich content
+
+**What you see**:
+```
+📧 New Email from: newsletter@company.com
+Subject: Weekly Newsletter - March Edition
+
+[View Full Email in Browser] 🌐
+```
+
+**When clicked**:
+Opens a web page displaying the email exactly as designed, including:
+- Full HTML rendering
+- Embedded images
+- Original styling and colors
+- Responsive layouts
+- Interactive elements
+
+**Advantages**:
+- Perfect rendering of designed emails
+- Preserves all formatting
+- Works on any device with browser
+- Shareable link
+
+**How to enable**:
+<Steps>
+  <Step title="Access Settings">
+    Via `/list` → **Settings** button
+  </Step>
+  <Step title="Select Web Version">
+    Choose **Web Version of Emails**
+  </Step>
+  <Step title="Enable">
+    Turn on the setting
+  </Step>
+  <Step title="Confirm">
+    Bot confirms activation
+  </Step>
+</Steps>
+
+<Note>
+Web version links expire after 30 days for security. Download or save important emails within this timeframe.
+</Note>
+
+## Combining Display Options
+
+You can enable multiple display features simultaneously for the best experience:
+
+### Recommended Combination
+
+**Enable both**: Subject + Preview + Web Version Link
+
+**Result**:
+```
+📧 New Email from: billing@service.com
+Subject: Invoice #2024-03-15
+
+Preview: Your monthly subscription invoice is ready.
+Amount due: $49.99. Due date: March 30, 2024.
+
+[View Full Email in Browser] 🌐
+[Show Details] [Reply]
+```
+
+**Benefits**:
+- Quick preview for immediate context
+- Full HTML view for complete details
+- Best of both worlds
+
+## Content Handling
+
+### Plain Text Emails
+
+**How displayed**:
+- Subject shown in header
+- Preview shows actual email text
+- No special formatting needed
+
+**Example**:
+```
+📧 New Email from: alerts@server.com
+Subject: Server CPU usage high
+
+Preview: WARNING: Server #5 CPU usage has exceeded
+80% threshold. Current usage: 87%. Time: 14:32 UTC.
+```
+
+### HTML Emails
+
+**How displayed**:
+- Subject shown in header
+- Preview extracts text from HTML (no images)
+- Web version link shows full HTML rendering
+
+**Example**:
+```
+📧 New Email from: marketing@store.com
+Subject: Spring Sale - 30% Off Everything! 🌸
+
+Preview: Spring has arrived! Enjoy 30% off all
+products this weekend only. Shop now to save big...
+
+[View Full Email in Browser] 🌐
+```
+
+<Tip>
+For HTML emails, enable "Web Version of Emails" setting to see the full designed version with images and formatting.
+</Tip>
+
+### Emails with Attachments
+
+**How displayed**:
+- Attachments appear as downloadable files below email content
+- File name, size, and type shown
+- Click to download directly in Discord
+
+**Example**:
+```
+📧 New Email from: hr@company.com
+Subject: Updated Employee Handbook
+
+Preview: Please review the updated employee handbook
+attached to this email. Changes are effective...
+
+📎 Attachments:
+• employee-handbook-2024.pdf (2.3 MB)
+• acknowledgment-form.docx (45 KB)
+```
+
+**Attachment limits**:
+- Discord free servers: 8 MB per file
+- Discord Nitro boosted servers: 50 MB per file
+- Maximum 20 attachments per email
+
+## Personalization Options
+
+### Custom Bot Name
+
+Change the bot's display name when posting emails.
+
+**Default**: Sender's email address
+**Custom**: Your chosen name (e.g., "Support Inbox", "Notifications", "Team Alerts")
+
+**How to set**:
+<Steps>
+  <Step title="Open Settings">
+    Via `/list` → **Settings**
+  </Step>
+  <Step title="Select Personalization">
+    Choose **Email Personalization**
+  </Step>
+  <Step title="Set Bot Name">
+    Enter your preferred bot name
+  </Step>
+  <Step title="Save">
+    Confirm changes
+  </Step>
+</Steps>
+
+**Example**:
+- **Before**: Email posted by "notifications@github.com"
+- **After**: Email posted by "GitHub Notifications"
+
+### Custom Avatar
+
+Set a custom image for the bot when posting emails.
+
+**How to set**:
+1. Upload image to image hosting service (Discord, Imgur, etc.)
+2. Copy direct image URL
+3. In Settings → Email Personalization
+4. Paste image URL in avatar field
+5. Save
+
+**Requirements**:
+- Bot must have **Manage Webhooks** permission
+- Image must be publicly accessible URL
+- Recommended size: 128x128 pixels or larger
+- Supported formats: JPG, PNG, GIF
+
+**Use cases**:
+- Brand consistency (company logo)
+- Visual organization (different icons for different email types)
+- Team recognition (familiar avatar for specific channels)
+
+<Warning>
+Personalization requires **Manage Webhooks** permission. Grant this permission in Discord channel settings → Permissions → Email Bot.
+</Warning>
+
+## Display Mode Best Practices
+
+<CardGroup cols={2}>
+  <Card title="High Volume Channels" icon="gauge-high">
+    Use "Subject Only" to keep channel clean and scannable
+  </Card>
+  <Card title="Support Channels" icon="headset">
+    Enable "Subject + Preview" for immediate context
+  </Card>
+  <Card title="Marketing Emails" icon="bullhorn">
+    Enable "Web Version" to see full designed content
+  </Card>
+  <Card title="Alert Channels" icon="bell">
+    Use "Subject + Preview" for quick incident assessment
+  </Card>
+</CardGroup>
+
+## Channel Organization Tips
+
+### Use Thread Organization
+
+<Steps>
+  <Step title="Enable Threads">
+    Set Discord channel to create threads for each email
+  </Step>
+  <Step title="Automatic Threading">
+    Each email becomes its own thread
+  </Step>
+  <Step title="Reply in Threads">
+    Team discussions stay organized per email
+  </Step>
+</Steps>
+
+### Create Dedicated Channels
+
+Organize emails by purpose:
+- `#support-emails` - Customer inquiries (Subject + Preview)
+- `#alerts` - Server monitoring (Subject Only)
+- `#billing` - Invoices and receipts (Web Version enabled)
+- `#newsletters` - Marketing content (Web Version enabled)
+
+### Use Channel Topics
+
+Set channel topic to include:
+- Email address for the channel
+- Purpose of the email integration
+- Any special instructions
+
+**Example**:
+```
+Channel topic:
+📧 support@yourdomain.com | Customer support inquiries
+Reply to emails using thread replies
+```
+
+## Testing Display Modes
+
+Before finalizing your setup, test with different email types:
+
+<Steps>
+  <Step title="Send Plain Text Email">
+    Test basic text-only email to verify subject and preview
+  </Step>
+  <Step title="Send HTML Email">
+    Test formatted email to check web version rendering
+  </Step>
+  <Step title="Send with Attachments">
+    Verify attachment display and download functionality
+  </Step>
+  <Step title="Adjust Settings">
+    Refine display mode based on what works best
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Commands Reference" icon="terminal" href="/email/features/commands">
+    Learn all available bot commands
+  </Card>
+  <Card title="Use Cases" icon="lightbulb" href="/email/features/use-cases">
+    Discover common integration patterns
+  </Card>
+  <Card title="Permissions Setup" icon="shield" href="/email/configuration/permissions">
+    Configure optimal Discord permissions
+  </Card>
+  <Card title="FAQ" icon="question" href="/email/support/faq">
+    Common questions about display options
+  </Card>
+</CardGroup>

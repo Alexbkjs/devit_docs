@@ -1,0 +1,138 @@
+---
+title: Quick Start Guide
+description: Learn how to connect Email Bot to your Discord channel and start receiving emails in minutes.
+---
+
+This guide will walk you through setting up Email Bot and creating your first email integration. You'll be forwarding emails to Discord in just a few minutes.
+
+## Prerequisites
+
+- Discord server where you have permission to add bots
+- Administrator or appropriate role permissions
+
+## Video Tutorial
+
+<iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/Kz8jVwJlIxM"
+  title="How to set up Discord Email Bot"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+## Setup Steps
+
+### Step 1: Invite Email Bot
+
+<Steps>
+  <Step title="Visit Bot Page">
+    Go to the [Email Bot page on top.gg](https://top.gg/bot/1106165894859735070)
+  </Step>
+
+  <Step title="Click Invite">
+    Click the **Invite** button to add the bot to your server
+  </Step>
+
+  <Step title="Select Server">
+    Choose the Discord server where you want to add the bot
+  </Step>
+
+  <Step title="Authorize Permissions">
+    Review and authorize the requested permissions
+
+    <Note>
+    Email Bot needs permissions to send messages, embed links, and attach files to forward emails properly.
+    </Note>
+  </Step>
+
+  <Step title="Complete Setup">
+    Click **Authorize** to complete the bot installation
+  </Step>
+</Steps>
+
+### Step 2: Connect to a Channel
+
+<Steps>
+  <Step title="Open Target Channel">
+    Navigate to the Discord channel where you want to receive emails
+  </Step>
+
+  <Step title="Use Connect Command">
+    Type `/connect` in the message field and press Enter
+  </Step>
+
+  <Step title="Get Your Email Address">
+    The bot will instantly create a **unique email address** for that channel
+
+    The email address will look like: `channel-id@email.devit.software`
+  </Step>
+
+  <Step title="Copy the Email">
+    Save this email address - you'll use it to subscribe to notifications or forward emails
+  </Step>
+</Steps>
+
+<Tip>
+Each channel gets its own unique email address. You can connect the bot to multiple channels for different purposes.
+</Tip>
+
+### Step 3: Test the Integration
+
+<Steps>
+  <Step title="Send a Test Email">
+    From your personal email, send a test message to the bot's email address
+  </Step>
+
+  <Step title="Check Discord">
+    Within moments, the email should appear in your Discord channel
+  </Step>
+
+  <Step title="Verify Content">
+    Confirm the email subject and any attachments were delivered correctly
+  </Step>
+</Steps>
+
+## Customize Display (Optional)
+
+By default, emails show subject only. To enable content preview:
+
+<Steps>
+  <Step title="Use /list Command">
+    Type `/list` in the channel
+  </Step>
+  <Step title="Open Settings">
+    Click **Settings** button
+  </Step>
+  <Step title="Configure Display">
+    Choose your preferred options:
+    - Email Preview in Message
+    - Web Version of Emails
+    - Email Personalization
+  </Step>
+</Steps>
+
+<Card title="Display Modes Guide" icon="eye" href="/email/features/display-modes">
+  Learn about all display customization options
+</Card>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Bot Commands" icon="terminal" href="/email/features/commands">
+    Learn all available commands
+  </Card>
+  <Card title="Display Modes" icon="eye" href="/email/features/display-modes">
+    Customize email appearance
+  </Card>
+  <Card title="Use Cases" icon="lightbulb" href="/email/features/use-cases">
+    Discover practical integrations
+  </Card>
+  <Card title="Permissions" icon="shield" href="/email/configuration/permissions">
+    Configure Discord permissions
+  </Card>
+  <Card title="FAQ" icon="question" href="/email/support/faq">
+    Common questions
+  </Card>
+</CardGroup>

@@ -1,0 +1,225 @@
+---
+title: Frequently Asked Questions
+description: Find answers to common questions about using Lably for product labels and badges.
+---
+
+Get quick answers to the most frequently asked questions about Lably.
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="Can I add both label and badge to the same product?">
+    Yes! You can add both labels and badges to the same product. Labels are displayed on the product image, while badges appear in the product content area. This combination can be very effective for highlighting multiple product attributes.
+  </Accordion>
+
+  <Accordion title="Can I add multiple labels or badges?">
+    Absolutely. You can create as many labels and badges as you need (up to 3 on the Free plan, unlimited on paid plans). Multiple labels can appear on the same product if they meet their respective display conditions.
+  </Accordion>
+
+  <Accordion title="Will Lably slow down my store?">
+    No. Lably is optimized for performance and uses efficient loading techniques to ensure minimal impact on your store's speed. Labels are rendered using lightweight code that loads asynchronously.
+  </Accordion>
+
+  <Accordion title="Is Lably compatible with my theme?">
+    Yes! Lably works with all Shopify themes, including custom themes. The app uses smart detection to find product images and content areas. If you encounter any issues, you can use custom selectors for precise control.
+  </Accordion>
+
+  <Accordion title="Can I use Lably with page builders like PageFly?">
+    Yes, Lably is compatible with popular page builders. You may need to use custom selectors to ensure labels appear correctly on page builder elements. Check our [custom selectors guide](/lably/configuration/custom-selectors) for details.
+  </Accordion>
+</AccordionGroup>
+
+## Customization
+
+<AccordionGroup>
+  <Accordion title="How do I customize my badge (change color, shape, position)?">
+    When you create or edit a label or badge, you'll see a customization panel on the left side. In the **Styles** section, you can customize:
+    - Size and dimensions
+    - Background and text colors
+    - Font family and size
+    - Shape and border radius
+    - Shadows and effects
+    - Position and margins
+
+    All changes are previewed in real-time on the right side of the screen.
+  </Accordion>
+
+  <Accordion title="How do I translate text on my labels?">
+    To add translations:
+    1. Click **Label** in the left-side menu
+    2. Click **Locales** next to the text field
+    3. Select your target language
+    4. Enter the translated text
+    5. Click **Apply**
+
+    Labels will automatically display in the customer's language based on their locale. See our [Localization guide](/lably/configuration/localization) for more details.
+  </Accordion>
+
+  <Accordion title="Can I use custom fonts?">
+    Yes! You can use any Google Font or upload your own custom fonts. Custom fonts allow you to maintain perfect brand consistency. Check our [Custom Fonts guide](/lably/configuration/custom-fonts) for step-by-step instructions.
+  </Accordion>
+
+  <Accordion title="How do I make labels clickable?">
+    To add a link to your label:
+    1. Click **Link** in the left-side menu
+    2. Enter the URL you want customers to visit
+    3. Choose whether to open in the same window or new tab
+
+    You can link to product pages, collections, external URLs, or any page on your site.
+  </Accordion>
+</AccordionGroup>
+
+## Display Rules & Conditions
+
+<AccordionGroup>
+  <Accordion title="Can I display labels to customers based on their location?">
+    Yes! Go to **Display Conditions** → **Add condition** → **Visitor country**. You can then include or exclude specific countries where you want the label to appear. This is perfect for region-specific promotions or compliance badges.
+  </Accordion>
+
+  <Accordion title="Can I display labels and badges for specific products only?">
+    Absolutely. The **Display Conditions** feature lets you target specific products using:
+    - **Product tags**: Show labels on products with specific tags
+    - **Collections**: Target entire collections
+    - **Product type**: Filter by product type
+    - **Vendor**: Show labels for specific brands
+    - **Specific products**: Choose individual products
+    - **Price range**: Target products within price ranges
+    - **Inventory levels**: Show labels based on stock quantity
+
+    See our [Conditions guide](/lably/features/conditions) for examples.
+  </Accordion>
+
+  <Accordion title="How do I schedule labels and badges display?">
+    Use the **Week Schedule** option in the left-side menu. You can:
+    - Enable or disable specific days
+    - Set different time ranges for each day
+    - Create schedules for business hours only
+    - Match promotional timing
+
+    By default, all days are enabled for 24/7 display.
+  </Accordion>
+
+  <Accordion title="How do I display labels for a specific time period?">
+    Use the **Display Period** option:
+    1. Click **Display period** in the left menu
+    2. Disable the "All time" option
+    3. Select start and end dates
+
+    This is perfect for seasonal promotions, flash sales, or limited-time offers. Labels will automatically appear and disappear based on your schedule.
+  </Accordion>
+
+  <Accordion title="Can I show labels only on sale items?">
+    Yes! Use the **Compare at price** condition:
+    1. Go to **Display Conditions**
+    2. Click **Add condition**
+    3. Select **Compare at price**
+    4. Configure to show when compare-at price exists
+
+    This ensures labels only appear on products that are on sale.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="Can I apply custom CSS selectors?">
+    Yes! Custom selectors give you precise control over where labels appear. This is useful for:
+    - Custom themes
+    - Page builders
+    - Non-standard product layouts
+    - Special positioning requirements
+
+    See our [Custom Selectors guide](/lably/configuration/custom-selectors) for implementation details.
+  </Accordion>
+
+  <Accordion title="Do labels work on mobile devices?">
+    Yes! All labels are fully responsive and automatically adapt to mobile devices. You can also customize label sizes and positions specifically for mobile views if needed.
+  </Accordion>
+
+  <Accordion title="Will labels appear in my product images on social media?">
+    No. Lably labels are displayed dynamically on your website only. They don't modify your actual product images, so they won't appear when products are shared on social media or in Shopify's product feed.
+  </Accordion>
+
+  <Accordion title="Can I export or backup my labels?">
+    Currently, labels are stored securely in the Lably app. If you need to migrate labels or create backups, contact our support team at support@devit.software.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="My labels are not showing - what should I do?">
+    If labels aren't appearing, check the following:
+
+    1. **Label is saved and enabled**: Ensure you clicked Save
+    2. **Display conditions**: Verify conditions match your products
+    3. **Display period**: Check that current date falls within the period
+    4. **Week schedule**: Ensure current day/time is enabled
+    5. **Page visibility**: Confirm label is enabled for the current page
+    6. **Theme compatibility**: Try using custom selectors if needed
+
+    See our [Troubleshooting guide](/lably/support/troubleshooting) for detailed solutions.
+  </Accordion>
+
+  <Accordion title="Labels are showing in the wrong position">
+    If labels appear in unexpected locations:
+    - Use the **Position** controls to adjust placement
+    - Try different position presets (top-left, top-right, etc.)
+    - Adjust margins for fine-tuning
+    - Consider using custom selectors for precise control
+
+    Different themes may have different image container structures.
+  </Accordion>
+
+  <Accordion title="Labels look different than the preview">
+    Preview shows how labels will appear on your storefront, but some factors can affect final display:
+    - Browser caching (clear cache and reload)
+    - Theme CSS overrides (use custom CSS if needed)
+    - Mobile vs desktop view (different responsive breakpoints)
+
+    If issues persist, contact support with screenshots.
+  </Accordion>
+</AccordionGroup>
+
+## Billing & Account
+
+<AccordionGroup>
+  <Accordion title="How does billing work?">
+    Lably billing is handled through Shopify:
+    - Charges appear on your Shopify bill
+    - Monthly recurring subscription
+    - Prorated when changing plans
+    - Cancel anytime without penalty
+
+    See our [Pricing page](/lably/pricing) for plan details.
+  </Accordion>
+
+  <Accordion title="What happens to my labels if I uninstall the app?">
+    If you uninstall Lably:
+    - All labels immediately stop displaying
+    - Your label configurations are saved for 30 days
+    - Reinstalling within 30 days restores all labels
+    - After 30 days, label data is permanently deleted
+
+    Consider downgrading to the Free plan instead of uninstalling if you might return.
+  </Accordion>
+</AccordionGroup>
+
+## Still Have Questions?
+
+If you didn't find your answer here:
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope" href="mailto:support@devit.software">
+    Email our support team for personalized help
+  </Card>
+  <Card title="Troubleshooting Guide" icon="wrench" href="/lably/support/troubleshooting">
+    Check our detailed troubleshooting steps
+  </Card>
+  <Card title="Quick Start Guide" icon="rocket" href="/lably/quickstart">
+    Learn the basics of creating labels
+  </Card>
+  <Card title="Conditions Guide" icon="filter" href="/lably/features/conditions">
+    Master advanced display conditions
+  </Card>
+</CardGroup>

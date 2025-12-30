@@ -1,0 +1,356 @@
+---
+title: Bot Commands
+description: Learn all available Email Bot slash commands and how to use them effectively.
+---
+
+Email Bot uses Discord's slash command system for all interactions. Here's a complete reference of available commands.
+
+## Core Commands
+
+### /connect
+
+Creates a unique email address for the current channel.
+
+**Usage**:
+```
+/connect
+```
+
+**What happens**:
+1. Bot generates a unique email address for the channel
+2. Returns the email address in format: `channel-id@email.devit.software`
+3. Activates email forwarding to that channel
+4. No configuration needed - works immediately
+
+**Example**:
+```
+You: /connect
+
+Bot: ✅ Email connection created!
+
+Your channel email address:
+📧 123456789@email.devit.software
+
+Any emails sent to this address will appear in this channel.
+```
+
+**Notes**:
+- Each channel gets its own unique email address
+- You can connect the bot to multiple channels
+- The email address never expires unless you disconnect
+- If already connected, shows existing email address
+
+### /list
+
+Displays connection details, settings, and email statistics.
+
+**Usage**:
+```
+/list
+```
+
+**What it shows**:
+- Your channel's unique email address
+- Connection status (active/inactive)
+- Email statistics:
+  - Last 30 days email count
+  - Current billing period count
+- Quick access buttons:
+  - **Settings**: Configure display options
+  - **Disconnect**: Remove email integration
+
+**Example**:
+```
+You: /list
+
+Bot: 📬 Email Connection Details
+
+Email Address: 123456789@email.devit.software
+Status: Active ✅
+
+Statistics:
+• Last 30 days: 47 emails
+• Current billing period: 32 emails
+
+[Settings] [Disconnect]
+```
+
+**When to use**:
+- Check your email address
+- View email volume statistics
+- Access settings
+- Verify connection status
+
+### /help
+
+Get help with bot commands and access support resources.
+
+**Usage**:
+```
+/help
+```
+
+**Provides**:
+- Quick command reference
+- Link to full documentation
+- Support contact information
+- Discord support server invite
+- Top.gg bot page link
+
+**Example**:
+```
+You: /help
+
+Bot: 🤖 Email Bot Help
+
+Available Commands:
+• /connect - Create email connection
+• /list - View connection details
+• /help - Show this help message
+
+📚 Full Documentation: docs.devit.software/email
+💬 Support Server: discord.gg/sg72ENbAz4
+📧 Email: support@devit.software
+```
+
+## Interactive Settings
+
+Settings are accessed through the `/list` command's **Settings** button.
+
+### Email Preview in Message
+
+Control whether email content preview appears in Discord messages.
+
+**Options**:
+- **Disabled** (default): Shows subject line only
+- **Enabled**: Shows subject + preview of email content
+
+**How to toggle**:
+<Steps>
+  <Step title="Run /list">
+    Type `/list` in the channel
+  </Step>
+  <Step title="Click Settings">
+    Click the **Settings** button
+  </Step>
+  <Step title="Select Email Preview">
+    Choose **Email Preview in Message**
+  </Step>
+  <Step title="Enable/Disable">
+    Toggle the setting on or off
+  </Step>
+  <Step title="Confirm">
+    Bot confirms the change
+  </Step>
+</Steps>
+
+**When enabled**:
+```
+📧 New Email from: sender@example.com
+Subject: Your order has shipped
+
+Preview: Hi John, your order #12345 has been shipped
+and will arrive in 2-3 business days...
+
+[View Full Email]
+```
+
+**When disabled**:
+```
+📧 New Email from: sender@example.com
+Subject: Your order has shipped
+
+[View Full Email]
+```
+
+### Web Version of Emails
+
+Include a link to view the full HTML version of emails in a browser.
+
+**Options**:
+- **Disabled** (default): No web link provided
+- **Enabled**: Adds "View Full Email" link
+
+**Use cases**:
+- HTML-rich marketing emails
+- Newsletters with complex formatting
+- Emails with embedded images
+- Invoice PDFs and billing statements
+
+**How to enable**:
+<Steps>
+  <Step title="Open Settings">
+    Via `/list` → **Settings**
+  </Step>
+  <Step title="Select Web Version">
+    Choose **Web Version of Emails**
+  </Step>
+  <Step title="Enable">
+    Turn on the setting
+  </Step>
+</Steps>
+
+**Result**:
+Emails will include a clickable link to view the full HTML version in a web browser, preserving all formatting, images, and styling.
+
+### Email Personalization
+
+Customize how the bot appears when posting emails.
+
+**Options**:
+- **Default**: Shows sender email address as bot name
+- **Custom**: Set your own bot name and avatar
+
+**How to configure**:
+<Steps>
+  <Step title="Open Settings">
+    Via `/list` → **Settings**
+  </Step>
+  <Step title="Select Personalization">
+    Choose **Email Personalization**
+  </Step>
+  <Step title="Configure">
+    Set custom bot name and avatar URL (optional)
+  </Step>
+  <Step title="Save">
+    Bot updates webhook settings
+  </Step>
+</Steps>
+
+<Note>
+Requires **Manage Webhooks** permission for the bot in the channel. If missing, the setting won't work.
+</Note>
+
+**Example**:
+- **Before**: Email appears from "sender@example.com"
+- **After**: Email appears from "Support Team" with custom avatar
+
+### Reply to Emails (Premium)
+
+Enable two-way communication by replying to emails directly from Discord.
+
+**How it works**:
+1. Email arrives in Discord channel
+2. Team member replies to the Discord message
+3. Reply is sent back to the original email sender
+4. Creates conversation thread
+
+**How to enable**:
+<Steps>
+  <Step title="Open Settings">
+    Via `/list` → **Settings**
+  </Step>
+  <Step title="Select Reply Option">
+    Choose **Reply to Emails**
+  </Step>
+  <Step title="Enable">
+    Activate the feature (may require premium plan)
+  </Step>
+</Steps>
+
+<Warning>
+Reply functionality may be limited to premium subscriptions. Check your plan details.
+</Warning>
+
+## Command Permissions
+
+### Who Can Use Commands
+
+By default, anyone with these Discord permissions can use Email Bot commands:
+
+- **Server Administrators**: Full access to all commands
+- **Channel Managers**: Can use commands in channels they manage
+- **Regular Members**: Can use /help, /list (view-only)
+
+### Restricting Access
+
+To limit who can create email connections:
+
+<Steps>
+  <Step title="Server Settings">
+    Open Discord Server Settings → Integrations
+  </Step>
+  <Step title="Find Email Bot">
+    Locate Email Bot in the integrations list
+  </Step>
+  <Step title="Configure Permissions">
+    Set which roles can use `/connect` command
+  </Step>
+  <Step title="Save">
+    Apply permission changes
+  </Step>
+</Steps>
+
+## Command Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Use /list Often" icon="list">
+    Check email volume and verify settings regularly
+  </Card>
+  <Card title="Test After Changes" icon="flask">
+    Send test email after adjusting settings
+  </Card>
+  <Card title="Document Email Addresses" icon="book">
+    Keep a record of which channels have which emails
+  </Card>
+  <Card title="Review Statistics" icon="chart-line">
+    Monitor email volume to optimize organization
+  </Card>
+</CardGroup>
+
+## Troubleshooting Commands
+
+<AccordionGroup>
+  <Accordion title="Command not working">
+    **Possible causes**:
+    - Bot lacks permissions in the channel
+    - Discord API temporarily unavailable
+    - Bot offline or restarting
+
+    **Solutions**:
+    - Verify bot has "Use Application Commands" permission
+    - Wait a moment and try again
+    - Check bot status on top.gg
+  </Accordion>
+
+  <Accordion title="/connect not creating email">
+    **Possible causes**:
+    - Channel already connected
+    - Bot lacks required permissions
+    - Rate limit reached
+
+    **Solutions**:
+    - Use `/list` to check if already connected
+    - Verify bot permissions (Send Messages, Embed Links)
+    - Wait a few minutes and retry
+  </Accordion>
+
+  <Accordion title="Settings not saving">
+    **Possible causes**:
+    - Missing Manage Webhooks permission
+    - Settings require premium plan
+    - Discord permissions not updated
+
+    **Solutions**:
+    - Grant Manage Webhooks permission to bot
+    - Check if setting requires subscription upgrade
+    - Re-invite bot with full permissions
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Display Modes" icon="eye" href="/email/features/display-modes">
+    Customize how emails appear in Discord
+  </Card>
+  <Card title="Use Cases" icon="lightbulb" href="/email/features/use-cases">
+    Discover common integration patterns
+  </Card>
+  <Card title="Permissions" icon="shield" href="/email/configuration/permissions">
+    Configure optimal Discord permissions
+  </Card>
+  <Card title="FAQ" icon="question" href="/email/support/faq">
+    Find answers to common questions
+  </Card>
+</CardGroup>

@@ -1,0 +1,421 @@
+---
+title: Quick Start Guide
+description: Learn how to create your first workflow in React Flow and start automating your Shopify store tasks.
+---
+
+This guide will walk you through creating your first workflow in React Flow. You'll learn the basics of triggers, conditions, and actions to automate common store tasks.
+
+## Prerequisites
+
+- React Flow app installed from the [Shopify App Store](https://apps.shopify.com/react-flow)
+- Access to your Shopify store admin panel
+
+## Understanding Workflows
+
+A **workflow** is an automated sequence of actions that runs when specific conditions are met. Every workflow consists of three components:
+
+1. **Trigger**: The event that starts the workflow
+2. **Condition** (optional): Rules that determine if actions should execute
+3. **Action**: What happens when the workflow runs
+
+## Create Your First Workflow
+
+Let's create a workflow that tags VIP customers based on their spending.
+
+### Step 1: Access React Flow Dashboard
+
+<Steps>
+  <Step title="Open React Flow">
+    From your Shopify admin, go to Apps → React Flow
+  </Step>
+
+  <Step title="View Dashboard">
+    You'll see your workflow dashboard with three tabs:
+    - **All**: All workflows
+    - **On**: Active workflows
+    - **Off**: Inactive workflows
+  </Step>
+</Steps>
+
+### Step 2: Create New Workflow
+
+<Steps>
+  <Step title="Click Create New">
+    Click the **Create new** button in the top right corner
+  </Step>
+
+  <Step title="Enter Workflow Builder">
+    You'll be taken to the visual workflow builder interface
+  </Step>
+</Steps>
+
+### Step 3: Select a Trigger
+
+<Steps>
+  <Step title="Choose Trigger Type">
+    In the right panel, browse or search for triggers
+
+    For this example, select **Order paid** trigger
+  </Step>
+
+  <Step title="Understand the Trigger">
+    This workflow will start every time a customer completes payment
+
+    <Note>
+    The trigger is the foundation of your workflow. Choose carefully based on when you want automation to occur.
+    </Note>
+  </Step>
+</Steps>
+
+### Step 4: Add a Condition
+
+<Steps>
+  <Step title="Click Plus Icon">
+    Click the **+** icon below the trigger
+  </Step>
+
+  <Step title="Select Condition">
+    Click the **Condition** button
+  </Step>
+
+  <Step title="Choose Condition Type">
+    In the right panel, navigate to:
+
+    **Order / Customer / Amount spent / Average order amount**
+  </Step>
+
+  <Step title="Set Condition Value">
+    In the right field:
+    - Select matcher: **greater than or equal to**
+    - Enter value: **750**
+
+    This checks if the customer's average order amount is $750 or more
+  </Step>
+</Steps>
+
+### Step 5: Add an Action
+
+<Steps>
+  <Step title="Click Plus on 'Then' Branch">
+    Click the **+** icon next to **"then"** (this runs when condition is met)
+  </Step>
+
+  <Step title="Click Action Button">
+    Select **Action** from the options
+  </Step>
+
+  <Step title="Choose Action Type">
+    In the right panel, find and select:
+
+    **Add customer tags**
+  </Step>
+
+  <Step title="Enter Tag Name">
+    In the tag field on the right, enter: **VIP**
+  </Step>
+</Steps>
+
+### Step 6: Save and Enable
+
+<Steps>
+  <Step title="Save Workflow">
+    Click **Save** in the top panel
+  </Step>
+
+  <Step title="Name Your Workflow">
+    Enter a descriptive name like "Tag VIP Customers"
+  </Step>
+
+  <Step title="Enable Workflow">
+    Click the **Turn on** or **Enable** button
+
+    Your workflow is now live!
+  </Step>
+</Steps>
+
+## How the Workflow Works
+
+Now when a customer places an order:
+
+1. **Trigger fires**: Order payment is completed
+2. **Condition checked**: Is average order amount ≥ $750?
+3. **If YES**: Customer gets tagged with "VIP"
+4. **If NO**: No action taken
+
+## Add More Complexity
+
+Let's enhance the workflow with additional customer tiers.
+
+### Add Silver Tier
+
+<Steps>
+  <Step title="Click Plus on 'Otherwise'">
+    On the "otherwise" branch (when first condition fails), click **+**
+  </Step>
+
+  <Step title="Add Another Condition">
+    Select **Condition**
+  </Step>
+
+  <Step title="Set Amount Range">
+    Add two conditions:
+    - Average order amount **greater than or equal to** 500
+    - Average order amount **less than** 750
+
+    Click **Add another condition** to combine them
+  </Step>
+
+  <Step title="Add Silver Tag">
+    On the "then" branch, add action: **Add customer tags**
+
+    Enter tag: **SILVER**
+  </Step>
+</Steps>
+
+### Add Bronze Tier
+
+<Steps>
+  <Step title="Add Final Action">
+    On the "otherwise" branch of the second condition, add action: **Add customer tags**
+
+    Enter tag: **BRONZE**
+  </Step>
+
+  <Step title="Save Changes">
+    Click **Save** to update your workflow
+  </Step>
+</Steps>
+
+Now all customers are automatically categorized:
+- **VIP**: Average order ≥ $750
+- **SILVER**: Average order $500-$749
+- **BRONZE**: Average order < $500
+
+## Add a Delay
+
+Delays let you schedule when actions execute.
+
+<Steps>
+  <Step title="Click Plus Icon">
+    Where you want to add a delay, click **+**
+  </Step>
+
+  <Step title="Click Delay Button">
+    Select **Delay** from the options
+  </Step>
+
+  <Step title="Set Time Interval">
+    Choose the time type (hours or days) and enter the value
+
+    Example: 2 hours
+  </Step>
+
+  <Step title="Add Action After Delay">
+    Click **+** after the delay to add an action that executes after waiting
+  </Step>
+</Steps>
+
+## Send an Email
+
+Let's send a thank you email to VIP customers.
+
+<Steps>
+  <Step title="Add Delay">
+    After the "Add VIP tag" action, add a 2-hour delay
+  </Step>
+
+  <Step title="Add Email Action">
+    After the delay, add action: **Send email**
+
+    Find it under **External** actions
+  </Step>
+
+  <Step title="Configure Email">
+    In the right panel, fill in:
+    - **To**: Use variables like `{{customer.email}}`
+    - **Subject**: "Thank You, VIP Customer!"
+    - **Message**: Write your personalized message
+  </Step>
+
+  <Step title="Save and Test">
+    Save your workflow and test with a real order
+  </Step>
+</Steps>
+
+## Using Variables
+
+Variables insert dynamic data into your workflows.
+
+Common variables:
+- `{{customer.email}}` - Customer's email
+- `{{customer.first_name}}` - Customer's first name
+- `{{order.total_price}}` - Order total
+- `{{order.order_number}}` - Order number
+- `{{product.title}}` - Product name
+
+<Tip>
+Hover over fields in the workflow builder to see available variables for that action.
+</Tip>
+
+## Use Templates
+
+Don't want to build from scratch? Start with a template.
+
+<Steps>
+  <Step title="Go to Templates Tab">
+    In the React Flow dashboard, click the **Templates** tab
+  </Step>
+
+  <Step title="Browse Templates">
+    View ready-to-use workflows for common tasks
+  </Step>
+
+  <Step title="Preview Template">
+    Click the eye icon to preview the workflow
+  </Step>
+
+  <Step title="Enable Template">
+    Click on the template to add it to your workflows
+
+    You can customize it after enabling
+  </Step>
+</Steps>
+
+Popular templates:
+- High-risk order alert
+- Low inventory notifications
+- Unfulfilled order reminders
+- Customer welcome emails
+
+<Card title="View All Templates" icon="grid" href="/reactflow/features/templates">
+  Explore workflow templates
+</Card>
+
+## Monitor Your Workflows
+
+Track workflow performance in the Activity page.
+
+<Steps>
+  <Step title="Open Activity Tab">
+    In the React Flow dashboard, go to the **Activity** tab
+  </Step>
+
+  <Step title="View Runs">
+    See all workflow executions with timestamps
+  </Step>
+
+  <Step title="Check Details">
+    Click on individual runs to see:
+    - Which workflow ran
+    - What triggered it
+    - What actions executed
+    - Any errors or issues
+  </Step>
+</Steps>
+
+<Card title="Activity Page Guide" icon="chart-line" href="/reactflow/features/activity">
+  Learn how to track and analyze workflow performance
+</Card>
+
+## Common Workflow Examples
+
+### Example 1: Auto-Hide Out of Stock Products
+
+<Steps>
+  <Step title="Trigger">
+    **Inventory quantity changed**
+  </Step>
+  <Step title="Condition">
+    Inventory quantity **less than or equal to** 0
+  </Step>
+  <Step title="Action">
+    **Unpublish product**
+  </Step>
+</Steps>
+
+### Example 2: Tag High-Risk Orders
+
+<Steps>
+  <Step title="Trigger">
+    **Order paid**
+  </Step>
+  <Step title="Delay">
+    10 minutes (allow time for risk analysis)
+  </Step>
+  <Step title="Condition">
+    Order risk level **is equal to** high
+  </Step>
+  <Step title="Action">
+    **Add order tag**: "High Risk"
+  </Step>
+  <Step title="Action 2">
+    **Send email** to store owner with alert
+  </Step>
+</Steps>
+
+### Example 3: Welcome New Customers
+
+<Steps>
+  <Step title="Trigger">
+    **Customer created**
+  </Step>
+  <Step title="Condition">
+    Customer **accepts marketing** equals true
+  </Step>
+  <Step title="Action">
+    **Send email** with welcome message and discount code
+  </Step>
+  <Step title="Action 2">
+    **Add customer tag**: "New Customer"
+  </Step>
+</Steps>
+
+## Tips for Success
+
+<CardGroup cols={2}>
+  <Card title="Start Simple" icon="seedling">
+    Begin with basic workflows and add complexity as you learn
+  </Card>
+  <Card title="Test Thoroughly" icon="vial">
+    Create test orders to verify workflows before going live
+  </Card>
+  <Card title="Use Templates" icon="clone">
+    Leverage pre-built templates and customize them
+  </Card>
+  <Card title="Monitor Performance" icon="gauge">
+    Regularly check the Activity page for issues
+  </Card>
+  <Card title="Name Clearly" icon="tag">
+    Use descriptive workflow names for easy management
+  </Card>
+  <Card title="Document Logic" icon="note-sticky">
+    Keep notes on complex workflows for future reference
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Explore Triggers & Actions" icon="bolt" href="/reactflow/features/triggers-actions">
+    Learn about all available triggers and actions
+  </Card>
+  <Card title="Workflow Templates" icon="grid" href="/reactflow/features/templates">
+    Browse ready-to-use workflow templates
+  </Card>
+  <Card title="Advanced Features" icon="wand-magic-sparkles" href="/reactflow/features/run-code">
+    Discover advanced capabilities like Run Code
+  </Card>
+  <Card title="FAQ" icon="question" href="/reactflow/support/faq">
+    Find answers to common questions
+  </Card>
+</CardGroup>
+
+## Need Help?
+
+If you encounter issues or have questions:
+
+- **In-App Support**: Contact support directly from React Flow
+- **Email Support**: [support@devit.software](mailto:support@devit.software)
+- **FAQ**: [Frequently Asked Questions](/reactflow/support/faq)
+
+You're now ready to automate your Shopify store with React Flow!

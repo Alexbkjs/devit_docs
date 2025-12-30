@@ -1,0 +1,418 @@
+---
+title: Settings & Customization
+description: Customize how Telegram messages are forwarded to Discord with notification, filtering, and greeting settings.
+---
+
+Telegram Bot offers extensive customization options to tailor message forwarding to your workflow. Access settings through the `/list` command.
+
+## Accessing Settings
+
+<Steps>
+  <Step title="Run /list Command">
+    Type `/list` in the connected Discord channel
+  </Step>
+  <Step title="Click Settings Button">
+    Click the **Settings** button in the bot's response
+  </Step>
+  <Step title="Choose Setting Category">
+    Select which type of setting to configure
+  </Step>
+  <Step title="Adjust Options">
+    Make your changes
+  </Step>
+  <Step title="Test">
+    Send a Telegram message to verify settings work as expected
+  </Step>
+</Steps>
+
+## Setting Categories
+
+### New Message Notification
+
+Control how Discord notifies you when new Telegram messages arrive.
+
+**Available Options**:
+
+<Tabs>
+  <Tab title="Standard Notification">
+    Default Discord notification behavior
+
+    **When to use**:
+    - Moderate message volume
+    - Team actively monitors channel
+    - Standard response time acceptable
+  </Tab>
+
+  <Tab title="@mention Notification">
+    Mentions a specific user or role when messages arrive
+
+    **How to configure**:
+    1. Select "@mention Notification"
+    2. Choose user or role to mention
+    3. Save
+
+    **When to use**:
+    - Important conversations requiring immediate attention
+    - On-call support rotation
+    - Escalation workflows
+
+    **Example**:
+    ```
+    New message from @telegram_user
+    @SupportTeam - new customer inquiry
+    ```
+  </Tab>
+
+  <Tab title="Silent Mode">
+    No notifications, messages still forward
+
+    **When to use**:
+    - High message volume
+    - Team checks periodically
+    - Archival purposes
+    - Off-hours
+  </Tab>
+
+  <Tab title="Custom Sound">
+    Set specific notification sound (if supported)
+
+    **When to use**:
+    - Distinguish Telegram messages from other notifications
+    - Alert preferences
+  </Tab>
+</Tabs>
+
+<Tip>
+For 24/7 support teams, use @mention with rotating role assignments to ensure messages reach on-duty staff.
+</Tip>
+
+### Message Forwarding
+
+Configure which messages forward and how threads are created.
+
+**Threading Options**:
+
+<AccordionGroup>
+  <Accordion title="Auto-Create Threads (Default)">
+    Each Telegram conversation creates its own Discord thread
+
+    **Behavior**:
+    - New user → New thread
+    - Existing user (< 24 hours) → Continue in existing thread
+    - Existing user (> 24 hours) → Create new thread
+
+    **Best for**: Support channels, organized conversations
+  </Accordion>
+
+  <Accordion title="Single Thread Mode">
+    All messages go to one thread
+
+    **Behavior**:
+    - All Telegram messages forward to single designated thread
+    - Thread name shows "All Conversations"
+
+    **Best for**: Low volume monitoring, simple setups
+  </Accordion>
+
+  <Accordion title="No Threads (Channel Mode)">
+    Messages post directly in channel without threads
+
+    **Behavior**:
+    - Each message is a separate Discord message
+    - No thread organization
+
+    **Best for**: Announcements, read-only forwarding
+  </Accordion>
+</AccordionGroup>
+
+**Thread Naming Options**:
+
+- **Telegram Username** (default): `@username`
+- **Telegram First Name**: `John`
+- **Full Name**: `John Doe`
+- **Custom Format**: `Support - @username`
+
+**Thread Duration**:
+
+Control how long before starting a new thread:
+- **24 hours** (default): New thread after 1 day of inactivity
+- **12 hours**: More frequent new threads
+- **48 hours**: Longer conversation persistence
+- **Never**: Always continue same thread
+
+### Message Filters
+
+Filter which messages forward based on criteria.
+
+**Filter Types**:
+
+<Tabs>
+  <Tab title="Content Filters">
+    Forward only messages containing specific keywords
+
+    **Setup**:
+    1. Enable content filtering
+    2. Enter keywords (comma-separated)
+    3. Choose include/exclude mode
+
+    **Include Mode Example**:
+    ```
+    Keywords: urgent, help, support
+    Only messages with these words forward
+    ```
+
+    **Exclude Mode Example**:
+    ```
+    Keywords: spam, advertisement
+    Messages with these words are blocked
+    ```
+  </Tab>
+
+  <Tab title="User Filters">
+    Filter by Telegram user
+
+    **Options**:
+    - Forward from specific users only
+    - Block specific users
+    - VIP user priority
+
+    **Use cases**:
+    - Allow known customers only
+    - Block spam accounts
+    - Prioritize high-value clients
+  </Tab>
+
+  <Tab title="Media Filters">
+    Control which media types forward
+
+    **Options**:
+    - Text only
+    - Text + Photos
+    - Text + Documents
+    - All media types
+    - Exclude specific types (videos, voice messages)
+
+    **Use cases**:
+    - Bandwidth management
+    - Security (block executable files)
+    - Storage optimization
+  </Tab>
+
+  <Tab title="Group/Channel Filters">
+    For bots in multiple groups/channels
+
+    **Options**:
+    - Forward from specific groups only
+    - Exclude certain groups
+    - Different channels → Different Discord channels
+
+    **Use cases**:
+    - Multi-community management
+    - Selective monitoring
+    - Organization by topic
+  </Tab>
+</Tabs>
+
+**Filter Logic**:
+
+- **AND**: All conditions must match
+- **OR**: Any condition can match
+- **NOT**: Exclude matches
+
+**Example Filter**:
+```
+Forward messages that:
+- Contain "support" OR "help" AND
+- Are from @verified_user AND
+- Include photo or document
+```
+
+### Greeting Message Notification
+
+Automatically send greeting messages to new Telegram users.
+
+**Setup**:
+
+<Steps>
+  <Step title="Enable Greetings">
+    Toggle on "Greeting Message Notification"
+  </Step>
+  <Step title="Write Greeting">
+    Enter your greeting message
+
+    **Example**:
+    ```
+    Hello! 👋 Welcome to our support bot.
+
+    Please describe your issue and our team will
+    respond shortly.
+
+    Business hours: Mon-Fri 9AM-5PM EST
+    ```
+  </Step>
+  <Step title="Choose Trigger">
+    When to send greeting:
+    - First /start command
+    - First message sent
+    - Every new conversation
+  </Step>
+  <Step title="Save">
+    Greeting activates immediately
+  </Step>
+</Steps>
+
+**Greeting Variables**:
+
+Personalize greetings with variables:
+
+- `{first_name}`: User's Telegram first name
+- `{username}`: User's Telegram @username
+- `{time}`: Current time
+- `{date}`: Current date
+
+**Example with variables**:
+```
+Hi {first_name}! 👋
+
+Thanks for contacting us on {date}.
+We'll respond as soon as possible!
+```
+
+**Best Practices**:
+
+<CardGroup cols={2}>
+  <Card title="Set Expectations" icon="clock">
+    Include response time expectations
+  </Card>
+  <Card title="Provide Context" icon="info">
+    Explain what the bot does
+  </Card>
+  <Card title="Be Friendly" icon="smile">
+    Welcome users warmly
+  </Card>
+  <Card title="Include Hours" icon="calendar">
+    Show business hours if applicable
+  </Card>
+</CardGroup>
+
+### Other Settings
+
+Additional advanced configuration options.
+
+**Avatar Display**:
+- Show Telegram user avatars in Discord threads
+- Use default avatar for privacy-conscious users
+- Custom avatar for bot responses
+
+**Message Formatting**:
+- Preserve Telegram formatting (bold, italic, code)
+- Convert to Discord markdown
+- Plain text only
+
+**Attachment Handling**:
+- Download and re-upload to Discord
+- Link to Telegram file
+- Compress large files
+
+**Rate Limiting**:
+- Maximum messages per minute
+- Flood protection for spam
+- Queue excessive messages
+
+**Auto-Responses**:
+- Automatic replies based on keywords
+- Away messages during off-hours
+- FAQ responses
+
+## Preset Configurations
+
+Quick setup for common use cases:
+
+### Customer Support
+
+```
+- Threading: Auto-create threads
+- Notifications: @mention support team
+- Greeting: Enabled with business hours
+- Filters: None (accept all)
+- Avatar: Enabled
+```
+
+### Community Monitoring
+
+```
+- Threading: Single thread mode
+- Notifications: Silent
+- Greeting: Disabled
+- Filters: Exclude spam keywords
+- Avatar: Enabled
+```
+
+### Announcement Relay
+
+```
+- Threading: No threads (channel mode)
+- Notifications: Standard
+- Greeting: Disabled
+- Filters: Admin posts only
+- Avatar: Disabled
+```
+
+## Saving and Exporting Settings
+
+**Auto-Save**: All settings save automatically when changed
+
+**Export Configuration**:
+1. Use `/list` → Settings
+2. Click "Export Settings"
+3. Receive JSON file with current configuration
+4. Use for backup or replication
+
+**Import Settings**:
+1. Create new integration
+2. Use `/list` → Settings → "Import"
+3. Upload previously exported JSON
+4. Settings apply to new integration
+
+## Testing Your Settings
+
+After configuring, test to verify everything works:
+
+<Steps>
+  <Step title="Send Test Messages">
+    From Telegram:
+    - Send plain text
+    - Send with media
+    - Send from different users (if filtering)
+  </Step>
+  <Step title="Verify Forwarding">
+    Check Discord:
+    - Correct threading
+    - Proper notifications
+    - Filters working
+  </Step>
+  <Step title="Test Greetings">
+    New Telegram user sends /start
+    Check greeting appears correctly
+  </Step>
+  <Step title="Adjust as Needed">
+    Refine settings based on test results
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Bot Commands" icon="terminal" href="/telegram/features/commands">
+    Learn all available commands
+  </Card>
+  <Card title="Group Forwarding" icon="users" href="/telegram/features/group-forwarding">
+    Forward from Telegram groups
+  </Card>
+  <Card title="Channel Forwarding" icon="satellite-dish" href="/telegram/features/channel-forwarding">
+    Set up channel message forwarding
+  </Card>
+  <Card title="FAQ" icon="question" href="/telegram/support/faq">
+    Common settings questions
+  </Card>
+</CardGroup>

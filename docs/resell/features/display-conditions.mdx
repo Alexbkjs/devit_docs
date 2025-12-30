@@ -1,0 +1,444 @@
+---
+title: Display Conditions
+description: Target specific customers with display conditions based on location, cart value, customer tags, and more.
+---
+
+Display conditions allow you to control exactly which customers see your offers. Create personalized funnels that target specific segments for maximum relevance and conversion.
+
+## How Display Conditions Work
+
+Display conditions filter which customers see your funnel based on criteria you define:
+
+<Steps>
+  <Step title="Customer Purchases">
+    Customer completes checkout
+  </Step>
+  <Step title="Trigger Check">
+    ReSell checks if purchased product matches funnel trigger
+  </Step>
+  <Step title="Conditions Check">
+    ReSell evaluates all display conditions
+  </Step>
+  <Step title="Show or Skip">
+    If all conditions pass → show offer. If any fail → skip to next funnel
+  </Step>
+</Steps>
+
+## Available Condition Types
+
+### Location-Based Conditions
+
+Target customers in specific geographic regions.
+
+#### Country
+
+Show offers to customers in particular countries.
+
+**Use cases**:
+- Region-specific products
+- Shipping zone targeting
+- Compliance with regional regulations
+- Local inventory optimization
+
+**Example**:
+```
+Trigger: Any winter jacket purchased
+Condition: Country is Canada OR United States
+Offer: Thermal gloves at 15% off
+```
+
+#### State/Province
+
+Target specific states or provinces within a country.
+
+**Use cases**:
+- State-specific products
+- Local brand partnerships
+- Weather-based recommendations
+- Regional promotions
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: State is California OR Oregon OR Washington
+Offer: Reusable shopping bag (local regulations)
+```
+
+### Cart Value Conditions
+
+Target based on order total.
+
+#### Minimum Cart Value
+
+Only show offers if order exceeds a threshold.
+
+**Use cases**:
+- Premium upsells for high-value customers
+- Encourage larger purchases
+- VIP customer targeting
+- Exclusive offers for big spenders
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: Cart total ≥ $100
+Offer: Free gift worth $25
+```
+
+#### Maximum Cart Value
+
+Only show offers if order is below a threshold.
+
+**Use cases**:
+- Encourage smaller purchases to grow
+- Entry-level product upsells
+- Budget-conscious customer targeting
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: Cart total < $50
+Offer: Second item at 50% off (buy more, save more)
+```
+
+#### Cart Value Range
+
+Target customers within specific spending range.
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: Cart total between $50 and $150
+Offer: Complementary accessory at 20% off
+```
+
+### Customer Conditions
+
+Target based on customer characteristics.
+
+#### Customer Tags
+
+Show offers to customers with specific tags.
+
+**Use cases**:
+- VIP customer exclusive offers
+- Subscriber-only deals
+- Loyalty program tiers
+- Customer segment targeting
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: Customer tag includes "VIP" OR "Gold Member"
+Offer: Exclusive early access product at discount
+```
+
+<Note>
+Customer tags must be set in Shopify admin before they can be used in conditions. Tags are case-sensitive.
+</Note>
+
+#### First-Time vs Returning Customers
+
+Target based on purchase history.
+
+**First-Time Customer Example**:
+```
+Trigger: Any product purchased
+Condition: First-time customer
+Offer: 20% off next purchase (welcome discount)
+```
+
+**Returning Customer Example**:
+```
+Trigger: Any product purchased
+Condition: Returning customer
+Offer: Loyalty reward product
+```
+
+### Product Conditions
+
+Refine targeting based on purchased products.
+
+#### Product Quantity
+
+Target based on number of items purchased.
+
+**Example**:
+```
+Trigger: T-shirt purchased
+Condition: Quantity ≥ 3
+Offer: Additional t-shirt at 50% off (bulk buyer)
+```
+
+#### Product Collection
+
+Combine collection triggers with additional collection conditions.
+
+**Example**:
+```
+Trigger: Any product from "Summer Collection"
+Condition: Cart also contains product from "Accessories"
+Offer: Matching summer hat
+```
+
+### Time-Based Conditions
+
+Control when offers appear.
+
+#### Day of Week
+
+Show offers on specific days.
+
+**Use cases**:
+- Weekend promotions
+- Weekday-specific offers
+- Inventory management
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: Day is Saturday OR Sunday
+Offer: Weekend exclusive bundle
+```
+
+#### Time of Day
+
+Target by shopping time.
+
+**Use cases**:
+- Flash sales
+- Time-zone specific offers
+- Business hours promotions
+
+**Example**:
+```
+Trigger: Any product purchased
+Condition: Time between 12:00 PM - 6:00 PM EST
+Offer: Afternoon flash sale item
+```
+
+## Combining Multiple Conditions
+
+Use AND/OR logic to create sophisticated targeting:
+
+### AND Logic (All Must Match)
+
+Customer must meet ALL conditions to see offer.
+
+**Example**:
+```
+Trigger: Any product from "Electronics"
+Conditions:
+  - Country is United States AND
+  - Cart total ≥ $200 AND
+  - Customer tag includes "VIP"
+
+Offer: Premium warranty upgrade
+```
+
+### OR Logic (Any Can Match)
+
+Customer needs to meet ANY ONE condition.
+
+**Example**:
+```
+Trigger: Any product purchased
+Conditions:
+  - Country is Canada OR
+  - Country is United States OR
+  - Customer tag includes "North America"
+
+Offer: Free shipping on next order
+```
+
+### Mixed Logic
+
+Combine AND/OR for complex targeting.
+
+**Example**:
+```
+Trigger: Any product from "Clothing"
+Conditions:
+  - (Country is UK OR Country is Ireland) AND
+  - Cart total ≥ $50 AND
+  - (First-time customer OR Customer tag includes "Promo-Eligible")
+
+Offer: Accessory bundle
+```
+
+## Condition Priority & Fallbacks
+
+When multiple funnels could trigger:
+
+<Steps>
+  <Step title="Priority Order">
+    Funnels are evaluated in priority order (1 = highest)
+  </Step>
+  <Step title="First Match Wins">
+    First funnel where all conditions pass is shown
+  </Step>
+  <Step title="Skip to Next">
+    If conditions fail, next funnel in priority is evaluated
+  </Step>
+  <Step title="No Match">
+    If no funnel conditions pass, no offer is shown
+  </Step>
+</Steps>
+
+**Best Practice**: Set your most specific, high-value funnels to priority 1, and broader funnels to lower priorities as fallbacks.
+
+## Common Use Cases
+
+### Example 1: Geographic Product Availability
+
+**Goal**: Only offer products available in customer's region
+
+```
+Trigger: Purchased any clothing item
+Conditions:
+  - Country is Australia OR New Zealand
+Offer: Summer accessories (relevant for Southern Hemisphere)
+```
+
+### Example 2: High-Value Customer VIP Offers
+
+**Goal**: Exclusive offers for big spenders
+
+```
+Trigger: Any product purchased
+Conditions:
+  - Cart total ≥ $200 OR
+  - Customer tag includes "VIP" OR "Platinum"
+Offer: Exclusive limited edition product
+```
+
+### Example 3: First Purchase Welcome Offer
+
+**Goal**: Delight new customers with special offer
+
+```
+Trigger: Any product purchased
+Conditions:
+  - First-time customer
+  - Cart total ≥ $30
+Offer: 15% off next purchase coupon
+```
+
+### Example 4: Inventory Clearance by Region
+
+**Goal**: Clear regional warehouse inventory
+
+```
+Trigger: Any product purchased
+Conditions:
+  - State is Texas OR Louisiana OR Oklahoma
+Offer: Warehouse clearance item (stored in Dallas warehouse)
+```
+
+### Example 5: Complement Purchase Behavior
+
+**Goal**: Upsell based on what's already in cart
+
+```
+Trigger: Camera purchased
+Conditions:
+  - Cart does NOT contain memory card
+  - Cart total ≥ $300
+Offer: Memory card bundle at 20% off
+```
+
+## Testing Display Conditions
+
+Verify your conditions work correctly:
+
+<Steps>
+  <Step title="Create Test Funnel">
+    Set up funnel with specific conditions
+  </Step>
+  <Step title="Use Test Orders">
+    Place test orders matching AND not matching conditions
+  </Step>
+  <Step title="Verify Display">
+    Confirm offers appear only when conditions are met
+  </Step>
+  <Step title="Check Analytics">
+    Monitor impression counts to ensure targeting is working
+  </Step>
+</Steps>
+
+<Tip>
+Use Shopify's test mode to place orders without actual charges. Test with different customer profiles, locations, and cart values.
+</Tip>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Funnel not showing to anyone">
+    **Possible causes**:
+    - Conditions too restrictive
+    - No customers meet criteria
+    - Conflicting conditions (impossible to satisfy)
+
+    **Solution**: Review conditions and broaden criteria. Check analytics to see if funnel is being evaluated.
+  </Accordion>
+
+  <Accordion title="Funnel showing too often">
+    **Possible causes**:
+    - Conditions too broad
+    - Missing important filters
+
+    **Solution**: Add more specific conditions to narrow targeting.
+  </Accordion>
+
+  <Accordion title="Location conditions not working">
+    **Possible causes**:
+    - Shopify can't detect customer location
+    - VPN or proxy hiding location
+    - Testing from different country
+
+    **Solution**: Use customer's billing or shipping country, which is always available.
+  </Accordion>
+
+  <Accordion title="Customer tag conditions not matching">
+    **Possible causes**:
+    - Tags are case-sensitive
+    - Typo in tag name
+    - Customer doesn't have tag yet
+
+    **Solution**: Verify exact tag spelling in Shopify admin. Tags must match exactly.
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Start Broad" icon="bullseye">
+    Begin with simple conditions, add complexity as you learn
+  </Card>
+  <Card title="Test Thoroughly" icon="flask">
+    Place test orders before activating complex conditions
+  </Card>
+  <Card title="Use Analytics" icon="chart-line">
+    Monitor impression rates to ensure targeting isn't too narrow
+  </Card>
+  <Card title="Fallback Funnels" icon="layer-group">
+    Create backup funnels with broader conditions
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Create Your First Funnel" icon="rocket" href="/resell/quickstart">
+    Set up a funnel with display conditions
+  </Card>
+  <Card title="Analytics" icon="chart-mixed" href="/resell/features/analytics">
+    Track condition effectiveness
+  </Card>
+  <Card title="Offer Types" icon="tags" href="/resell/features/offer-types">
+    Choose the right offer type
+  </Card>
+  <Card title="Payment Compatibility" icon="credit-card" href="/resell/advanced/payment-compatibility">
+    Understand payment limitations
+  </Card>
+</CardGroup>

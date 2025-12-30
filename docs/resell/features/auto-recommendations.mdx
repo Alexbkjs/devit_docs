@@ -1,0 +1,408 @@
+---
+title: Auto Recommendations
+description: Use AI-powered product recommendations to automatically suggest relevant upsells and cross-sells.
+---
+
+Auto recommendations leverage Shopify's intelligent product recommendation engine to automatically suggest the most relevant products to each customer. No manual product selection needed.
+
+## How Auto Recommendations Work
+
+Instead of manually choosing which products to offer, auto recommendations use Shopify's data to dynamically select the best products for each customer:
+
+<Steps>
+  <Step title="Customer Completes Purchase">
+    Customer checks out with product(s)
+  </Step>
+  <Step title="ReSell Queries Shopify">
+    ReSell asks Shopify's recommendation API for related products
+  </Step>
+  <Step title="Shopify Analyzes Data">
+    Shopify analyzes purchase patterns, product relationships, and customer behavior
+  </Step>
+  <Step title="Best Match Returned">
+    Shopify returns the most relevant product recommendation
+  </Step>
+  <Step title="Offer Displayed">
+    ReSell shows the recommended product in your offer
+  </Step>
+</Steps>
+
+<Note>
+Auto recommendations require sufficient store data to work effectively. New stores or products with limited sales history may receive less accurate recommendations.
+</Note>
+
+## What Powers Auto Recommendations
+
+Shopify's recommendation engine analyzes:
+
+### Purchase Patterns
+
+**Frequently bought together**: Products that customers often purchase in the same order.
+
+**Example**: Customer buys laptop → Recommended product: Laptop bag (frequently bought together)
+
+### Product Relationships
+
+**Complementary products**: Items that enhance or complete the original purchase.
+
+**Example**: Customer buys camera → Recommended product: Memory card or camera case
+
+### Similar Products
+
+**Alternative or upgraded versions**: Products in the same category or with similar attributes.
+
+**Example**: Customer buys basic phone case → Recommended product: Premium phone case with extra features
+
+### Customer Behavior
+
+**Browsing history**: Products the customer viewed before purchasing.
+
+**Example**: Customer bought Product A but viewed Product B → Recommended product: Product B
+
+### Store-Wide Trends
+
+**Popular products**: Best-selling items in your store.
+
+**Example**: Customer buys any product → Recommended product: Current best-seller
+
+## When to Use Auto Recommendations
+
+Auto recommendations work best in these scenarios:
+
+### Large Product Catalogs
+
+**Best for**: Stores with 100+ products
+
+**Why**: More products = more data = better recommendations
+
+**Example**: Fashion retailer with hundreds of clothing items and accessories
+
+### Broad Funnels
+
+**Best for**: "Any product" or collection-wide triggers
+
+**Why**: Dynamic recommendations adapt to each purchase
+
+**Example**:
+```
+Trigger: Any product from "Electronics" collection
+Offer: Auto recommendation (adapts based on specific product purchased)
+```
+
+### New Product Launches
+
+**Best for**: Products without established upsell patterns yet
+
+**Why**: Shopify can suggest related items from existing catalog
+
+**Example**: New product added → Auto recommendations find complementary products automatically
+
+### Testing & Learning
+
+**Best for**: Finding which products work well together
+
+**Why**: Let data reveal unexpected product pairings
+
+**Example**: Run auto recommendations for one month, then review analytics to see which products were most frequently shown and accepted
+
+## When NOT to Use Auto Recommendations
+
+Manual product selection works better when:
+
+### Strategic Promotions
+
+**Use manual when**: Promoting specific products or clearing inventory
+
+**Example**: Black Friday sale on specific items
+
+### High-Value Upsells
+
+**Use manual when**: You have a proven high-converting upsell
+
+**Example**: Customer buys entry-level product → Always upsell premium version
+
+### Brand Partnerships
+
+**Use manual when**: Contractual obligations to promote specific brands
+
+**Example**: Partnership requires featuring partner products
+
+### Small Product Catalogs
+
+**Use manual when**: Store has < 50 products
+
+**Why**: Limited selection makes manual curation more effective
+
+## Configuring Auto Recommendations
+
+Setting up auto recommendations in your funnel:
+
+<Tabs>
+  <Tab title="During Funnel Creation">
+    <Steps>
+      <Step title="Create Funnel">
+        Click "Create funnel" → Choose "Manually" or "AI template"
+      </Step>
+      <Step title="Configure Trigger">
+        Set trigger product, collection, or "any product"
+      </Step>
+      <Step title="Add Offer">
+        In the upsell/cross-sell section, click "Add offer"
+      </Step>
+      <Step title="Select Auto">
+        Choose "Auto" as offer type (vs specific product or collection)
+      </Step>
+      <Step title="Configure Settings">
+        Set optional discount and customize design
+      </Step>
+      <Step title="Publish">
+        Activate your funnel
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Editing Existing Funnel">
+    <Steps>
+      <Step title="Open Funnel">
+        Navigate to Funnels tab → Click funnel to edit
+      </Step>
+      <Step title="Edit Offer">
+        Click "Edit offer" on the offer you want to change
+      </Step>
+      <Step title="Change to Auto">
+        Select "Auto" as recommendation source
+      </Step>
+      <Step title="Save Changes">
+        Save and republish funnel
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Customizing Auto Recommendation Offers
+
+Even with auto recommendations, you control:
+
+### Discount Strategy
+
+Apply discounts to auto-recommended products:
+
+- **Fixed Amount**: $5 off, $10 off, etc.
+- **Percentage**: 10%, 15%, 20% off
+- **No Discount**: Full price
+
+**Recommendation**: Start with 10-15% discount to boost conversions
+
+### Visual Design
+
+Customize how the offer appears:
+
+- Product image display (single, gallery, zoom)
+- Button text and colors
+- Layout and spacing
+- Font styles
+- Background colors
+
+### Messaging
+
+Add custom text and copy:
+
+- Offer title (e.g., "Complete Your Order")
+- Product description override
+- Urgency messaging
+- Social proof elements
+
+## Combining Manual and Auto Recommendations
+
+Use both strategies strategically:
+
+### Sequential Approach
+
+**Strategy**: Manual upsell first, auto recommendation as downsell
+
+**Example**:
+```
+Upsell Offer #1: Specific premium product (manual)
+Downsell Offer: Auto recommendation (if upsell declined)
+```
+
+**Benefits**: Strategic first offer, data-driven fallback
+
+### Segmented Approach
+
+**Strategy**: Manual for high-value customers, auto for others
+
+**Example**:
+```
+Funnel A (Priority 1):
+  - Trigger: Any product
+  - Condition: Cart total ≥ $100
+  - Offer: Specific premium product (manual)
+
+Funnel B (Priority 2):
+  - Trigger: Any product
+  - Condition: Cart total < $100
+  - Offer: Auto recommendation
+```
+
+**Benefits**: Personalized experience at different price points
+
+### Product-Specific Approach
+
+**Strategy**: Manual for key products, auto for everything else
+
+**Example**:
+```
+Funnel A (Priority 1):
+  - Trigger: Best-selling product
+  - Offer: Proven upsell product (manual)
+
+Funnel B (Priority 2):
+  - Trigger: Any other product
+  - Offer: Auto recommendation
+```
+
+**Benefits**: Control important product journeys, automate the rest
+
+## Analyzing Auto Recommendation Performance
+
+Track how well auto recommendations perform:
+
+### Key Metrics
+
+<CardGroup cols={2}>
+  <Card title="Conversion Rate" icon="percentage">
+    Compare auto vs manual offer acceptance rates
+  </Card>
+  <Card title="Revenue per Offer" icon="dollar-sign">
+    Average revenue from auto-recommended products
+  </Card>
+  <Card title="Product Variety" icon="box">
+    How many different products are being recommended
+  </Card>
+  <Card title="Repeat Patterns" icon="repeat">
+    Which products are frequently recommended together
+  </Card>
+</CardGroup>
+
+### Optimization Based on Analytics
+
+<AccordionGroup>
+  <Accordion title="Low Conversion Rate (< 10%)">
+    **Possible causes**:
+    - Recommended products not relevant
+    - Store doesn't have enough data yet
+    - Discount too small
+
+    **Solutions**:
+    - Switch to manual product selection for key triggers
+    - Increase discount percentage
+    - Give Shopify more time to gather data
+  </Accordion>
+
+  <Accordion title="Same Products Always Recommended">
+    **Possible causes**:
+    - Limited product catalog
+    - One product is significantly more popular
+    - Strong purchase pattern established
+
+    **Solutions**:
+    - This is actually good! Convert to manual funnel featuring that product
+    - Consider A/B testing other complementary products
+  </Accordion>
+
+  <Accordion title="Irrelevant Recommendations">
+    **Possible causes**:
+    - Insufficient data for new products
+    - Products lack proper categorization
+    - Shopify's algorithm needs more purchase history
+
+    **Solutions**:
+    - Improve product metadata (tags, collections, descriptions)
+    - Use manual recommendations for new products
+    - Build product relationships through bundles
+  </Accordion>
+</AccordionGroup>
+
+## Improving Recommendation Quality
+
+Help Shopify's algorithm make better suggestions:
+
+### 1. Optimize Product Data
+
+**Action**: Ensure all products have complete information
+
+- Detailed descriptions
+- Accurate categorization
+- Consistent tagging
+- Product relationships defined
+
+### 2. Use Collections Effectively
+
+**Action**: Group related products in collections
+
+- Shopify uses collections to understand product relationships
+- Well-organized collections = better recommendations
+
+### 3. Build Purchase History
+
+**Action**: Let the system learn from real transactions
+
+- The more orders, the better the recommendations
+- Takes time to establish patterns
+
+### 4. Create Product Bundles
+
+**Action**: Use Shopify's bundle features
+
+- Shows Shopify which products work together
+- Influences recommendation algorithm
+
+## Auto Recommendations + AI Template
+
+When you create a funnel using the **AI template** option, ReSell automatically:
+
+1. Sets up auto recommendations for all offers
+2. Configures smart trigger conditions
+3. Applies optimal discount percentages
+4. Designs mobile-optimized offer layout
+
+**Best for**: Quickly launching funnels without manual configuration
+
+<Card title="Quick Start Guide" icon="rocket" href="/resell/quickstart">
+  Learn how to create AI-powered funnels in minutes
+</Card>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Give It Time" icon="clock">
+    Allow 30-60 days for algorithm to learn your store patterns
+  </Card>
+  <Card title="Monitor Weekly" icon="chart-line">
+    Review analytics to spot trends and opportunities
+  </Card>
+  <Card title="Test Hybrid Approach" icon="flask">
+    Combine manual and auto in different funnels
+  </Card>
+  <Card title="Maintain Product Data" icon="database">
+    Keep product information accurate and complete
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Display Conditions" icon="filter" href="/resell/features/display-conditions">
+    Target specific customer segments
+  </Card>
+  <Card title="Analytics" icon="chart-mixed" href="/resell/features/analytics">
+    Track recommendation performance
+  </Card>
+  <Card title="Offer Types" icon="tags" href="/resell/features/offer-types">
+    Understand upsells vs cross-sells
+  </Card>
+  <Card title="Create Funnel" icon="rocket" href="/resell/quickstart">
+    Build your first auto-recommendation funnel
+  </Card>
+</CardGroup>
