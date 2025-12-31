@@ -18,7 +18,7 @@ CREATE TABLE documents (
   title text,
   url text,
   content text,
-  app_name text NOT NULL, -- App identifier (selecty, resell, general)
+  app_name text NOT NULL, -- App identifier (selecty, resell, general, lably, reactflow, discord-bots)
   created_at timestamptz DEFAULT now(),
   embedding vector(1536) -- dimension for text-embedding-3-small
 );
@@ -36,7 +36,7 @@ CREATE INDEX documents_app_name_idx
 -- Step 7: Add constraint to ensure valid app names
 ALTER TABLE documents
   ADD CONSTRAINT valid_app_name
-  CHECK (app_name IN ('selecty', 'resell', 'general'));
+  CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'));
 
 -- Step 8: Create match_documents function with optional app filtering
 CREATE OR REPLACE FUNCTION match_documents(
