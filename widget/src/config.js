@@ -25,7 +25,7 @@ export function getBackendURL() {
 /**
  * Extracts the app name from the current URL path
  * Used to filter documentation searches by app context
- * @returns {string} App name: 'selecty', 'resell', 'general', or default 'selecty'
+ * @returns {string} App name: 'selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', or default 'selecty'
  */
 export function getAppNameFromUrl() {
   if (typeof window === 'undefined') {
@@ -34,11 +34,18 @@ export function getAppNameFromUrl() {
 
   const path = window.location.pathname;
 
-  // Match URL pattern: /selecty/*, /resell/*, /general/*
-  const match = path.match(/^\/(selecty|resell|general)/);
+  // Match all app URLs
+  const match = path.match(/^\/(selecty|resell|general|lably|reactflow|discord-bots|email|telegram)/);
 
   if (match) {
-    return match[1]; // Returns: 'selecty', 'resell', or 'general'
+    const appName = match[1];
+
+    // Map email and telegram to discord-bots
+    if (appName === 'email' || appName === 'telegram') {
+      return 'discord-bots';
+    }
+
+    return appName; // selecty, resell, general, lably, reactflow, discord-bots
   }
 
   // Default to selecty if on root or unknown path
@@ -87,6 +94,42 @@ export function getAppConfig() {
         "How can I get custom development?",
         "What is DevIT.Software's expertise?",
         "How to contact support?"
+      ]
+    },
+    lably: {
+      name: 'lably',
+      displayName: 'Lably',
+      description: 'Product labels and badges for Shopify',
+      docsPath: '/lably',
+      suggestions: [
+        "How do I get started with Lably?",
+        "How to create custom labels?",
+        "How do display conditions work?",
+        "How to troubleshoot labels not showing?"
+      ]
+    },
+    reactflow: {
+      name: 'reactflow',
+      displayName: 'React Flow',
+      description: 'React Flow checkout and cart customization',
+      docsPath: '/reactflow',
+      suggestions: [
+        "How do I get started with React Flow?",
+        "How to customize the checkout flow?",
+        "What features does React Flow offer?",
+        "How to configure React Flow?"
+      ]
+    },
+    'discord-bots': {
+      name: 'discord-bots',
+      displayName: 'Discord Bots',
+      description: 'Email and Telegram bots for Discord',
+      docsPath: '/discord-bots',
+      suggestions: [
+        "How do I get started with Email bot?",
+        "How to connect Telegram to Discord?",
+        "What commands are available?",
+        "How to troubleshoot connection errors?"
       ]
     }
   };

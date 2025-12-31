@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     }
 
     // Validate and default app_name
-    const validApps = ['selecty', 'resell', 'general'];
+    const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'];
     const appName = validApps.includes(app_name) ? app_name : 'selecty';
 
     console.log(`💬 [MESSAGES] Received ${messages.length} messages`);
@@ -114,7 +114,10 @@ export default async function handler(req, res) {
     const appDisplayName = {
       selecty: 'Selecty',
       resell: 'ReSell',
-      general: 'DevIT.Software'
+      general: 'DevIT.Software',
+      lably: 'Lably',
+      reactflow: 'React Flow',
+      'discord-bots': 'Discord Bots'
     }[appName] || 'Selecty';
 
     const conversationMessages = [
