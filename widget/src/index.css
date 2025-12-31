@@ -1,5 +1,109 @@
 @import "tailwindcss";
 
+/* ===== THEME VARIABLES ===== */
+
+/* Default theme (dark) - fallback if no theme class applied */
+:root {
+  /* Backgrounds */
+  --widget-bg-primary: #090d0d;           /* Main widget background */
+  --widget-bg-secondary: #1a1f1f;         /* Message bubbles, cards */
+  --widget-bg-tertiary: #0a0e0e;          /* Code blocks, inputs */
+  --widget-bg-hover: #3a3a3a;             /* Hover state for buttons */
+  --widget-bg-fab: #090d0d;               /* Floating action button */
+
+  /* Borders */
+  --widget-border-primary: #2A2F3A;       /* Main borders */
+  --widget-border-secondary: #2f4f4f;     /* Sidebar border */
+  --widget-border-subtle: rgba(42, 47, 58, 0.5);  /* Subtle dividers */
+
+  /* Text */
+  --widget-text-primary: #E2E8F0;         /* Main text */
+  --widget-text-secondary: #94A3B8;       /* Muted text */
+  --widget-text-inverse: #ffffff;         /* White text on accents */
+
+  /* Accents & Brand */
+  --widget-accent-primary: #10b981;       /* Emerald green - primary */
+  --widget-accent-hover: #059669;         /* Darker emerald for hover */
+  --widget-accent-subtle: rgba(16, 185, 129, 0.1);  /* Accent bg tints */
+  --widget-accent-border: rgba(16, 185, 129, 0.2);  /* Accent borders */
+
+  /* Shadows */
+  --widget-shadow-fab: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --widget-shadow-fab-hover: 0 8px 30px rgba(16, 185, 129, 0.15);
+  --widget-shadow-sidebar: 0 0 0 1px rgba(0, 0, 0, 0.1);
+
+  /* Overlays */
+  --widget-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+/* Light theme overrides */
+.light {
+  /* Backgrounds */
+  --widget-bg-primary: #ffffff;           /* White background */
+  --widget-bg-secondary: #f8fafc;         /* Light gray for bubbles */
+  --widget-bg-tertiary: #f1f5f9;          /* Slightly darker for code */
+  --widget-bg-hover: #e2e8f0;             /* Light hover state */
+  --widget-bg-fab: #ffffff;               /* White FAB with solid border */
+
+  /* Borders */
+  --widget-border-primary: #cbd5e1;       /* Visible gray borders */
+  --widget-border-secondary: #e2e8f0;     /* Lighter sidebar border */
+  --widget-border-subtle: rgba(203, 213, 225, 0.6);
+
+  /* Text */
+  --widget-text-primary: #0f172a;         /* Dark slate text */
+  --widget-text-secondary: #475569;       /* Medium gray text */
+  --widget-text-inverse: #ffffff;         /* White on buttons */
+
+  /* Accents & Brand */
+  --widget-accent-primary: #059669;       /* Slightly darker emerald for contrast */
+  --widget-accent-hover: #047857;         /* Even darker for hover */
+  --widget-accent-subtle: rgba(16, 185, 129, 0.08);
+  --widget-accent-border: rgba(16, 185, 129, 0.25);
+
+  /* Shadows */
+  --widget-shadow-fab: 0 4px 12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --widget-shadow-fab-hover: 0 8px 20px rgba(5, 150, 105, 0.20);
+  --widget-shadow-sidebar: 0 0 0 1px rgba(0, 0, 0, 0.05), -4px 0 12px rgba(0, 0, 0, 0.05);
+
+  /* Overlays */
+  --widget-backdrop: rgba(0, 0, 0, 0.2);
+}
+
+/* Dark theme (explicit - same as root for clarity) */
+.dark {
+  /* Backgrounds */
+  --widget-bg-primary: #090d0d;
+  --widget-bg-secondary: #1a1f1f;
+  --widget-bg-tertiary: #0a0e0e;
+  --widget-bg-hover: #3a3a3a;
+  --widget-bg-fab: #090d0d;
+
+  /* Borders */
+  --widget-border-primary: #2A2F3A;
+  --widget-border-secondary: #2f4f4f;
+  --widget-border-subtle: rgba(42, 47, 58, 0.5);
+
+  /* Text */
+  --widget-text-primary: #E2E8F0;
+  --widget-text-secondary: #94A3B8;
+  --widget-text-inverse: #ffffff;
+
+  /* Accents & Brand */
+  --widget-accent-primary: #10b981;
+  --widget-accent-hover: #059669;
+  --widget-accent-subtle: rgba(16, 185, 129, 0.1);
+  --widget-accent-border: rgba(16, 185, 129, 0.2);
+
+  /* Shadows */
+  --widget-shadow-fab: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --widget-shadow-fab-hover: 0 8px 30px rgba(16, 185, 129, 0.15);
+  --widget-shadow-sidebar: 0 0 0 1px rgba(0, 0, 0, 0.1);
+
+  /* Overlays */
+  --widget-backdrop: rgba(0, 0, 0, 0.5);
+}
+
 /* Override outline-none offset */
 .outline-none {
   outline: 2px solid transparent;
@@ -57,12 +161,12 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: var(--widget-border-primary);
   border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: var(--widget-text-secondary);
 }
 
 /* Animations */
@@ -105,4 +209,64 @@
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ===== INTERACTIVE ELEMENTS ===== */
+
+/* Icon buttons - header controls */
+.widget-icon-button:hover {
+  color: var(--widget-text-primary) !important;
+  background-color: var(--widget-bg-hover) !important;
+}
+
+/* Action buttons - message controls */
+.widget-action-button:hover {
+  color: var(--widget-accent-primary) !important;
+  background-color: var(--widget-bg-hover) !important;
+}
+
+/* Suggestion buttons */
+.widget-suggestion-button:hover {
+  color: var(--widget-accent-hover) !important;
+  background-color: var(--widget-bg-hover) !important;
+}
+
+/* Suggestion links in markdown */
+.widget-suggestion-link:hover {
+  background-color: var(--widget-bg-hover) !important;
+  color: var(--widget-accent-hover) !important;
+}
+
+/* Regular links */
+.widget-link:hover {
+  color: var(--widget-accent-hover) !important;
+}
+
+/* Input field focus */
+.widget-input:focus {
+  border-color: var(--widget-accent-primary) !important;
+}
+
+.widget-input::placeholder {
+  color: var(--widget-text-secondary);
+  opacity: 0.5;
+}
+
+/* Submit button */
+.widget-submit-button:hover:not(:disabled) {
+  background-color: var(--widget-accent-hover) !important;
+}
+
+.widget-submit-button:disabled:hover {
+  background-color: var(--widget-accent-primary) !important;
+}
+
+/* FAB arrow container hover (via parent group) */
+.group:hover .fab-arrow-container {
+  background-color: var(--widget-accent-primary) !important;
+  opacity: 1 !important;
+}
+
+.group:hover .fab-arrow-container svg {
+  color: white !important;
 }

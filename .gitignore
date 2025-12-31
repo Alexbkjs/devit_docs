@@ -47,3 +47,5 @@ widget_builder/
 # Screenshots (optional - remove if you want to commit these)
 Screenshot*.png
 screenshot*.png
+
+ignore/

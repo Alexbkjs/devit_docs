@@ -21,6 +21,46 @@ import cssContent from './index.css?inline';
     document.head.appendChild(style);
   }
 
+  // Detect theme from parent page's HTML element
+  function detectTheme() {
+    const htmlElement = document.documentElement;
+    if (htmlElement.classList.contains('dark')) {
+      return 'dark';
+    } else if (htmlElement.classList.contains('light')) {
+      return 'light';
+    }
+    // Default to dark if no theme class found
+    return 'dark';
+  }
+
+  // Set up theme observer to react to theme changes
+  function setupThemeObserver(container) {
+    const htmlElement = document.documentElement;
+
+    // Initial theme
+    const initialTheme = detectTheme();
+    container.classList.add(initialTheme);
+
+    // Watch for theme changes on parent HTML element
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          const newTheme = detectTheme();
+          // Update widget container theme
+          container.classList.remove('light', 'dark');
+          container.classList.add(newTheme);
+        }
+      });
+    });
+
+    observer.observe(htmlElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return observer;
+  }
+
   // Initialize the widget
   function initWidget() {
     // Default configuration - can be overridden via window.MINTLIFY_ASSISTANT_CONFIG
@@ -44,6 +84,9 @@ import cssContent from './index.css?inline';
       container.id = containerId;
       document.body.appendChild(container);
     }
+
+    // Apply initial theme and set up observer
+    setupThemeObserver(container);
 
     // Render the widget
     const root = createRoot(container);

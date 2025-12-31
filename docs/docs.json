@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "DevIT.Software Documentation",
   "colors": {
     "primary": "#16A34A",
@@ -131,66 +131,6 @@
         ]
       },
       {
-        "tab": "Email Bot",
-        "url": "email",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "email/index",
-              "email/quickstart"
-            ]
-          },
-          {
-            "group": "Features",
-            "pages": [
-              "email/features/commands",
-              "email/features/display-modes",
-              "email/features/use-cases"
-            ]
-          },
-          {
-            "group": "Configuration",
-            "pages": [
-              "email/configuration/permissions"
-            ]
-          },
-          {
-            "group": "FAQ & Support",
-            "pages": [
-              "email/support/faq"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Telegram Bot",
-        "url": "telegram",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "telegram/index",
-              "telegram/quickstart"
-            ]
-          },
-          {
-            "group": "Features",
-            "pages": [
-              "telegram/features/commands",
-              "telegram/features/settings",
-              "telegram/features/thread-management"
-            ]
-          },
-          {
-            "group": "FAQ & Support",
-            "pages": [
-              "telegram/support/faq"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "React Flow",
         "url": "reactflow",
         "groups": [
@@ -210,6 +150,76 @@
           }
         ]
       },
+            {
+        "tab": "Discord Bots",
+        "url": "discord-bots",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "discord-bots/index"
+            ]
+          },
+          {
+            "group": "Email Bot",
+            "pages": [
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "email/index",
+                  "email/quickstart"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "email/features/commands",
+                  "email/features/display-modes",
+                  "email/features/use-cases"
+                ]
+              },
+              {
+                "group": "Configuration",
+                "pages": [
+                  "email/configuration/permissions"
+                ]
+              },
+              {
+                "group": "FAQ & Support",
+                "pages": [
+                  "email/support/faq"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Telegram Bot",
+            "pages": [
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "telegram/index",
+                  "telegram/quickstart"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "telegram/features/commands",
+                  "telegram/features/settings",
+                  "telegram/features/thread-management"
+                ]
+              },
+              {
+                "group": "FAQ & Support",
+                "pages": [
+                  "telegram/support/faq"
+                ]
+              }
+            ]
+          }
+        ]
+      },
       {
         "tab": "About DevIT.Software",
         "url": "general",
@@ -225,28 +235,12 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Shopify Partner",
-          "href": "https://www.shopify.com/partners/directory/partner/devit-software",
-          "icon": "handshake"
-        },
-        {
-          "anchor": "Terms of Use",
-          "href": "https://devit.software/terms-of-use/shopify",
-          "icon": "file-contract"
-        },
-        {
-          "anchor": "Support",
-          "href": "mailto:support@devit.software",
-          "icon": "envelope"
-        }
-      ]
+      "anchors": []
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/devit.svg",
+    "dark": "/logo/devit.svg"
   },
   "navbar": {
     "links": [

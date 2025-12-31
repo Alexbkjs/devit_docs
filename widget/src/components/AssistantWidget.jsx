@@ -66,15 +66,30 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
         >
           <button
             onClick={() => setIsOpen(true)}
-            className="bg-[#090d0d]/95 backdrop-blur-md border border-[#2A2F3A] hover:border-[#10b981]/50 text-[#94A3B8] group flex items-center gap-3 px-4 py-3 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)]"
+            className="group flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300"
+            style={{
+              backgroundColor: 'var(--widget-bg-fab)',
+              border: '1px solid var(--widget-border-primary)',
+              color: 'var(--widget-text-secondary)',
+              boxShadow: 'var(--widget-shadow-fab)',
+              backdropFilter: 'blur(12px)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--widget-accent-primary)';
+              e.currentTarget.style.boxShadow = 'var(--widget-shadow-fab-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--widget-border-primary)';
+              e.currentTarget.style.boxShadow = 'var(--widget-shadow-fab)';
+            }}
           >
-            <span className="text-[#10b981]/80">
+            <span style={{ color: 'var(--widget-accent-primary)', opacity: 0.8 }}>
               <SparklesIcon className="w-5 h-5" />
             </span>
-            <span className="text-sm font-medium text-[#E2E8F0]/80 group-hover:text-[#E2E8F0]">
+            <span className="text-sm font-medium" style={{ color: 'var(--widget-text-primary)', opacity: 0.8 }}>
               Ask a question...
             </span>
-            <div className="bg-slate-800/90 p-1.5 rounded-full group-hover:bg-[#10b981] transition-colors">
+            <div className="fab-arrow-container p-1.5 rounded-full transition-colors" style={{ backgroundColor: 'var(--widget-bg-hover)', opacity: 0.9 }}>
               <ArrowUpIcon className="w-3 h-3 text-slate-400 group-hover:text-white" />
             </div>
           </button>
@@ -86,34 +101,44 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 z-[9998]"
+            className="fixed inset-0 z-[9998]"
             onClick={() => setIsOpen(false)}
-            style={{ animation: 'fadeIn 0.2s ease-in-out' }}
+            style={{
+              animation: 'fadeIn 0.2s ease-in-out',
+              backgroundColor: 'var(--widget-backdrop)',
+            }}
           />
 
           {/* Sidebar */}
           <div
-            className="fixed top-0 right-0 h-full w-full max-w-md bg-[#090d0d] border-l border-[#2f4f4f] shadow-2xl flex flex-col z-[9999]"
-            style={{ animation: 'slideIn 0.3s ease-out' }}
+            className="fixed top-0 right-0 h-full w-full max-w-md flex flex-col z-[9999]"
+            style={{
+              animation: 'slideIn 0.3s ease-out',
+              backgroundColor: 'var(--widget-bg-primary)',
+              borderLeft: '1px solid var(--widget-border-secondary)',
+              boxShadow: 'var(--widget-shadow-sidebar)',
+            }}
           >
             {/* Header */}
-            <div className="px-6 py-4 border-b border-[#2A2F3A]/50">
+            <div className="px-6 py-4" style={{ borderBottom: '1px solid var(--widget-border-subtle)' }}>
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <SparklesIcon className="w-5 h-5 text-[#10b981]" />
-                  <h3 className="font-semibold text-[#E2E8F0]">Assistant</h3>
+                  <SparklesIcon className="w-5 h-5" style={{ color: 'var(--widget-accent-primary)' }} />
+                  <h3 className="font-semibold" style={{ color: 'var(--widget-text-primary)' }}>Assistant</h3>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleClearChat}
-                    className="text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#3a3a3a] transition-all p-1.5 rounded cursor-pointer"
+                    className="widget-icon-button transition-all p-1.5 rounded cursor-pointer"
+                    style={{ color: 'var(--widget-text-secondary)' }}
                     title="Clear chat"
                   >
                     <TrashIcon className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#3a3a3a] transition-all p-1.5 rounded cursor-pointer"
+                    className="widget-icon-button transition-all p-1.5 rounded cursor-pointer"
+                    style={{ color: 'var(--widget-text-secondary)' }}
                     title="Close"
                   >
                     <XMarkIcon className="w-5 h-5" />
@@ -122,16 +147,30 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
               </div>
               {/* Context Indicator */}
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/20">
+                <span
+                  className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                  style={{
+                    backgroundColor: 'var(--widget-accent-subtle)',
+                    color: 'var(--widget-accent-primary)',
+                    border: '1px solid var(--widget-accent-border)',
+                  }}
+                >
                   {appConfig.displayName}
                 </span>
-                <span className="text-xs text-[#94A3B8]">{appConfig.description}</span>
+                <span className="text-xs" style={{ color: 'var(--widget-text-secondary)' }}>{appConfig.description}</span>
               </div>
             </div>
 
             {/* Disclaimer */}
-            <div className="px-6 py-3 text-center border-b border-[#2A2F3A]/50 bg-[#090d0d]/50">
-              <p className="text-xs text-[#94A3B8]">
+            <div
+              className="px-6 py-3 text-center"
+              style={{
+                borderBottom: '1px solid var(--widget-border-subtle)',
+                backgroundColor: 'var(--widget-bg-primary)',
+                opacity: 0.95,
+              }}
+            >
+              <p className="text-xs" style={{ color: 'var(--widget-text-secondary)' }}>
                 Responses are generated using AI and may contain mistakes.
               </p>
             </div>
@@ -140,8 +179,8 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
             <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
               {messages.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center space-y-4 opacity-50">
-                  <SparklesIcon className="w-12 h-12 text-[#10b981]/50" />
-                  <p className="text-sm text-[#94A3B8]">Ask anything about the documentation</p>
+                  <SparklesIcon className="w-12 h-12" style={{ color: 'var(--widget-accent-primary)', opacity: 0.5 }} />
+                  <p className="text-sm" style={{ color: 'var(--widget-text-secondary)' }}>Ask anything about the documentation</p>
                 </div>
               ) : (
                 messages.map((message, index) => (
@@ -166,14 +205,15 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
             {/* Suggestions (only show if few messages) - App-specific */}
             {messages.length < 2 && (
               <div className="px-6 pb-2">
-                <p className="text-xs font-semibold text-[#94A3B8] mb-3">Suggestions</p>
+                <p className="text-xs font-semibold mb-3" style={{ color: 'var(--widget-text-secondary)' }}>Suggestions</p>
                 <div className="flex flex-col gap-2">
                   {appConfig.suggestions.map((s) => (
                     <button
                       key={s}
                       onClick={() => handleSuggestionClick(s)}
                       disabled={isLoading}
-                      className="text-left text-sm text-[#10b981] hover:text-emerald-300 hover:bg-[#3a3a3a] transition-all py-1.5 px-2 rounded truncate disabled:opacity-50 cursor-pointer"
+                      className="widget-suggestion-button text-left text-sm transition-all py-1.5 px-2 rounded truncate disabled:opacity-50 cursor-pointer"
+                      style={{ color: 'var(--widget-accent-primary)' }}
                     >
                       {s}
                     </button>
@@ -183,7 +223,13 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
             )}
 
             {/* Input Area */}
-            <div className="p-6 border-t border-[#2A2F3A] bg-[#090d0d]">
+            <div
+              className="p-6"
+              style={{
+                borderTop: '1px solid var(--widget-border-primary)',
+                backgroundColor: 'var(--widget-bg-primary)',
+              }}
+            >
               <form onSubmit={handleSubmit} className="relative">
                 <input
                   ref={inputRef}
@@ -192,12 +238,21 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
                   onChange={handleInputChange}
                   placeholder="Ask a question..."
                   disabled={isLoading}
-                  className="w-full bg-[#090d0d] border border-[#2A2F3A]/30 text-[#E2E8F0] rounded-full pl-4 pr-12 py-3 text-sm focus:border-[#10b981] transition-all placeholder-[#94A3B8]/50 outline-none"
+                  className="widget-input w-full rounded-full pl-4 pr-12 py-3 text-sm transition-all outline-none"
+                  style={{
+                    backgroundColor: 'var(--widget-bg-primary)',
+                    border: '1px solid var(--widget-border-primary)',
+                    color: 'var(--widget-text-primary)',
+                  }}
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="absolute right-2 inset-y-0 my-auto bg-[#10b981] hover:bg-emerald-600 text-white w-8 h-8 rounded-full disabled:opacity-50 disabled:hover:bg-[#10b981] transition-colors flex items-center justify-center cursor-pointer"
+                  className="widget-submit-button absolute right-2 inset-y-0 my-auto w-8 h-8 rounded-full disabled:opacity-50 transition-colors flex items-center justify-center cursor-pointer"
+                  style={{
+                    backgroundColor: 'var(--widget-accent-primary)',
+                    color: 'var(--widget-text-inverse)',
+                  }}
                 >
                   <ArrowUpIcon className="w-4 h-4" />
                 </button>
