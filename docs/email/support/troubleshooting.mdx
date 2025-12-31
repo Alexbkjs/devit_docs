@@ -1,0 +1,246 @@
+---
+title: Troubleshooting
+description: Solutions to common issues with Email bot connection and email delivery.
+---
+
+If you're experiencing issues with Email bot, this guide will help you identify and fix the most common problems.
+
+## Connection to Channel Failed
+
+If the Email bot stops working, you may see this message when trying to connect it to a channel:
+
+> ❌ **Connection to the channel failed, please contact the developer.**
+
+This usually indicates that the bot's existing connection is in a broken or inconsistent state. In most cases, you can restore normal operation by disconnecting and reconnecting the bot.
+
+### Step 1: Disconnect the Email Bot
+
+Follow these steps directly in the affected channel:
+
+<Steps>
+  <Step title="Run the list command">
+    Type `/list` in the channel
+  </Step>
+  <Step title="Locate the Email bot">
+    Find **Email bot** in the list of connected integrations
+  </Step>
+  <Step title="Click Disconnect">
+    Click the **Disconnect** button next to the Email bot
+  </Step>
+  <Step title="Confirm disconnection">
+    Confirm the disconnection when prompted
+  </Step>
+</Steps>
+
+This fully resets the bot's connection to the channel.
+
+### Step 2: Reconnect the Email Bot
+
+After the bot is disconnected:
+
+<Steps>
+  <Step title="Run the connect command">
+    Type `/connect` in the channel
+  </Step>
+  <Step title="Select Email bot">
+    Select or confirm the **Email bot** connection from the list
+  </Step>
+  <Step title="Verify connection">
+    Once completed, the bot should reconnect successfully and resume normal operation
+  </Step>
+</Steps>
+
+<Note>
+This disconnect → reconnect process resolves the issue in the majority of cases and is the recommended first step whenever the Email bot connection fails.
+</Note>
+
+### If the Issue Persists
+
+If you still see the same error after reconnecting:
+
+<AccordionGroup>
+  <Accordion title="Check Channel Permissions" icon="shield">
+    **Verify** that you have permission to manage integrations in the channel.
+
+    **How to check**:
+    1. Check your role in the Discord server
+    2. Ensure you have "Manage Webhooks" or "Administrator" permissions
+    3. Ask a server administrator if needed
+  </Accordion>
+
+  <Accordion title="Check Workspace-Level Restrictions" icon="building">
+    **Verify** that the bot has not been removed or restricted at the workspace level.
+
+    **How to check**:
+    1. Go to your Discord server settings
+    2. Navigate to Integrations
+    3. Verify Email bot appears in the list
+    4. Check that it's not disabled or restricted
+  </Accordion>
+
+  <Accordion title="Contact Support" icon="envelope">
+    **If none of the above works**, contact the developer or support team.
+
+    **Include**:
+    - Channel name/ID where the error occurs
+    - Screenshot of the error message
+    - Steps you've already tried from this guide
+  </Accordion>
+</AccordionGroup>
+
+## Emails Not Appearing in Channel
+
+If you've connected the bot successfully but emails aren't showing up:
+
+### Check Email Forwarding Setup
+
+Ensure that emails are being forwarded correctly to the bot's address.
+
+<Steps>
+  <Step title="Verify forwarding address">
+    Check that you're using the correct email address provided by the bot
+  </Step>
+  <Step title="Test the connection">
+    Send a test email to verify the forwarding works
+  </Step>
+  <Step title="Check spam/junk folders">
+    The forwarding rule may be catching emails before they reach the bot
+  </Step>
+  <Step title="Wait for processing">
+    It may take a few minutes for emails to appear in the channel
+  </Step>
+</Steps>
+
+### Check Bot Permissions
+
+The bot needs proper permissions to post messages in the channel.
+
+**Required permissions**:
+- Send Messages
+- Embed Links
+- Attach Files (for email attachments)
+- Read Message History
+
+<Card title="Permission Setup Guide" icon="shield-check" href="/email/configuration/permissions">
+  Learn how to configure Discord permissions for Email bot
+</Card>
+
+### Review Rate Limits
+
+Discord has rate limits that may affect how quickly emails appear.
+
+<Warning>
+If you're receiving a large volume of emails in a short period, some messages may be delayed or queued. This is a Discord limitation, not a bot issue.
+</Warning>
+
+**What to expect**:
+- Normal operation: Emails appear within 1-2 minutes
+- High volume: May take up to 5-10 minutes during rate limiting
+- If delays persist beyond this, check your forwarding setup
+
+## Display Issues
+
+### Emails Showing in Wrong Format
+
+If emails appear but don't look right:
+
+<Steps>
+  <Step title="Check display mode">
+    Use `/list` to see current display settings
+  </Step>
+  <Step title="Adjust display mode">
+    See available display modes in the [Display Modes guide](/email/features/display-modes)
+  </Step>
+  <Step title="Test different formats">
+    Try switching between compact and full display modes
+  </Step>
+</Steps>
+
+### Attachments Not Appearing
+
+If email attachments are missing:
+
+**Common causes**:
+- Attachment exceeds Discord's file size limit (25MB for free users, 500MB for Nitro)
+- File type is not supported by Discord
+- Bot lacks "Attach Files" permission
+
+**Solutions**:
+1. Verify bot has "Attach Files" permission in the channel
+2. Check attachment file size
+3. Large files will show as links instead of embedded attachments
+
+## Still Having Issues?
+
+If you've tried everything above and Email bot still isn't working:
+
+### Before Contacting Support
+
+Gather this information:
+
+1. **Your Discord server name/ID**
+2. **Channel where the issue occurs**
+3. **Error message** (screenshot if possible)
+4. **Email forwarding address** you're using
+5. **What you've already tried** from this guide
+6. **Console errors** (F12 → Console tab in Discord web/desktop app)
+
+### Contact Support
+
+<Card title="Email Support" icon="envelope" href="mailto:support@devit.software">
+  Send the information above to support@devit.software for personalized help
+</Card>
+
+**Response time**: Usually within 24 hours on business days
+
+## Diagnostic Checklist
+
+Use this checklist to systematically troubleshoot:
+
+- [ ] Bot is connected to the channel (verify with `/list`)
+- [ ] Email forwarding is set up correctly
+- [ ] Bot has required permissions (Send Messages, Embed Links, Attach Files)
+- [ ] No error messages in Discord console
+- [ ] Tested with a simple test email
+- [ ] Waited at least 5 minutes for email to appear
+- [ ] Checked if other bots/integrations are working in the channel
+- [ ] Tried disconnecting and reconnecting the bot
+
+## Common Error Messages
+
+<AccordionGroup>
+  <Accordion title="'Connection to the channel failed'">
+    **Solution**: Disconnect the bot using `/list`, then reconnect using `/connect`. See [Connection to Channel Failed](#connection-to-channel-failed) above for detailed steps.
+  </Accordion>
+
+  <Accordion title="'Missing Permissions'">
+    **Solution**: Grant the bot required permissions (Send Messages, Embed Links, Attach Files) in channel settings or server-wide.
+  </Accordion>
+
+  <Accordion title="'Rate limit exceeded'">
+    **Solution**: This is temporary. Wait a few minutes and try again. If persistent, you may be sending too many emails too quickly.
+  </Accordion>
+
+  <Accordion title="'Bot is not responding'">
+    **Solution**: Check Discord's status page for outages. Try disconnecting and reconnecting the bot. If issues persist, contact support.
+  </Accordion>
+</AccordionGroup>
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="FAQ" icon="question" href="/email/support/faq">
+    Frequently asked questions
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/email/quickstart">
+    Basic setup guide
+  </Card>
+  <Card title="Commands Reference" icon="terminal" href="/email/features/commands">
+    All available bot commands
+  </Card>
+  <Card title="Display Modes" icon="palette" href="/email/features/display-modes">
+    Customize email appearance
+  </Card>
+</CardGroup>
+
+Most connection issues can be resolved by disconnecting and reconnecting the bot. For email delivery issues, verify your forwarding setup and bot permissions. If problems persist, our support team is ready to help.

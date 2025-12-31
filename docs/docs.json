@@ -187,7 +187,8 @@
               {
                 "group": "FAQ & Support",
                 "pages": [
-                  "email/support/faq"
+                  "email/support/faq",
+                  "email/support/troubleshooting"
                 ]
               }
             ]
