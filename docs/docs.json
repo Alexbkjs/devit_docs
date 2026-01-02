@@ -19,7 +19,8 @@
             "pages": [
               "selecty/index",
               "selecty/quickstart",
-              "selecty/pricing"
+              "selecty/pricing",
+              "selecty/changelog"
             ]
           },
           {
@@ -68,7 +69,8 @@
             "pages": [
               "resell/index",
               "resell/quickstart",
-              "resell/pricing"
+              "resell/pricing",
+              "resell/changelog"
             ]
           },
           {
@@ -104,7 +106,8 @@
             "pages": [
               "lably/index",
               "lably/quickstart",
-              "lably/pricing"
+              "lably/pricing",
+              "lably/changelog"
             ]
           },
           {
@@ -139,7 +142,8 @@
             "pages": [
               "reactflow/index",
               "reactflow/quickstart",
-              "reactflow/pricing"
+              "reactflow/pricing",
+              "reactflow/changelog"
             ]
           },
           {
@@ -190,7 +194,8 @@
                   "email/support/faq",
                   "email/support/troubleshooting"
                 ]
-              }
+              },
+              "email/changelog"
             ]
           },
           {
@@ -216,7 +221,8 @@
                 "pages": [
                   "telegram/support/faq"
                 ]
-              }
+              },
+              "telegram/changelog"
             ]
           }
         ]

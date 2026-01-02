@@ -31,6 +31,7 @@
 - Language tags on all code blocks
 - Alt text on all images
 - Relative paths for internal links
+- Add "\" before "$" sign, e.g. **Pricing**: **\$49.99/month** or **\$479.90/year** (save 20%)
 
 ## Git workflow
 - NEVER use --no-verify when committing
