@@ -1,0 +1,402 @@
+---
+title: Common Use Cases
+description: Practical examples showing how to use Selecty resources for real-world international store scenarios
+---
+
+Resources and selectors are powerful tools for international commerce, but seeing them in action helps you understand their full potential. This guide presents real-world scenarios where Selecty's features solve common challenges faced by global merchants.
+
+Whether you're operating across European markets, managing a global presence, or connecting external platforms, these examples show you how to configure resources and selectors to meet your specific needs.
+
+<Tip>
+New to resources? Start with our [Resources guide](/selecty/configuration/resources) to understand the basics before diving into these use cases.
+</Tip>
+
+## Use Case 1: European Multi-Market Store
+
+A fashion retailer operates across multiple European countries, each with its own language but sharing the Euro currency.
+
+**Resources:**
+- **Countries:** France, Germany, Spain, Italy
+- **Languages:** French, German, Spanish, Italian
+- **Currencies:** EUR (all markets use Euro)
+
+**Configuration Strategy:**
+
+<Steps>
+  <Step title="Configure Markets in Shopify">
+    Navigate to **Settings → Markets** and create separate markets for France, Germany, Spain, and Italy. Assign the appropriate countries and languages to each market.
+  </Step>
+
+  <Step title="Set Up Combined Selector">
+    Create a selector that displays both language and country together. This helps customers quickly identify their market without needing separate selections.
+  </Step>
+
+  <Step title="Skip Currency Selector">
+    Since all markets use EUR, you don't need a currency selector. This simplifies the user interface and reduces decision fatigue.
+  </Step>
+
+  <Step title="Position in Header">
+    Place the combined language/country selector in your header for maximum visibility and easy access.
+  </Step>
+</Steps>
+
+**Best for:** European stores with regionally consistent currencies but diverse languages.
+
+**Key Benefit:** Simplified customer experience with a single selector instead of multiple dropdowns.
+
+---
+
+## Use Case 2: Global Store with Many Markets
+
+An electronics retailer ships to 30+ countries across 6 continents, with 10 languages and 15+ currencies.
+
+**Resources:**
+- **Countries:** 30+ countries across all regions
+- **Languages:** English, Spanish, French, German, Japanese, Chinese, Portuguese, Italian, Dutch, Korean
+- **Currencies:** USD, EUR, GBP, JPY, CNY, AUD, CAD, CHF, SEK, NOK, DKK, PLN, CZK, HKD, SGD
+
+**Configuration Strategy:**
+
+<Steps>
+  <Step title="Enable Search Functionality">
+    With 30+ countries, a scrollable list becomes unwieldy. Enable search in your selectors to help customers quickly find their location.
+  </Step>
+
+  <Step title="Create Separate Selectors">
+    Use three distinct selectors: one for countries, one for languages, and one for currencies. This provides flexibility for customers who may want different combinations.
+  </Step>
+
+  <Step title="Add Visual Icons">
+    Include country flags for countries, language icons for languages, and currency symbols to improve scanability.
+  </Step>
+
+  <Step title="Position Strategically">
+    Place all three selectors in the header navigation area, arranged in a logical order (typically: Country → Language → Currency).
+  </Step>
+
+  <Step title="Set Logical Ordering">
+    Order countries by popularity or alphabetically. Consider promoting your top 5-10 markets at the beginning of the list for quicker access.
+  </Step>
+</Steps>
+
+**Best for:** Large international operations with diverse global customer bases.
+
+**Key Benefit:** Search functionality prevents overwhelming users while maintaining comprehensive market coverage.
+
+---
+
+## Use Case 3: Multi-Brand with Custom Resources
+
+A parent company operates standard Shopify markets but also has regional sister brands on separate platforms and localized support resources.
+
+**Resources:**
+- **Standard Markets:** United States, United Kingdom, European Union markets
+- **Custom Resources:** Links to regional brand websites, localized support pages, country-specific product catalogs
+
+**Configuration Strategy:**
+
+<Steps>
+  <Step title="Verify Premium Plan">
+    Custom resources require the Premium plan (\$49.99/month or \$479.90/year). Ensure you have an active subscription.
+  </Step>
+
+  <Step title="Create Custom Resource Collection">
+    In Selecty, navigate to **Resources** → **Add custom resource** and create a collection named "Regional Resources" or "Brand Links."
+  </Step>
+
+  <Step title="Add Custom Resource Items">
+    For each sister brand or support page:
+    - Click **Add resource**
+    - Enter the title (e.g., "Germany Support Portal")
+    - Enter the full URL
+    - Upload a custom icon (optional)
+    - Click **Apply**
+  </Step>
+
+  <Step title="Create Separate Selectors">
+    Set up one selector for standard markets (countries/languages) and another selector specifically for custom resources. This keeps navigation clear and purposeful.
+  </Step>
+
+  <Step title="Label Clearly">
+    Use clear labels like "Select Your Region" for markets and "Additional Resources" for custom links to set proper expectations.
+  </Step>
+</Steps>
+
+<Warning>
+Custom resources are available on the **Premium plan only** (\$49.99/month or \$479.90/year).
+</Warning>
+
+**Best for:** Multi-brand organizations with regional websites or extensive support resources across platforms.
+
+**Key Benefit:** Seamlessly integrate external resources while maintaining Shopify market functionality.
+
+---
+
+## Use Case 4: Redirecting to External Non-Shopify Domains
+
+A business operates their primary store on Shopify but uses different e-commerce platforms (Magento, WooCommerce, custom solutions) for specific regional markets. They want to provide seamless navigation between all platforms.
+
+### Overview
+
+Selecty's custom resources allow you to redirect customers from your Shopify store to external platforms. This is useful when you operate different platforms for different regions or have sister brands on separate systems.
+
+<Warning>
+Custom resources are available on the **Premium plan only** (\$49.99/month or \$479.90/year).
+</Warning>
+
+### When to Use This Approach
+
+- Operating different e-commerce platforms by region (Shopify in US, Magento in Europe)
+- Sister brands on different platforms that need cross-linking
+- Transitioning between platforms regionally
+- Regional mobile apps or services on external domains
+- Localized support portals or knowledge bases outside Shopify
+
+### Example Scenario
+
+**Your setup:**
+- example.com (Shopify) - Primary international store
+- example.de (Magento) - German regional platform
+- example.es (Magento) - Spanish regional platform
+- example.it (Magento) - Italian regional platform
+
+**Goal:** Allow visitors to select their region and be directed to the appropriate platform, whether Shopify or external.
+
+### Setup Steps
+
+<Steps>
+  <Step title="Verify Premium Plan Access">
+    Ensure you have an active Premium plan subscription. Custom resources are not available on lower pricing tiers.
+  </Step>
+
+  <Step title="Prepare External URLs">
+    Collect the full URLs for your external platforms:
+    - example.de (Germany)
+    - example.es (Spain)
+    - example.it (Italy)
+
+    Ensure these URLs are complete with the protocol (https://).
+  </Step>
+
+  <Step title="Create Custom Resource Collection">
+    In Selecty app:
+    1. Navigate to **Resources** section
+    2. Click **Add custom resource**
+    3. Enter a resource name (e.g., "Regional Platforms" or "Global Stores")
+    4. Click **Apply**
+  </Step>
+
+  <Step title="Add External Resources">
+    For each external platform:
+    1. Click **Add resource**
+    2. **Title:** Enter the market name (e.g., "Germany", "España", "Italia")
+    3. **Link:** Enter the full external URL (e.g., "https://example.de")
+    4. **Icon:** Upload country flag or regional icon (optional but recommended)
+    5. Click **Apply**
+  </Step>
+
+  <Step title="Include Shopify Markets (Optional)">
+    If you want to mix Shopify markets with external platforms in one selector:
+    1. Add Shopify market URLs as additional resources
+    2. Example: "United States" → "https://example.com"
+    3. This creates a unified navigation experience
+  </Step>
+
+  <Step title="Create and Configure Selector">
+    1. Go to **Selectors** section
+    2. Click **Create new selector**
+    3. **Resource type:** Select your custom resource ("Regional Platforms")
+    4. Customize appearance, position, and styling to match your theme
+    5. Save and publish the selector
+  </Step>
+
+  <Step title="Test Redirects">
+    1. Visit your store
+    2. Open the selector
+    3. Click on each external platform option
+    4. Verify that redirects work correctly and land on the expected pages
+  </Step>
+</Steps>
+
+### Configuration Options
+
+#### Selector Placement
+
+<CardGroup cols={2}>
+  <Card title="Header" icon="arrow-up">
+    Most visible location for market/platform switching. Best for primary navigation between platforms.
+  </Card>
+  <Card title="Footer" icon="arrow-down">
+    Less intrusive but still accessible. Good for secondary platform links.
+  </Card>
+  <Card title="Floating Button" icon="circle">
+    Always accessible without cluttering header. Modern approach for mobile-first designs.
+  </Card>
+  <Card title="Banner" icon="rectangle-wide">
+    Combine with recommendation banner for first-time visitors to guide them to the right platform.
+  </Card>
+</CardGroup>
+
+#### Display Options
+
+- **Name format:** Full names (Germany, Spain) vs codes (DE, ES) - full names recommended for clarity
+- **Icons:** Country flags, platform logos, or custom icons - flags work best for regional platforms
+- **Order:** Alphabetical, by popularity, or custom arrangement - consider prominence of each market
+- **Search:** Enable for many options (10+ platforms) to improve usability
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Clear Messaging">
+    Inform users they're leaving your Shopify domain. Consider labels like "Visit Germany Store (Magento)" or add a small note that they'll be redirected to a regional platform. This sets proper expectations and reduces confusion.
+  </Accordion>
+
+  <Accordion title="Consistent Branding">
+    Maintain visual consistency across all platforms to avoid confusing customers. Use the same logo, color scheme, and general layout so customers recognize they're still interacting with your brand.
+  </Accordion>
+
+  <Accordion title="User Control">
+    Use manual selectors instead of auto-redirect to give users choice and control. Auto-redirects can be frustrating if the geolocation is incorrect. Let customers decide which platform to visit.
+  </Accordion>
+
+  <Accordion title="Analytics Tracking">
+    Set up cross-domain tracking if you want to monitor user journeys across platforms. Use Google Analytics cross-domain tracking or similar tools to understand how customers navigate between your Shopify store and external platforms.
+  </Accordion>
+
+  <Accordion title="SEO Considerations">
+    External redirects can impact SEO. Use proper canonical tags and hreflang annotations on both platforms to help search engines understand the relationship between your sites. Avoid duplicate content issues by properly configuring these tags.
+  </Accordion>
+
+  <Accordion title="Session Continuity">
+    Note that cart and session data won't transfer when redirecting to external domains. Consider this in your user experience design. If customers add items to cart on one platform and switch to another, their cart will be empty.
+  </Accordion>
+
+  <Accordion title="Mobile Experience">
+    Test the redirect experience thoroughly on mobile devices. Ensure the selector is easy to use on small screens and that external platforms are mobile-responsive.
+  </Accordion>
+
+  <Accordion title="Performance">
+    External redirects add an extra network hop. Ensure your external platforms load quickly to avoid losing customers during the transition.
+  </Accordion>
+</AccordionGroup>
+
+### Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Cannot create custom resource">
+    **Check:**
+    - You have an active Premium plan subscription
+    - You're in the Resources section (not Selectors)
+    - All required fields are filled correctly
+    - You clicked "Apply" after entering the resource name
+
+    If issues persist, try refreshing the app or clearing your browser cache.
+  </Accordion>
+
+  <Accordion title="External URLs not redirecting">
+    **Verify:**
+    - URLs include the full protocol (https://)
+    - External domains are accessible and not blocking referral traffic
+    - No typos in URL configuration
+    - Browser isn't blocking pop-ups or redirects
+    - Test the URL directly in a browser first
+
+    Try opening the external URL in an incognito window to rule out browser-specific issues.
+  </Accordion>
+
+  <Accordion title="Icons not displaying">
+    **Try:**
+    - Upload smaller image files (under 500KB recommended)
+    - Use supported formats (PNG, JPG, SVG)
+    - Check image URL is publicly accessible if using a URL
+    - Clear browser cache and refresh
+    - Re-upload the icon
+
+    If SVG icons don't work, try converting to PNG format.
+  </Accordion>
+
+  <Accordion title="Selector not showing custom resource">
+    **Ensure:**
+    - Custom resource is saved (not just created)
+    - Resource is selected in selector settings under "Resource list"
+    - Selector is published and active
+    - Page is refreshed after changes
+    - No JavaScript errors in browser console
+
+    Try creating a new selector and selecting the custom resource from scratch.
+  </Accordion>
+
+  <Accordion title="Wrong platform loading">
+    **Confirm:**
+    - Each resource item has the correct URL
+    - URLs don't have trailing spaces or hidden characters
+    - The title matches the intended destination
+    - Test each link individually in selector preview
+
+    Edit the custom resource and double-check all URLs are correct.
+  </Accordion>
+</AccordionGroup>
+
+**Best for:** Businesses operating multiple e-commerce platforms across different regions or brands.
+
+**Key Benefit:** Unified customer navigation experience across disparate technology platforms.
+
+---
+
+## Best Practices Across All Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Start Simple" icon="seedling">
+    Begin with basic selectors and add complexity only as needed. Don't overwhelm customers with too many options.
+  </Card>
+
+  <Card title="Test Thoroughly" icon="flask">
+    Test all selectors and redirects across different devices and browsers before launching to customers.
+  </Card>
+
+  <Card title="Monitor Analytics" icon="chart-line">
+    Track which markets and resources customers use most. Adjust your configuration based on actual usage patterns.
+  </Card>
+
+  <Card title="Mobile-First" icon="mobile">
+    Ensure selectors work perfectly on mobile devices, where most customers shop today.
+  </Card>
+
+  <Card title="Clear Labels" icon="tag">
+    Use descriptive labels that make it obvious what each selector does. Avoid jargon or ambiguous terms.
+  </Card>
+
+  <Card title="Consistent Placement" icon="location-dot">
+    Keep selectors in the same location across all pages for a predictable user experience.
+  </Card>
+</CardGroup>
+
+---
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Resources Guide" icon="puzzle-piece" href="/selecty/configuration/resources">
+    Deep dive into all resource types and configuration options
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/selecty/features/selectors">
+    Learn how to create and customize selectors
+  </Card>
+
+  <Card title="Languages Configuration" icon="language" href="/selecty/configuration/languages">
+    Configure language resources for your markets
+  </Card>
+
+  <Card title="Currencies Configuration" icon="dollar-sign" href="/selecty/configuration/currencies">
+    Set up currency resources and formatting
+  </Card>
+
+  <Card title="Multiple Stores" icon="store" href="/selecty/features/multiple-stores">
+    Connect multiple Shopify stores with Selecty
+  </Card>
+
+  <Card title="Markets Redirect" icon="arrows-turn-right" href="/selecty/features/markets-redirect">
+    Automatic redirection within Shopify Markets
+  </Card>
+</CardGroup>

@@ -30,7 +30,8 @@
               "selecty/features/markets-recommendation",
               "selecty/features/markets-recommendation-display",
               "selecty/features/markets-redirect",
-              "selecty/features/multiple-stores"
+              "selecty/features/multiple-stores",
+              "selecty/features/use-cases"
             ]
           },
           {

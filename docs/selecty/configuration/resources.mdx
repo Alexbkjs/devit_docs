@@ -22,81 +22,83 @@ Resources are pulled from your Shopify Markets configuration. Selecty reads this
 
 ## Standard Resource Types
 
-### Languages
+<Tabs>
+  <Tab title="Languages" icon="language">
+    **What it is:** A list of languages added to your Shopify Markets
 
-**What it is:** A list of languages added to your Shopify Markets
+    **Configuration:** Shopify Settings → Languages
 
-**Configuration:** Shopify Settings → Languages
+    **Requirements:**
+    - Languages must be added in Shopify first
+    - Translations should be published
+    - Languages assigned to at least one market
 
-**Requirements:**
-- Languages must be added in Shopify first
-- Translations should be published
-- Languages assigned to at least one market
+    **Use cases:**
+    - Language selector in header
+    - Recommendation banner for non-English visitors
+    - Combined language & currency switcher
 
-**Use cases:**
-- Language selector in header
-- Recommendation banner for non-English visitors
-- Combined language & currency switcher
+    <Tip>
+    See our [Languages guide](languages) for detailed configuration instructions.
+    </Tip>
+  </Tab>
 
-<Tip>
-See our [Languages guide](/configuration/languages) for detailed configuration instructions.
-</Tip>
+  <Tab title="Currencies" icon="dollar-sign">
+    **What it is:** A list of currencies corresponding to countries in your markets
 
-### Currencies
+    **Configuration:** Shopify Settings → Markets
 
-**What it is:** A list of currencies corresponding to countries in your markets
+    **Requirements:**
+    - Markets configured with countries
+    - Currencies assigned to markets
+    - Shopify Payments enabled for local currency payments (recommended)
 
-**Configuration:** Shopify Settings → Markets
+    **Use cases:**
+    - Currency selector in footer
+    - Geolocation-based currency recommendations
+    - Combined with language switching
 
-**Requirements:**
-- Markets configured with countries
-- Currencies assigned to markets
-- Shopify Payments enabled for local currency payments (recommended)
+    <Tip>
+    See our [Currencies guide](currencies) for detailed configuration instructions.
+    </Tip>
+  </Tab>
 
-**Use cases:**
-- Currency selector in footer
-- Geolocation-based currency recommendations
-- Combined with language switching
+  <Tab title="Countries" icon="earth-americas">
+    **What it is:** A list of countries added to your Shopify Markets
 
-<Tip>
-See our [Currencies guide](/configuration/currencies) for detailed configuration instructions.
-</Tip>
+    **Configuration:** Shopify Settings → Markets
 
-### Countries
+    **Requirements:**
+    - At least one market created
+    - Countries assigned to markets
+    - Shipping zones configured for countries
 
-**What it is:** A list of countries added to your Shopify Markets
+    **Use cases:**
+    - Country selector for international stores
+    - Shipping destination selection
+    - Country-specific content or products
+  </Tab>
 
-**Configuration:** Shopify Settings → Markets
+  <Tab title="Market Domains" icon="globe">
+    **What it is:** A list of active markets with separate domains or subdomains
 
-**Requirements:**
-- At least one market created
-- Countries assigned to markets
-- Shipping zones configured for countries
+    **Configuration:** Shopify Settings → Domains
 
-**Use cases:**
-- Country selector for international stores
-- Shipping destination selection
-- Country-specific content or products
+    **Requirements:**
+    - Each market must point to a separate domain or subdomain
+    - Domains properly configured and connected
+    - DNS settings correctly set up
 
-### Market Domains
+    **Examples:**
+    - example.com (US market)
+    - example.co.uk (UK market)
+    - example.fr (France market)
 
-**What it is:** A list of active markets with separate domains or subdomains
-
-**Configuration:** Shopify Settings → Domains
-
-**Requirements:**
-- Each market must point to a separate domain or subdomain
-- Domains properly configured and connected
-- DNS settings correctly set up
-
-**Examples:**
-- example.com (US market)
-- example.co.uk (UK market)
-- example.fr (France market)
-
-<Warning>
-Market Domains only work correctly when each market is pointed to a distinct domain or subdomain. Markets sharing the same domain won't appear in domain selectors.
-</Warning>
+    <Warning>
+    Market Domains only work correctly when each market is pointed to a distinct domain or subdomain. Markets sharing the same domain won't appear in domain selectors.
+    </Warning>
+  </Tab>
+</Tabs>
 
 ## Custom Resources
 
@@ -292,41 +294,13 @@ Control how resources appear in selectors:
 - Bypass Shopify's domain requirements
 - Use market domains without separate domains/subdomains
 
-## Common Use Cases
+## Use Cases and Examples
 
-### Use Case 1: European Multi-Market Store
+Looking for practical examples of how to use resources in real-world scenarios?
 
-**Resources:**
-- **Countries:** France, Germany, Spain, Italy
-- **Languages:** French, German, Spanish, Italian
-- **Currencies:** EUR (all markets use Euro)
-
-**Selectors:**
-- Combined Language & Country selector
-- Single currency (no selector needed)
-
-### Use Case 2: Global Store with Many Markets
-
-**Resources:**
-- **Countries:** 30+ countries across 6 continents
-- **Languages:** 10 languages
-- **Currencies:** 15+ currencies
-
-**Selectors:**
-- Searchable country selector
-- Language selector with flags
-- Currency selector with symbols
-- All positioned in header
-
-### Use Case 3: Multi-Brand with Custom Resources
-
-**Resources:**
-- **Standard:** US, UK, EU markets
-- **Custom:** Links to regional brand websites, localized support pages, country-specific catalogs
-
-**Selectors:**
-- Market selector for standard markets
-- Custom resource selector for brand links
+<Card title="Common Use Cases" icon="lightbulb" href="/selecty/features/use-cases">
+  Explore practical examples including multi-market stores, global operations, external platform redirects, and custom resource implementations
+</Card>
 
 ## Troubleshooting
 
@@ -367,19 +341,23 @@ Control how resources appear in selectors:
 ## Related Resources
 
 <CardGroup cols={2}>
-  <Card title="Selectors" icon="toggle-on" href="/features/selectors">
+  <Card title="Use Cases" icon="lightbulb" href="/selecty/features/use-cases">
+    Practical examples and implementation guides
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/selecty/features/selectors">
     Learn how to create selectors using resources
   </Card>
 
-  <Card title="Languages" icon="language" href="/configuration/languages">
+  <Card title="Languages" icon="language" href="/selecty/configuration/languages">
     Configure language resources
   </Card>
 
-  <Card title="Currencies" icon="dollar-sign" href="/configuration/currencies">
+  <Card title="Currencies" icon="dollar-sign" href="/selecty/configuration/currencies">
     Set up currency resources
   </Card>
 
-  <Card title="Markets Recommendation" icon="lightbulb" href="/features/markets-recommendation">
+  <Card title="Markets Recommendation" icon="lightbulb-on" href="/selecty/features/markets-recommendation">
     Use resources in recommendation banners
   </Card>
 </CardGroup>
