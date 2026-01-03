@@ -39,7 +39,8 @@
             "pages": [
               "selecty/configuration/languages",
               "selecty/configuration/currencies",
-              "selecty/configuration/resources"
+              "selecty/configuration/resources",
+              "selecty/configuration/visibility"
             ]
           },
           {

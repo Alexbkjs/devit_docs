@@ -1,0 +1,538 @@
+---
+title: Visibility Settings
+description: Control when and where selectors and recommendation banners appear with advanced visibility rules
+---
+
+Visibility settings allow you to control exactly when and where your selectors and market recommendation banners appear on your store. These powerful rules enable you to show or hide your Selecty elements based on screen size, specific URLs, URL parameters, visitor language, and geographic location.
+
+<Warning>
+**Professional and Premium plans only**
+
+Visibility settings are available exclusively on Professional and Premium plans. [Upgrade your plan](/selecty/pricing) to unlock advanced visibility controls and create targeted experiences for your customers.
+</Warning>
+
+## What are Visibility Settings?
+
+Visibility settings provide granular control over when your selectors and recommendation banners display to customers. You can create rules based on:
+
+- **Screen size** - Show or hide elements based on device type (mobile, tablet, desktop)
+- **Custom URLs** - Target specific pages or page types
+- **URL parameters** - Display based on query strings (UTM parameters, campaign IDs, etc.)
+- **Languages** - Show elements only to visitors using specific languages
+- **Countries** - Target or exclude visitors from specific geographic locations
+
+All visibility rules work together using AND logic, meaning visitors must match all configured rules for the element to display.
+
+### Visibility Features Comparison
+
+Different visibility rules are available depending on whether you're configuring a selector or a market recommendation banner:
+
+| Visibility Rule | Selectors | Recommendation Banners |
+|----------------|-----------|------------------------|
+| **Screen Range Visibility** | ✅ Available | ❌ Not available |
+| **Custom URL Rules** | ✅ Available | ✅ Available |
+| **URL Parameters** | ✅ Available | ❌ Not available |
+| **Language Filtering** | ✅ Available | ❌ Not available |
+| **Country Filtering** | ✅ Available | ✅ Available |
+
+<Note>
+**Selectors** have access to all five visibility rule types, giving you complete control over when and where they appear. **Recommendation banners** support Custom URL rules and Country filtering, allowing you to target specific pages and geographic locations.
+</Note>
+
+## Screen Range Visibility
+
+<Info>
+**Available for**: Selectors only
+</Info>
+
+Control which screen sizes display your selectors. Selecty uses five responsive breakpoints that cover all device types.
+
+### Available Screen Ranges
+
+- **Extra small** (0 - 489px) - Small mobile phones
+- **Small** (490 - 767px) - Standard mobile phones
+- **Medium** (768 - 1039px) - Tablets and large phones
+- **Large** (1040 - 1439px) - Small laptops and tablets in landscape
+- **Extra large** (1440px+) - Desktop monitors and large displays
+
+<Steps>
+  <Step title="Access Visibility Settings">
+    When creating or editing a selector, swtich to the **Visibility Settings** section.
+  </Step>
+
+  <Step title="Select Screen Ranges">
+    Check the boxes for the screen ranges where you want your element to appear. By default, all screen ranges are selected.
+  </Step>
+
+  <Step title="Test on Different Devices">
+    Preview your selector on different screen sizes to ensure it displays as expected. Use browser developer tools to test various breakpoints.
+  </Step>
+</Steps>
+
+<Tip>
+**Common use case**: Uncheck "Extra small" and "Small" to hide selectors on mobile devices, keeping your mobile interface clean while still showing selectors on desktop.
+</Tip>
+
+### Example: Mobile-Only Selector
+
+To create a selector that only appears on mobile devices:
+
+1. Uncheck **Medium**, **Large**, and **Extra large** screen ranges
+2. Keep **Extra small** and **Small** checked
+3. Your selector will now display only on phones
+
+## Custom URL Rules
+
+<Info>
+**Available for**: Selectors and Recommendation Banners
+</Info>
+
+Target specific pages on your store using URL matching rules. This is one of the most powerful visibility controls, allowing you to show selectors and recommendation banners only where they're most relevant.
+
+### Understanding Match vs Don't Match
+
+The Custom URL dropdown offers two options with different behaviors:
+
+<Tabs>
+  <Tab title="Match (Hide on these URLs)">
+    **Match** prevents your selector from displaying on URLs that match your specified patterns.
+
+    **How it works**: The selector appears everywhere *except* the URLs you list.
+
+    **Example use case**: Hide the language selector on checkout pages:
+    ```text
+    https://example.com/checkout
+    ```
+    With "Match" selected, your selector will appear on all pages except checkout.
+  </Tab>
+
+  <Tab title="Don't Match (Show only on these URLs)">
+    **Don't match** displays your selector *only* on URLs that match your specified patterns.
+
+    **How it works**: The selector appears *only* on the URLs you list.
+
+    **Example use case**: Show a currency selector only on product pages:
+    ```text
+    https://example.com/products/
+    ```
+    With "Don't match" selected, your selector will appear only on product pages.
+  </Tab>
+</Tabs>
+
+<Note>
+**Match** will prevent the selector from displaying on that specific page. **Don't match** will display the selector only on that specific page.
+</Note>
+
+### Allow Sub-Pages Option
+
+When you check **Allow sub-pages**, the visibility rule applies to the specified URL *and all pages beneath it* in your site hierarchy.
+
+**Example without Allow sub-pages**:
+- URL: `https://example.com/collections/summer`
+- Matches: Only the summer collection page
+- Does not match: `https://example.com/collections/summer/sale`
+
+**Example with Allow sub-pages**:
+- URL: `https://example.com/collections/summer`
+- Matches: The summer collection page AND all its sub-pages
+- Also matches: `https://example.com/collections/summer/sale`, `https://example.com/collections/summer/new-arrivals`
+
+### Common URL Targeting Scenarios
+
+<AccordionGroup>
+  <Accordion title="Show selector only on product pages">
+    - **URL**: `https://yourstore.com/products/`
+    - **Option**: Don't match
+    - **Allow sub-pages**: Checked
+    - **Result**: Selector appears on all product pages
+  </Accordion>
+
+  <Accordion title="Hide banner on checkout pages">
+    - **URL**: `https://yourstore.com/checkout`
+    - **Option**: Match
+    - **Allow sub-pages**: Checked
+    - **Result**: Banner hidden during entire checkout process
+  </Accordion>
+
+  <Accordion title="Display on specific collection">
+    - **URL**: `https://yourstore.com/collections/winter-sale`
+    - **Option**: Don't match
+    - **Allow sub-pages**: Checked
+    - **Result**: Displays only on winter sale collection and its products
+  </Accordion>
+
+  <Accordion title="Hide from account and cart pages">
+    Add multiple URLs:
+    - **URL 1**: `https://yourstore.com/account`
+    - **URL 2**: `https://yourstore.com/cart`
+    - **Option**: Match
+    - **Result**: Selector hidden on both pages
+  </Accordion>
+</AccordionGroup>
+
+## URL Parameters
+
+<Info>
+**Available for**: Selectors only
+</Info>
+
+Filter visibility based on URL query parameters, perfect for campaigns, traffic sources, and tracking codes.
+
+### Include vs Exclude
+
+<Tabs>
+  <Tab title="Include (Show when params present)">
+    **Include** displays your selector *only* when the specified URL parameters are present.
+
+    **Example**: Show selector for Google Ads traffic
+    ```text
+    utm_source=google
+    ```
+    The selector appears only when this parameter is in the URL:
+    `https://yourstore.com/products/shoes?utm_source=google`
+  </Tab>
+
+  <Tab title="Exclude (Hide when params present)">
+    **Exclude** prevents your selector from displaying when the specified parameters are present.
+
+    **Example**: Hide selector for affiliate traffic
+    ```text
+    ref=affiliate
+    ```
+    The selector is hidden when this parameter is in the URL:
+    `https://yourstore.com/?ref=affiliate&id=123`
+  </Tab>
+</Tabs>
+
+### Setting Up Parameter Rules
+
+<Steps>
+  <Step title="Identify Your Parameters">
+    Determine which URL parameters you want to target. Common parameters include:
+    - UTM parameters: `utm_source`, `utm_medium`, `utm_campaign`
+    - Referral codes: `ref`, `affiliate_id`
+    - Custom tracking: `promo`, `discount_code`
+  </Step>
+
+  <Step title="Add Parameter Rules">
+    In the **Params** field, enter the parameter name and value:
+    ```text
+    utm_source=facebook
+    ```
+    Add multiple parameters on separate lines if needed.
+  </Step>
+
+  <Step title="Choose Include or Exclude">
+    Select the appropriate option based on whether you want to show or hide your element when these parameters are present.
+  </Step>
+</Steps>
+
+### Retain During Session
+
+The **Retain during session** checkbox controls how parameter-based visibility persists across page views.
+
+**When checked**: Once a visitor arrives with the specified parameter, the visibility rule remains active for their entire session (24 hours or until cookies are cleared), even when navigating to pages without that parameter.
+
+**Example scenario**:
+1. Visitor arrives at `yourstore.com/?utm_source=email`
+2. You have "Include" rule for `utm_source=email`
+3. With "Retain during session" checked, the selector continues showing as they browse other pages
+4. Without it checked, the selector disappears when they navigate to pages without the parameter
+
+<Tip>
+Use "Retain during session" for campaign-specific selectors to maintain consistent branding throughout a visitor's journey from your marketing campaigns.
+</Tip>
+
+### Parameter Use Cases
+
+**Campaign-specific selector**:
+- Parameter: `utm_campaign=summer_sale`
+- Option: Include
+- Retain during session: Checked
+- Result: Special summer sale selector for campaign traffic
+
+**Hide from paid traffic**:
+- Parameter: `utm_medium=cpc`
+- Option: Exclude
+- Result: Reduce distractions for paid advertising visitors
+
+**Show for email subscribers only**:
+- Parameter: `utm_source=newsletter`
+- Option: Include
+- Retain during session: Checked
+- Result: Show element for email subscribers
+
+## Language Filtering
+
+<Info>
+**Available for**: Selectors only
+</Info>
+
+Control selector visibility based on the visitor's browser language setting. This integrates with your Shopify Markets language configuration.
+
+<Note>
+Language filtering is based on the browser's language preference, not the currently selected language in your selector. For more about language configuration, see [Languages](/selecty/configuration/languages).
+</Note>
+
+### Include vs Exclude Languages
+
+<Tabs>
+  <Tab title="Include (Show for these languages)">
+    **Include** displays your selector *only* to visitors whose browser language matches your specified languages.
+
+    **Example**: Show a Spanish-specific selector
+    - **Language**: Spanish
+    - **Option**: Include
+    - **Result**: Only visitors with Spanish browser settings see this selector
+  </Tab>
+
+  <Tab title="Exclude (Hide for these languages)">
+    **Exclude** prevents your selector from displaying to visitors using specific browser languages.
+
+    **Example**: Hide from English speakers
+    - **Language**: English
+    - **Option**: Exclude
+    - **Result**: All visitors except English speakers see this selector
+  </Tab>
+</Tabs>
+
+### Setting Up Language Rules
+
+1. In the **Languages** field, select languages from the dropdown
+2. Choose **Include** to show only for selected languages, or **Exclude** to hide for selected languages
+3. You can add multiple languages - visitors matching any of the selected languages will match the rule
+
+**Example: European languages only**:
+- Languages: French, German, Italian, Spanish
+- Option: Include
+- Result: Selector appears only for visitors with these browser languages
+
+## Country Filtering
+
+<Info>
+**Available for**: Selectors and Recommendation Banners
+</Info>
+
+Target or exclude visitors based on their geographic location using IP-based geolocation detection.
+
+### Include vs Exclude Countries
+
+<Tabs>
+  <Tab title="Include (Show for these countries)">
+    **Include** displays your selector or recommendation banner *only* to visitors from the specified countries.
+
+    **Example**: EU-only selector
+    - **Countries**: France, Germany, Spain, Italy
+    - **Option**: Include
+    - **Result**: Only visitors from these countries see this selector
+  </Tab>
+
+  <Tab title="Exclude (Hide for these countries)">
+    **Exclude** prevents your selector or recommendation banner from displaying to visitors from specific countries.
+
+    **Example**: Hide from domestic traffic
+    - **Country**: United States
+    - **Option**: Exclude
+    - **Result**: All visitors except those from the US see this element
+  </Tab>
+</Tabs>
+
+<Note>
+Geolocation detection is based on IP address and is generally accurate but may occasionally misidentify visitor location, especially for VPN users or mobile traffic. For testing country rules, see [Testing Geolocation](/selecty/advanced/testing-geolocation).
+</Note>
+
+### Country Targeting Use Cases
+
+**International visitors only**:
+- Country: Your domestic market
+- Option: Exclude
+- Result: Selector shows only to international customers
+
+**Specific market targeting**:
+- Countries: Canada, United Kingdom, Australia
+- Option: Include
+- Result: Target English-speaking markets outside the US
+
+**Regulatory compliance**:
+- Countries: Countries where you don't ship or have legal restrictions
+- Option: Exclude
+- Result: Comply with regional restrictions
+
+## Combining Multiple Rules
+
+All visibility rules work together using AND logic. Visitors must satisfy *all* configured rules for the element to display.
+
+<Note>
+**For selectors**, you can combine all five rule types (screen ranges, URLs, parameters, languages, countries). **For recommendation banners**, you can combine URL rules and country filtering. The examples below focus on selectors, which have more combination options.
+</Note>
+
+### How Rules Combine
+
+When you configure multiple visibility settings, they stack:
+
+**Example configuration**:
+- Screen range: Medium, Large, Extra large (tablets and desktop only)
+- Custom URL: Don't match on `/products/` (product pages only)
+- Country: Include USA, Canada (North America only)
+
+**Result**: The selector displays only when ALL conditions are met:
+- Visitor is on a tablet or desktop (not mobile)
+- AND viewing a product page
+- AND located in USA or Canada
+
+### Complex Targeting Example
+
+**Scenario**: Create a seasonal promotion selector for desktop users in Europe viewing the sale collection.
+
+<Steps>
+  <Step title="Configure Screen Ranges">
+    - Uncheck: Extra small, Small
+    - Check: Medium, Large, Extra large
+    - Result: Desktop and tablet only
+  </Step>
+
+  <Step title="Set URL Rules">
+    - URL: `https://yourstore.com/collections/sale`
+    - Option: Don't match
+    - Allow sub-pages: Checked
+    - Result: Sale collection pages only
+  </Step>
+
+  <Step title="Add Country Filtering">
+    - Countries: France, Germany, Spain, Italy, United Kingdom
+    - Option: Include
+    - Result: European visitors only
+  </Step>
+
+  <Step title="Result">
+    Your selector now appears only to desktop/tablet visitors from Europe when they're browsing your sale collection. Perfect for a targeted seasonal promotion in specific markets.
+  </Step>
+</Steps>
+
+<Warning>
+Be careful not to over-restrict your visibility rules. Each additional rule further narrows your audience. If your selector never appears, review your rules to ensure they're not too restrictive.
+</Warning>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start broad, then refine">
+    Begin with minimal restrictions and add rules gradually. Monitor your selector's performance and add visibility rules only when you have a specific reason. It's easier to add restrictions than to troubleshoot why your selector isn't appearing.
+  </Accordion>
+
+  <Accordion title="Test visibility rules across devices">
+    Use browser developer tools to test different screen sizes. Check your store on actual mobile devices, tablets, and desktops to verify your screen range rules work as expected. What looks good on desktop might need adjustment for mobile.
+  </Accordion>
+
+  <Accordion title="Use URL matching for page-specific control">
+    URL rules are powerful for creating context-aware selectors. Show currency selectors on product pages, language selectors on informational content, and market selectors on collection pages. Match your selector to the customer's intent on each page type.
+  </Accordion>
+
+  <Accordion title="Avoid over-restricting your audience">
+    Each visibility rule you add narrows your potential audience. If you combine screen ranges (desktop only) + countries (US only) + URLs (product pages only) + parameters (campaign traffic only), you might reach only a tiny fraction of visitors. Balance targeting precision with audience reach.
+  </Accordion>
+
+  <Accordion title="Consider performance with multiple rules">
+    While visibility rules don't significantly impact performance, having dozens of complex URL patterns or parameters can slow down rule evaluation. Keep your rules simple and focused. Use broad patterns with sub-pages enabled rather than listing every individual page.
+  </Accordion>
+
+  <Accordion title="Document your visibility strategy">
+    Keep notes about why you configured specific visibility rules. When you return to update settings months later, you'll want to remember the reasoning behind hiding your language selector on checkout pages or showing currency selectors only to international visitors.
+  </Accordion>
+</AccordionGroup>
+
+## Common Use Cases
+
+Here are real-world scenarios showing how to combine visibility settings effectively. The first three examples are for **selectors** (which have access to all visibility rules), while the fourth example demonstrates **recommendation banner** visibility settings.
+
+### B2B Store: Wholesale Customer Selector
+
+Show a special market selector only to logged-in wholesale customers:
+
+1. **URL Parameters**:
+   - Parameter: `customer_type=wholesale`
+   - Option: Include
+   - Retain during session: Checked
+
+2. **Custom URL** (optional):
+   - URL: `https://yourstore.com/collections/wholesale`
+   - Option: Don't match
+   - Allow sub-pages: Checked
+
+3. **Result**: Wholesale customers see the selector throughout their session, or visitors browsing the wholesale collection see it automatically.
+
+### Seasonal Campaign: Holiday Banner
+
+Display a special language selector only during your winter holiday campaign:
+
+1. **URL Parameters**:
+   - Parameter: `utm_campaign=holiday_2024`
+   - Option: Include
+   - Retain during session: Checked
+
+2. **Countries** (optional):
+   - Countries: Select your target markets
+   - Option: Include
+
+3. **Result**: Campaign traffic sees your holiday-themed selector, maintaining the seasonal experience throughout their visit.
+
+### Regional Targeting: International Markets
+
+Create different selectors for domestic vs. international visitors:
+
+**International Selector**:
+1. **Country**:
+   - Country: United States (or your domestic market)
+   - Option: Exclude
+
+2. **Screen Range**:
+   - Check: All ranges (show on all devices)
+
+3. **Result**: All international visitors see this selector with global market options.
+
+**Domestic Selector**:
+1. **Country**:
+   - Country: United States
+   - Option: Include
+
+2. **Custom URL**:
+   - URL: `https://yourstore.com/products/`
+   - Option: Don't match
+   - Allow sub-pages: Checked
+
+3. **Result**: US visitors see a simplified selector only on product pages.
+
+### Regional Market Recommendation Banner
+
+Display a market recommendation banner only to international visitors on product pages:
+
+1. **Custom URL**:
+   - URL: `https://yourstore.com/products/`
+   - Option: Don't match
+   - Allow sub-pages: Checked
+
+2. **Country**:
+   - Country: United States (or your domestic market)
+   - Option: Exclude
+
+3. **Result**: International visitors see the market recommendation banner when browsing products, helping them switch to their local market, while domestic visitors don't see the banner.
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Selectors" icon="toggle-on" href="/selecty/features/selectors">
+    Learn how to create and customize selectors for your store
+  </Card>
+
+  <Card title="Market Recommendations" icon="bell" href="/selecty/features/markets-recommendation">
+    Set up automatic market recommendation banners for visitors
+  </Card>
+
+  <Card title="Resources" icon="globe" href="/selecty/configuration/resources">
+    Configure languages, currencies, and custom resources
+  </Card>
+
+  <Card title="Testing Geolocation" icon="location-dot" href="/selecty/advanced/testing-geolocation">
+    Test country-based visibility rules during development
+  </Card>
+</CardGroup>
