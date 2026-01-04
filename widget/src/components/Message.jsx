@@ -37,10 +37,6 @@ export function Message({ message, docsURL, isLoading, isLastMessage, onRegenera
       index === self.findIndex(s => s.url === source.url)
     );
 
-  // DEBUG: Log sources (keep for debugging)
-  if (message.role === 'assistant' && formattedSources.length > 0) {
-    console.log('[Message] Sources:', formattedSources);
-  }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(message.content);
