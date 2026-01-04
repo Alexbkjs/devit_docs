@@ -1,0 +1,312 @@
+---
+title: Glossary
+description: Common terms and feature names used in Selecty documentation
+---
+
+
+Quick reference guide for Selecty terminology. Find the commonly used feature names for terms customers use.
+
+## Feature Terms
+
+<AccordionGroup>
+  <Accordion title="Banner / Pop-up / Popup / Modal">
+    **Common Name:** Markets Recommendation
+
+    A notification that suggests switching to a visitor's local language and currency based on their location and browser preferences.
+
+    - Appears on first visit only
+    - User can accept, decline, or dismiss
+    - Better for SEO than automatic redirects
+
+    **Related Terms:** Recommendation banner, geolocation banner, language popup
+
+    [Learn more about Markets Recommendation →](/selecty/features/markets-recommendation)
+  </Accordion>
+
+  <Accordion title="Auto-redirect / Automatic Redirect">
+    **Common Name:** Markets Redirect
+
+    Automatically redirects visitors to their local market based on IP geolocation and browser language without asking first.
+
+    - Happens automatically on page load
+    - Can impact SEO if not configured properly
+    - Includes bot detection to allow search engine crawling
+
+    **Related Terms:** Geo-redirect, automatic market switching, location-based redirect
+
+    [Learn more about Markets Redirect →](/selecty/features/markets-redirect)
+  </Accordion>
+
+  <Accordion title="Switcher / Selector">
+    **Common Name:** Selector
+
+    Manual controls that let visitors choose their preferred language, currency, or market.
+
+    - Dropdown, wheel, modal, sidebar, and other types
+    - Can display flags, currency symbols, or text
+    - Fully customizable colors and styles
+
+    **Related Terms:** Language switcher, currency selector, market picker
+
+    [Learn more about Selectors →](/selecty/features/selectors)
+  </Accordion>
+
+  <Accordion title="Language Switcher">
+    **Common Name:** Language Selector
+
+    A selector specifically configured to switch between different languages in your store.
+
+    - Shows available languages from your Shopify Markets configuration
+    - Can display language names, codes, or flags
+    - Multiple display types available (dropdown, modal, wheel, etc.)
+
+    **Related Terms:** Language picker, language selector, language dropdown
+
+    [Learn more about Selectors →](/selecty/features/selectors)
+  </Accordion>
+
+  <Accordion title="Currency Switcher">
+    **Common Name:** Currency Selector
+
+    A selector specifically configured to switch between different currencies in your store.
+
+    - Shows available currencies from your Shopify Markets configuration
+    - Can display currency codes, symbols, or full names
+    - Multiple display types available (dropdown, modal, wheel, etc.)
+
+    **Related Terms:** Currency picker, currency selector, currency dropdown
+
+    [Learn more about Selectors →](/selecty/features/selectors)
+  </Accordion>
+
+  <Accordion title="Market Switcher">
+    **Common Name:** Market Selector
+
+    A selector that allows visitors to choose between different regional markets (combinations of language, currency, and country).
+
+    - Shows markets configured in your Shopify Markets settings
+    - Can display country names, flags, or custom labels
+    - Switches language, currency, and region together
+
+    **Related Terms:** Country selector, region selector, market picker
+
+    [Learn more about Selectors →](/selecty/features/selectors)
+  </Accordion>
+</AccordionGroup>
+
+## Banner Types
+
+<AccordionGroup>
+  <Accordion title="Modal Banner / Popup Overlay">
+    **Common Name:** Modal (banner type)
+
+    A centered popup overlay that appears on top of page content with a semi-transparent background.
+
+    - Appears in center of screen
+    - Blocks page interaction until dismissed
+    - Most noticeable banner type
+    - Good for important market recommendations
+
+    [Learn more about Banner Types →](/selecty/features/markets-recommendation#select-banner-type)
+  </Accordion>
+
+  <Accordion title="Top Bar / Top Banner">
+    **Common Name:** Top Bar (banner type)
+
+    A horizontal banner that appears at the top of the page, above your store content.
+
+    - Full-width or contained
+    - Doesn't block page content
+    - Common for cookie notices and announcements
+    - Less intrusive than modal
+
+    [Learn more about Banner Types →](/selecty/features/markets-recommendation#select-banner-type)
+  </Accordion>
+
+  <Accordion title="Bottom Bar / Bottom Banner">
+    **Common Name:** Bottom Bar (banner type)
+
+    A horizontal banner that appears at the bottom of the page, below your store content.
+
+    - Full-width or contained
+    - Doesn't interfere with navigation
+    - Stays visible while scrolling (can be sticky)
+    - Good alternative to top bar
+
+    [Learn more about Banner Types →](/selecty/features/markets-recommendation#select-banner-type)
+  </Accordion>
+
+  <Accordion title="Corner Notification / Corner Banner">
+    **Common Name:** Corner Notification (banner type)
+
+    A small banner that appears in one corner of the page.
+
+    - Compact and unobtrusive
+    - Can be positioned in any corner
+    - Doesn't block page content
+    - Good for subtle notifications
+
+    [Learn more about Banner Types →](/selecty/features/markets-recommendation#select-banner-type)
+  </Accordion>
+
+  <Accordion title="Slide-in / Sliding Banner">
+    **Common Name:** Slide-in (banner type)
+
+    A banner that slides into view from the side of the page.
+
+    - Animates from left, right, top, or bottom
+    - Eye-catching entrance
+    - Can be dismissed easily
+    - Good for timed notifications
+
+    [Learn more about Banner Types →](/selecty/features/markets-recommendation#select-banner-type)
+  </Accordion>
+</AccordionGroup>
+
+## Technical Terms
+
+<AccordionGroup>
+  <Accordion title="Geolocation / IP Detection">
+    The process of determining a visitor's country based on their IP address.
+
+    - Used for market recommendations and redirects
+    - Generally accurate but not perfect (VPNs can affect it)
+    - Doesn't track or store personal location data
+    - Works automatically without user input
+
+    **How it works:** When someone visits your store, their internet provider assigns them an IP address. Selecty uses this IP address to estimate their country of residence.
+
+    [Learn more about Testing Geolocation →](/selecty/advanced/testing-geolocation)
+  </Accordion>
+
+  <Accordion title="Browser Language / Language Preference">
+    The preferred language setting configured in a visitor's web browser.
+
+    - Different from browser display language
+    - Used to suggest appropriate language market
+    - Can be configured in browser settings
+    - Sent automatically with every web request
+
+    **Note:** A visitor's browser language preference might differ from their browser's display language. For example, someone might use Chrome in German but have English set as their preferred content language.
+
+    [Learn more about Language Detection →](/selecty/features/markets-recommendation#language-detection)
+  </Accordion>
+
+  <Accordion title="Market / Region / Country">
+    **Common Name:** Market
+
+    A market in Shopify represents a geographical region where you sell products, with specific language, currency, and pricing.
+
+    - Configured in Shopify Settings → Markets
+    - Can include one or multiple countries
+    - Has assigned currency and available languages
+    - Can have market-specific pricing and products
+
+    **Related Terms:** Region, country, locale, international market
+
+    [Learn more about Multiple Markets →](/selecty/features/multiple-stores)
+  </Accordion>
+
+  <Accordion title="Hreflang">
+    An HTML attribute that tells search engines about language and regional variants of your pages.
+
+    - Important for SEO in multilingual stores
+    - Helps search engines show the right language version
+    - Shopify Markets handles this automatically
+    - Affected by auto-redirect settings
+
+    **Why it matters:** Proper hreflang tags ensure that searchers in France see your French pages, while searchers in Spain see your Spanish pages.
+
+    [Learn more about SEO →](/selecty/advanced/seo)
+  </Accordion>
+
+  <Accordion title="Bot Detection">
+    Technology that identifies automated crawlers (like search engine bots) versus human visitors.
+
+    - Used to prevent redirecting search engine bots
+    - Allows proper indexing of all market versions
+    - Helps maintain SEO integrity
+    - Not 100% accurate but effective for common bots
+
+    **Why it matters:** Search engines need to access all language versions of your site to index them properly. Bot detection ensures Google, Bing, and other search crawlers aren't automatically redirected.
+
+    [Learn more about Markets Redirect →](/selecty/features/markets-redirect#bot-detection)
+  </Accordion>
+
+  <Accordion title="Cookie Lifetime / Cookie Duration">
+    How long a browser cookie remembers a visitor's preferences.
+
+    - Determines how long market choice is remembered
+    - Affects how often banners appear
+    - Can be configured in Selecty settings
+    - Typical range: 7-90 days
+
+    **Example:** If cookie lifetime is set to 30 days and a visitor dismisses your recommendation banner, they won't see it again for 30 days.
+
+    [Learn more about Banner Behavior →](/selecty/features/markets-recommendation#configure-behavior)
+  </Accordion>
+</AccordionGroup>
+
+## Common Abbreviations
+
+<AccordionGroup>
+  <Accordion title="SEO">
+    **Search Engine Optimization** - The practice of improving your store's visibility in search engine results.
+
+    Selecty features that impact SEO:
+    - Auto-redirects can interfere with indexing (use with caution)
+    - Recommendation banners are SEO-friendly
+    - Proper hreflang tags help search engines understand language versions
+    - Bot detection helps maintain proper indexing
+
+    **Best Practice:** Use recommendation banners instead of auto-redirects for better SEO outcomes.
+
+    [Learn more about SEO Considerations →](/selecty/advanced/seo)
+  </Accordion>
+
+  <Accordion title="VPN">
+    **Virtual Private Network** - A service that routes your internet connection through a server in a different location.
+
+    - Commonly used for privacy and security
+    - Changes your apparent IP address and location
+    - Useful for testing geolocation features
+    - Can cause incorrect country detection
+
+    **For Testing:** VPNs are essential for testing how your store appears to visitors in different countries.
+
+    [Learn more about Testing with VPNs →](/selecty/advanced/testing-geolocation#use-a-vpn)
+  </Accordion>
+
+  <Accordion title="IP Address">
+    **Internet Protocol Address** - A unique number assigned to your device when connecting to the internet.
+
+    - Assigned by your Internet Service Provider (ISP)
+    - Used to determine your approximate location
+    - Changes when using a VPN
+    - Generally indicates country, not exact location
+
+    **Privacy Note:** Selecty uses IP addresses only for geolocation detection and doesn't store or track personal location data.
+
+    [Learn more about IP Detection →](/selecty/features/markets-recommendation#country-and-currency-detection)
+  </Accordion>
+</AccordionGroup>
+
+## Still Can't Find What You're Looking For?
+
+<CardGroup cols={2}>
+  <Card title="Search Documentation" icon="magnifying-glass">
+    Use the search bar at the top to find specific topics
+  </Card>
+
+  <Card title="Browse FAQ" icon="question" href="/selecty/support/faq">
+    Check our frequently asked questions
+  </Card>
+
+  <Card title="Contact Support" icon="headset" href="/selecty/support/help">
+    Get help from our support team
+  </Card>
+
+  <Card title="Feature Guides" icon="book" href="/selecty/features/selectors">
+    Explore detailed feature documentation
+  </Card>
+</CardGroup>

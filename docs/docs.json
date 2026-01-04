@@ -55,6 +55,7 @@
             "group": "FAQ & Support",
             "pages": [
               "selecty/support/faq",
+              "selecty/support/glossary",
               "selecty/support/accessibility",
               "selecty/support/privacy",
               "selecty/support/help"
