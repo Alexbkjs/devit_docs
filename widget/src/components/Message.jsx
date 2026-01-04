@@ -3,9 +3,44 @@ import { parseSuggestionLinks, extractSources } from '../utils';
 import { ThumbUpIcon, ThumbDownIcon, CopyIcon, RefreshIcon } from './Icons';
 import { useState } from 'react';
 
-export function Message({ message, docsURL, isLoading, isLastMessage, onRegenerate }) {
-  const sources = message.role === 'assistant' ? extractSources(message.parts) : [];
+// Helper function to format titles from handles
+const formatTitle = (handle, url) => {
+  // Special case for index pages - extract app name from URL
+  if (handle === 'index') {
+    const match = url.match(/\/([^\/]+)$/);
+    if (match) {
+      const appName = match[1];
+      // Capitalize first letter
+      return appName.charAt(0).toUpperCase() + appName.slice(1);
+    }
+    return 'Overview';
+  }
+
+  // Convert kebab-case to Title Case
+  return handle
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
+export function Message({ message, docsURL, isLoading, isLastMessage, onRegenerate, sources = [] }) {
   const [copied, setCopied] = useState(false);
+
+  // Format sources from raw backend data and deduplicate by URL
+  const formattedSources = sources
+    .map(source => ({
+      url: source.url || source.path,
+      title: formatTitle(source.metadata?.title || 'Documentation', source.url || source.path),
+    }))
+    // Deduplicate by URL (keep first occurrence)
+    .filter((source, index, self) =>
+      index === self.findIndex(s => s.url === source.url)
+    );
+
+  // DEBUG: Log sources (keep for debugging)
+  if (message.role === 'assistant' && formattedSources.length > 0) {
+    console.log('[Message] Sources:', formattedSources);
+  }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(message.content);
@@ -144,16 +179,15 @@ export function Message({ message, docsURL, isLoading, isLastMessage, onRegenera
                 />
               )}
             </div>
-            {sources.length > 0 && (
-              <div className="mt-2 text-xs pt-2" style={{ borderTop: '1px solid var(--widget-border-primary)' }}>
-                <p className="font-semibold" style={{ color: 'var(--widget-text-secondary)' }}>Sources:</p>
-                {sources.map((s, i) => (
+            {formattedSources.length > 0 && (
+              <div className="mt-3 space-y-1">
+                {formattedSources.map((s, i) => (
                   <a
                     key={i}
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="widget-link hover:underline block"
+                    className="widget-link hover:underline block text-sm"
                     style={{ color: 'var(--widget-accent-primary)' }}
                   >
                     {s.title}

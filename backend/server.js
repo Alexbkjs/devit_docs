@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { OpenAI } from "openai";
 import { createClient } from "@supabase/supabase-js";
+import fs from "fs";
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -18,6 +20,7 @@ const CHAT_MODEL = "gpt-4o-mini"; // or "gpt-4o" / "gpt-4o-mini" / change as you
 const TOP_K = 5;
 const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL || 'https://devit-c039f40a.mintlify.app';
 const LOCAL_DEV_URL = process.env.LOCAL_DEV_URL; // Optional: Transform URLs for local dev
+const DEBUG_CHUNKS = process.env.DEBUG_CHUNKS === 'true'; // Debug flag: set to 'true' to enable chunk logging
 
 // Helper function to transform URLs for local development
 function transformUrl(url) {
@@ -25,6 +28,26 @@ function transformUrl(url) {
 
   // Replace production Mintlify URL with local dev URL
   return url.replace(MINTLIFY_BASE_URL, LOCAL_DEV_URL);
+}
+
+// Helper function to write debug chunks to file (disabled by default)
+function writeDebugChunk(messageId, data) {
+  if (!DEBUG_CHUNKS) return; // Skip if debug mode is disabled
+
+  try {
+    const debugDir = path.join(process.cwd(), 'debug-logs');
+    if (!fs.existsSync(debugDir)) {
+      fs.mkdirSync(debugDir, { recursive: true });
+    }
+
+    const logFile = path.join(debugDir, `chunks-${messageId}.log`);
+    const timestamp = new Date().toISOString();
+    const logEntry = `[${timestamp}] ${JSON.stringify(data)}\n`;
+
+    fs.appendFileSync(logFile, logEntry);
+  } catch (error) {
+    console.error('Failed to write debug chunk:', error);
+  }
 }
 
 app.post("/api/chat", async (req, res) => {
@@ -70,6 +93,16 @@ app.post("/api/chat", async (req, res) => {
     const messageId = `msg_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
     console.log(`🆔 [MESSAGE_ID] ${messageId}`);
 
+    if (DEBUG_CHUNKS) {
+      console.log('🐛 [DEBUG] Chunk debugging enabled - writing to debug-logs/');
+      writeDebugChunk(messageId, {
+        type: 'request_start',
+        question: question,
+        app_name: appName,
+        timestamp: new Date().toISOString()
+      });
+    }
+
     // 1) Create embedding for the question
     console.log('🔄 [EMBEDDING] Creating embedding...');
     const embResp = await openai.embeddings.create({
@@ -93,6 +126,26 @@ app.post("/api/chat", async (req, res) => {
       throw error;
     }
     console.log(`✅ [SEARCH] Found ${docs?.length || 0} documents`);
+
+    // Debug: Log vector search results if DEBUG_CHUNKS is enabled
+    if (DEBUG_CHUNKS && docs && docs.length > 0) {
+      const searchLogFile = path.join(process.cwd(), 'debug-logs', `search-${messageId}.log`);
+      const timestamp = new Date().toISOString();
+
+      docs.forEach((doc, index) => {
+        const logEntry = `[${timestamp}] Document ${index + 1}/${docs.length}:\n` +
+          `  Title: ${doc.title}\n` +
+          `  URL: ${doc.url}\n` +
+          `  App: ${doc.app_name}\n` +
+          `  Similarity: ${doc.similarity}\n` +
+          `  Content Preview: ${doc.content.substring(0, 200)}...\n` +
+          `  Full Content Length: ${doc.content.length} chars\n\n`;
+
+        fs.appendFileSync(searchLogFile, logEntry);
+      });
+
+      console.log(`🔍 [DEBUG] Vector search results logged to debug-logs/search-${messageId}.log`);
+    }
 
     // 3) Build the context
     const contextText = docs.map((d) =>
@@ -147,11 +200,30 @@ ${contextText}`
         chunkCount++;
 
         // Send text delta in data stream format: "0:"text"\n"
-        res.write(`0:${JSON.stringify(delta)}\n`);
+        const chunkData = `0:${JSON.stringify(delta)}\n`;
+        res.write(chunkData);
+
+        // Debug: Write chunk to file if DEBUG_CHUNKS is enabled
+        writeDebugChunk(messageId, {
+          chunkNumber: chunkCount,
+          delta: delta,
+          streamData: chunkData.trim()
+        });
       }
     }
 
     console.log(`📨 [STREAM] Streamed ${chunkCount} chunks, total ${fullContent.length} characters`);
+
+    // Debug: Log completion summary
+    if (DEBUG_CHUNKS) {
+      writeDebugChunk(messageId, {
+        type: 'stream_complete',
+        totalChunks: chunkCount,
+        totalCharacters: fullContent.length,
+        fullContent: fullContent,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     // 7) Send sources as data annotation with URL transformation
     if (docs.length > 0) {

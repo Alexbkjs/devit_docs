@@ -8,6 +8,7 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
+  const [sourcesMap, setSourcesMap] = useState(new Map()); // Store sources by message ID
 
   // Get app-specific configuration
   const appConfig = getAppConfig();
@@ -19,6 +20,16 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
     sendExtraMessageFields: true,
     body: {
       app_name: appName, // Send app context to backend
+    },
+    onFinish: (message, options) => {
+      // Extract sources from message annotations
+      if (message.annotations && Array.isArray(message.annotations)) {
+        const toolInvocation = message.annotations.find(a => a.type === 'tool-invocation');
+        if (toolInvocation && toolInvocation.toolInvocation?.toolName === 'search') {
+          const sources = toolInvocation.toolInvocation.result || [];
+          setSourcesMap(prev => new Map(prev).set(message.id, sources));
+        }
+      }
     },
   });
 
@@ -191,6 +202,7 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
                     isLoading={isLoading && index === messages.length - 1 && message.role === 'assistant'}
                     isLastMessage={index === messages.length - 1}
                     onRegenerate={() => reload()}
+                    sources={sourcesMap.get(message.id) || []}
                   />
                 ))
               )}

@@ -57,11 +57,11 @@ Control which screen sizes display your selectors. Selecty uses five responsive 
 
 <Steps>
   <Step title="Access Visibility Settings">
-    When creating or editing a selector, swtich to the **Visibility Settings** section.
+    When creating or editing a selector, click on the **Visibility** tab in the top right corner (next to Settings and Theme tabs).
   </Step>
 
   <Step title="Select Screen Ranges">
-    Check the boxes for the screen ranges where you want your element to appear. By default, all screen ranges are selected.
+    Check or uncheck the boxes for the screen ranges where you want your element to appear. By default, all screen ranges are selected (checked).
   </Step>
 
   <Step title="Test on Different Devices">
@@ -77,9 +77,22 @@ Control which screen sizes display your selectors. Selecty uses five responsive 
 
 To create a selector that only appears on mobile devices:
 
-1. Uncheck **Medium**, **Large**, and **Extra large** screen ranges
-2. Keep **Extra small** and **Small** checked
-3. Your selector will now display only on phones
+1. Click on the **Visibility** tab
+2. Uncheck **Medium**, **Large**, and **Extra large** screen ranges
+3. Keep **Extra small** and **Small** checked
+4. Your selector will now display only on phones
+
+### Example: Mobile and Tablet Only Selector
+
+To create a selector that appears on mobile and tablet devices but not desktop:
+
+1. Click on the **Visibility** tab
+2. Check **Extra small** (0 - 489px) - Small mobile phones
+3. Check **Small** (490 - 767px) - Standard mobile phones
+4. Check **Medium** (768 - 1039px) - Tablets and large phones
+5. Uncheck **Large** (1040 - 1439px) - Desktops
+6. Uncheck **Extra large** (1440px+) - Large desktops
+7. Your selector will now display only on mobile and tablet devices
 
 ## Custom URL Rules
 
