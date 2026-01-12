@@ -1,0 +1,265 @@
+---
+title: Weglot Integration
+description: Configure Selecty to work with Weglot translation app for seamless multilingual store experiences
+---
+
+Selecty integrates with [Weglot](https://www.weglot.com/), a popular translation solution for Shopify stores. This guide explains how to configure both apps to work together, ensuring your language and currency selectors function correctly alongside Weglot's translation features.
+
+<Info>
+Before proceeding, we strongly recommend coordinating your actions with the support teams of both applications. This will make the integration process smoother and faster.
+</Info>
+
+## About Weglot
+
+Weglot is a website translation solution that automatically detects, translates, and displays your content in multiple languages.
+
+### Key Features
+
+<CardGroup cols={2}>
+  <Card title="Automatic Translation" icon="language">
+    Detects and translates content automatically with AI and human review options
+  </Card>
+
+  <Card title="Subdomain/Subdirectory URLs" icon="link">
+    Creates language-specific URLs like /fr/ or fr.yourstore.com
+  </Card>
+
+  <Card title="Translation Dashboard" icon="table-columns">
+    Manage and edit translations from a central interface
+  </Card>
+
+  <Card title="SEO-Friendly" icon="magnifying-glass">
+    Generates hreflang tags and indexable translated pages
+  </Card>
+</CardGroup>
+
+## Prerequisites
+
+Before integrating Selecty with Weglot:
+
+<Checklist>
+  - [ ] [Weglot](https://apps.shopify.com/weglot) installed and configured
+  - [ ] [Selecty](https://apps.shopify.com/selectors) installed
+  - [ ] Access to Shopify admin settings
+  - [ ] Weglot Advanced plan (recommended for Variant 2 setup)
+</Checklist>
+
+## Setup Variants
+
+There are two possible setup configurations depending on your URL structure:
+
+<CardGroup cols={2}>
+  <Card title="Variant 1: Language Code Only" icon="globe">
+    URL format: `/nl`, `/fr`, `/de`
+
+    Simpler setup with language codes only in URLs
+  </Card>
+
+  <Card title="Variant 2: Language + Country Code" icon="flag">
+    URL format: `/en-nl`, `/fr-be`, `/de-at`
+
+    Language and country combination (requires additional Shopify Markets setup)
+  </Card>
+</CardGroup>
+
+## Integration Steps
+
+### Step 1: Unpublish Non-Default Languages in Shopify
+
+When using Weglot, all languages and translations are controlled by Weglot. Therefore, you must unpublish non-default languages in Shopify.
+
+<Steps>
+  <Step title="Open Language Settings">
+    Go to Shopify admin → **Settings** → **Languages**.
+  </Step>
+
+  <Step title="Unpublish Languages">
+    **Unpublish** all languages except the default one.
+  </Step>
+</Steps>
+
+![Unpublish languages in Shopify](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/unpublish-languages_q2j8s2.png)
+
+### Step 2: Enable Subdomain or Subdirectories in Weglot
+
+<Steps>
+  <Step title="Open Weglot Settings">
+    Open the Weglot app and go to the **Projects** section.
+  </Step>
+
+  <Step title="Access Setup">
+    Click **Settings** → **Setup**.
+  </Step>
+
+  <Step title="Enable URL Structure">
+    Enable the **Subdomains/Subdirectories** option.
+  </Step>
+</Steps>
+
+![Enable subdomains in Weglot](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/enable-subdomains-subdirectori_v77gvl.png)
+
+### Step 3 (Optional): Add Markets in Shopify
+
+<Note>
+This step is required only for **Variant 2** (language + country code URLs like `/en-nl`).
+</Note>
+
+You need to create subdirectories for the default language in Shopify to match the subfolder structure used by Weglot. Since the default language is managed through Shopify, add resources through Shopify Markets.
+
+<Steps>
+  <Step title="Open Markets">
+    In your Shopify admin, go to **Settings** → **Markets**.
+  </Step>
+
+  <Step title="Select Market">
+    Select the market you need to configure.
+  </Step>
+
+  <Step title="Add Subfolder">
+    Click the **+** icon next to the **Domain language** option → select **New subfolder**.
+  </Step>
+
+  <Step title="Enter Domain Suffix">
+    Enter the appropriate value in the **Domain Suffix** field (e.g., `en-nl`).
+  </Step>
+
+  <Step title="Save Changes">
+    Click **Done**, then **Save** at the top of the page.
+  </Step>
+</Steps>
+
+![Domain language settings](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/domain-language_1sr5nxc.png)
+
+### Step 4: Add Resources in Selecty
+
+<Steps>
+  <Step title="Open Resources">
+    Open Selecty and go to the **Resources** section → Click on Resource → **Add custom resource**.
+  </Step>
+
+  <Step title="Create Resource Group">
+    Enter a name for the custom resource group and click **Apply**.
+  </Step>
+
+  <Step title="Add Resource Details">
+    Click **Add resource** and fill in the fields using the values created in Weglot.
+  </Step>
+
+  <Step title="Enable URL Retention">
+    Make sure the **Retain URL while switching** checkbox is enabled to ensure correct URL behavior.
+  </Step>
+
+  <Step title="Save">
+    Click **Apply**, then **Save** at the top of the page.
+  </Step>
+</Steps>
+
+![Custom resource in Selecty](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/custom-resource_1q064cj.png)
+
+![Name custom resource](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/name-of-custom-resouce_17xaf09.png)
+
+![Retain URL setting](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/retain-url_9mqlg8.png)
+
+### Step 5: Create Selector in Selecty
+
+<Steps>
+  <Step title="Open Dashboard">
+    Go to the **Selecty dashboard** and click **Create Selector**.
+  </Step>
+
+  <Step title="Customize">
+    Choose a theme, apply the necessary customizations, and save your changes.
+  </Step>
+
+  <Step title="Publish">
+    Click **Publish** to activate the selector.
+  </Step>
+</Steps>
+
+For more detailed guidance, refer to the [Quick Start guide](/selecty/quickstart).
+
+### Step 6: Add Exclusion Rules in Weglot
+
+When Weglot translates store content, it can also modify Selecty's links. To prevent this, you need to exclude Selecty-related elements from translation.
+
+<Steps>
+  <Step title="Open Exclusions">
+    Open Weglot and go to **Translation Exclusions**.
+  </Step>
+
+  <Step title="Add Rule">
+    Click **Add Rule**.
+  </Step>
+
+  <Step title="Add Selecty Exclusions">
+    Add the following CSS selectors to exclude:
+    - `#_selectors.json`
+    - `#sel-form`
+  </Step>
+
+  <Step title="Save Rule">
+    Click **Save Rule**.
+  </Step>
+</Steps>
+
+![Add exclusion rules](https://storage.crisp.chat/users/helpdesk/website/-/3/2/7/1/3271b421d88bd400/add-excluded-blocks_at6pc5.png)
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Selector links are being translated by Weglot">
+    **Solution:** Verify that the exclusion rules in Step 6 are correctly configured. The selectors `#_selectors.json` and `#sel-form` must be added to Weglot's Translation Exclusions.
+  </Accordion>
+
+  <Accordion title="Language switching doesn't work correctly">
+    **Check:**
+    - Custom resources are properly configured in Selecty
+    - **Retain URL while switching** is enabled
+    - URL structure matches between Weglot and Selecty resources
+  </Accordion>
+
+  <Accordion title="URLs don't match expected format">
+    **Verify:**
+    - You're using the correct variant setup (Variant 1 or 2)
+    - For Variant 2, Shopify Markets are configured with correct subfolders
+    - Weglot subdomain/subdirectory settings are enabled
+  </Accordion>
+
+  <Accordion title="Default language page shows wrong URL">
+    **For Variant 2:** Ensure you've completed Step 3 to add the default language subfolder through Shopify Markets.
+  </Accordion>
+</AccordionGroup>
+
+## Support
+
+If you need help with the integration process, contact the support teams:
+
+<CardGroup cols={2}>
+  <Card title="Selecty Support" icon="envelope" href="mailto:support@devit.software">
+    Contact Selecty team for selector configuration issues
+  </Card>
+
+  <Card title="Weglot Support" icon="headset" href="https://support.weglot.com/">
+    Get help with Weglot translation settings
+  </Card>
+</CardGroup>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Resources Configuration" icon="folder-open" href="/selecty/configuration/resources">
+    Learn about custom resources in Selecty
+  </Card>
+
+  <Card title="Languages" icon="language" href="/selecty/configuration/languages">
+    Configure language settings
+  </Card>
+
+  <Card title="Quick Start" icon="rocket" href="/selecty/quickstart">
+    Get started with Selecty basics
+  </Card>
+
+  <Card title="Selectors" icon="toggle-on" href="/selecty/features/selectors">
+    Create and customize selectors
+  </Card>
+</CardGroup>
