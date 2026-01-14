@@ -8,6 +8,8 @@
     "widget:dev": "cd widget && npm run dev",
     "widget:build": "cd widget && npm run build",
     "backend:sync": "cd backend && node sync-docs.js",
+    "backend:add": "cd backend && node add-page.js",
+    "backend:add-folder": "cd backend && node add-folder.js",
     "backend:dev": "cd backend && vercel dev",
     "backend:deploy": "cd backend && vercel --prod",
     "install:all": "npm install && cd widget && npm install && cd ../backend && npm install && cd ../scripts && npm install"

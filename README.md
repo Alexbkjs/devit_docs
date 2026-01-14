@@ -383,9 +383,18 @@ This transforms production Mintlify URLs to localhost in API responses.
 1. **Edit docs** in `docs/` folder
 2. **Update index** if new files: `scripts/docs_index.txt`
 3. **Sync to vector database**:
+
 ```bash
+# Full sync (all documentation)
 npm run sync
+
+# Or update specific pages only
+npm run backend:add docs/resell/pricing.mdx
+
+# Or update entire folders
+npm run backend:add-folder docs/resell
 ```
+
 4. **Commit and push**:
 ```bash
 git add .
@@ -393,6 +402,11 @@ git commit -m "Update documentation"
 git push
 ```
 Mintlify auto-deploys the changes.
+
+**Choosing the right sync command:**
+- **`npm run sync`**: Full rebuild - use when structure changes or first setup
+- **`npm run backend:add-folder docs/APP`**: Update all docs for one app (fast, preserves other apps)
+- **`npm run backend:add docs/PATH/file.mdx`**: Update specific pages only (fastest)
 
 ### Update Widget
 

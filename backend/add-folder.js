@@ -31,8 +31,11 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
 });
 
 function transformToMintlifyUrl(relPath, mintlifyBase) {
+  // Normalize path: remove leading slash if present
+  let normalizedPath = relPath.replace(/^\/+/, '');
+
   // Remove 'docs/' prefix and '.mdx' extension
-  let urlPath = relPath.replace(/^docs\//, '').replace(/\.mdx$/, '');
+  let urlPath = normalizedPath.replace(/^docs\//, '').replace(/\.mdx$/, '');
 
   // Handle index pages for each app
   if (urlPath === 'selecty/index') {
@@ -65,8 +68,11 @@ function transformToMintlifyUrl(relPath, mintlifyBase) {
 }
 
 function extractAppName(relPath) {
+  // Normalize path: remove leading slash if present
+  let normalizedPath = relPath.replace(/^\/+/, '');
+
   // Extract app name from path: docs/selecty/... -> "selecty"
-  const match = relPath.match(/^docs\/([^/]+)\//);
+  const match = normalizedPath.match(/^docs\/([^/]+)\//);
   if (match) {
     const appName = match[1];
 

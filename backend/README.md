@@ -16,6 +16,7 @@ This backend provides:
 - **`server.js`** - Express server for local development
 - **`sync-docs.js`** - Documentation sync script (syncs all docs to vector database)
 - **`add-page.js`** - Add/update specific pages without removing existing data
+- **`add-folder.js`** - Add/update all MDX files in a folder recursively
 - **`package.json`** - Backend-specific dependencies
 - **`.env`** - Environment variables (not committed)
 
@@ -65,6 +66,33 @@ FILES="docs/selecty/features/selectors.mdx,docs/resell/index.mdx" npm run add
 - Automatically removes old chunks for the updated file before adding new ones
 - **Reads from local filesystem first** - great for adding new pages before pushing to GitHub
 - Falls back to GitHub if file not found locally
+
+#### Add/Update Entire Folders
+Process all MDX files in a folder at once:
+
+```bash
+cd backend
+# Process an entire app folder
+npm run add-folder docs/resell
+
+# Process a specific subfolder
+npm run add-folder docs/selecty/features
+
+# Using FOLDER environment variable
+FOLDER="docs/resell" npm run add-folder
+```
+
+**Benefits of `add-folder.js`:**
+- Bulk operation - processes all .mdx files in a folder recursively
+- Same benefits as `add-page.js` (preserves vectors, removes old chunks, local-first)
+- Shows progress for each file
+- Summary statistics at the end (files processed, total chunks)
+- Great for updating an entire app's documentation at once
+
+**When to use:**
+- **`sync-docs.js`**: Full rebuild of vector store (all apps)
+- **`add-folder.js`**: Update all docs for one app or section
+- **`add-page.js`**: Update specific pages only
 
 ### Deploy to Vercel
 
