@@ -1,0 +1,358 @@
+---
+title: Selector Positioning
+description: Control where your selectors appear on your store with fixed, embedded, or custom positioning options
+---
+
+Selecty offers three positioning options to control where your selectors appear on your storefront. Each option provides different levels of flexibility and control.
+
+## Position Types Overview
+
+| Position Type | Behavior | Best For |
+|--------------|----------|----------|
+| [Fixed](#fixed-position) | Sticky element in page corners, always visible while scrolling | Quick access from any page location |
+| [Embedded](#embedded-position) | Placed in a row above or below content, scrolls with page | Integrated look within your theme |
+| [Custom](#custom-position) | Manual HTML placement anywhere in your theme | Full control over exact positioning |
+
+## Fixed Position
+
+Fixed positioning places your selector as a sticky element in one of the page corners. The selector remains visible at all times as the user scrolls through the page.
+
+### Available Positions
+
+- Top Left
+- Top Right
+- Bottom Left
+- Bottom Right
+
+### How It Works
+
+1. The selector is fixed to the viewport (browser window)
+2. It stays in place while the page content scrolls behind it
+3. Always accessible regardless of where the user is on the page
+
+### When to Use Fixed Position
+
+<CardGroup cols={2}>
+  <Card title="Ideal for" icon="check">
+    - Stores with long pages
+    - When quick access is priority
+    - Mobile-friendly navigation
+    - High-traffic international stores
+  </Card>
+  <Card title="Consider alternatives if" icon="xmark">
+    - You want a cleaner page design
+    - The selector conflicts with other fixed elements
+    - You prefer the selector to blend into your theme
+  </Card>
+</CardGroup>
+
+### Setting Up Fixed Position
+
+<Steps>
+  <Step title="Open Selector Settings">
+    In the Selecty app, open the selector you want to position.
+  </Step>
+  <Step title="Go to Position Settings">
+    Navigate to the **Settings** or **Position** tab.
+  </Step>
+  <Step title="Select Fixed Position">
+    Choose **Fixed** as your position type.
+  </Step>
+  <Step title="Choose Corner">
+    Select which corner: Top Left, Top Right, Bottom Left, or Bottom Right.
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply the changes.
+  </Step>
+</Steps>
+
+## Embedded Position
+
+Embedded positioning places your selector within your theme as a relative element in a dedicated row. The selector scrolls with the page content rather than staying fixed.
+
+### Available Positions
+
+- Top Left
+- Top Center
+- Top Right
+- Bottom Left
+- Bottom Center
+- Bottom Right
+
+### How It Works
+
+1. Selecty creates a new row in your theme layout
+2. The selector is placed within this row as a relative element
+3. The row appears above or below your website content
+4. The selector scrolls naturally with the rest of the page
+
+### When to Use Embedded Position
+
+<CardGroup cols={2}>
+  <Card title="Ideal for" icon="check">
+    - Clean, integrated design
+    - When selector should blend with theme
+    - Stores preferring traditional navigation
+    - Header or footer placement
+  </Card>
+  <Card title="Consider alternatives if" icon="xmark">
+    - You need the selector always visible
+    - You want precise control over placement
+    - The added row creates unwanted spacing
+  </Card>
+</CardGroup>
+
+### Limitations
+
+<Warning>
+Embedded position has some limitations to be aware of:
+- Only predefined positions are available (corners and center)
+- Creates a dedicated row which may add extra spacing to your layout
+- Less control over exact placement compared to custom positioning
+</Warning>
+
+### Setting Up Embedded Position
+
+<Steps>
+  <Step title="Open Selector Settings">
+    In the Selecty app, open the selector you want to position.
+  </Step>
+  <Step title="Go to Position Settings">
+    Navigate to the **Settings** or **Position** tab.
+  </Step>
+  <Step title="Select Embedded Position">
+    Choose **Embedded** as your position type.
+  </Step>
+  <Step title="Choose Location">
+    Select your preferred position: Top/Bottom and Left/Center/Right.
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply the changes.
+  </Step>
+</Steps>
+
+## Custom Position
+
+Custom positioning gives you full control by providing HTML code that you can place anywhere in your theme. This is the most flexible option for precise selector placement.
+
+### How It Works
+
+1. Selecty generates a custom HTML element for your selector
+2. You copy this code from the app
+3. You paste it into your theme's Liquid files at your desired location
+4. The selector renders exactly where you placed the code
+
+### When to Use Custom Position
+
+<CardGroup cols={2}>
+  <Card title="Ideal for" icon="check">
+    - Placing selector in header navigation
+    - Integrating with existing theme elements
+    - Precise control over positioning
+    - Advanced theme customizations
+  </Card>
+  <Card title="Consider alternatives if" icon="xmark">
+    - You're not comfortable editing theme code
+    - You want a quick, no-code solution
+    - Your theme updates frequently (may overwrite changes)
+  </Card>
+</CardGroup>
+
+### The Custom Position Code
+
+When you select custom positioning, Selecty provides you with an HTML element like this:
+
+```html
+<selector-root data-id="XX012345" id="XX012345"></selector-root>
+```
+
+<Note>
+The `data-id` and `id` values are unique to your selector. Always copy the exact code from your Selecty dashboard.
+</Note>
+
+## Example: Adding Selector to Header Navigation
+
+This example walks through placing a selector in a basic Shopify theme header, next to the search icon. Follow these steps to add a custom-positioned selector to your store.
+
+### Step 1: Get the Custom Position Code from Selecty
+
+<Steps>
+  <Step title="Open Your Selector">
+    In the Selecty app, open the selector you want to position (or create a new one).
+  </Step>
+  <Step title="Select Custom Position">
+    Navigate to the **Position** settings and select **Custom** as your position type.
+  </Step>
+  <Step title="Copy the Code">
+    Selecty will display a custom HTML element. Copy this code—it looks like:
+    ```html
+    <selector-root data-id="XX012345" id="XX012345"></selector-root>
+    ```
+  </Step>
+  <Step title="Save the Selector">
+    Click **Save** to publish your selector. The selector must be published for it to appear on your storefront.
+  </Step>
+</Steps>
+
+### Step 2: Find the Target Location on Your Storefront
+
+Now you need to identify where in your theme code to place the selector.
+
+<Steps>
+  <Step title="Visit Your Storefront">
+    Open your store in a browser and navigate to any page where the header is visible.
+  </Step>
+  <Step title="Hover Over the Target Area">
+    Move your mouse to the position where you want the selector to appear (e.g., next to the search icon in the header).
+  </Step>
+  <Step title="Open Browser Developer Tools">
+    Right-click on the target area and select **Inspect** (or **Inspect Element**). This opens the browser's developer tools with the Elements panel.
+  </Step>
+  <Step title="Explore the HTML Structure">
+    In the Elements panel, you'll see the HTML structure of the page. Look for a container element that wraps the area where you want to place your selector.
+
+    For a header placement, you might see something like:
+    ```html
+    <header class="header">
+      <nav class="header__nav">
+        <!-- navigation links -->
+      </nav>
+      <div class="header__icons">
+        <button class="header__search">Search</button>
+        <a class="header__cart">Cart</a>
+      </div>
+    </header>
+    ```
+  </Step>
+  <Step title="Identify a Useful Class or ID">
+    Find a CSS class or ID that uniquely identifies the container. In this example, `header__icons` is a good target because:
+    - It's specific enough to locate in the theme code
+    - Placing the selector inside it will position it alongside other header icons
+
+    Copy this class name (`header__icons`) to your clipboard.
+  </Step>
+</Steps>
+
+<Tip>
+When exploring the HTML, hover over elements in the developer tools—the corresponding area on the page will be highlighted, helping you identify the right container.
+</Tip>
+
+### Step 3: Locate the Container in Your Theme Code
+
+<Steps>
+  <Step title="Open Shopify Theme Editor">
+    From your Shopify Admin panel, navigate to **Online Store** > **Themes**. Find the theme you want to edit, click the **...** (three dots), and select **Edit code**.
+  </Step>
+  <Step title="Search for the Class">
+    In the code editor, click the **Search** icon in the left sidebar (or press `Ctrl + Shift + F` on Windows / `Cmd + Shift + F` on Mac).
+
+    Paste the class name you copied earlier (e.g., `header__icons`) and press Enter.
+  </Step>
+  <Step title="Review Search Results">
+    You may see multiple results. Follow these guidelines:
+    - **Skip `.css` files** — these contain styling, not HTML structure
+    - **Look for `.liquid` files** — these contain the HTML templates where you can add code
+    - Common files for header code: `header.liquid`, `sections/header.liquid`, or `theme.liquid`
+  </Step>
+  <Step title="Open the Correct File">
+    Click on a result in a `.liquid` file. You should see raw HTML with Liquid template tags (code in `{% %}` or `{{ }}` brackets).
+
+    Verify you've found the right location by looking for surrounding elements that match what you saw in the browser inspector.
+  </Step>
+</Steps>
+
+### Step 4: Insert the Selector Code
+
+Once you've located the correct container in the Liquid file:
+
+1. Position your cursor where you want the selector to appear within the container
+2. Paste the Selecty code you copied in Step 1
+
+**Example — Before:**
+```html
+<div class="header__icons">
+  <button class="header__search">Search</button>
+  <a class="header__cart">Cart</a>
+</div>
+```
+
+**Example — After:**
+```html
+<div class="header__icons">
+  <selector-root data-id="XX012345" id="XX012345"></selector-root>
+  <button class="header__search">Search</button>
+  <a class="header__cart">Cart</a>
+</div>
+```
+
+<Note>
+The position of the code within the container affects where the selector appears. Placing it first (as shown above) puts the selector before other icons. Placing it last puts it after them.
+</Note>
+
+### Step 5: Save and Verify
+
+<Steps>
+  <Step title="Save the File">
+    Click **Save** in the top right corner of the code editor, or press `Ctrl + S` (Windows) / `Cmd + S` (Mac).
+  </Step>
+  <Step title="Visit Your Storefront">
+    Open your store in a new browser tab (or refresh if already open) to see the changes.
+  </Step>
+  <Step title="Verify the Selector Appears">
+    Check that the selector is visible in the expected location.
+  </Step>
+</Steps>
+
+### Troubleshooting
+
+If you don't see the selector after following these steps, check:
+
+1. **Selector is published** — In the Selecty app, make sure the selector is saved and enabled
+2. **App embed is enabled** — Go to **Online Store** > **Themes** > **Customize** > **App embeds** and ensure Selecty is toggled on
+3. **Correct file was edited** — Verify you edited the right `.liquid` file and saved your changes
+4. **Clear cache** — Try viewing in an incognito/private browser window to bypass caching
+
+**Selector appears but in wrong location?**
+- Double-check you identified the correct container in the browser inspector
+- The selector inherits positioning from its parent container
+- You may need to add custom CSS to fine-tune the exact position
+
+**Selector disappears after theme update?**
+- Theme updates may overwrite your customizations
+- Keep a backup of your modified code
+- Re-apply changes after major theme updates
+
+<Tip>
+You may need to add custom CSS to adjust spacing or alignment with other header elements. See our [Custom CSS](/selecty/features/selectors#custom-css) guide for styling options.
+</Tip>
+
+## Choosing the Right Position Type
+
+Use this guide to select the best positioning for your store:
+
+| Your Need | Recommended Position |
+|-----------|---------------------|
+| Always-visible selector | Fixed |
+| Integrated with theme design | Embedded |
+| Header or footer placement (simple) | Embedded |
+| Header navigation (precise) | Custom |
+| Next to specific elements | Custom |
+| No-code solution | Fixed or Embedded |
+| Maximum flexibility | Custom |
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Selectors Overview" icon="toggle-on" href="/selecty/features/selectors">
+    Learn about selector types, themes, and customization
+  </Card>
+  <Card title="Custom CSS" icon="code" href="/selecty/features/selectors#custom-css">
+    Add custom styling to your selectors
+  </Card>
+  <Card title="Visibility Settings" icon="eye" href="/selecty/configuration/visibility">
+    Control when and where selectors appear
+  </Card>
+  <Card title="Resources Configuration" icon="gear" href="/selecty/configuration/resources">
+    Configure what your selectors can switch
+  </Card>
+</CardGroup>
