@@ -88,8 +88,8 @@ function extractAppName(relPath) {
 
 function createMarkdownSplitter() {
   return RecursiveCharacterTextSplitter.fromLanguage("markdown", {
-    chunkSize: 1200,
-    chunkOverlap: 200,
+    chunkSize: 800,
+    chunkOverlap: 150,
   });
 }
 

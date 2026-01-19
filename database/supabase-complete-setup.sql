@@ -24,10 +24,10 @@ CREATE TABLE documents (
 );
 
 -- Step 5: Create indexes for fast similarity search
+-- Using HNSW index for better recall accuracy than IVFFlat
 CREATE INDEX documents_embedding_idx
   ON documents
-  USING ivfflat (embedding vector_cosine_ops)
-  WITH (lists = 100);
+  USING hnsw (embedding vector_cosine_ops);
 
 -- Step 6: Create index for app_name filtering (faster queries)
 CREATE INDEX documents_app_name_idx
@@ -41,7 +41,7 @@ ALTER TABLE documents
 -- Step 8: Create match_documents function with optional app filtering
 CREATE OR REPLACE FUNCTION match_documents(
   query_embedding vector(1536),
-  match_count int DEFAULT 5,
+  match_count int DEFAULT 10,
   filter_app text DEFAULT NULL
 )
 RETURNS TABLE (
@@ -83,6 +83,6 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON documents TO authenticated, anon;
 -- SELECT DISTINCT app_name FROM documents;
 
 -- Example function usage:
--- SELECT * FROM match_documents('[0.1, 0.2, ...]'::vector(1536), 5, 'resell');  -- Search only resell docs
--- SELECT * FROM match_documents('[0.1, 0.2, ...]'::vector(1536), 5, NULL);     -- Search all docs
--- SELECT * FROM match_documents('[0.1, 0.2, ...]'::vector(1536), 10);           -- Search all docs, return 10 results
+-- SELECT * FROM match_documents('[0.1, 0.2, ...]'::vector(1536), 10, 'resell');  -- Search only resell docs
+-- SELECT * FROM match_documents('[0.1, 0.2, ...]'::vector(1536), 10, NULL);      -- Search all docs
+-- SELECT * FROM match_documents('[0.1, 0.2, ...]'::vector(1536));                -- Search all docs (uses default match_count=10)

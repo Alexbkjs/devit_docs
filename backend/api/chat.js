@@ -13,10 +13,15 @@ const supabase = createClient(
 
 const EMB_MODEL = "text-embedding-3-small";
 const CHAT_MODEL = "gpt-4o-mini";
-const TOP_K = 5;
+const TOP_K = 10;
+const SIMILARITY_THRESHOLD = 0.35;
 const MINTLIFY_BASE_URL = process.env.MINTLIFY_BASE_URL || 'https://devit-c039f40a.mintlify.app';
 const LOCAL_DEV_URL = process.env.LOCAL_DEV_URL; // Optional: Transform URLs for local dev
 const DEBUG_CHUNKS = process.env.DEBUG_CHUNKS === 'true'; // Debug flag: set to 'true' to enable chunk logging
+
+// Question condensing settings
+const CONDENSER_MODEL = "gpt-4o-mini";
+const HISTORY_TURNS = 5; // 5 turns = 10 messages (user + assistant pairs)
 
 // Helper function to transform URLs for local development
 function transformUrl(url) {
@@ -43,6 +48,62 @@ function writeDebugChunk(messageId, data) {
     fs.appendFileSync(logFile, logEntry);
   } catch (error) {
     console.error('Failed to write debug chunk:', error);
+  }
+}
+
+// App display names mapping
+const APP_DISPLAY_NAMES = {
+  selecty: 'Selecty',
+  resell: 'ReSell',
+  general: 'DevIT.Software',
+  lably: 'Lably',
+  reactflow: 'React Flow',
+  'discord-bots': 'Discord Bots'
+};
+
+/**
+ * Condenses a user message into a standalone search query.
+ * Extracts the core question from verbose messages and resolves pronouns using history.
+ */
+async function condenseQuestion(question, conversationHistory, appDisplayName) {
+  // Format history as concise text blocks (if any)
+  const historyText = conversationHistory.length > 0
+    ? conversationHistory
+        .map(m => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`)
+        .join('\n')
+    : 'No previous conversation.';
+
+  const condenserPrompt = `Extract the core question from the user's message for searching ${appDisplayName} documentation.
+
+If there is conversation history, incorporate relevant context into a standalone question.
+
+Rules:
+- Extract the main question/intent, removing background information and pleasantries
+- If the message references previous context (pronouns like "it", "that"), resolve them using the history
+- Keep the output concise (under 50 words) and focused on searchable terms
+- Do not answer the question, only extract/rewrite it
+- Output ONLY the extracted question, nothing else
+
+Conversation History:
+${historyText}
+
+User Message: ${question}
+
+Extracted Question:`;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: CONDENSER_MODEL,
+      messages: [{ role: "user", content: condenserPrompt }],
+      max_tokens: 100,
+      temperature: 0,
+    });
+
+    const condensed = response.choices[0]?.message?.content?.trim();
+    return condensed || question;
+  } catch (error) {
+    console.error('⚠️ [CONDENSER] Failed, using original question:', error.message);
+    return question; // Fallback to original on error
   }
 }
 
@@ -79,9 +140,10 @@ export default async function handler(req, res) {
     // Validate and default app_name
     const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'];
     const appName = validApps.includes(app_name) ? app_name : 'selecty';
+    const appDisplayName = APP_DISPLAY_NAMES[appName] || 'Selecty';
 
     console.log(`💬 [MESSAGES] Received ${messages.length} messages`);
-    console.log(`📱 [APP] Context: ${appName}`);
+    console.log(`📱 [APP] Context: ${appName} (${appDisplayName})`);
 
     // Get the latest user message
     const lastUserMessage = messages.filter(m => m.role === 'user').pop();
@@ -90,8 +152,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "No user message found" });
     }
 
-    const question = lastUserMessage.content;
-    console.log(`❓ [QUESTION] "${question}"`);
+    const originalQuestion = lastUserMessage.content;
+    console.log(`❓ [ORIGINAL] "${originalQuestion}"`);
+
+    // Extract conversation history (last N turns, excluding current message)
+    const historyMessages = messages.slice(-(HISTORY_TURNS * 2 + 1), -1);
+    console.log(`📜 [HISTORY] ${historyMessages.length} messages for context`);
+
+    // Condense question for optimal vector search
+    console.log('🔄 [CONDENSER] Extracting core question...');
+    const condensedQuestion = await condenseQuestion(originalQuestion, historyMessages, appDisplayName);
+    console.log(`🔍 [CONDENSED] "${condensedQuestion}"`);
 
     // Set headers for streaming response (Vercel AI SDK format)
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
@@ -108,17 +179,19 @@ export default async function handler(req, res) {
       console.log('🐛 [DEBUG] Chunk debugging enabled - writing to debug-logs/');
       writeDebugChunk(messageId, {
         type: 'request_start',
-        question: question,
+        originalQuestion: originalQuestion,
+        condensedQuestion: condensedQuestion,
+        historyLength: historyMessages.length,
         app_name: appName,
         timestamp: new Date().toISOString()
       });
     }
 
-    // 1) Create embedding for the question
-    console.log('🔄 [EMBEDDING] Creating embedding...');
+    // 1) Create embedding for the CONDENSED question (optimized for search)
+    console.log('🔄 [EMBEDDING] Creating embedding for condensed question...');
     const embResp = await openai.embeddings.create({
       model: EMB_MODEL,
-      input: question,
+      input: condensedQuestion,
     });
     const qEmbedding = embResp.data[0].embedding;
     console.log(`✅ [EMBEDDING] Created (dimension: ${qEmbedding.length})`);
@@ -157,22 +230,17 @@ export default async function handler(req, res) {
       console.log(`🔍 [DEBUG] Vector search results logged to debug-logs/search-${messageId}.log`);
     }
 
+    // Filter by similarity threshold
+    const relevantDocs = docs.filter(d => d.similarity >= SIMILARITY_THRESHOLD);
+    console.log(`🎯 [FILTER] ${relevantDocs.length}/${docs.length} chunks above similarity threshold (${SIMILARITY_THRESHOLD})`);
+
     // 3) Build the context
-    const contextText = docs.map((d) =>
+    const contextText = relevantDocs.map((d) =>
       `---\nTitle: ${d.title}\nURL: ${d.url}\n\n${d.content}\n`
     ).join("\n");
-    console.log(`📄 [CONTEXT] Built context from ${docs.length} documents`);
+    console.log(`📄 [CONTEXT] Built context from ${relevantDocs.length} relevant documents`);
 
     // 4) Build conversation history for OpenAI with app context
-    const appDisplayName = {
-      selecty: 'Selecty',
-      resell: 'ReSell',
-      general: 'DevIT.Software',
-      lably: 'Lably',
-      reactflow: 'React Flow',
-      'discord-bots': 'Discord Bots'
-    }[appName] || 'Selecty';
-
     const conversationMessages = [
       {
         role: "system",
@@ -183,13 +251,13 @@ Use only the provided documentation context to answer questions. If the answer i
 Documentation Context:
 ${contextText}`
       },
-      // Include previous conversation history (last 5 messages for context)
-      ...messages.slice(-5).map(m => ({
+      // Include conversation history (last N turns for context and tone continuity)
+      ...messages.slice(-(HISTORY_TURNS * 2)).map(m => ({
         role: m.role,
         content: m.content
       }))
     ];
-    console.log(`💭 [CONVERSATION] Built ${conversationMessages.length} messages for OpenAI`);
+    console.log(`💭 [CONVERSATION] Built ${conversationMessages.length} messages for OpenAI (${HISTORY_TURNS} turns + system)`);
 
     // 5) Call OpenAI with streaming
     console.log(`🤖 [OPENAI] Calling ${CHAT_MODEL} with streaming...`);
@@ -239,8 +307,8 @@ ${contextText}`
     }
 
     // 7) Send sources as data annotation with URL transformation
-    if (docs.length > 0) {
-      const sources = docs.map(d => {
+    if (relevantDocs.length > 0) {
+      const sources = relevantDocs.map(d => {
         const transformedUrl = transformUrl(d.url);
         return {
           url: transformedUrl,
@@ -263,7 +331,7 @@ ${contextText}`
       }])}\n`);
 
       const envInfo = LOCAL_DEV_URL ? `(transformed to ${LOCAL_DEV_URL})` : '(production URLs)';
-      console.log(`📎 [SOURCES] Sent ${docs.length} sources ${envInfo}`);
+      console.log(`📎 [SOURCES] Sent ${relevantDocs.length} sources ${envInfo}`);
     }
 
     // 8) Send finish event
