@@ -343,6 +343,122 @@ Custom resources are available on the **Premium plan only** (\$49.99/month or \$
 
 ---
 
+## Use Case 5: Redirecting Countries to Regional Domains or Different Stores
+
+A common scenario: you want customers who select a specific country (like China) to be redirected to a regional domain (like example.cn) or a completely different store. There are two approaches depending on your setup.
+
+### Approach A: Customizing an Existing Country Resource
+
+**When to use:** You already have the country configured in your Shopify Markets and want to redirect it to a custom URL (regional domain or external store).
+
+**Example scenario:**
+- China is set up as a country in your Shopify Markets
+- You want China to redirect to example.cn instead of the default Shopify market behavior
+
+<Steps>
+  <Step title="Verify Premium Plan">
+    Custom URL mapping requires the Premium plan (\$49.99/month or \$479.90/year).
+  </Step>
+
+  <Step title="Navigate to Resources">
+    In Selecty app, go to the **Resources** section.
+  </Step>
+
+  <Step title="Find the Country Resource">
+    Locate the country you want to customize (e.g., China).
+  </Step>
+
+  <Step title="Edit the Resource Link">
+    Click on the country resource and enter your custom URL in the link field (e.g., https://example.cn).
+  </Step>
+
+  <Step title="Save and Test">
+    Save your changes and test the selector to verify the country now redirects to your custom URL.
+  </Step>
+</Steps>
+
+**Best for:** When the country already exists in your store's market configuration and you simply want to change where it leads.
+
+### Approach B: Connecting to a Different Shopify Store
+
+**When to use:** You operate multiple Shopify stores and want customers to seamlessly navigate between them based on country selection.
+
+**Example scenario:**
+- You have a US store and a separate Canada store
+- When customers select Canada, they should be directed to your Canadian Shopify store
+
+<Steps>
+  <Step title="Install Selecty on Both Stores">
+    Ensure Selecty is installed on both the current store and the store you want to redirect to.
+  </Step>
+
+  <Step title="Connect the Stores">
+    Follow the [Multiple Stores Connection](/selecty/features/multiple-stores) guide to link your stores using secure tokens.
+  </Step>
+
+  <Step title="Sync Stores">
+    Click **Sync Stores** to automatically map resources between stores. Selecty builds the connection between each store's markets and resources.
+  </Step>
+
+  <Step title="Configure Redirect Behavior">
+    Choose between:
+    - **Auto-redirect**: Customers are automatically sent to the connected store
+    - **Recommendation banner**: Customers see a suggestion to switch stores
+    - **Manual selector**: Customers choose from a selector showing all connected stores
+  </Step>
+</Steps>
+
+**Best for:** When you operate multiple Shopify stores and want automatic synchronization and redirect capabilities between them.
+
+### Approach C: Creating a Third-Party Resource
+
+**When to use:** You want to add a country that doesn't exist in your Shopify Markets, or you want complete control over a custom switching option.
+
+**Example scenario:**
+- You don't have China in your Shopify Markets
+- You want to add a "China" option that redirects to example.cn
+
+<Steps>
+  <Step title="Verify Premium Plan">
+    Third-party resources require the Premium plan.
+  </Step>
+
+  <Step title="Create Custom Resource">
+    Go to **Resources** → **Add custom resource** and name it (e.g., "Regional Stores").
+  </Step>
+
+  <Step title="Add Resource Items">
+    For each regional option:
+    - Click **Add resource**
+    - Enter **Title** (e.g., "China")
+    - Enter **Link** (e.g., https://example.cn)
+    - Upload a flag icon (optional)
+    - Click **Apply**
+  </Step>
+
+  <Step title="Apply to Selector">
+    Create or edit a selector and select your custom resource collection as the resource type.
+  </Step>
+</Steps>
+
+**Best for:** When you need complete flexibility or the country isn't configured in your Shopify Markets.
+
+<Warning>
+All custom resource features (Custom URL Mapping, Third-Party Resources) require the **Premium plan** (\$49.99/month or \$479.90/year).
+</Warning>
+
+### Choosing the Right Approach
+
+| Scenario | Recommended Approach |
+|----------|---------------------|
+| Country exists in Shopify Markets, redirect to regional domain | Approach A: Custom URL Mapping |
+| Redirect to another Shopify store you operate | Approach B: Multi-Store Connection |
+| Country doesn't exist in Shopify Markets | Approach C: Third-Party Resource |
+| Need auto-sync between multiple Shopify stores | Approach B: Multi-Store Connection |
+| Redirect to non-Shopify platform | Approach A or C (depending on existing setup) |
+
+---
+
 ## Best Practices Across All Use Cases
 
 <CardGroup cols={2}>
