@@ -252,6 +252,31 @@
   opacity: 0.5;
 }
 
+/* Textarea scrollbar - theme aware */
+.widget-input::-webkit-scrollbar {
+  width: 6px;
+}
+
+.widget-input::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.widget-input::-webkit-scrollbar-thumb {
+  background: var(--widget-border-primary);
+  border-radius: 3px;
+}
+
+.widget-input::-webkit-scrollbar-thumb:hover {
+  background: var(--widget-text-secondary);
+}
+
+/* Firefox scrollbar */
+.widget-input {
+  scrollbar-width: thin;
+  scrollbar-color: var(--widget-border-primary) transparent;
+}
+
 /* Submit button */
 .widget-submit-button:hover:not(:disabled) {
   background-color: var(--widget-accent-hover) !important;

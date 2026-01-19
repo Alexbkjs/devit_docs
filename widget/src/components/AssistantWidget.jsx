@@ -6,7 +6,7 @@ import { getAppConfig, getAppNameFromUrl } from '../config';
 
 export function AssistantWidget({ domain, docsURL, backendURL }) {
   const [isOpen, setIsOpen] = useState(false);
-  const inputRef = useRef(null);
+  const textareaRef = useRef(null);
   const messagesEndRef = useRef(null);
   const [sourcesMap, setSourcesMap] = useState(new Map()); // Store sources by message ID
 
@@ -47,8 +47,10 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
   }, []);
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
+    if (isOpen && textareaRef.current) {
+      textareaRef.current.focus();
+      // Restore textarea height to match content when widget reopens
+      setTimeout(() => adjustTextareaHeight(), 0);
     }
   }, [isOpen]);
 
@@ -65,6 +67,42 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
 
   const handleClearChat = () => {
     setMessages([]);
+  };
+
+  const adjustTextareaHeight = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      const newHeight = Math.min(textarea.scrollHeight, 220);
+      textarea.style.height = newHeight + 'px';
+      // Only show scrollbar when at max height
+      textarea.style.overflowY = textarea.scrollHeight > 220 ? 'auto' : 'hidden';
+    }
+  };
+
+  const resetTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.overflowY = 'hidden';
+    }
+  };
+
+  const handleTextareaKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (input.trim() && !isLoading) {
+        handleSubmit(e);
+        resetTextareaHeight();
+      }
+    }
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (input.trim() && !isLoading) {
+      handleSubmit(e);
+      resetTextareaHeight();
+    }
   };
 
   return (
@@ -242,25 +280,32 @@ export function AssistantWidget({ domain, docsURL, backendURL }) {
                 backgroundColor: 'var(--widget-bg-primary)',
               }}
             >
-              <form onSubmit={handleSubmit} className="relative">
-                <input
-                  ref={inputRef}
-                  type="text"
+              <form onSubmit={handleFormSubmit} className="relative">
+                <textarea
+                  ref={textareaRef}
                   value={input}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e);
+                    adjustTextareaHeight();
+                  }}
+                  onKeyDown={handleTextareaKeyDown}
                   placeholder="Ask a question..."
                   disabled={isLoading}
-                  className="widget-input w-full rounded-full pl-4 pr-12 py-3 text-sm transition-all outline-none"
+                  rows={1}
+                  className="widget-input w-full rounded-2xl pl-4 pr-14 py-3 text-sm transition-all outline-none"
                   style={{
                     backgroundColor: 'var(--widget-bg-primary)',
                     border: '1px solid var(--widget-border-primary)',
                     color: 'var(--widget-text-primary)',
+                    maxHeight: '220px',
+                    overflowY: 'hidden',
+                    resize: 'none',
                   }}
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="widget-submit-button absolute right-2 inset-y-0 my-auto w-8 h-8 rounded-full disabled:opacity-50 transition-colors flex items-center justify-center cursor-pointer"
+                  className="widget-submit-button absolute right-3 bottom-3 w-8 h-8 rounded-full disabled:opacity-50 transition-colors flex items-center justify-center cursor-pointer"
                   style={{
                     backgroundColor: 'var(--widget-accent-primary)',
                     color: 'var(--widget-text-inverse)',
