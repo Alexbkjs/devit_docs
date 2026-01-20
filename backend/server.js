@@ -123,7 +123,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     // Validate and default app_name
-    const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'];
+    const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram'];
     const appName = validApps.includes(app_name) ? app_name : null;
     const appDisplayName = appName ? APP_DISPLAY_NAMES[appName] : 'DevIT.Software';
 

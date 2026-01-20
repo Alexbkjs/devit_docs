@@ -21,6 +21,7 @@ docs/
 │   ├── index.mdx
 │   ├── quickstart.mdx
 │   ├── pricing.mdx
+│   ├── changelog.mdx
 │   ├── features/
 │   ├── configuration/
 │   ├── advanced/
@@ -29,6 +30,38 @@ docs/
 │   ├── index.mdx
 │   ├── quickstart.mdx
 │   ├── pricing.mdx
+│   ├── changelog.mdx
+│   ├── features/
+│   ├── advanced/
+│   └── support/
+├── lably/                # Lably app documentation
+│   ├── index.mdx
+│   ├── quickstart.mdx
+│   ├── pricing.mdx
+│   ├── changelog.mdx
+│   ├── features/
+│   ├── configuration/
+│   └── support/
+├── reactflow/            # ReactFlow app documentation
+│   ├── index.mdx
+│   ├── quickstart.mdx
+│   ├── pricing.mdx
+│   ├── changelog.mdx
+│   └── support/
+├── discord-bots/         # Discord Bots documentation
+│   └── index.mdx
+├── email/                # Email Bot documentation
+│   ├── index.mdx
+│   ├── quickstart.mdx
+│   ├── changelog.mdx
+│   ├── features/
+│   ├── configuration/
+│   └── support/
+├── telegram/             # Telegram Bot documentation
+│   ├── index.mdx
+│   ├── quickstart.mdx
+│   ├── changelog.mdx
+│   ├── features/
 │   └── support/
 ├── general/              # DevIT.Software company info
 │   ├── index.mdx
@@ -40,6 +73,11 @@ docs/
 
 - Selecty: `https://your-domain.com/selecty/*`
 - ReSell: `https://your-domain.com/resell/*`
+- Lably: `https://your-domain.com/lably/*`
+- ReactFlow: `https://your-domain.com/reactflow/*`
+- Discord Bots: `https://your-domain.com/discord-bots/*`
+- Email: `https://your-domain.com/email/*`
+- Telegram: `https://your-domain.com/telegram/*`
 - General: `https://your-domain.com/general/*`
 
 ## Database Schema Update
@@ -60,7 +98,7 @@ ON documents(app_name);
 -- Optional: Add check constraint for valid app names
 ALTER TABLE documents
 ADD CONSTRAINT valid_app_name
-CHECK (app_name IN ('selecty', 'resell', 'general'));
+CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram'));
 ```
 
 ### Step 2: Verify Schema
@@ -100,11 +138,11 @@ Here's how to integrate context-aware queries in your AI widget:
 function getAppNameFromUrl() {
   const path = window.location.pathname;
 
-  // Match URL pattern: /selecty/*, /resell/*, /general/*
-  const match = path.match(/^\/(selecty|resell|general)/);
+  // Match URL pattern for all apps
+  const match = path.match(/^\/(selecty|resell|general|lably|reactflow|discord-bots|email|telegram)/);
 
   if (match) {
-    return match[1]; // Returns: 'selecty', 'resell', or 'general'
+    return match[1]; // Returns app name
   }
 
   // Default to 'selecty' if on root or unknown path
@@ -328,7 +366,7 @@ DROP CONSTRAINT valid_app_name;
 
 ALTER TABLE documents
 ADD CONSTRAINT valid_app_name
-CHECK (app_name IN ('selecty', 'resell', 'general', 'quicky'));
+CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram', 'quicky'));
 ```
 
 ### 6. Run Sync

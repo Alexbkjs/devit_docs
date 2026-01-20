@@ -5,7 +5,7 @@ Complete setup guide for DevIT.Software multi-app documentation with AI assistan
 ## ✅ Completed Tasks
 
 ### 1. Documentation Structure ✓
-- [x] Restructured docs into app-specific folders (selecty, resell, general)
+- [x] Restructured docs into app-specific folders (selecty, resell, lably, reactflow, discord-bots, email, telegram, general)
 - [x] Updated `docs.json` with multi-app navigation tabs
 - [x] Added top-right links (Partner directory, Terms of Use)
 - [x] Created comprehensive ReSell documentation
@@ -282,29 +282,36 @@ const { data } = await supabase.rpc('match_documents', {
 ## 📁 File Structure Reference
 
 ```
-selecty_resell_docs/
+devit_docs/
 ├── docs/
 │   ├── selecty/           # Selecty app docs
 │   ├── resell/            # ReSell app docs
+│   ├── lably/             # Lably app docs
+│   ├── reactflow/         # ReactFlow app docs
+│   ├── discord-bots/      # Discord Bots docs
+│   ├── email/             # Email Bot docs
+│   ├── telegram/          # Telegram Bot docs
 │   ├── general/           # DevIT.Software info
 │   └── docs.json          # Navigation config
-├── widget_builder/
-│   ├── src/
-│   │   ├── config.js                  # ✅ Updated with app detection
-│   │   └── components/
-│   │       └── AssistantWidget.jsx    # ✅ Updated with context
-│   ├── BACKEND_API_GUIDE.md           # ✅ New
-│   └── dist/                          # Build output
-├── sync-docs.js                       # ✅ Updated with app_name
-├── slq_query.sql                      # ✅ Updated schema
-├── docs_index.txt                     # ✅ Updated paths
-├── IMPLEMENTATION_GUIDE.md            # ✅ New
-└── SETUP_CHECKLIST.md                 # ✅ This file
+├── backend/
+│   ├── api/chat.js        # Vercel serverless function
+│   ├── server.js          # Local development server
+│   ├── sync-docs.js       # Full documentation sync
+│   ├── add-page.js        # Add/update specific pages
+│   └── add-folder.js      # Add/update folders
+├── scripts/
+│   ├── docs_index.txt     # List of docs files
+│   └── sync-docs.js       # Sync script
+├── guides/
+│   ├── IMPLEMENTATION_GUIDE.md
+│   ├── BACKEND_API_GUIDE.md
+│   └── SETUP_CHECKLIST.md # This file
+└── CLAUDE.md              # Project instructions
 ```
 
 ## 🎯 Adding Future Apps
 
-To add new apps (e.g., Quicky, Lably):
+To add new apps (e.g., Quicky):
 
 1. **Create docs folder**: `mkdir -p docs/quicky`
 2. **Add content**: Create `index.mdx`, `quickstart.mdx`, etc.

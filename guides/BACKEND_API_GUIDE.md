@@ -59,7 +59,7 @@ export default async function handler(req, res) {
     const { messages, app_name } = req.body;
 
     // Validate app_name
-    const validApps = ['selecty', 'resell', 'general'];
+    const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram'];
     const appName = validApps.includes(app_name) ? app_name : 'selecty';
 
     // Get the last user message
@@ -169,7 +169,7 @@ export async function POST(req) {
   const { messages, app_name } = await req.json();
 
   // Validate app_name
-  const validApps = ['selecty', 'resell', 'general'];
+  const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram'];
   const appName = validApps.includes(app_name) ? app_name : 'selecty';
 
   // Get last user message
@@ -279,7 +279,7 @@ OPENAI_API_KEY=sk-...
 ### Invalid app_name
 
 ```javascript
-const validApps = ['selecty', 'resell', 'general'];
+const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram'];
 const appName = validApps.includes(app_name) ? app_name : 'selecty';
 ```
 
@@ -398,7 +398,7 @@ console.log('Current app:', getAppNameFromUrl());
 
 1. **Update your backend** using code examples above
 2. **Deploy updated backend** to production
-3. **Test each app context** (selecty, resell, general)
+3. **Test each app context** (selecty, resell, lably, reactflow, discord-bots, email, telegram, general)
 4. **Monitor logs** to ensure app filtering works correctly
 
 ## Support

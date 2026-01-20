@@ -306,15 +306,19 @@ PORT=9000                                     # API server port (default: 9000)
 ```
 backend/
 ├── api/
-│   └── chat.js            # Vercel serverless function
-├── server.js              # Local development server
-├── sync-docs.js           # Documentation ingestion pipeline
-├── package.json           # Dependencies
-├── .env                   # Environment variables (gitignored)
-├── .env.example           # Environment template
-├── vercel.json            # Vercel deployment config
-├── PROJECT_OVERVIEW.md    # This file
-└── DEPLOYMENT.md          # Deployment guide
+│   └── chat.js              # Vercel serverless function
+├── server.js                # Local development server
+├── sync-docs.js             # Documentation ingestion pipeline (full sync)
+├── add-page.js              # Add/update specific pages
+├── add-folder.js            # Add/update entire folders
+├── package.json             # Dependencies
+├── .env                     # Environment variables (gitignored)
+├── .env.example             # Environment template
+├── vercel.json              # Vercel deployment config
+├── README.md                # Quick start guide
+├── PROJECT_OVERVIEW.md      # This file
+├── DEPLOYMENT.md            # Deployment guide
+└── URL-TRANSFORMATION.md    # URL transformation documentation
 ```
 
 ---
@@ -422,9 +426,7 @@ d:{"finishReason":"stop","usage":{"promptTokens":0,"completionTokens":0}}
 
 | Metric | Value |
 |--------|-------|
-| Total Files | 16 MDX documents |
-| Total Chunks | 217 chunks |
-| Avg Chunks/File | 13.6 chunks |
+| Total Files | 68 MDX documents |
 | Chunk Size | 1200 chars (target) |
 | Chunk Overlap | 200 chars |
 | Embedding Dimension | 1536 |
@@ -432,6 +434,8 @@ d:{"finishReason":"stop","usage":{"promptTokens":0,"completionTokens":0}}
 | API Response | Streaming (real-time) |
 | Max Tokens | 500 per response |
 | Temperature | 0.1 (factual) |
+
+*Note: Total files count based on docs_index.txt. Run sync to see actual chunk counts.*
 
 ---
 
