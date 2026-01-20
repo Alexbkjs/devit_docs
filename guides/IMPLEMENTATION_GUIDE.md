@@ -98,7 +98,7 @@ ON documents(app_name);
 -- Optional: Add check constraint for valid app names
 ALTER TABLE documents
 ADD CONSTRAINT valid_app_name
-CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram'));
+CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'));
 ```
 
 ### Step 2: Verify Schema
@@ -139,7 +139,7 @@ function getAppNameFromUrl() {
   const path = window.location.pathname;
 
   // Match URL pattern for all apps
-  const match = path.match(/^\/(selecty|resell|general|lably|reactflow|discord-bots|email|telegram)/);
+  const match = path.match(/^\/(selecty|resell|general|lably|reactflow|discord-bots)/);
 
   if (match) {
     return match[1]; // Returns app name
@@ -366,7 +366,7 @@ DROP CONSTRAINT valid_app_name;
 
 ALTER TABLE documents
 ADD CONSTRAINT valid_app_name
-CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'email', 'telegram', 'quicky'));
+CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'quicky'));
 ```
 
 ### 6. Run Sync
