@@ -151,6 +151,45 @@ Find answers to the most common questions about Selecty, from basic setup to adv
 
     Learn more: [Testing Geolocation](/selecty/advanced/testing-geolocation)
   </Accordion>
+
+  <Accordion title="How can I resize the selector?">
+    **Primary method - Scale setting:**
+    1. Open the selector in the Selecty editor
+    2. Go to the **Settings** tab
+    3. Find the **Scale** option
+    4. Adjust the value to make the selector smaller or larger
+
+    **Alternative - Custom CSS:**
+    For more granular control, you can use custom CSS:
+    1. Go to **Theme → Other** in the selector editor
+    2. Add custom CSS rules to adjust sizing
+
+    **Note about CSS and shadow root:**
+    Selecty uses a shadow root by default to prevent CSS conflicts with your theme. If you need to inspect styles in DevTools or apply external CSS, you can disable the shadow root in **Theme → Other**. This makes it easier to test and debug custom styles.
+  </Accordion>
+
+  <Accordion title="How can I change the flag icon?">
+    You can replace default flag icons with custom images:
+
+    1. **Go to Resources:**
+       - Open Selecty app
+       - Navigate to the **Resources** section
+
+    2. **Find the language or country:**
+       - Locate the resource you want to customize
+       - Click to edit it
+
+    3. **Upload custom icon:**
+       - Click on the flag/icon area
+       - Upload your custom image
+       - Recommended: Use a square image (e.g., 64×64 pixels)
+
+    4. **Save changes:**
+       - Save the resource
+       - The new icon will appear in all selectors using this resource
+
+    **Common use case:** Using an Irish flag instead of British flag for English language, or using regional flag variants.
+  </Accordion>
 </AccordionGroup>
 
 ## Setup and Configuration
@@ -351,6 +390,23 @@ Find answers to the most common questions about Selecty, from basic setup to adv
 
     Learn more: [PageFly Integration](/selecty/advanced/pagefly)
   </Accordion>
+
+  <Accordion title="Why does the selector load slowly?">
+    Selecty is built as a **Shopify app extension**, which is the architecture recommended by Shopify for third-party apps.
+
+    **How app extensions load:**
+    - App extensions load **after** your theme files are fully loaded and rendered
+    - This is a Shopify platform behavior, not specific to Selecty
+    - All apps built as extensions follow the same loading sequence
+
+    **What you can do:**
+    - Ensure your store theme is performant with all apps disabled
+    - Optimize images and reduce heavy third-party scripts
+    - Test your store's base performance with [PageSpeed Insights](https://pagespeed.web.dev/)
+    - Compare scores with Selecty enabled vs disabled to isolate any impact
+
+    **Note:** A slight delay in selector appearance is normal and expected behavior for Shopify app extensions. The selector will appear once the page has finished its initial render.
+  </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
@@ -359,24 +415,35 @@ Find answers to the most common questions about Selecty, from basic setup to adv
   <Accordion title="My selector isn't showing on my store">
     **Check these items:**
 
-    1. **Selector is published:**
+    1. **App embeds enabled:**
+       - Go to your Shopify theme customizer
+       - Open "App embeds" section
+       - Verify Selecty is enabled (toggled on)
+
+    2. **Selector is published:**
        - Open Selecty app
        - Verify selector is saved and active
+       - Confirm the selector status shows as published
 
-    2. **Resources are configured:**
+    3. **Visibility conditions:**
+       - Check if you've set visibility rules on the selector
+       - Ensure conditions allow the selector to display on your current page/device
+       - Try temporarily removing visibility rules to test
+
+    4. **Resources are configured:**
        - At least 2 languages or currencies in Shopify Markets
        - Resources are assigned to markets
 
-    3. **Theme compatibility:**
+    5. **Theme compatibility:**
        - Try refreshing theme integration
        - Check theme is up to date
 
-    4. **Browser cache:**
+    6. **Browser cache:**
        - Clear cache and cookies
        - Try incognito mode
        - Test in different browser
 
-    5. **Conflicts:**
+    7. **Conflicts:**
        - Disable other localization apps temporarily
        - Check for JavaScript errors in console
   </Accordion>
