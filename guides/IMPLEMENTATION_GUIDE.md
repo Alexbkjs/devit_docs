@@ -48,21 +48,6 @@ docs/
 │   ├── pricing.mdx
 │   ├── changelog.mdx
 │   └── support/
-├── discord-bots/         # Discord Bots documentation
-│   └── index.mdx
-├── email/                # Email Bot documentation
-│   ├── index.mdx
-│   ├── quickstart.mdx
-│   ├── changelog.mdx
-│   ├── features/
-│   ├── configuration/
-│   └── support/
-├── telegram/             # Telegram Bot documentation
-│   ├── index.mdx
-│   ├── quickstart.mdx
-│   ├── changelog.mdx
-│   ├── features/
-│   └── support/
 ├── general/              # DevIT.Software company info
 │   ├── index.mdx
 │   └── custom-solutions.mdx
@@ -75,9 +60,6 @@ docs/
 - ReSell: `https://your-domain.com/resell/*`
 - Lably: `https://your-domain.com/lably/*`
 - ReactFlow: `https://your-domain.com/reactflow/*`
-- Discord Bots: `https://your-domain.com/discord-bots/*`
-- Email: `https://your-domain.com/email/*`
-- Telegram: `https://your-domain.com/telegram/*`
 - General: `https://your-domain.com/general/*`
 
 ## Database Schema Update
@@ -98,7 +80,7 @@ ON documents(app_name);
 -- Optional: Add check constraint for valid app names
 ALTER TABLE documents
 ADD CONSTRAINT valid_app_name
-CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'));
+CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow'));
 ```
 
 ### Step 2: Verify Schema
@@ -139,7 +121,7 @@ function getAppNameFromUrl() {
   const path = window.location.pathname;
 
   // Match URL pattern for all apps
-  const match = path.match(/^\/(selecty|resell|general|lably|reactflow|discord-bots)/);
+  const match = path.match(/^\/(selecty|resell|general|lably|reactflow)/);
 
   if (match) {
     return match[1]; // Returns app name
@@ -310,20 +292,20 @@ Fetching https://raw.githubusercontent.com/.../docs/resell/index.mdx
 
 ## Adding New Apps
 
-To add a new app (e.g., "Quicky", "Lably"):
+To add a new app (e.g., "New App", "Lably"):
 
 ### 1. Create Documentation Folder
 
 ```bash
-mkdir -p docs/quicky
+mkdir -p docs/newapp
 ```
 
 ### 2. Add Content
 
 Create at minimum:
-- `docs/quicky/index.mdx` (overview)
-- `docs/quicky/quickstart.mdx` (getting started)
-- `docs/quicky/pricing.mdx` (pricing info)
+- `docs/newapp/index.mdx` (overview)
+- `docs/newapp/quickstart.mdx` (getting started)
+- `docs/newapp/pricing.mdx` (pricing info)
 
 ### 3. Update docs.json
 
@@ -331,15 +313,15 @@ Add new tab to `docs/docs.json`:
 
 ```json
 {
-  "tab": "Quicky",
-  "url": "quicky",
+  "tab": "New App",
+  "url": "newapp",
   "groups": [
     {
       "group": "Getting Started",
       "pages": [
-        "quicky/index",
-        "quicky/quickstart",
-        "quicky/pricing"
+        "newapp/index",
+        "newapp/quickstart",
+        "newapp/pricing"
       ]
     }
   ]
@@ -351,9 +333,9 @@ Add new tab to `docs/docs.json`:
 Add new files:
 
 ```
-docs/quicky/index.mdx
-docs/quicky/quickstart.mdx
-docs/quicky/pricing.mdx
+docs/newapp/index.mdx
+docs/newapp/quickstart.mdx
+docs/newapp/pricing.mdx
 ```
 
 ### 5. Update Database Constraint (Optional)
@@ -366,7 +348,7 @@ DROP CONSTRAINT valid_app_name;
 
 ALTER TABLE documents
 ADD CONSTRAINT valid_app_name
-CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', 'quicky'));
+CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'newapp'));
 ```
 
 ### 6. Run Sync
@@ -376,7 +358,7 @@ node sync-docs.js
 ```
 
 The sync script will automatically:
-- Extract `app_name = "quicky"` from file paths
+- Extract `app_name = "newapp"` from file paths
 - Store chunks with correct app metadata
 - Generate proper Mintlify URLs
 
@@ -395,7 +377,7 @@ Future apps will be added as additional tabs.
 ### Top-Right Links
 
 Two links appear in the navbar:
-- **Terms of Use** → https://devit.software/terms-of-use/discord
+- **Terms of Use** → https://devit.software/terms-of-use/shopify
 - **Shopify Partner** → https://www.shopify.com/partners/directory/partner/devit-software
 
 ### Global Anchors
@@ -523,7 +505,7 @@ docs/
 2. **Run Initial Sync**: Execute `node sync-docs.js` to populate vector store
 3. **Implement AI Widget**: Integrate context-aware search in your docs site
 4. **Add More ReSell Docs**: Expand ReSell documentation from old docs
-5. **Create Additional Apps**: Add Quicky, Lably, etc. following the guide above
+5. **Create Additional Apps**: Add New App, Lably, etc. following the guide above
 
 ## Support
 

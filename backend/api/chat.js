@@ -57,8 +57,7 @@ const APP_DISPLAY_NAMES = {
   resell: 'ReSell',
   general: 'DevIT.Software',
   lably: 'Lably',
-  reactflow: 'React Flow',
-  'discord-bots': 'Discord Bots'
+  reactflow: 'React Flow'
 };
 
 /**
@@ -138,7 +137,7 @@ export default async function handler(req, res) {
     }
 
     // Validate and default app_name
-    const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots'];
+    const validApps = ['selecty', 'resell', 'general', 'lably', 'reactflow'];
     const appName = validApps.includes(app_name) ? app_name : 'selecty';
     const appDisplayName = APP_DISPLAY_NAMES[appName] || 'Selecty';
 

@@ -25,7 +25,7 @@ export function getBackendURL() {
 /**
  * Extracts the app name from the current URL path
  * Used to filter documentation searches by app context
- * @returns {string} App name: 'selecty', 'resell', 'general', 'lably', 'reactflow', 'discord-bots', or default 'selecty'
+ * @returns {string} App name: 'selecty', 'resell', 'general', 'lably', 'reactflow', or default 'selecty'
  */
 export function getAppNameFromUrl() {
   if (typeof window === 'undefined') {
@@ -35,17 +35,10 @@ export function getAppNameFromUrl() {
   const path = window.location.pathname;
 
   // Match all app URLs
-  const match = path.match(/^\/(selecty|resell|general|lably|reactflow|discord-bots|email|telegram)/);
+  const match = path.match(/^\/(selecty|resell|general|lably|reactflow)/);
 
   if (match) {
-    const appName = match[1];
-
-    // Map email and telegram to discord-bots
-    if (appName === 'email' || appName === 'telegram') {
-      return 'discord-bots';
-    }
-
-    return appName; // selecty, resell, general, lably, reactflow, discord-bots
+    return match[1]; // selecty, resell, general, lably, reactflow
   }
 
   // Default to selecty if on root or unknown path
@@ -118,18 +111,6 @@ export function getAppConfig() {
         "How to customize the checkout flow?",
         "What features does React Flow offer?",
         "How to configure React Flow?"
-      ]
-    },
-    'discord-bots': {
-      name: 'discord-bots',
-      displayName: 'Discord Bots',
-      description: 'Email and Telegram bots for Discord',
-      docsPath: '/discord-bots',
-      suggestions: [
-        "How do I get started with Email bot?",
-        "How to connect Telegram to Discord?",
-        "What commands are available?",
-        "How to troubleshoot connection errors?"
       ]
     }
   };

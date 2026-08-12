@@ -59,15 +59,6 @@ function transformToMintlifyUrl(relPath, mintlifyBase) {
   if (urlPath === 'reactflow/index') {
     return `${mintlifyBase}/reactflow`;
   }
-  if (urlPath === 'discord-bots/index') {
-    return `${mintlifyBase}/discord-bots`;
-  }
-  if (urlPath === 'email/index') {
-    return `${mintlifyBase}/email`;
-  }
-  if (urlPath === 'telegram/index') {
-    return `${mintlifyBase}/telegram`;
-  }
 
   // Construct Mintlify URL
   return `${mintlifyBase}/${urlPath}`;
@@ -77,14 +68,7 @@ function extractAppName(relPath) {
   // Extract app name from path: docs/selecty/... -> "selecty"
   const match = relPath.match(/^docs\/([^/]+)\//);
   if (match) {
-    const appName = match[1];
-
-    // Map email and telegram to discord-bots
-    if (appName === 'email' || appName === 'telegram') {
-      return 'discord-bots';
-    }
-
-    return appName; // selecty, resell, general, lably, reactflow, discord-bots
+    return match[1]; // selecty, resell, general, lably, reactflow
   }
   return 'unknown';
 }

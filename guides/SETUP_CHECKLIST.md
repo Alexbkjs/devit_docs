@@ -5,7 +5,7 @@ Complete setup guide for DevIT.Software multi-app documentation with AI assistan
 ## ✅ Completed Tasks
 
 ### 1. Documentation Structure ✓
-- [x] Restructured docs into app-specific folders (selecty, resell, lably, reactflow, discord-bots, email, telegram, general)
+- [x] Restructured docs into app-specific folders (selecty, resell, lably, reactflow, general)
 - [x] Updated `docs.json` with multi-app navigation tabs
 - [x] Added top-right links (Partner directory, Terms of Use)
 - [x] Created comprehensive ReSell documentation
@@ -288,9 +288,6 @@ devit_docs/
 │   ├── resell/            # ReSell app docs
 │   ├── lably/             # Lably app docs
 │   ├── reactflow/         # ReactFlow app docs
-│   ├── discord-bots/      # Discord Bots docs
-│   ├── email/             # Email Bot docs
-│   ├── telegram/          # Telegram Bot docs
 │   ├── general/           # DevIT.Software info
 │   └── docs.json          # Navigation config
 ├── backend/
@@ -311,14 +308,14 @@ devit_docs/
 
 ## 🎯 Adding Future Apps
 
-To add new apps (e.g., Quicky):
+To add new apps (e.g., New App):
 
-1. **Create docs folder**: `mkdir -p docs/quicky`
+1. **Create docs folder**: `mkdir -p docs/newapp`
 2. **Add content**: Create `index.mdx`, `quickstart.mdx`, etc.
-3. **Update docs.json**: Add new tab for Quicky
+3. **Update docs.json**: Add new tab for New App
 4. **Update docs_index.txt**: List all new files
-5. **Update config.js**: Add Quicky to app configs
-6. **Update SQL constraint** (optional): Add 'quicky' to valid apps
+5. **Update config.js**: Add New App to app configs
+6. **Update SQL constraint** (optional): Add 'newapp' to valid apps
 7. **Run sync**: `node sync-docs.js`
 
 See `IMPLEMENTATION_GUIDE.md` lines 312-360 for detailed instructions.

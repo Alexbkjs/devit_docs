@@ -424,17 +424,17 @@ Mintlify auto-deploys the changes.
 
 ## Adding New Apps
 
-To add a new app (e.g., "Quicky"):
+To add a new app (e.g., "New App"):
 
 **1. Create docs folder:**
 ```bash
-mkdir -p docs/quicky
+mkdir -p docs/newapp
 ```
 
 **2. Add documentation files:**
-- `docs/quicky/index.mdx` (landing page)
-- `docs/quicky/quickstart.mdx`
-- `docs/quicky/pricing.mdx`
+- `docs/newapp/index.mdx` (landing page)
+- `docs/newapp/quickstart.mdx`
+- `docs/newapp/pricing.mdx`
 - etc.
 
 **3. Update Mintlify navigation** (`docs/docs.json`):
@@ -443,15 +443,15 @@ mkdir -p docs/quicky
   "tabs": [
     {"name": "Selecty", "url": "selecty"},
     {"name": "ReSell", "url": "resell"},
-    {"name": "Quicky", "url": "quicky"}  // Add this
+    {"name": "New App", "url": "newapp"}  // Add this
   ],
   "navigation": [
     {
-      "group": "Quicky",
+      "group": "New App",
       "pages": [
-        "quicky/index",
-        "quicky/quickstart",
-        "quicky/pricing"
+        "newapp/index",
+        "newapp/quickstart",
+        "newapp/pricing"
       ]
     }
   ]
@@ -460,9 +460,9 @@ mkdir -p docs/quicky
 
 **4. Update docs index** (`scripts/docs_index.txt`):
 ```
-docs/quicky/index.mdx
-docs/quicky/quickstart.mdx
-docs/quicky/pricing.mdx
+docs/newapp/index.mdx
+docs/newapp/quickstart.mdx
+docs/newapp/pricing.mdx
 ```
 
 **5. Update widget config** (`widget/src/config.js`):
@@ -470,15 +470,15 @@ docs/quicky/pricing.mdx
 const configs = {
   selecty: { /*...*/ },
   resell: { /*...*/ },
-  quicky: {  // Add this
-    name: 'quicky',
-    displayName: 'Quicky',
-    description: 'Quick description of Quicky',
-    docsPath: '/quicky',
+  newapp: {  // Add this
+    name: 'newapp',
+    displayName: 'New App',
+    description: 'Quick description of New App',
+    docsPath: '/newapp',
     suggestions: [
-      "How do I get started with Quicky?",
-      "What are Quicky's features?",
-      "How to configure Quicky?",
+      "How do I get started with New App?",
+      "What are New App's features?",
+      "How to configure New App?",
       "Where can I get support?"
     ]
   }
@@ -490,7 +490,7 @@ const configs = {
 -- Run in Supabase SQL Editor
 ALTER TABLE documents DROP CONSTRAINT IF EXISTS valid_app_name;
 ALTER TABLE documents ADD CONSTRAINT valid_app_name
-  CHECK (app_name IN ('selecty', 'resell', 'general', 'quicky'));
+  CHECK (app_name IN ('selecty', 'resell', 'general', 'lably', 'reactflow', 'newapp'));
 ```
 
 **7. Sync documentation:**
@@ -507,7 +507,7 @@ cp dist/assistant-widget.iife.js ../docs/
 **9. Deploy:**
 ```bash
 git add .
-git commit -m "Add Quicky app documentation"
+git commit -m "Add New App app documentation"
 git push
 ```
 
